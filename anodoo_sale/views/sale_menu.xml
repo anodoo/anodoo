@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+  
+    <menuitem id="sale_menu_root" name="客户销售" action="sales_team.sales_team_config_action" web_icon="sale_management,static/description/icon.png"/>
+    	<menuitem parent="sale_menu_root" id="sale_menu_forcast" name="目标与预测" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_spm" name="绩效与佣金" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_channel" name="多渠道协同" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_agent" name="代理商" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_team" name="团队" />
+    		
+    	<menuitem parent="sale_menu_root" id="sale_menu_enable" name="销售赋能" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_analysis" name="分析" />
+    		<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_forcast" name="目标与预测" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_spm" name="绩效与佣金" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_channel" name="多渠道协同" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_anget" name="代理商" />
+				<menuitem parent="sale_menu_analysis_anget" id="sale_menu_analysis_anget_analysis" name="代理商分析" action="website_crm_partner_assign.action_report_crm_partner_assign" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_team" name="销售团队" />
+				<menuitem parent="sale_menu_analysis_team" id="sale_menu_analysis_team_act" name="行为分析" groups="sales_team.group_sale_manager" action="sales_team.crm_team_salesteams_act" />
+    	<menuitem parent="sale_menu_root" id="sale_menu_config" name="配置" groups="sales_team.group_sale_manager" />
+    		<menuitem parent="sale_menu_config" id="sale_menu_config_setting" name="基础设置" action="sale.action_sale_config_settings" groups="base.group_system"/>
+			<menuitem parent="sale_menu_config" id="sale_menu_config_forcast" name="目标与预测" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_spm" name="绩效与佣金" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_channel" name="多渠道协同" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_anget" name="代理商" />
+				<menuitem parent="sale_menu_config_anget" id="sale_menu_config_anget_grade" name="代理商级别" action="website_crm_partner_assign.res_partner_grade_action" />
+				<menuitem parent="sale_menu_config_anget" id="sale_menu_config_anget_activation" name="代理商激励" action="website_crm_partner_assign.res_partner_activation_act" />
+          
+				
+			<menuitem parent="sale_menu_config" id="sale_menu_config_team" name="团队" />
+				<menuitem parent="sale_menu_config_team" id="sale_menu_config_team_config" name="销售团队配置" action="sales_team.sales_team_config_action" />
+          
+</odoo>
