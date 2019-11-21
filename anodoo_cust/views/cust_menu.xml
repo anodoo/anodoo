@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+  
+    <menuitem id="cust_menu_root" name="客户360" />
+    	<menuitem parent="cust_menu_root" id="cust_menu_customer" name="客户" action="base.action_partner_form"/>
+    		<menuitem parent="cust_menu_customer" id="cust_menu_customer_my" name="我的客户" action="base.action_partner_form"/>
+    		<menuitem parent="cust_menu_customer" id="cust_menu_customer_my2" name="客户2" action="account.res_partner_action_customer" groups="sales_team.group_sale_salesman"/>
+    	<menuitem parent="cust_menu_root" id="cust_menu_prospect" name="潜客" />
+    	<menuitem parent="cust_menu_root" id="cust_menu_manage" name="客户管理" />
+    	<menuitem parent="cust_menu_root" id="cust_menu_contacts" name="联系人" web_icon="contacts,static/description/icon.png" groups="base.group_user,base.group_partner_manager"/>
+    		<menuitem parent="cust_menu_contacts" id="cust_menu_contacts_my" name="我的联系人"  action="contacts.action_contacts" />
+    	<menuitem parent="cust_menu_root" id="cust_menu_org" name="组织关系" />
+    	<menuitem parent="cust_menu_root" id="cust_menu_analysis" name="分析" groups="sales_team.group_sale_manager"/>
+    	<menuitem parent="cust_menu_root" id="cust_menu_config" name="配置" groups="sales_team.group_sale_manager" />
+    		<menuitem parent="cust_menu_config" id="cust_menu_config_setting" name="基本配置" action="crm.crm_config_settings_action" groups="base.group_system"/>
+			<menuitem parent="cust_menu_config" id="cust_menu_config_customer" name="客户" />
+				<menuitem parent="cust_menu_config_customer" id="cust_menu_config_customer_bank" name="客户银行" action="base.action_res_bank_form" />
+				<menuitem parent="cust_menu_config_customer" id="cust_menu_config_customer_bankaccount" name="银行账号" action="base.action_res_partner_bank_account_form"/>
+			<menuitem parent="cust_menu_config" id="cust_menu_config_prospect" name="潜客" />
+			<menuitem parent="cust_menu_config" id="cust_menu_config_contacts" name="联系人" />
+				<menuitem parent="cust_menu_config_contacts" id="cust_menu_config_contacts_tag" name="联系人标签" action="base.action_partner_category_form" />
+				<menuitem parent="cust_menu_config_contacts" id="cust_menu_config_contacts_title" name="联系人头衔" action="base.action_partner_title_contact" />
+				<menuitem parent="cust_menu_config_contacts" id="cust_menu_config_contacts_industry" name="联系人行业" action="base.res_partner_industry_action" />
+			<menuitem parent="cust_menu_config" id="cust_menu_config_address" name="地址" />
+				<menuitem parent="cust_menu_config_address" id="cust_menu_config_address_continent" name="洲域" action="base.action_country_group" />
+				<menuitem parent="cust_menu_config_address" id="cust_menu_config_address_country" name="国家"  action="base.action_country" />
+				<menuitem parent="cust_menu_config_address" id="cust_menu_config_address_state" name="省" action="base.action_country_state" />
+			<menuitem parent="cust_menu_config" id="cust_menu_config_bank" name="银行" />
+				<menuitem parent="cust_menu_config_bank" id="cust_menu_config_bank_list" name="银行" action="base.action_res_bank_form" />
+				<menuitem parent="cust_menu_config_bank" id="cust_menu_config_bank_account" name="银行账号" action="base.action_res_partner_bank_account_form"/>
+			
+</odoo>
