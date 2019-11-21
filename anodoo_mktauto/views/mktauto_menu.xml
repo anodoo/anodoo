@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+  
+    <menuitem id="mktauto_menu_root" name="营销自动化" />
+    	<menuitem parent="mktauto_menu_root" id="mktauto_menu_camp" name="营销策划" />
+    	<menuitem parent="mktauto_menu_root" id="mktauto_menu_analysis" name="分析" />
+    	<menuitem parent="mktauto_menu_root" id="mktauto_menu_config" name="配置" />
+
+</odoo>
