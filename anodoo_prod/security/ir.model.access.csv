@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_prod_anodoo_prod,anodoo_prod.anodoo_prod,model_anodoo_prod_anodoo_prod,,1,0,0,0

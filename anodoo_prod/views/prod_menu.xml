@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+  
+    <menuitem id="prod_menu_root" name="产品营销" sequence="21" />
+    	<menuitem parent="prod_menu_root" id="prod_menu_product" name="产品管理" />
+    		<menuitem parent="prod_menu_product" id="prod_menu_product_template" name="产品" action="sale.product_template_action" />
+    		<menuitem parent="prod_menu_product" id="prod_menu_product_variants" name="属性产品" groups="base.group_no_one"/>
+    		<menuitem parent="prod_menu_product" id="prod_menu_product_normal" name="可售产品" action="product.product_normal_action_sell" />
+    		<menuitem parent="prod_menu_product" id="prod_menu_product_invoice" name="开票中的产品" action="account.product_product_action_sellable" />
+   		<menuitem parent="prod_menu_root" id="prod_menu_price" name="价格管理" />
+    		<menuitem parent="prod_menu_price" id="prod_menu_price_list"  name="价格目录" action="product.product_pricelist_action2" />
+    		
+    		
+    	<menuitem parent="prod_menu_root" id="prod_menu_promotion" name="促销管理" />
+    		<menuitem parent="prod_menu_promotion" id="prod_menu_promotion_coupon" name="优惠券" action="sale_coupon.sale_coupon_program_action_coupon_program" groups="sales_team.group_sale_manager"/>
+    		<menuitem parent="prod_menu_promotion" id="prod_menu_promotion_promote" name="促销活动" action="sale_coupon.sale_coupon_program_action_promo_program" groups="sales_team.group_sale_manager"/>
+    		
+
+    	<menuitem parent="prod_menu_root" id="prod_menu_analysis" name="分析" />
+    	<menuitem parent="prod_menu_root" id="prod_menu_config" name="配置" />
+    		<menuitem parent="prod_menu_config" id="prod_menu_config_product" name="产品营销" />
+    			<menuitem parent="prod_menu_config_product" id="prod_menu_config_product_category" name="产品类别" action="product.product_category_action_form" />
+    			    
+    			<menuitem parent="prod_menu_config_product" id="prod_menu_config_product_attrbute" name="产品属性" action="product.attribute_action"  groups="product.group_product_variant" />
+    			<menuitem parent="prod_menu_config_product" id="prod_menu_config_product_uom" name="计量单位"/>
+        			<menuitem parent="prod_menu_config_product_uom" id="prod_menu_config_product_uom_category" action="uom.product_uom_categ_form_action" name="计量分类" groups="uom.group_uom" />
+        			<menuitem parent="prod_menu_config_product_uom" id="prod_menu_config_product_uom_setting" action="uom.product_uom_form_action" name="计量单位" groups="uom.group_uom"/>
+       
+    		<menuitem parent="prod_menu_config" id="prod_menu_config_promotion" name="促销" />
+    	
+    	
+
+</odoo>
