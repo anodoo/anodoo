@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_lead_qualify_lost_reason_user,anodoo.lead.qualify.lost.reason.user,model_anodoo_lead_qualify_lost_reason,anodoo_base.anodoo_group_user,1,1,1,1
+access_anodoo_lead_lifetime_user,anodoo.lead.lifetime.user,model_anodoo_lead_lifetime,anodoo_base.anodoo_group_user,1,1,1,1
+access_anodoo_lead_merge_rule_user,anodoo.lead.merge.rule.user,model_anodoo_lead_merge_rule,anodoo_base.anodoo_group_user,1,1,1,1
+access_anodoo_lead_merge_relation_user,anodoo.lead.merge.relation.user,model_anodoo_lead_merge_relation,anodoo_base.anodoo_group_user,1,1,1,1

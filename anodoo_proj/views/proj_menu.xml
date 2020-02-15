@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 
+	<record id="project.open_view_project_all" model="ir.actions.act_window">
+		<field name="domain">[('project_type', '=', 'common')]</field>
+	</record>
+	 -->
+  
+    <menuitem id="proj_menu_root" name="项目" sequence="70" web_icon="project,static/description/icon.png"/>
+    	<menuitem parent="proj_menu_root" id="proj_menu_project" name="项目" />
+    		<menuitem parent="proj_menu_project" id="proj_menu_project_list" name="项目管理" action="project.open_view_project_all" />
+    		
+    	<menuitem parent="proj_menu_root" id="proj_menu_plan" name="计划" />
+    	
+   		<menuitem parent="proj_menu_root" id="proj_menu_task" name="任务" />
+    		<menuitem parent="proj_menu_task" id="proj_menu_task_list"  name="任务" action="project.action_view_task" />
+    		<menuitem parent="proj_menu_task" id="proj_menu_task_rating"  name="客户评价" action="project.rating_rating_action_project_report" />
+    		
+    	<menuitem parent="proj_menu_root" id="proj_menu_timesheet" name="工时" web_icon="hr_timesheet,static/description/icon_timesheet.png"/>
+    		<menuitem parent="proj_menu_timesheet" id="proj_menu_timesheet_my" name="我的工时" action="hr_timesheet.act_hr_timesheet_line"/>
+    		<menuitem parent="proj_menu_timesheet" id="proj_menu_timesheet_all" name="所有工时" action="hr_timesheet.timesheet_action_all"/>
+
+    	<menuitem parent="proj_menu_root" id="proj_menu_analysis" name="分析" />
+    		<menuitem parent="proj_menu_analysis" id="proj_menu_analysis_project" name="项目" />
+    			<menuitem parent="proj_menu_analysis_project" id="proj_menu_analysis_project_analysis" name="项目分析" action="sale_timesheet.project_profitability_report_action"/>
+    		<menuitem parent="proj_menu_analysis" id="proj_menu_analysis_task" name="任务" />
+    			<menuitem parent="proj_menu_analysis_task" id="proj_menu_analysis_task_analysis" name="任务" action="project.action_project_task_user_tree"/>
+    			
+   			<menuitem parent="proj_menu_analysis" id="proj_menu_analysis_timesheet" name="工时" />
+   				<menuitem parent="proj_menu_analysis_timesheet" id="proj_menu_analysis_timesheet_employee" name="按员工" action="hr_timesheet.act_hr_timesheet_report"/>
+   				<menuitem parent="proj_menu_analysis_timesheet" id="proj_menu_analysis_timesheet_project" name="按项目" action="hr_timesheet.timesheet_action_report_by_project"/>
+   				<menuitem parent="proj_menu_analysis_timesheet" id="proj_menu_analysis_timesheet_task" name="按任务" action="hr_timesheet.timesheet_action_report_by_task"/>
+   				<menuitem parent="proj_menu_analysis_timesheet" id="proj_menu_analysis_timesheet_billing" name="按计费费率" action="sale_timesheet.timesheet_action_billing_report"/>
+   				<menuitem parent="proj_menu_analysis_timesheet" id="proj_menu_analysis_timesheet_attendance" name="工时单/出勤" action="hr_timesheet_attendance.action_hr_timesheet_attendance_report"/>
+    	<menuitem parent="proj_menu_root" id="proj_menu_config" name="配置" />
+    		<menuitem parent="proj_menu_config" id="proj_menu_config_project" name="项目" />
+    			<menuitem parent="proj_menu_config_project" id="proj_menu_config_project_setting" name="基本设置" action="project.project_config_settings_action" />
+    			<menuitem parent="proj_menu_config_project" id="proj_menu_config_project_config" name="项目配置" action="project.open_view_project_all_config"/>
+    			
+    		<menuitem parent="proj_menu_config" id="proj_menu_config_task" name="任务" />
+    			<menuitem parent="proj_menu_config_task" id="proj_menu_config_task_stages" name="任务阶段" action="project.open_task_type_form" />
+    			<menuitem parent="proj_menu_config_task" id="proj_menu_config_task_tags" name="任务标签" action="project.project_tags_action" />
+
+			<menuitem parent="proj_menu_config" id="proj_menu_config_timesheet" name="工时" />
+				<menuitem parent="proj_menu_config_timesheet" id="proj_menu_config_timesheet_setting" name="基本设置" action="hr_timesheet.hr_timesheet_config_settings_action"/>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_location_user,anodoo.location.user,model_anodoo_location,anodoo_base.anodoo_group_user,1,1,1,1
+access_res_country_state_city_user,res.country.state.city.user,model_res_country_state_city,anodoo_base.anodoo_group_user,1,1,1,1

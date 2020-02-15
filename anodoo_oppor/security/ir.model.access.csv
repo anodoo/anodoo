@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_sfa_opportunity_relation_user,anodoo.sfa.opportunity.relation.user,model_anodoo_sfa_opportunity_relation,anodoo_base.anodoo_group_user,1,1,1,1
+access_anodoo_sfa_opportunity_register_user,anodoo.sfa.opportunity.register.user,model_anodoo_sfa_opportunity_register,anodoo_base.anodoo_group_user,1,1,1,1
+
+
+
+

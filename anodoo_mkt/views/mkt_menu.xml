@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+  
+    <menuitem id="mkt_menu_root" name="市场营销" sequence="20" />
+    	<menuitem parent="mkt_menu_root" id="mkt_menu_market" name="市场营销" />
+    	<menuitem parent="mkt_menu_root" id="mkt_menu_member" name="会员" web_icon="membership,static/description/icon.png"/>
+    		<menuitem parent="mkt_menu_member" id="mkt_menu_member_association" name="Members" action="membership.action_membership_members"/>
+    		<menuitem parent="mkt_menu_member" id="mkt_menu_member_report" name="Reporting"  action="membership.action_report_membership_tree" />
+        	<menuitem parent="mkt_menu_member" id="mkt_menu_member_config"  name="Configuration" action="membership.action_membership_products"/>
+    	<menuitem parent="mkt_menu_root" id="mkt_menu_resource" name="营销资源" />
+    	<menuitem parent="mkt_menu_root" id="mkt_menu_analysis" name="分析" />
+    	<menuitem parent="mkt_menu_root" id="mkt_menu_config" name="配置" />
+    		<menuitem parent="mkt_menu_config" id="mkt_menu_config_market" name="市场营销" />
+    		
+    	
+    	
+
+</odoo>

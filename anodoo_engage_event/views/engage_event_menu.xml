@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+		<!-- 14 没有这个定义,因此这里新增 -->
+ 	    <record model="ir.actions.act_window" id="action_event_sponsor_type">
+            <field name="name">Sponsor Types</field>
+            <field name="res_model">event.sponsor.type</field>
+        </record>
+   
+    <menuitem id="engage_event_menu_root" name="活动" sequence="83" />
+		<menuitem parent="engage_event_menu_root" id="engage_event_menu_root_list" name="活动" action="event.action_event_view" />
+		<menuitem parent="engage_event_menu_root" id="engage_event_menu_root_tracks" name="议程" action="website_event_track.action_event_track"/>
+		<menuitem parent="engage_event_menu_root" id="engage_event_menu_root_report" name="分析" />
+   			<menuitem parent="engage_event_menu_root_report" id="engage_event_menu_root_report_events" name="活动分析" action="event.event_event_action_pivot"/>
+   			<menuitem parent="engage_event_menu_root_report" id="engage_event_menu_root_report_attendees" name="参与者分析" action="event.action_registration"/>
+   			<menuitem parent="engage_event_menu_root_report" id="engage_event_menu_root_report_questions" name="提问分析" action="website_event_questions.action_event_question_report"/>
+   		<menuitem parent="engage_event_menu_root" id="engage_event_menu_root_config" name="配置" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_settings" name="基本设置" action="event.action_event_configuration" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_categories" name="活动类型" action="event.action_event_type" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_mail" name="活动邮件" action="event.action_event_mail" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_locations" name="活动地点" action="website_event_track.action_event_track_location" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_sponsor" name="赞助商类别" action="action_event_sponsor_type" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_tags" name="议程安排标签" action="website_event_track.action_event_track_tag" />
+   			<menuitem parent="engage_event_menu_root_config" id="engage_event_menu_root_config_stages" name="议程安排阶段" action="website_event_track.event_track_stage_action" />    			
+   	
+   	<!-- 注册到anodoo_engage -->
+   	<menuitem parent="anodoo_engage.engage_menu_channel" id="engage_menu_channel_event" name="活动"/>
+   		<menuitem parent="engage_menu_channel_event" id="engage_menu_channel_event_list" name="活动" action="event.action_event_view" />
+		<menuitem parent="engage_menu_channel_event" id="engage_menu_channel_event_tracks" name="议程安排跟进" action="website_event_track.action_event_track"/>			
+</odoo>
