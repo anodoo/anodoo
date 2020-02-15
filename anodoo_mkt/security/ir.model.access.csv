@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_anodoo_mkt_anodoo_mkt,anodoo_mkt.anodoo_mkt,model_anodoo_mkt_anodoo_mkt,,1,0,0,0

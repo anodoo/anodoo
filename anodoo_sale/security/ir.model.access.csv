@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_anodoo_sale_anodoo_sale,anodoo_sale.anodoo_sale,model_anodoo_sale_anodoo_sale,,1,0,0,0
