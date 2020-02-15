@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<record model="anodoo.customer.pool" id="default_public_customer_pool">
+	        <field name="name">默认公有客户池</field>
+	        <field name="description">默认公有客户池，自动地，动态地包含了所有的未分配客户。默认公有客户池是系统默认自带的客户池，无法修改配置信息，对所有人可见。</field>
+	        <field name="is_private">False</field>
+	        <field name="is_default_public">True</field>
+	    </record>
+	    
+	    <!-- 默认生命周期和阶段定义 -->
+	    <record model="anodoo.customer.lifetime" id="default_customer_lifetime">
+	        <field name="name">默认客户生命周期定义</field>
+	        <field name="description">如果客户没有匹配到其他的客户生命周期定义，则使用默认客户生命周期</field>
+	        <field name="sequence">0</field>
+	        <field name="is_default">True</field>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_stage_new">
+	        <field name="name">新建</field>
+	        <field name="description">默认的新建阶段</field>
+	        <field name="sequence">0</field>
+	        <field name="is_default">True</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime"/>
+	    </record>
+	    
+	    <!-- 客户的默认生命周期设置，可以在后台修改 -->
+	    <record model="ir.default" id="default_customer_lifetime_id">
+	        <field name="field_id" ref="anodoo_cust.field_res_partner__lifetime_id"/>
+	        <field name="json_value" ref="anodoo_cust.default_customer_lifetime" />
+	    </record>
+    </data>
+    
+    
+</odoo>

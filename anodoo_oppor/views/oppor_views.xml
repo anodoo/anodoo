@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="list_opportunity_project_task_all" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+            <field name="context">{
+            	'search_default_project_id': [project_id],
+                'default_project_id': project_id,
+            }</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        
+		<record id="crm_lead_view_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.form</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='date_deadline']" position="before">		
+	        		<field name="lead_id"/>          	
+	                <field name="expected_revenue"/>
+	            </xpath>
+	            <xpath expr="//notebook" position="inside">	  
+	            	<page name="opportunity_team" string="商机团队" attrs="{'invisible': [('type', '=', 'lead')]}">
+                         <group name="group_top">
+	                     	<group name="group_left">
+	                         <field name="owner_team_id" invisible="1"/>
+	                         <field name="owner_team_name" />
+	                         <field name="owner_team_description" />      
+	                      </group>
+	                      <group name="group_right">
+	                      </group>
+                      </group>
+                     </page>
+                     <page name="opportunity_project" string="商机项目" attrs="{'invisible': [('type', '=', 'lead')]}">
+	                     <group name="group_top">
+		                     	<group name="group_left">
+		                         <field name="project_id" invisible="1"/>
+		                         <field name="project_name" />
+		                         <field name="project_user_id" />
+		                         <field name="project_task_count" />
+		                         
+		                         			
+		                      </group>
+		                      <group name="group_tasks" colspan="4">
+		                         <field name="project_task_ids" readonly="1"/>                        
+		                         			
+		                      </group>
+	                      </group>
+                     </page>          	
+	                <page name="opportunity_relations" string="商机与商机关系" attrs="{'invisible': [('type', '=', 'lead')]}">
+                         <field name="opportunity_relation_ids" context="{'opportunity_id': id}">
+	                     	<tree editable='bottom'>
+				                <field name="relation_type" />
+				                <field name="opportunity_to_id" />
+				                <field name="description" />           
+				            </tree>
+	                     </field>
+                     </page>
+                     <page name="opportunity_compete" string="竞争信息" attrs="{'invisible': [('type', '=', 'lead')]}">
+                        
+                     </page>
+	            </xpath>
+	        </field>
+	    </record>
+	    
+	    <!-- 线索/商机生命周期 model_id: anodoo.lead.lifetime-->
+	    <record id="view_anodoo_lead_lifetime_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.lifetime.view.form</field>
+	        <field name="model">anodoo.lead.lifetime</field>
+	        <field name="priority">100</field>
+	        <field name="inherit_id" ref="anodoo_lead.view_anodoo_lead_lifetime_form" />
+	        <field name="arch" type="xml">
+	        	<xpath expr="//tree" position="inside">	            	
+	                <field name="stage_probability" />           
+	            </xpath>
+	        </field>
+	    </record>
+	    
+	    <!-- 商机报备 model_id: anodoo.sfa.opportunity.register-->
+	    <record id="view_anodoo_sfa_opportunity_register_form" model="ir.ui.view">
+	        <field name="name">anodoo.sfa.opportunity.register.view.form</field>
+	        <field name="model">anodoo.sfa.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sfa_opportunity_register">
+	            	<header>
+                        <button name="convert_to_opportunity" string="转为商机" type="object" class="oe_highlight"/>
+                    </header>
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="customer_info" />
+			                     <field name="contact_info" />
+			                     <field name="planned_revenue" />
+			                     <field name="date_deadline" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="priority" widget="priority"/>
+                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sfa_opportunity_register_list" model="ir.ui.view">
+	        <field name="name">anodoo.sfa.opportunity.register.view.list</field>
+	        <field name="model">anodoo.sfa.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="customer_info" />
+	                <field name="contact_info" />
+	                <field name="planned_revenue" />
+	                <field name="date_deadline" />       
+	                <field name="priority" /> 
+	                <field name="tag_ids" widget="many2many_tags"/>          
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sfa_opportunity_register_search" model="ir.ui.view">
+	        <field name="name">anodoo.sfa.opportunity.register.view.search</field>
+	        <field name="model">anodoo.sfa.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<field name="customer_info" filter_domain="[('customer_info', 'ilike', self)]" />
+	            	<field name="contact_info" filter_domain="[('contact_info', 'ilike', self)]" />
+		            <separator/>           	
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_priority"  string="优先级" context="{'group_by':'priority'}" />               	
+		           	</group>         	
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    
+    <record id="anodoo_group_user" model="res.groups">
+        <field name="name">Anodoo 用户</field>
+        <field name="category_id" ref="module_category_anodoo" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+    
+    <record id="anodoo_group_manager" model="res.groups">
+        <field name="name">Anodoo 管理员</field>
+        <field name="category_id" ref="module_category_anodoo" />
+        <field name="implied_ids" eval="[(4, ref('anodoo_group_user'))]" />
+        <field name="users" eval="[
+                    (4, ref('base.user_root')),
+                    (4, ref('base.user_admin'))
+                ]" />
+    </record>
+</odoo>

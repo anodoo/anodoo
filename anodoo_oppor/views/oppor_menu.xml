@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 动作 anodoo.lead.lifetime-->
+		<record id="action_anodoo_opportunity_lifetime_list" model="ir.actions.act_window">
+	        <field name="name">商机生命周期</field>
+	        <field name="res_model">anodoo.lead.lifetime</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{"default_is_for_lead": False}</field>
+	        <field name="domain">[("is_for_lead", "=", False)]</field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.lead.qualify.lost.reason-->
+		<record id="action_anodoo_opportunity_qualify_lost_reason_list" model="ir.actions.act_window">
+	        <field name="name">商机认定失败原因</field>
+	        <field name="res_model">anodoo.lead.qualify.lost.reason</field>
+	        <field name="view_mode">tree</field>
+	        <field name="context">{'default_is_for':'opportunity'}</field>
+	        <field name="domain">[("is_for", "=", 'opportunity')]</field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.sfa.opportunity.register-->
+		<record id="action_anodoo_sfa_opportunity_register_list" model="ir.actions.act_window">
+	        <field name="name">商机报备</field>
+	        <field name="res_model">anodoo.sfa.opportunity.register</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	</data>
+</odoo>
