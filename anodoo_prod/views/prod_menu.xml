@@ -14,21 +14,22 @@
         <field name="search_view_id" ref="product.product_template_search_view"/>
     </record>
   
-    <menuitem id="prod_menu_root" name="产品营销" sequence="21" />
-    	<menuitem parent="prod_menu_root" id="prod_menu_product" name="产品管理" />
+    <menuitem id="prod_menu_root_anodoo" name="Anodoo 产品管理" sequence="21" />
+    	<menuitem parent="prod_menu_root_anodoo" id="prod_menu_product" name="产品管理" />
     		<menuitem parent="prod_menu_product" id="prod_menu_product_template" name="产品模板" action="product_template_sell" />
     		<menuitem parent="prod_menu_product" id="prod_menu_product_variants" name="产品变体" action="product.product_normal_action_sell" />
-   		<menuitem parent="prod_menu_root" id="prod_menu_price" name="价格管理" />
+   		<menuitem parent="prod_menu_root_anodoo" id="prod_menu_price" name="价格管理" />
     		<menuitem parent="prod_menu_price" id="prod_menu_price_list"  name="价格表" action="product.product_pricelist_action2" />
     		<menuitem parent="prod_menu_price" id="prod_menu_price_list_item"  name="价格规则" action="product.product_pricelist_item_action" />
     		
-    	<menuitem parent="prod_menu_root" id="prod_menu_promotion" name="促销管理" />
+    	<menuitem parent="prod_menu_root_anodoo" id="prod_menu_promotion" name="促销管理" />
     		<menuitem parent="prod_menu_promotion" id="prod_menu_promotion_coupon" name="优惠券" action="sale_coupon.sale_coupon_program_action_coupon_program" />
     		<menuitem parent="prod_menu_promotion" id="prod_menu_promotion_promote" name="促销活动" action="sale_coupon.sale_coupon_program_action_promo_program" />
     		
 
-    	<menuitem parent="prod_menu_root" id="prod_menu_analysis" name="分析" />
-    	<menuitem parent="prod_menu_root" id="prod_menu_config" name="配置" />
+    	<menuitem parent="prod_menu_root_anodoo" id="prod_menu_analysis" name="分析"  sequence="90"/>
+    	<menuitem parent="prod_menu_root_anodoo" id="prod_menu_config" name="配置"  sequence="100"  groups="anodoo_base.group_anodoo_manager"/>
+    		<menuitem parent="prod_menu_config" id="prod_menu_config_setting" name="基本配置" action="anodoo_prod_config_settings_action"/>
     		<menuitem parent="prod_menu_config" id="prod_menu_config_product" name="产品管理" />
     			<menuitem parent="prod_menu_config_product" id="prod_menu_config_product_uom" name="计量单位"/>
         			<menuitem parent="prod_menu_config_product_uom" id="prod_menu_config_product_uom_category" action="uom.product_uom_categ_form_action" name="计量分类" />

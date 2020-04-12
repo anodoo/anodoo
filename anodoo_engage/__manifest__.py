@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "客户交互",
+    'name': "Anodoo CEH",
 
     'summary': """
-        全渠道客户交互应用
+        Customer Engage Hub, 客户交互中心, 实现全渠道客户交互应用
     """,
 
     'description': """
@@ -18,11 +18,12 @@
     # for the full list
     'category': 'Anodoo',
     'version': '13.1',
-    'application': False,
+    'application': True,
     'installable': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base'],
+    'depends': ['crm', 'calendar', 'mail', 'sale', 'sales_team',
+                'anodoo_base'],
 
     # always loaded
     'data': [
@@ -31,10 +32,8 @@
         'security/ir.model.access.csv',
         'views/engage_views.xml',
         'views/engage_menu.xml',
-        'views/templates.xml',
+        'views/engage_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/engage_demo.xml',],
 }

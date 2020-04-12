@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+    <data noupdate="0">
 		<record id="product_uom_tree_view" model="ir.ui.view">
 	        <field name="name">uom.uom.tree</field>
 	        <field name="model">uom.uom</field>

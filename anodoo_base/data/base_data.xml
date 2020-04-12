@@ -1,10 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data noupdate="0">
+		<function name="install_lang_zh" model="res.lang"/>
+	    
+		<!-- 增加Anodoo的module分类,这个给权限组分类使用-->
 	    <record model="ir.module.category" id="module_category_anodoo">
 	        <field name="name">Anodoo</field>
 	        <field name="description">Anodoo Application, 所有Anodoo应用，模块，权限的分类</field>
 	        <field name="sequence">0</field>
 	    </record>
+	    
+	    <!-- Anodoo -->
+	    <record model="anodoo.product" id="default_anodoo_product">
+	        <field name="product_name">Anodoo</field>
+	        <field name="product_description">Anodoo, 基于Odoo和GPL的开源免费CRM</field>
+	    </record>
+	    
+	    <!-- 公司信息 -->
+	    <record id="base.main_company" model="res.company">
+            <field name="name">安欧度有限公司</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="email">contact@anodoo.com</field> 
+            <field name="phone">18927534101</field> 
+            <field name="website">http://www.anodoo.com</field>            
+            <field name="favicon" model="anodoo.product" eval="obj()._get_default_favicon()"/>
+        </record>
+        <!-- 公司信息对应的partner -->
+        <record id="base.main_partner" model="res.partner" context="{'default_is_company': True}">
+            <field name="name">安欧度公司</field>
+            <field name="company_id" eval="None"/>
+            <field name="is_company" eval="True"/>
+            <field name="lang">zh_CN</field>
+            <field name="street">南沙区</field>
+            <field name="city">广州市</field>
+            <field name="zip">510000</field>
+            <field name="phone">18927534101</field>
+            <field name="email">contact@anodoo.com</field>
+            <field name="website">http://www.anodoo.com</field>
+            <field name="image_1920" type="base64" file="anodoo_base/static/src/img/anodoo.png"/>
+            <field name="partner_type">company</field>
+        </record>
+        <record id="base.CNY" model="res.currency">
+            <field name="name">人民币</field>
+            <field name="active" eval="True"/>
+            <field name="currency_unit_label">元</field>
+            <field name="currency_subunit_label">分</field>
+        </record>
+        
+        <!-- 管理员 -->
+        <record id="base.user_admin" model="res.users">
+            <field name="login">admin</field>
+        </record>
+        <record model="res.partner" id="base.partner_admin">
+            <field name="name">管理员</field>
+            <field name="partner_type">user</field>
+            <field name="email">contact@anodoo.com</field>
+            <field name="lang">zh_CN</field>
+            <field name="tz">Asia/Shanghai</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_25.jpg"/>
+        </record>
+        <record model="res.partner" id="base.partner_root">
+            <field name="name">系统</field>
+            <field name="lang">zh_CN</field>
+            <field name="tz">Asia/Shanghai</field>
+            <field name="email">system@anodoo.com</field>
+            <field name="active" eval="False"/>
+        </record>
+        
+        <!-- 重置 auth_password_policy的defaults.xml中的设置,那里设置为8,设置为0为禁用此功能-->
+   	    <record model="ir.config_parameter" id="auth_password_policy.minlength">
+	        <field name="key">auth_password_policy.minlength</field>
+	        <field name="value" type="int">4</field>
+	    </record>
+	    
+	    <record id="provider_dingding" model="auth.oauth.provider">
+            <field name="name">DingDing</field>
+            <field name="oauth_type">dingding</field>
+            <field name="client_id">dingoayx15wi8itg1x7i2u</field>
+            <field name="client_secret">dingding</field>
+            <field name="auth_endpoint">https://oapi.dingtalk.com/connect/qrconnect</field>
+            <field name="scope">snsapi_login</field>
+            <field name="validation_endpoint">null</field>
+            <field name="data_endpoint">https://oapi.dingtalk.com/sns/getuserinfo_bycode</field>
+            <field name="css_class">fa fa-fw o_custom_icon</field>
+            <field name="body">钉钉扫码登陆</field>
+            <field name="enabled" eval="False"/>
+        </record>
+        <record id="provider_github" model="auth.oauth.provider">
+            <field name="name">Github</field>
+            <field name="oauth_type">github</field>
+            <field name="client_id">03fe6a5003a436f9474a</field>
+            <field name="client_secret"></field>
+            <field name="auth_endpoint">https://github.com/login/oauth/authorize</field>
+            <field name="scope"></field>
+            <field name="validation_endpoint">https://github.com/login/oauth/access_token</field>
+            <field name="data_endpoint">https://api.github.com/user</field>
+            <field name="css_class">fa fa-fw o_custom_icon</field>
+            <field name="body">Github账号登陆</field>
+            <field name="enabled" eval="False"/>
+        </record>
+        <record id="auth_oauth.provider_openerp" model="auth.oauth.provider">
+            <field name="oauth_type">odoo</field>
+            <field name="enabled" eval="False"/>
+        </record>
+        <record id="auth_oauth.provider_facebook" model="auth.oauth.provider">
+            <field name="oauth_type">facebook</field>
+            <field name="enabled" eval="False"/>
+        </record>
+        <record id="auth_oauth.provider_google" model="auth.oauth.provider">
+            <field name="oauth_type">google</field>
+            <field name="enabled" eval="False"/>
+        </record>
 	</data>
 </odoo>

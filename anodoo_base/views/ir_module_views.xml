@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record model="ir.ui.view" id="module_view_kanban">
+            <field name="name">Apps Kanban</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_view_kanban"/> 
+            <field name="arch" type="xml">
+            	 <xpath expr="//t//field[@name='shortdesc']" position="replace">
+                    <a type="edit"><field name="shortdesc"/></a>
+                </xpath>
+        	</field>
+        </record>
+	</data>
+</odoo>

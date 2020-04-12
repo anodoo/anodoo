@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+    <data noupdate="0">
 		<record id="crm_lead_view_form" model="ir.ui.view">
 	        <field name="name">anodoo.lead.form</field>
 	        <field name="model">crm.lead</field>

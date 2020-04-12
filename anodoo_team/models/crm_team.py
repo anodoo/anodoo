@@ -10,11 +10,15 @@ class Team(models.Model):
     team_type = fields.Selection([('marketing', '营销团队'), ('sales', '销售团队'), ('service', '服务团队'), ('customer', '客户团队'), ('lead', '线索团队'), ('opportunity', '商机团队'), ('project', '项目团队'), ('product', '产品团队'), ('other', '其他团队')], 
                            string='团队类型', default='sales', help='团队类型定义，可扩展')
     
+    #不使用odoo原来的lead模式
     team_leader_id = fields.Many2one('anodoo.team.member', string='团度负责人')
+    
+    #不是用原来的模式
     team_member_ids = fields.One2many('anodoo.team.member', 'team_id', string='团队成员')
+    
     team_member_count = fields.Integer('成员数量', compute='_compute_team_member_count')
     
-    team_roles = fields.One2many('anodoo.team.role', 'team_id', string='团队角色')
+    team_roles = fields.Many2many('anodoo.team.role', 'anodoo_team_role_rel', 'team_id', 'role_id', string='团队角色')
     
     is_template = fields.Boolean('团队模板', default=False)
     
@@ -35,9 +39,7 @@ class TeamRole(models.Model):
     sequence = fields.Integer('序号', default=10)
     
     description = fields.Text('描述', translate=False)
-    
-    team_id = fields.Many2one('crm.team', string='团队')
-    
+        
     is_leader = fields.Boolean('是否团队负责人', default=False)
     
     is_default = fields.Boolean('是否默认角色', default=False)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "联系人",
+    'name': "联系人360",
 
     'summary': """
         联系人管理
@@ -20,9 +20,11 @@
     'version': '13.1',
     'application': False,
     'installable': True,
+    'auto_install': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base', 'anodoo_cust'],
+    'depends': ['contacts', 'mail',
+                'anodoo_crm'],
 
     # always loaded
     'data': [
@@ -31,10 +33,8 @@
         'security/ir.model.access.csv',
         'views/contact_views.xml',
         'views/contact_menu.xml',
-        'views/templates.xml',
+        'views/contact_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/contact_demo.xml',],
 }

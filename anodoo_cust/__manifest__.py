@@ -20,21 +20,24 @@
     'version': '13.1',
     'application': False,
     'installable': True,
+    'auto_install': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base'],
+    'depends': [
+        'mail',
+        'anodoo_crm', 'anodoo_contact'],
 
     # always loaded
     'data': [
         'data/cust_data.xml',
         'security/cust_security.xml',
         'security/ir.model.access.csv',
-        'views/cust_views.xml',
+        
+        'views/cust_views.xml',        
+        'views/res_config_settings_views.xml',
         'views/cust_menu.xml',
-        'views/templates.xml',
+        'views/cust_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/cust_demo.xml',],
 }

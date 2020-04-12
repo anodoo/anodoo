@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+<!-- (Option) Sidebar Blog: Show tags -->
+<template id="opt_sidebar_blog_index_series" name="文章系列" priority="4" inherit_id="website_blog.sidebar_blog_index" active="True" customize_show="True">
+    <xpath expr="//div[@id='o_wblog_sidebar']" position="inside">
+
+        <div t-if="all_series" class="o_wblog_sidebar_block pb-5">
+            <h6 class="text-uppercase pb-2 mb-4 border-bottom font-weight-bold">文章系列</h6>
+
+	           <t t-foreach="all_series" t-as="series">
+	              	<span class="align-items-baseline d-inline-flex pl-2 rounded mb-2">
+	                   <i class="fa fa-book mr-2 text-muted"/>
+	                   <a class="badge border" t-attf-href="/blog?series=#{series.id}" t-esc="series.name"/>
+	               </span>
+	           </t>
+
+        </div>
+
+        <div t-else="" groups="website.group_website_designer" class="o_wblog_sidebar_block pb-5">
+            <h6 class="text-uppercase pb-2 mb-4 border-bottom font-weight-bold">文章系列</h6>
+            <em t-ignore="True" class="text-muted">还未定义文章系列.</em>
+        </div>
+        <div class="oe_structure" id="oe_structure_blog_sidebar_index_5"/>
+    </xpath>
+</template>
+
+<!-- (Option) Post Sidebar: 文章系列 -->
+<template id="opt_blog_post_series_display" name="文章系列" inherit_id="website_blog.blog_post_sidebar" active="True" customize_show="True" priority="5">
+    <xpath expr="//div[@id='o_wblog_post_sidebar']" position="inside">
+        <div t-if="blog_post_series" class="o_wblog_sidebar_block pb-5">
+            <h6 class="text-uppercase pb-3 mb-4 border-bottom font-weight-bold">本文所属系列</h6>
+            <span class="align-items-baseline d-inline-flex pl-2 rounded mb-2">
+                 <i class="fa fa-book mr-2 text-muted"/>
+                 <a class="badge border" t-attf-href="/blog?series=#{blog_post_series.id}" t-esc="blog_post_series.name"/>
+             </span>
+             <span class="align-items-baseline d-inline-flex pl-2 rounded mb-2">
+                 <t t-esc="blog_post_series.description"/>
+             </span>
+        </div>
+        <div t-if="all_series" class="o_wblog_sidebar_block pb-5">
+            <h6 class="text-uppercase pb-2 mb-4 border-bottom font-weight-bold">所有文章系列</h6>
+            
+                <t t-foreach="all_series" t-as="series">
+                	<span class="align-items-baseline d-inline-flex pl-2 rounded mb-2">
+	                    <i class="fa fa-book mr-2 text-muted"/>
+	                    <a class="badge border" t-attf-href="/blog?series=#{series.id}" t-esc="series.name"/>
+	                </span>
+	            </t>
+        </div>
+        <div class="oe_structure" id="oe_structure_blog_post_sidebar_5"/>
+    </xpath>
+</template>
+
+<!-- (Option) Post Sidebar: 相关文章 -->
+<template id="opt_blog_post_relative_display" name="相关文章" inherit_id="website_blog.blog_post_sidebar" active="True" customize_show="True" priority="5">
+    <xpath expr="//div[@id='o_wblog_post_sidebar']" position="inside">
+        <div t-if="relative_posts" class="o_wblog_sidebar_block pb-5">
+            <h6 class="text-uppercase pb-3 mb-4 border-bottom font-weight-bold">相关文章</h6>
+            <ul class="list-unstyled">
+                <li t-foreach="relative_posts" t-as="relative_post" class="mb-2">
+                    <a t-att-href="'/blog/' + slug(relative_post.blog_id) + '/post/' + slug(relative_post)"><b t-field="relative_post.name"/></a>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="oe_structure" id="oe_structure_blog_post_sidebar_5"/>
+    </xpath>
+</template>
+
+<!-- (Option) Post Sidebar: display tags -->
+<template id="opt_blog_post_tags_display_no_edit_in_backend" inherit_id="website_blog.opt_blog_post_tags_display">
+    <xpath expr="//a[@role='menuitem']" position="replace">
+    </xpath>
+</template>
+
+    </data>
+</odoo>

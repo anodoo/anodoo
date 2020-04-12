@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+    <data noupdate="0">
 		
 		<!-- 参考：res_partner_kanban_view -->
 		<record model="ir.ui.view" id="view_customer_kanban">
             <field name="name">anodoo.customer.kanban</field>
             <field name="model">res.partner</field>
+            <field name="priority">100</field>
             <field name="arch" type="xml">
                 <kanban class="o_res_partner_kanban" archivable="false">
                     <field name="id"/>
@@ -26,6 +28,7 @@
                     <field name="category_id"/>
                     <field name="image_128"/>
                     <field name="type"/>
+                    <field name="belong_company"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
@@ -41,7 +44,7 @@
                                     </div>
                                 </div>
                                 <t t-if="!record.is_company.raw_value">
-                                	<t t-if="record.customer_type.raw_value === 'person'" t-set="placeholder" t-value="'/base/static/img/avatar_grey.png'"/>
+                                	<t t-if="record.customer_type_str === 'person'" t-set="placeholder" t-value="'/base/static/img/avatar_grey.png'"/>
                                     <t t-else="" t-set="placeholder" t-value="'/base/static/img/company_image.png'"/>
                                     <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
                                         <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
@@ -65,7 +68,7 @@
                                     <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
                                     <ul>
                                     	<li t-if="record.customer_type.raw_value and record.customer_size.raw_value"><field name="customer_type"/> , <field name="customer_size"/></li>
-                     					<t t-if="record.customer_type.raw_value=='person' and record.function.raw_value">
+                     					<t t-if="record.customer_type_str=='person' and record.function.raw_value">
                                         <li>
                                         	<field name="function"/><t t-if="record.belong_company.raw_value"> , <field name="belong_company"/></t>
                                         </li>
@@ -95,10 +98,10 @@
 		<record id="view_customer_list" model="ir.ui.view">
             <field name="name">anodoo.customer.tree</field>
             <field name="model">res.partner</field>
-            <field eval="8" name="priority"/>
+            <field name="priority">100</field>
             <field name="arch" type="xml">
                 <tree string="客户">
-                    <field name="display_name" string="Name"/>
+                    <field name="display_name"/>
                     <field name="function" invisible="1"/>
                     <field name="phone" optional="show"/>
                     <field name="email" optional="show"/>
@@ -118,7 +121,7 @@
 		<record id="view_customer_form" model="ir.ui.view">
             <field name="name">anodoo.customer.form</field>
             <field name="model">res.partner</field>
-            <field name="priority" eval="1"/>
+            <field name="priority">100</field>
             <field name="arch" type="xml">
             	
                 <form string="Partners">
@@ -126,7 +129,7 @@
             		<field name="lifetime_stage_id" widget="statusbar"
                             options="{'clickable': '1', 'fold_field': 'fold'}"
                             domain="[('lifetime_id', '=', lifetime_id)]"
-                            attrs="{'invisible': [('active', '=', False)]}"/>
+                            attrs="{'invisible': [('active', '=', False)]}" groups="anodoo_cust.group_use_customer_lifetime"/>
             	</header>
                 <field name="lifetime_id" invisible="1"/>
                 <field name="partner_type" invisible="1"/>
@@ -134,6 +137,8 @@
                 <field name="is_losing" invisible="1"/>
                 <field name="is_success" invisible="1"/>
                 <field name="parent_id" invisible="1"/>
+                <field name="customer_type_str" invisible="1"/>
+                <field name="customer_size_int" invisible="1"/>
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -142,49 +147,94 @@
                         <field name="is_company" invisible="1"/>
                         <field name="commercial_partner_id" invisible="1"/>
                         <field name="active" invisible="1"/>
-                        <field name="company_type" invisible="1"/>
                         <h1>
                             <field name="name" default_focus="1" placeholder="客户名称..." />
                         </h1>
-                        <label for="customer_type"/> : <field name="customer_type" widget="radio"  options="{'horizontal': true}"/>
-                        <br/>
-                        <label for="customer_size"/> : <field name="customer_size" widget="radio"  options="{'horizontal': true}"/>
+                        <div groups="anodoo_cust.group_use_multi_customer_type">
+                        	<label for="customer_type"/> : <field name="customer_type" widget="radio"  options="{'horizontal': true}" />
+                        </div>
+                        <div groups="anodoo_cust.group_use_multi_customer_size">
+                        	<label for="customer_size"/> : <field name="customer_size" widget="radio"  options="{'horizontal': true}"/>
+                        </div>
                     </div>
 
                     <group>
                         <group name="base_info" string="基本信息">
                         	<field name="customer_identity" />
                         	<field name="customer_priority" widget="priority"/>
-                        	<field name="lifetime_id" options='{"no_open": True, "no_create": True}' required="1"/>
-                        	<field name="belong_company" widget="res_partner_many2one" domain="" context="{}" attrs="{'invisible': [('customer_type','!=', 'person')]}"/>
-                            <field name="function" attrs="{'invisible': [('customer_type','!=', 'person')]}"/>
-                            <field name="title" options='{"no_open": True}' attrs="{'invisible': [('customer_type','!=', 'person')]}"/>
-                            
+                        	<field name="lifetime_id" options='{"no_open": True, "no_create": True}' required="1" groups="anodoo_cust.group_use_customer_lifetime"/>
+                        	<field name="industry_id" attrs="{'invisible': [('customer_type_str','!=', 'company')]}"/>
                         </group>
                         <group name="contact_info" string="联系信息">
                             <field name="phone" widget="phone"/>
-                            <field name="mobile" widget="phone"/>
-                            <field name="email" widget="email" />
-                            <field name="website" widget="url" placeholder="e.g. https://www.anodoo.com"/>
+                            <field name="mobile" widget="phone" attrs="{'invisible': [('customer_type_str','=', 'company')]}"/>
+                             <!--参考 mail.res_partner_view_form_inherit_mail -->
+                            <field name="is_blacklisted" invisible="1"/>
+		                    <label for="email" class="oe_inline"/>
+		                    <div class="o_row o_row_readonly">
+		                        <i class="fa fa-ban" style="color: red;" role="img" title="This email is blacklisted for mass mailing"
+		                            aria-label="Blacklisted" attrs="{'invisible': [('is_blacklisted', '=', False)]}" groups="base.group_user"></i>
+		                        <field name="email" widget="email"/>
+		                    </div>
+                            <field name="website" widget="url" placeholder="e.g. https://www.anodoo.com" attrs="{'invisible': [('customer_type_str','!=', 'company')]}"/>
                         </group>
                         <group name="commercal_info" string="分配信息">
-                            <field name="is_alloted" attrs="{'invisible': [('belong_user_id','!=', False)]}"/>
-                            <field name="belong_user_id"/>
+                            <field name="is_alloted_bypool" readonly="1"  groups="anodoo_cust.group_use_customer_pool"/>
+                            <field name="user_id" attrs="{'invisible': [('belong_team_id','!=', False)], 'readonly':[('is_alloted_bypool','=', True)]}"/>
+                            <field name="belong_team_id" attrs="{'invisible': [('user_id','!=', False)], 'readonly':[('is_alloted_bypool','=', True)]}" groups="anodoo_cust.group_can_customer_belong_team"/>
                         </group>
                         <group name="comment_info" string="备注信息">
                             <field name="customer_label_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                            <field name="customer_label_auto_ids" widget="many2many_tags" readonly="1"/>
+                            <field name="test_than_ka" attrs="{'invisible': [('customer_size_int','&lt;', 30)]}"/>
                             <field name="comment" />
+                        </group>
+                        <group name="person_info" string="个人信息" attrs="{'invisible': [('customer_type_str','!=', 'person')]}">
+                            <field name="belong_company" />
+                            <field name="function" />
+                            <field name="title" options='{"no_open": True}' />
+                            
                         </group>
                     </group>
 
                     <notebook colspan="4">
+                        
+                        
                         <page name="addresss" string="地址" autofocus="autofocus">
-                            
+                            <field name="many_address" context="{'default_partner_type':'address'}">
+                            	<tree editable="top" >
+                            			<field name="partner_type" invisible="1" />
+					                <field name="name" />
+					                <field name="country_id" />
+					                <field name="state_id" />
+					                <field name="city" />   
+					                <field name="street" />        
+					                <field name="zip" />      
+					                <field name="partner_latitude" />        
+					                <field name="partner_longitude" />        
+					            </tree>
+                            </field>
+                        </page>
+                        <page name="family_members" string="家庭成员" attrs="{'invisible': [('customer_type_str','!=', 'family')]}">
+                            <field name="family_members" context="{'default_partner_type':'contact'}">
+                            	<tree editable="top" >
+                            		<field name="partner_type" invisible="1" />
+					                <field name="name" /> 
+					                <field name="member_type" />
+					                <field name="is_contact_members" /> 
+					                <field name="phone" optional="show"/>
+                    				<field name="email" optional="show"/>  
+                    				<field name="country_id" invisible="1" />
+                    				<field name="state_id" />
+					                <field name="city" />   
+					                <field name="street" />    
+					            </tree>
+                            </field>
                         </page>
                         <page name="contacts" string="联系人">
-                            
+                            <field name="many_partners" context="{}"/>
                         </page>
-                        <page name="commercial" string="企业商业信息" attrs="{'invisible': [('customer_type','!=', 'company')]}">
+                        <page name="commercial" string="企业商业信息" attrs="{'invisible': [('customer_type_str','!=', 'company')]}">
                             <field name="industry_id"/>
                             <field name="vat"/>
                             <field name="bank_ids"/>
@@ -205,7 +255,14 @@
                             </group>
                         </page>
                         <page name="customer_relation" string="客户与客户关系">
-                            <field name="customer_relation_customer_ids"/>
+                            <field name="customer_relation_customer_ids" context="{'default_customer_id':id}">
+                            	<tree editable="top">
+					                <field name="relation_customer_id" />
+					                <field name="relation_type" />
+					                <field name="is_reverse" />
+					                <field name="description" />                
+					            </tree>
+                            </field>
                         </page>
                         <page name='prospect' string="潜在客户" attrs="{'invisible': [('is_prospect', '=', False)]}">
                             
@@ -218,14 +275,22 @@
                         </page>
                     </notebook>
                 </sheet>
+                 <!--参考 mail.res_partner_view_form_inherit_mail -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
                 </form>
             </field>
         </record>
+        
+        
 		<!-- 参考：view_res_partner_filter -->
 		<record id="view_customer_search" model="ir.ui.view">
             <field name="name">anodoo.customer.search</field>
             <field name="model">res.partner</field>
-            <field name="priority">20</field>
+            <field name="priority">100</field>
             <field name="arch" type="xml">
                 <search string="客户搜索">
                     <field name="name" filter_domain="['|', '|', ('display_name', 'ilike', self), ('ref', '=', self), ('email', 'ilike', self)]"/>
@@ -241,7 +306,7 @@
                     <filter string="归档客户" name="inactive" domain="[('active', '=', False)]"/>
                     <separator/>
                     <group expand="0" name="group_by" string="Group By">
-                        <filter name="customer_type" string="客户性质" domain="[]" context="{'group_by' : 'customer_type'}" />
+                        <filter name="customer_type" string="客户类型" domain="[]" context="{'group_by' : 'customer_type'}" />
                         <filter name="customer_size" string="客户规模" context="{'group_by': 'customer_size'}"/>
                         <filter name="customer_priority" string="优先级" context="{'group_by': 'customer_priority'}"/>
                         <filter name="lifetime_stage_id" string="生命周期" context="{'group_by': 'lifetime_stage_id'}"/>
@@ -252,7 +317,7 @@
         <record id="view_customer_prospect_search" model="ir.ui.view">
             <field name="name">anodoo.customer.search</field>
             <field name="model">res.partner</field>
-            <field name="priority">20</field>
+            <field name="priority">100</field>
             <field name="arch" type="xml">
                 <search string="客户搜索">
                     <field name="name" filter_domain="['|', '|', ('display_name', 'ilike', self), ('ref', '=', self), ('email', 'ilike', self)]"/>
@@ -261,7 +326,7 @@
             </field>
         </record>
         
-		<!-- 客户性质 model_id: anodoo.customer.type-->
+		<!-- 客户类型 model_id: anodoo.customer.type-->
 		<record id="anodoo_customer_type_view_form" model="ir.ui.view">
 		    <field name="name">anodoo.customer.type.view.form</field>
 		    <field name="model">anodoo.customer.type</field>
@@ -271,11 +336,12 @@
 		             	<group name="group_top">
 			               	<group name="group_left">
 			                   	<field name="name" />
-			                   	<field name="key" />
+			                   	<field name="type" readonly="1"/>
 			                   	<field name="sequence" />
 			               	</group>
 			               	<group name="group_right">		                     
 			                   	<field name="is_active" />
+			                   	<field name="is_default" />
 			                  	 <field name="description" />
 			               	</group>
 		           		</group>
@@ -289,8 +355,9 @@
 		    <field name="arch" type="xml">
 		        <tree>
 		            <field name="name" />
-		            <field name="key" />
+		            <field name="type" />
 		            <field name="is_active" />
+		            <field name="is_default" />
 		            <field name="sequence" />
 		            <field name="description" />                
 		        </tree>
@@ -311,6 +378,14 @@
 		        </search>
 		    </field>
 		</record>
+		
+		<!-- 动作 anodoo.customer.type-->
+		<record id="action_anodoo_customer_type_list" model="ir.actions.act_window">
+	        <field name="name">客户类型</field>
+	        <field name="res_model">anodoo.customer.type</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
 	  
 	  	<!-- 客户规模 model_id: anodoo.customer.size-->
 	    <record id="view_anodoo_customer_size_form" model="ir.ui.view">
@@ -322,11 +397,12 @@
 		                <group name="group_top">
 			               	<group name="group_left">
 			                   	<field name="name" />
-			                   	<field name="key" />
+			                   	<field name="size" />
 			                   	<field name="sequence" />
 			               	</group>
 			               	<group name="group_right">		                     
 			                   	<field name="is_active" />
+			                   	<field name="is_default" />
 			                  	 <field name="description" />
 			               	</group>
 		           		</group>
@@ -340,8 +416,9 @@
 	        <field name="arch" type="xml">
 	            <tree>
 	                <field name="name" />
-		            <field name="key" />
+		            <field name="size" />
 		            <field name="is_active" />
+		            <field name="is_default" />
 		            <field name="sequence" />
 		            <field name="description" />               
 	            </tree>
@@ -361,6 +438,13 @@
 		           	</group>  	
 	            </search>
 	        </field>
+	    </record>
+	    <!-- 动作 anodoo.customer.size-->
+		<record id="action_anodoo_customer_size_list" model="ir.actions.act_window">
+	        <field name="name">客户规模</field>
+	        <field name="res_model">anodoo.customer.size</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
 	    </record>
 	    
 	    <!-- 客户标签分类 model_id: anodoo.customer.label.category-->
@@ -418,7 +502,9 @@
 		                <group name="group_top">
 			                 <group name="group_left">
 			                     <field name="name" />
-			                     <field name="color" />
+			                     <field name="is_auto" />
+			                     <field name="customers_domain" placeholder="设置具有该标签的客户条件" widget="domain" options="{'model': 'res.partner', 'in_dialog': true}" attrs="{'invisible': [('is_auto', '=', False)]}"/>
+			                     
 			                 </group>
 			                 <group name="group_right">
 			                     <field name="category_id" />
@@ -435,7 +521,8 @@
 	        <field name="arch" type="xml">
 	            <tree>
 	                <field name="name" />
-	                <field name="color" />
+	                <field name="is_auto" />
+	                <field name="customers_domain" />
 	                <field name="category_id" />
 	                <field name="description" />                
 	            </tree>
@@ -459,12 +546,16 @@
 	        </field>
 	    </record>
 	    
-	    <!-- 客户细分 model_id: anodoo.customer.segment-->
+	    <!-- 客户分群 model_id: anodoo.customer.segment-->
 	    <record id="view_anodoo_customer_segment_form" model="ir.ui.view">
 	        <field name="name">anodoo.customer.segment.view.form</field>
 	        <field name="model">anodoo.customer.segment</field>
 	        <field name="arch" type="xml">
 	            <form string="anodoo_customer_segment">
+	            	<header>
+	            		<button string="刷新客户列表" name="refresh_labels_customer_list" type="object" class="btn btn-secondary"  title="刷新客户标签下客户" />
+	            		<button string="创建客户列表快照" name="refresh_labels_customer_list" type="object" class="btn btn-secondary"  title="创建客户列表快照" />
+	            	</header>
 	                <sheet>
 		                <group name="group_top">
 			                 <group name="group_left">
@@ -477,13 +568,13 @@
 			                 </group>
 			             </group>
 			             <notebook colspan="4">
-			             	<page name="dynamic_customer_ids" string="动态客户列表" autofocus="autofocus">
+			             	<page name="dynamic_customer_ids" string="客户标签下的客户列表" autofocus="autofocus">
 			             		<field name="dynamic_customer_ids" />
 			             	</page>
-			             	<page name="static_customer_ids" string="静态客户列表">
+			             	<page name="static_customer_ids" string="手动设置的客户列表">
 			             		<field name="static_customer_ids" />
 			             	</page>
-		             		<page name="segment_snapshot_ids" string="客户快照">
+		             		<page name="segment_snapshot_ids" string="客户列表快照">
 		             			<field name="segment_snapshot_ids">
 		             				<tree string="客户快照">
 						                <field name="customer_count" />
@@ -545,31 +636,38 @@
 	        <field name="arch" type="xml">
 	            <form string="anodoo_customer_pool">
 	            	<field name="is_default_public" invisible="True"/>
-	            	<field name="belong_person_id" invisible="True"/>
+	            	<header>
+	            		<button string="刷新客户列表" name="refresh_pool_customer_list" type="object" class="oe_highlight"  title="根据客户匹配条件刷新客户池下客户" attrs="{'invisible': [('is_private', '=', True)]}"/>
+	            		<button string="分配客户" name="refresh_pool_customer_list" type="object" class="oe_highlight"  title="选择客户并分配给其他客户池" />
+	            		<button string="领取客户" name="refresh_pool_customer_list" type="object" class="oe_highlight"  title="选择客户并领取到自己管理客户池" attrs="{'invisible': [('is_default_public', '=', True)]}"/>
+	            	</header>
 	                <sheet>
 		                <group name="group_top">
 			                 <group name="group_left">
 			                     <field name="name" />
-			                     <field name="is_private" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_person_id', '!=', False)]}"/>
+			                     <field name="is_private" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_user_id', '!=', False)]}"/>
+			                     <field name="belong_team_id" attrs="{'readonly': ['|', ('is_default_public', '=', True)], 'invisible': [('belong_user_id', '!=', False)]}"/>
+			                     <field name="belong_user_id" invisible="1"/>
+			                     
 			                 </group>
 			                 <group name="group_right">
-			                     <field name="manager_user_id" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_person_id', '!=', False)]}"/>
+			                     <field name="manager_user_id" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_user_id', '!=', False)]}" />
+			                     <field name="customers_domain" placeholder="设置客户池的客户条件" widget="domain" options="{'model': 'res.partner', 'in_dialog': true}" attrs="{'readonly': ['|', ('is_default_public', '=', True)], 'invisible': [('is_private', '=', True)]}"/>
 			                     <field name="description" />
-			                 </group>
-			                 <group name="belong" colspan="4">
-			                     <field name="belong_user_ids" widget="many2many_tags" options="{'no_create': True}" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_person_id', '!=', False)]}"/>
-			                     <field name="belong_team_ids" widget="many2many_tags" options="{'no_create': True}" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_person_id', '!=', False)]}"/>
-			                 </group>
-			                 <group name="segment_ids" colspan="4">
-			                     <field name="segment_ids" widget="many2many_tags" options="{'no_create': True}" attrs="{'readonly': ['|', ('is_default_public', '=', True), ('belong_person_id', '!=', False)]}"/>
 			                 </group>
 			             </group>
 			             <notebook colspan="4">
 			             	<page name="dynamic_customer_ids" string="动态客户列表" autofocus="autofocus">
-			             		<field name="dynamic_customer_ids" />
+			             		<field name="dynamic_customer_ids" widget="many2many"/>
 			             	</page>
 			             	<page name="static_customer_ids" string="静态客户列表" attrs="{'invisible': [('is_default_public', '=', True)]}">
-			             		<field name="static_customer_ids" />
+			             		<field name="static_customer_ids" widget="many2many"/>
+			             	</page>
+			             	<page name="allot_record" string="分配记录">
+			             		<field name="allot_record_ids" />
+			             	</page>
+			             	<page name="get_record" string="领取记录" >
+			             		<field name="get_record_ids" />
 			             	</page>
 			             </notebook>
 	                </sheet>
@@ -582,11 +680,10 @@
 	        <field name="arch" type="xml">
 	            <tree>
 	                <field name="name" />
-	                <field name="is_private" />
+	                <field name="is_private" />	                
+	                <field name="belong_team_id" /> 
 	                <field name="manager_user_id" />
-	                <field name="description" />
-	                <field name="belong_user_ids" />  
-	                <field name="segment_ids" />               
+	                <field name="description" />               
 	            </tree>
 	        </field>
 	    </record>
@@ -600,14 +697,20 @@
 		            <filter name="is_default_public"  string="默认公有池" domain="[('is_default_public','=',True)]" />               	
 		            <filter name="is_private_false"  string="公有池" domain="[('is_private','=',False)]" />               	
 		            <filter name="is_active_true"  string="私有池" domain="[('is_private','=',True)]" /> 		            
-		            <filter name="belong_person_id"  string="个人私有池" domain="[('belong_person_id','!=',False)]" />               	
+		            <filter name="is_active_user_true"  string="个人私有池" domain="[('is_private','=',True), ('belong_user_id', '!=', False)]" />               	
 		           	<group expand="1" string="Group By">
 		           		<filter name="groupby_is_private"  string="类型" context="{'group_by':'is_private'}" />               	
 		           	</group>         	
 	            </search>
 	        </field>
 	    </record>
-	    
+	    <!-- 动作 anodoo.customer.pool-->
+		<record id="action_anodoo_customer_pool_list" model="ir.actions.act_window">
+	        <field name="name">客户池</field>
+	        <field name="res_model">anodoo.customer.pool</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
 	    <!-- 客户分配操作记录 model_id: anodoo.customer.allot-->
 	    <record id="view_anodoo_customer_allot_form" model="ir.ui.view">
 	        <field name="name">anodoo.customer.allot.view.form</field>
@@ -724,6 +827,13 @@
 	            </search>
 	        </field>
 	    </record>
+	    <!-- 动作 anodoo.customer.lifetime-->
+		<record id="action_anodoo_customer_lifetime_list" model="ir.actions.act_window">
+	        <field name="name">客户生命周期</field>
+	        <field name="res_model">anodoo.customer.lifetime</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
 	    
 	    <!-- 客户用户 model_id: anodoo.customer.user-->
 	    <record id="view_anodoo_customer_user_form" model="ir.ui.view">
@@ -736,13 +846,22 @@
 			                 <group name="group_left">
 			                     <field name="customer_id" />
 			                     <field name="user_identity" />
-			                     <field name="product" />
+			                     <field name="application_id" />
 			                 </group>
-			                 <group name="group_right">			                 	
+			                 <group name="group_right">		
+			                 	         	
 			                     <field name="contact_id" />
 			                     <field name="register_date" />
 			                     <field name="comment" />
 			                 </group>
+			                 <!-- 测试图片使用
+			                 <group name="group_left2">		
+			                 	<field name="image_1920" widget='image' options='{"preview_image": "image_128"}'/>	        
+			                 	<field name="attachment_ids" widget="many2many_binary"/>
+			                 	<field name="attachment2_ids" />
+			                 	<field name="ir_attachment_id" />
+			                 </group>
+			                  -->
 			             </group>
 	                </sheet>
 	            </form>            
@@ -755,7 +874,7 @@
 	            <tree>
 	                <field name="customer_id" />
 	                <field name="user_identity" />
-	                <field name="product" />
+	                <field name="application_id" />
 	                <field name="contact_id" />
 	                <field name="register_date" />
 	                <field name="comment" />                
@@ -787,7 +906,7 @@
 			                 <group name="group_left">
 			                     <field name="user_id" />
 			                     <field name="customer_name" />
-			                     <field name="product" />
+			                     <field name="application_id" />
 			                 </group>
 			                 <group name="group_right">			                 	
 			                     <field name="operation_type" />
@@ -806,7 +925,7 @@
 	            <tree>
 	                <field name="user_id" />
 	                <field name="customer_name" />
-	                <field name="product" />
+	                <field name="application_id" />
 	                <field name="operation_type" />
 	                <field name="operation_time" />
 	                <field name="comment" />               
@@ -825,6 +944,58 @@
 		           	</group>         	
 	            </search>
 	        </field>
+	    </record>
+	    
+	    <!-- 客户应用 model_id: anodoo.customer.application-->
+	    <record id="view_anodoo_customer_application_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.form</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_application">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_application_list" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.list</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="sequence" />
+	                <field name="description" />                
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_application_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.search</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		                	
+	            </search>
+	        </field>
+	    </record>
+	    <!-- 动作 anodoo.customer.application-->
+		<record id="action_anodoo_customer_application_list" model="ir.actions.act_window">
+	        <field name="name">客户应用</field>
+	        <field name="res_model">anodoo.customer.application</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
 	    </record>
 	</data>
 </odoo>

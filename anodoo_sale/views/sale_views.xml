@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+    <data noupdate="0">
 		<!-- 销售区域 model_id: anodoo.sale.territory-->
 	    <record id="view_anodoo_sale_territory_form" model="ir.ui.view">
 	        <field name="name">anodoo.sale.territory.view.form</field>

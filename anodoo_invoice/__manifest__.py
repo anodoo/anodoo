@@ -20,9 +20,11 @@
     'version': '13.1',
     'application': False,
     'installable': True,
+    'auto_install': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base', 'anodoo_sale', 'anodoo_lead'],
+    'depends': ['sale', 'account', 'product_margin',
+                'anodoo_sfa'],
 
     # always loaded
     'data': [
@@ -34,7 +36,5 @@
         'views/invoice_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/invoice_demo.xml',
-    ],
+    'demo': ['demo/invoice_demo.xml',],
 }

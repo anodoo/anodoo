@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "销售自动化",
+    'name': "Anodoo SFA",
 
     'summary': """
         销售自动化
@@ -22,23 +22,19 @@
     'installable': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base', 'anodoo_sale', 
-                'anodoo_crm',
-                'anodoo_lead', 
-                'anodoo_oppor', 'anodoo_process', 'anodoo_quote', 
-                'anodoo_order', 'anodoo_invoice', 'anodoo_pay'],
+    'depends': [
+        'anodoo_team', 'anodoo_project', 'anodoo_content', 'anodoo_crm', ],
 
     # always loaded
     'data': [
         'data/sfa_data.xml',
         'security/sfa_security.xml',
         'security/ir.model.access.csv',
+        'views/res_config_settings_views.xml',
         'views/sfa_views.xml',
         'views/sfa_menu.xml',
-        'views/templates.xml',
+        'views/sfa_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/sfa_demo.xml',
-    ],
+    'demo': ['demo/sfa_demo.xml',],
 }
