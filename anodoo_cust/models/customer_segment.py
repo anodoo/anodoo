@@ -1,40 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-
-
-    
-    
-class CustomerType(models.Model):
-    _name = "anodoo.customer.type"
-    _description = '客户性质'
-    
-    name = fields.Char('名称', required=True)
-    
-    sequence = fields.Integer('序号', default=1)
-    
-    key = fields.Selection([('company', '公司客户'), ('person', '个人客户'), ('family', '家庭客户'), ('government', '政府客户'), ('organization', '组织客户')], 
-                            string='类型', default='company', help='客户类型定义，可扩展')
-    
-    is_active = fields.Boolean('是否启动', default=True)
-    
-    description = fields.Text('描述', translate=False)
-    
-class CustomerSize(models.Model):
-    _name = "anodoo.customer.size"
-    _description = '客户规模'
-    
-    name = fields.Char('名称', required=True)
-    
-    sequence = fields.Integer('序号', default=1)
-    
-    key = fields.Selection([('KA', '大客户'), ('SMB', '中小客户')], 
-                            string='类型', default='KA', help='客户规模定义，可扩展')
-    
-    is_active = fields.Boolean('是否启动', default=True)
-    
-    description = fields.Text('描述', translate=False)
-    
-
+from odoo.tools.safe_eval import safe_eval
     
 class CustomerLabelCategory(models.Model):
     _name = "anodoo.customer.label.category"
@@ -100,47 +66,63 @@ class CustomerLabel(models.Model):
     
     color = fields.Integer(string='颜色')
     
+    is_auto = fields.Boolean('自动设置', help="如果是自动设置,则根据customers_domain定时自动计算")
+    
+    customers_domain = fields.Char(string="匹配客户", help="根据这些规则,自动匹配符合规则的客户具备这个标签")
+        
     description = fields.Text('描述', translate=False)
     
 class CustomerSegment(models.Model):
     _name = "anodoo.customer.segment"
-    _description = '客户细分，客户群，客户分群'
+    _description = '客户分群，客户群'
     
-    name = fields.Char(string='客户细分名称', required=True)
+    name = fields.Char(string='客户分群名称', required=True)
     
-    label_ids = fields.Many2many('anodoo.customer.label', string='客户标签', help='客户细分对应的客户标签，根据标签批判客户')
+    label_ids = fields.Many2many('anodoo.customer.label', string='客户标签', help='客户分群对应的客户标签，根据标签批判客户')
     
-    sequence = fields.Integer('序号', default=10, help="客户细分的序号")
+    sequence = fields.Integer('序号', default=10, help="客户分群的序号")
     
     description = fields.Text('描述', translate=False)
     
-    dynamic_customer_ids = fields.Many2many('res.partner', 'anodoo_customer_segment_dynamic', 'segment_id', 'customer_id', string='动态客户列表', help='客户细分下的动态客户列表，根据标签动态计算并刷新',
-                                    compute='_compute_dynamic_customer_ids')
+    dynamic_customer_ids = fields.Many2many('res.partner', 'anodoo_customer_segment_dynamic', 'segment_id', 'customer_id', string='动态客户列表', help='客户分群下的动态客户列表，根据标签动态计算并刷新')
     
-    static_customer_ids = fields.Many2many('res.partner', 'anodoo_customer_segment_static', 'segment_id', 'customer_id', string='静态客户列表', help='客户细分下的静态客户列表',
-                                    domain="[('partner_type', '=', 'customer')]")
+    static_customer_ids = fields.Many2many('res.partner', 'anodoo_customer_segment_static', 'segment_id', 'customer_id', string='静态客户列表', help='客户分群下的静态客户列表',
+                                    domain="[('partner_type', '=', 'customer')]", store=True)
     
     segment_snapshot_ids = fields.One2many('anodoo.customer.segment.snapshot', 'segment_id', string='客户快照')
     
-    def _compute_dynamic_customer_ids(self):
+#     @api.depends('label_ids')
+#     def _compute_dynamic_customer_ids(self):
+        
+            
+    #前台按钮,用来刷新标签下的客户列表
+    def refresh_labels_customer_list(self):
+        ResPartner = self.env['res.partner']
         for record in self:
-            record.dynamic_customer_ids
+            domain = []
+            for label in record.label_ids:
+                if label.customers_domain:
+                    domain += safe_eval(label.customers_domain)
+            
+            if domain:
+                domain += [('partner_type', '=', 'customer')]
+                record.dynamic_customer_ids = ResPartner.search(domain)
+        
+        return True
     
     
 class CustomerSegmentSnapshot(models.Model):
     _name = "anodoo.customer.segment.snapshot"
-    _description = '客户快照，是客户细分的静态客户列表，它是某一个时刻对该客户细分下客户列表的一个快照。'
+    _description = '客户快照，是客户分群的静态客户列表，它是某一个时刻对该客户分群下客户列表的一个快照。'
     
-    segment_id = fields.Many2one('anodoo.customer.segment', string='客户细分')
+    segment_id = fields.Many2one('anodoo.customer.segment', string='客户分群')
     
     customer_count = fields.Integer('客户数量', compute='_compute_customer_count')
     
-    customer_ids = fields.Many2many('res.partner', string='客户', help='客户细分下的静态客户列表',
+    customer_ids = fields.Many2many('res.partner', string='客户', help='客户分群下的静态客户列表',
                                     domain="[('partner_type', '=', 'customer')]")
     
-    create_uid = fields.Many2one(string='快照人')
-    create_date = fields.Datetime(string='快照日期')
-    
+ 
     description = fields.Text('描述', translate=False)
     
     def _compute_customer_count(self):

@@ -50,19 +50,25 @@
                           (0, 0, {'view_mode': 'form', 'view_id': ref('view_anodoo_team_form')})]"/>
     </record>
   
-    <menuitem id="team_menu_root" name="团队协同" action="mail.action_discuss" sequence="1" web_icon="mail,static/description/icon.png"/>
-    	<menuitem parent="team_menu_root" id="team_menu_cooperation" name="协同" action="mail.action_discuss" />
+    <menuitem id="team_menu_root_anodoo" name="Anodoo 团队协同" action="mail.action_discuss" sequence="1" web_icon="mail,static/description/icon.png"/>
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_cooperation" name="讨论" action="mail.action_discuss" />
 
     		
-    	<menuitem parent="team_menu_root" id="team_menu_group" name="群组" />
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_group" name="群组" />
     		<menuitem parent="team_menu_group" id="team_menu_group_all" name="所有群组" action="mail.mail_channel_action_view"/>
     		
-    	<menuitem parent="team_menu_root" id="team_menu_team" name="团队" />
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_team" name="团队" />
     		<menuitem parent="team_menu_team" id="team_menu_team_anodoo_team" name="团队列表" action="action_anodoo_team_list"/>
+    	
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_note" name="笔记" />
+    		<menuitem parent="team_menu_note" id="team_menu_note_list" name="笔记列表" action="note.action_note_note"/>
+    		<menuitem parent="team_menu_note" id="team_menu_note_stages" name="类型" action="note.action_note_stage"/>
+    		<menuitem parent="team_menu_note" id="team_menu_note_tags" name="标签" action="note.note_tag_action"/>
     		
-    	<menuitem parent="team_menu_root" id="team_menu_analysis" name="分析"/>
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_analysis" name="分析"  sequence="90" />
     		
-    	<menuitem parent="team_menu_root" id="team_menu_config" name="配置"/>
+    	<menuitem parent="team_menu_root_anodoo" id="team_menu_config" name="配置"  sequence="100"  groups="anodoo_base.group_anodoo_manager"/>
+    		<menuitem parent="team_menu_config" id="team_menu_config_setting" name="基本配置" action="anodoo_team_config_settings_action"/>
     		<menuitem parent="team_menu_config" id="team_menu_config_message" name="消息"/>
     			<menuitem parent="team_menu_config_message" id="team_menu_config_message_all" name="所有消息" action="mail.action_view_mail_message"/>
     			<menuitem parent="team_menu_config_message" id="team_menu_config_message_subtype" name="消息子类型" action="mail.action_view_message_subtype"/>

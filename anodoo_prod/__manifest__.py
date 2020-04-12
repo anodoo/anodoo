@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "产品管理",
+    'name': "Anodoo PM",
 
     'summary': """
-        产品管理
+        Product Marketing, 实现产品管理,产品价格,产品促销,产品推荐
     """,
 
     'description': """
-        产品管理
+        实现产品管理,产品价格,产品促销,产品推荐
     """,
 
     'author': "Anodoo",
@@ -18,11 +18,12 @@
     # for the full list
     'category': 'Anodoo',
     'version': '13.1',
-    'application': False,
+    'application': True,
     'installable': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base', 'anodoo_sale'],
+    'depends': ['product', 'sale_coupon', 'uom',
+                'anodoo_base', 'anodoo_sale'],
 
     # always loaded
     'data': [
@@ -30,11 +31,10 @@
         'security/prod_security.xml',
         'security/ir.model.access.csv',
         'views/prod_views.xml',
+        'views/res_config_settings_views.xml',
         'views/prod_menu.xml',
-        'views/templates.xml',
+        'views/prod_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/prod_demo.xml',],
 }

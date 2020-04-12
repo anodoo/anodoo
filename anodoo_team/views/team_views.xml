@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+    <data noupdate="0">
 		<!-- 团队 model_id: crm.team-->
 	    <record id="view_anodoo_team_form" model="ir.ui.view">
 	        <field name="name">anodoo.team.view.form</field>
 	        <field name="model">crm.team</field>
-	        <field name="priority">20</field>
+	        <field name="priority">100</field>
 	        <field name="arch" type="xml">
 	            <form string="Team">
                     <sheet>
@@ -19,7 +20,7 @@
                             <group name="left">
                                 <field name="active" invisible="1"/>
                                 <field name="team_type"/>
-                                <field name="user_id" domain="[('share', '=', False)]"/>
+                                
                                 <field name="company_id" options="{'no_create': True}"/>
                                 
                             </group>
@@ -29,6 +30,7 @@
                             </group>
                         </group>
                         <notebook>
+                        	<!-- 
                             <page name="members" string="团队成员" >
                                 <field name="member_ids" widget="many2many" options="{'not_delete': True}">
                                     <kanban quick_create="false" create="true" delete="true">
@@ -49,12 +51,14 @@
                                     </kanban>
                                 </field>
                             </page>
+                             -->
                             <page name="role_members" string="角色成员" >
                             	<field name="team_member_ids" context="{'team_id': id}">
 			                     	<tree editable='bottom'>
+			                     		<field name="sequence" invisible="1"/> 
 						                <field name="role_id" />
 						                <field name="user_id" />
-						                <field name="sequence" />  
+						                 
 						                <field name="description" />              
 						            </tree>
 			                     </field>
@@ -62,11 +66,12 @@
                             <page name="role" string="角色" >
                             	<field name="team_roles" context="{'team_id': id}">
 			                     	<tree editable='bottom'>
+			                     		<field name="sequence" invisible="1"/>  
 						                <field name="name" />
 						                <field name="is_leader" />
 						                <field name="is_default" />  
 						                <field name="group_id" />    
-						                <field name="sequence" />  
+						                
 						                <field name="description" />             
 						            </tree>
 			                     </field>
@@ -83,7 +88,7 @@
 	    <record id="view_anodoo_team_list" model="ir.ui.view">
 	        <field name="name">anodoo.team.view.list</field>
 	        <field name="model">crm.team</field>
-	        <field name="priority">20</field>
+	        <field name="priority">100</field>
 	        <field name="arch" type="xml">
 	            <tree>
 	                <field name="name" />
@@ -99,7 +104,7 @@
 	    <record id="view_anodoo_team_search" model="ir.ui.view">
 	        <field name="name">anodoo.team.view.search</field>
 	        <field name="model">crm.team</field>
-	        <field name="priority">20</field>
+	        <field name="priority">100</field>
 	        <field name="arch" type="xml">
 	            <search string="Salesteams Search">
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>

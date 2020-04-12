@@ -26,5 +26,21 @@
 	        <field name="view_mode">tree,form</field>
 	        <field name="context">{}</field>
 	    </record>
+	    
+	    <!-- 注入到sfa -->
+	    <menuitem parent="anodoo_sfa.sfa_menu_root_anodoo" id="sfa_menu_opportunity" name="商机"  sequence="10" />
+    		<menuitem parent="sfa_menu_opportunity" id="sfa_menu_opportunity_my" name="我的商机" action="crm.action_your_pipeline" />
+			<menuitem parent="sfa_menu_opportunity" id="sfa_menu_opportunity_team" name="团队商机" action="sales_team.crm_team_salesteams_pipelines_act"  />
+			<menuitem parent="sfa_menu_opportunity" id="sfa_menu_opportunity_anodoo_sfa_opportunity_register" name="商机报备" action="action_anodoo_sfa_opportunity_register_list"/>
+			
+		<menuitem parent="anodoo_sfa.sfa_menu_analysis" id="sfa_menu_analysis_opportunity" name="商机" />
+    			 <menuitem parent="sfa_menu_analysis_opportunity" id="sfa_menu_analysis_opportunity_analysis" name="商机管道分析" action="crm.crm_opportunity_report_action" />
+    			 <menuitem parent="sfa_menu_analysis_opportunity" id="sfa_menu_analysis_sale_analysis" name="销售总体分析" action="sale.action_order_report_all" />
+    			 
+	    <menuitem parent="anodoo_sfa.sfa_menu_config" id="sfa_menu_config_opportunity" name="商机"/>
+    			<menuitem parent="sfa_menu_config_opportunity" id="sfa_menu_config_opportunity_tags" name="商机标签"  action="crm.crm_lead_tag_action" />
+            	<menuitem parent="sfa_menu_config_opportunity" id="sfa_menu_config_opportunity_stage" name="商机生命周期" action="action_anodoo_opportunity_lifetime_list"/>
+            	<menuitem parent="sfa_menu_config_opportunity" id="sfa_menu_config_opportunity_qualify_lost_reason" name="商机认定失败原因" action="action_anodoo_opportunity_qualify_lost_reason_list"/>
+     			<menuitem parent="sfa_menu_config_opportunity" id="sfa_menu_config_opportunity_lostreason" name="丢单原因" action="crm.crm_lost_reason_action" />
 	</data>
 </odoo>

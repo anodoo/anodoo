@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 板块视图扩展 -->
+        <record id="view_forum_forum_list" model="ir.ui.view">
+            <field name="name">forum.forum.list</field>
+            <field name="model">forum.forum</field>
+            <field name="inherit_id" ref="website_forum.view_forum_forum_list"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='website_id']" position="after">
+            		<field name="mode" />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="forum_view_search" model="ir.ui.view">
+            <field name="name">forum.forum.search</field>
+            <field name="model">forum.forum</field>
+            <field name="inherit_id" ref="website_forum.forum_view_search"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//filter[@name='inactive']" position="after">
+            		<group expand="1" string="Group By">
+		           		<filter name="groupby_website_id"  string="网站" context="{'group_by':'website_id'}" />               	
+		           	</group>   
+                </xpath>
+            </field>
+        </record>
+        <record id="view_forum_forum_form" model="ir.ui.view">
+            <field name="name">forum.forum.form</field>
+            <field name="model">forum.forum</field>
+            <field name="inherit_id" ref="website_forum.view_forum_forum_form"/> 
+            <field name="arch" type="xml">
+            	<field name="website_id" position="after">
+            		<field name="description" position="move" />
+            	</field>
+            </field>
+        </record>
+        
+        <!-- 帖子视图扩展 -->
+        <record id="view_forum_post_form" model="ir.ui.view">
+            <field name="name">forum.post.form</field>
+            <field name="model">forum.post</field>
+            <field name="inherit_id" ref="website_forum.view_forum_post_form"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//group[@name='answers']" position="replace">
+            		<notebook colspan="4">
+						<page name="content" string="帖子内容" autofocus="autofocus">
+						    <field name="content"  nolabel="1"/>
+						</page>
+						<page name="answerlist" string="回复列表">
+						    <field name="child_ids" nolabel="1">
+                                <tree>
+                                    <field name="create_uid" string="Answered by"/>
+                                    <field name="vote_count"/>
+                                    <field name="state"/>
+                                    <field name="is_correct"/>
+                                </tree>
+                            </field>
+						</page>
+					</notebook>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- 标签视图扩展 -->
+        <record id="forum_tag_view_list" model="ir.ui.view">
+            <field name="name">forum.tag.list</field>
+            <field name="model">forum.tag</field>
+            <field name="inherit_id" ref="website_forum.forum_tag_view_list"/> 
+            <field name="arch" type="xml">
+                <field name="forum_id" position="after">
+                	<field name="posts_count" />
+                </field>
+            </field>
+        </record>
+
+        <record id="forum_tag_view_form" model="ir.ui.view">
+            <field name="name">forum.tag.form</field>
+            <field name="model">forum.tag</field>
+            <field name="inherit_id" ref="website_forum.forum_tag_view_form"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//group[last()]" position="after">
+            		<notebook colspan="4">
+						<page name="posts" string="相关帖子" autofocus="autofocus">
+						    <field name="post_ids" nolabel="1">
+                                <tree>
+				                    <field name="name"/>
+				                    <field name="views"/>
+				                    <field name="child_count"/>
+				                    <field name="favourite_count"/>
+                                </tree>
+                            </field>
+						</page>
+					</notebook>
+            	</xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

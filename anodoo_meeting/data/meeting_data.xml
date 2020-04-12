@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 
+    	<record id="engage_channel_meeting" model="anodoo.engage.channel" >
+	    	<field name="code">engage.channel.meeting</field>
+	        <field name="name">会议</field>
+	        <field name="sequence">14</field>
+	        <field name="online">on_and_off</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过线上或者线下的会议形式和客户交互.相关的其他交互类型有活动,日常拜访等</field>
+	    </record>
+    
+    	<record id="engage_channel_meeting_meeting" model="mail.activity.type">
+            <field name="name">会议</field>
+            <field name="engage_channel_id" ref="engage_channel_meeting"/>
+        </record> -->
+    </data>
+</odoo>

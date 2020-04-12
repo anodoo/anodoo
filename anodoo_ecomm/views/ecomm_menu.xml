@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="engage_website_menu_ecom" name="Anodoo 电商" sequence="70" />
+				<menuitem parent="engage_website_menu_ecom" id="engage_website_menu_ecom_abandoned" name="放弃的购物车" action="website_sale.action_view_abandoned_tree"/>
+	        	<menuitem parent="engage_website_menu_ecom" id="engage_website_menu_ecom_report" name="分析" sequence="90" />
+					<menuitem parent="engage_website_menu_ecom_report" id="engage_website_menu_ecom_report_dashboard" name="销售分析" action="website_sale.sale_report_action_dashboard" />
+				<menuitem parent="engage_website_menu_ecom" id="engage_website_menu_ecom_config" name="配置" sequence="100"  groups="anodoo_base.group_anodoo_manager"/>
+					<menuitem parent="engage_website_menu_ecom_config" id="engage_website_menu_ecom_config_category" name="目录" action="website_sale.product_public_category_action" />
+					
+	</data>
+</odoo>

@@ -127,30 +127,30 @@
         <field name="context">{'search_default_is_copy':1}</field>
     </record>
   
-    <menuitem id="lead_menu_root" name="营销线索" action="crm.crm_lead_all_leads" sequence="23" />
-    	<menuitem parent="lead_menu_root" id="lead_menu_lead" name="线索管理" />
+    <menuitem parent="anodoo_mktauto.mktauto_menu_root_anodoo" id="lead_menu_root_anodoo" name="营销线索" action="crm.crm_lead_all_leads" sequence="23" />
+    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead" name="线索管理" />
     		<menuitem parent="lead_menu_lead" id="lead_menu_lead_list" name="线索列表" action="crm.crm_lead_all_leads"/>
     		<menuitem parent="lead_menu_lead" id="lead_menu_lead_list_my" name="我的线索" action="action_lead_list_my"/>
     		<menuitem parent="lead_menu_lead" id="lead_menu_lead_list_unassigned" name="未分配线索" action="action_lead_list_unassigned"/>
-    	<menuitem parent="lead_menu_root" id="lead_menu_mining" name="线索挖掘" />
+    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_mining" name="线索挖掘" />
     		<menuitem parent="lead_menu_mining" id="lead_menu_mining_request" name="第三方线索挖掘" action="crm_iap_lead.crm_iap_lead_mining_request_action" />
-    		<menuitem parent="lead_menu_mining" id="lead_menu_config_reveal" name="网站访问者识别" action="crm_iap_lead_website.crm_reveal_rule_action" />
-		<menuitem parent="lead_menu_root" id="lead_menu_qualify" name="线索认定" />
+    		<!-- crm_iap_lead_website<menuitem parent="lead_menu_mining" id="lead_menu_config_reveal" name="网站访问者识别" action="crm_iap_lead_website.crm_reveal_rule_action" /> -->
+		<menuitem parent="lead_menu_root_anodoo" id="lead_menu_qualify" name="线索认定" />
 			<menuitem parent="lead_menu_qualify" id="lead_menu_qualify_list" name="认定线索" action="action_lead_list_qualify"/>
-		<menuitem parent="lead_menu_root" id="lead_menu_merge" name="线索合并" />
+		<menuitem parent="lead_menu_root_anodoo" id="lead_menu_merge" name="线索合并" />
 			<menuitem parent="lead_menu_merge" id="lead_menu_merge_anodoo_lead_merge_relation_repeated" name="重复线索" action="action_anodoo_lead_merge_relation_list_repeated"/>
 			<menuitem parent="lead_menu_merge" id="lead_menu_merge_anodoo_lead_merge_relation_merged" name="已合并线索" action="action_anodoo_lead_merge_relation_list_merged"/>
 			<menuitem parent="lead_menu_merge" id="lead_menu_merge_anodoo_lead_merge_relation_copy" name="人为复制线索" action="action_anodoo_lead_merge_relation_list_copy"/>
-		<menuitem parent="lead_menu_root" id="lead_menu_assign" name="线索分配" />
-    	<menuitem parent="lead_menu_root" id="lead_menu_nurture" name="线索培育" />
-    	<menuitem parent="lead_menu_root" id="lead_menu_convert" name="线索转化" />
+		<menuitem parent="lead_menu_root_anodoo" id="lead_menu_assign" name="线索分配" />
+    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_nurture" name="线索培育" />
+    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_convert" name="线索转化" />
     		<menuitem parent="lead_menu_convert" id="lead_menu_convert_can_convert" name="可转化线索" action="action_lead_list_can_convert"/>
     		<menuitem parent="lead_menu_convert" id="lead_menu_convert_converted" name="成功线索" action="action_lead_list_converted"/>
-    	<menuitem parent="lead_menu_root" id="lead_menu_analysis" name="分析" />
+    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_analysis" name="分析" />
     		<menuitem parent="lead_menu_analysis" id="lead_menu_analysis_lead" name="线索分析" action="crm.crm_opportunity_report_action_lead" />
-			<menuitem parent="lead_menu_analysis" id="lead_menu_analysis_reveal" name="线索收集分析" action="crm_iap_lead_website.crm_reveal_view_action" />
+			<!-- crm_iap_lead_website<menuitem parent="lead_menu_analysis" id="lead_menu_analysis_reveal" name="线索收集分析" action="crm_iap_lead_website.crm_reveal_view_action" />-->
         
-    	<menuitem parent="lead_menu_root" id="lead_menu_config" name="配置" />
+    	<menuitem parent="anodoo_mktauto.mktauto_menu_config" id="lead_menu_config" name="线索管理" />
     		<menuitem parent="lead_menu_config" id="lead_menu_config_lead" name="线索管理"  />
     			<menuitem parent="lead_menu_config_lead" id="lead_menu_config_lead_anodoo_lead_lifetime" name="线索生命周期" action="action_anodoo_lead_lifetime_list"/>
     			<menuitem parent="lead_menu_config_lead" id="lead_menu_config_lead_tags" name="线索标签"  action="crm.crm_lead_tag_action" />

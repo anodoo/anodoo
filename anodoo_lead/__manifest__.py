@@ -20,9 +20,11 @@
     'version': '13.1',
     'application': False,
     'installable': True,
+    'auto_install': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['anodoo_base'],
+    'depends': ['crm', 'iap', 'crm_iap_lead', 'crm_iap_lead_enrich', #'crm_iap_lead_website',
+                'anodoo_mktauto'],
 
     # always loaded
     'data': [
@@ -33,10 +35,8 @@
         'wizard/crm_lead_to_opportunity_views.xml',
         'views/lead_views.xml',
         'views/lead_menu.xml',
-        'views/templates.xml'
+        'views/lead_templates.xml'
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/lead_demo.xml',],
 }

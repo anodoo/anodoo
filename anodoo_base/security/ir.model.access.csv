@@ -1,3 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_anodoo_location_user,anodoo.location.user,model_anodoo_location,anodoo_base.anodoo_group_user,1,1,1,1
-access_res_country_state_city_user,res.country.state.city.user,model_res_country_state_city,anodoo_base.anodoo_group_user,1,1,1,1
+access_anodoo_location_user,anodoo.location.user,model_anodoo_location,anodoo_base.group_anodoo_user,1,1,1,1
+access_res_country_state_city_user,res.country.state.city.user,model_res_country_state_city,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_data_clean_user,anodoo.data.clean.user,model_anodoo_data_clean,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_usermenu_link_user,anodoo.data.clean.user,model_anodoo_usermenu_link,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_product_user,anodoo.product.user,model_anodoo_product,anodoo_base.group_anodoo_user,1,1,1,1
+
+access_anodoo_login_record_portal,anodoo.login.record.portal,model_anodoo_login_record,base.group_portal,1,1,1,1
+access_anodoo_login_record_user,anodoo.login.record.user,model_anodoo_login_record,base.group_user,1,1,1,1
+
+

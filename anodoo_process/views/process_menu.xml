@@ -2,5 +2,6 @@
 <odoo>
 	<data noupdate="0">
 
+		<menuitem parent="anodoo_sfa.sfa_menu_root_anodoo" id="sfa_menu_process" name="销售流程"  sequence="20" />
 	</data>
 </odoo>
