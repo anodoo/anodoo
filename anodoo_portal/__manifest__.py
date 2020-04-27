@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/portal_data.xml',
+        #'demo/demo.xml',#demo
         'security/portal_security.xml',
         'security/ir.model.access.csv',
         'views/portal_views.xml',
@@ -36,5 +37,5 @@
         'views/portal_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/portal_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

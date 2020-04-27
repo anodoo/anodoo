@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/pay_data.xml',
+        #'demo/demo.xml',#demo
         'security/pay_security.xml',
         'security/ir.model.access.csv',
         'views/pay_views.xml',
@@ -36,5 +37,5 @@
         'views/pay_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/pay_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

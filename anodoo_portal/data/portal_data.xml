@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
     	<record model="anodoo.portal" id="default_my_portal">
 	        <field name="name">我的门户</field>
 	        <field name="code">my</field>

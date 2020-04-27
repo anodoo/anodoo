@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/order_data.xml',
+        #'demo/demo.xml',#demo
         'security/order_security.xml',
         'security/ir.model.access.csv',
         'views/order_views.xml',
@@ -36,5 +37,5 @@
         'views/order_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/order_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

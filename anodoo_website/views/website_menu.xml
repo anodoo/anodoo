@@ -26,6 +26,8 @@
 	    
 	  
 	    <menuitem id="website_menu_root_anodoo" name="Anodoo 网站" sequence="80"/>
+	    	<menuitem parent="website_menu_root_anodoo" id="website_menu_dashboard" name="仪表盘" sequence="1" action="website.ir_actions_server_website_google_analytics"/>
+	    	
     		<menuitem parent="website_menu_root_anodoo" id="website_menu_vistors" name="访问者" sequence="10"/>
     			<menuitem parent="website_menu_vistors" id="website_menu_vistors_list" name="访问者" action="website.website_visitors_action"/>
     			<menuitem parent="website_menu_vistors" id="website_menu_vistors_views" name="访问页面" action="website.website_visitor_view_action" />

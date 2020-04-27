@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/quote_data.xml',
+        #'demo/demo.xml',#demo
         'security/quote_security.xml',
         'security/ir.model.access.csv',
         'views/quote_views.xml',
@@ -36,5 +37,5 @@
         'views/quote_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/quote_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

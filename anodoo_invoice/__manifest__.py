@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/invoice_data.xml',
+        #'demo/demo.xml',#demo
         'security/invoice_security.xml',
         'security/ir.model.access.csv',
         'views/invoice_views.xml',
@@ -36,5 +37,5 @@
         'views/invoice_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/invoice_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

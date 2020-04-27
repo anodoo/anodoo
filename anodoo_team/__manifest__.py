@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/team_data.xml',
+        #'demo/demo.xml',#demo
         'security/team_security.xml',
         'security/ir.model.access.csv',
         'views/team_views.xml',
@@ -38,5 +39,5 @@
         'views/team_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/team_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

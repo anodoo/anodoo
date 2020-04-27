@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/contact_data.xml',
+        #'demo/demo.xml',#demo
         'security/contact_security.xml',
         'security/ir.model.access.csv',
         'views/contact_views.xml',
@@ -36,5 +37,5 @@
         'views/contact_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/contact_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

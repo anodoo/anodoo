@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/event_data.xml',
+        #'demo/demo.xml',#demo
         'security/event_security.xml',
         'security/ir.model.access.csv',
         'views/event_views.xml',
@@ -35,5 +36,5 @@
         'views/event_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/event_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

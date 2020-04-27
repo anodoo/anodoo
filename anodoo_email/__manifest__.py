@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/email_data.xml',
+        #'demo/demo.xml',#demo
         'security/email_security.xml',
         'security/ir.model.access.csv',
         'views/email_views.xml',
@@ -35,5 +36,5 @@
         'views/email_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/email_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

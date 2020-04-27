@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/map_data.xml',
+        #'demo/demo.xml',#demo
         'security/map_security.xml',
         'security/ir.model.access.csv',
         'views/map_views.xml',        
@@ -36,5 +37,5 @@
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/map_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

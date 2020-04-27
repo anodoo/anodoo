@@ -22,18 +22,21 @@
     'installable': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['website_sale',
-                'anodoo_base'],
+    'depends': ['sales_team', 'product', 'sale_coupon', 'payment', 'delivery', 'website_sale', 'website_sale_comparison', 'website_sale_stock',
+                'anodoo_website', 'anodoo_sfa'],
 
     # always loaded
     'data': [
         'data/ecomm_data.xml',
+        #'demo/demo.xml',#demo
         'security/ecomm_security.xml',
         'security/ir.model.access.csv',
         'views/ecomm_views.xml',
+        'views/product_views.xml',
+        'views/res_config_settings_views.xml',
         'views/ecomm_menu.xml',
         'views/ecomm_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/ecomm_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

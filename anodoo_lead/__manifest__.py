@@ -28,6 +28,8 @@
 
     # always loaded
     'data': [
+        'data/lead_data.xml',
+        #'demo/demo.xml',#demo
         'security/lead_security.xml',
         'security/ir.model.access.csv',
         'wizard/crm_lead_lost_views.xml',
@@ -38,5 +40,5 @@
         'views/lead_templates.xml'
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/lead_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

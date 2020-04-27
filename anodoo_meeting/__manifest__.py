@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/meeting_data.xml',
+        #'demo/demo.xml',#demo
         'security/meeting_security.xml',
         'security/ir.model.access.csv',
         'views/meeting_views.xml',
@@ -35,5 +36,5 @@
         'views/meeting_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/meeting_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

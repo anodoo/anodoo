@@ -31,9 +31,11 @@
 	        </field>
         </record>
         
+        <!--   anodoo_cust.view_customer_form
         <record id="product.view_partner_property_form" model="ir.ui.view">
             <field name="inherit_id" ref="anodoo_cust.view_customer_form"/>
         </record>
+         -->
         
         <record id="product_pricelist_view_tree" model="ir.ui.view">
             <field name="name">product.pricelist.tree</field>
@@ -56,7 +58,9 @@
                     <attribute name="attrs">{'invisible': True}</attribute>
                 </xpath>
                 <xpath expr="//field[@name='country_group_ids']" position="after">
+                	<!-- 
                     <field name="sale_territory_ids" widget="many2many_tags"/>
+                     -->
                 	<field name="customer_ids" widget="many2many_tags" readonly="1"/>
                 	<field name="date_start" />
                 	<field name="date_end"/>
@@ -81,9 +85,11 @@
             <field name="inherit_id" ref="product.product_category_form_view"/>
             <field name="arch" type="xml">
                 <field name="parent_id" position="after">
+                	<!-- 
                 	<field name="sale_territory_ids" widget="many2many_tags" class="oe_inline"/>
-                	<field name="user_id" class="oe_inline"/>
                 	
+                	<field name="user_id" class="oe_inline"/>
+                	-->
                 </field>
             </field>
         </record>
@@ -94,9 +100,11 @@
 	        <field name="inherit_id" ref="product.product_template_only_form_view"/>
 	        <field name="arch" type="xml">
 	        	<field name="categ_id" position="after">
+	        		<!-- 
 	                <field name="sale_territory_ids" widget="many2many_tags" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
+	                 
 	                <field name="user_id" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
-	                
+	                -->
 	            </field>
 	        </field>
        	</record>

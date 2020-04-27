@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/forum_data.xml',
+        #'demo/demo.xml',#demo
         'security/forum_security.xml',
         'security/ir.model.access.csv',
         'views/forum_views.xml',
@@ -37,5 +38,5 @@
         'views/forum_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/forum_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/relation_data.xml',
+        #'demo/demo.xml',#demo
         'security/relation_security.xml',
         'security/ir.model.access.csv',
         'views/relation_views.xml',
@@ -35,5 +36,5 @@
         'views/relation_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/relation_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

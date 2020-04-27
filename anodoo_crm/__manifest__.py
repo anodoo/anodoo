@@ -30,6 +30,7 @@
     # always loaded
     'data': [
         'data/crm_data.xml',
+        #'demo/demo.xml',#demo
         'security/crm_security.xml',
         'security/ir.model.access.csv',
         'views/crm_views.xml',
@@ -38,5 +39,5 @@
         'views/crm_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/crm_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }
