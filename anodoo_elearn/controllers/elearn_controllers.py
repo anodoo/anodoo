@@ -6,6 +6,7 @@ from odoo.http import request
 
 class AnodooElearn(WebsiteSlides):
 
+    #扩展课程类目
     @http.route(['/slides',
                  '/slides/category/<int:category>'], type='http', auth="public", website=True)
     def slides_channel_home(self, category=None, **post):
@@ -21,7 +22,7 @@ class AnodooElearn(WebsiteSlides):
             channels_my = channels_all.filtered(lambda channel: channel.is_member).sorted('completion', reverse=True)[:3]
         else:
             channels_my = request.env['slide.channel']
-        channels_popular = channels_all.sorted('total_votes', reverse=True)[:3]
+        channels_popular = channels_all.sorted('total_votes', reverse=True)[:12]
         channels_newest = channels_all.sorted('create_date', reverse=True)[:3]
 
         achievements = request.env['gamification.badge.user'].sudo().search([('badge_id.is_published', '=', True)], limit=5)

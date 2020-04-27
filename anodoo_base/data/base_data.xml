@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data noupdate="0">
+	<data noupdate="1">
 		<function name="install_lang_zh" model="res.lang"/>
 	    
 		<!-- 增加Anodoo的module分类,这个给权限组分类使用-->

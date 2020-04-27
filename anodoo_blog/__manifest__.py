@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/blog_data.xml',
+        #'demo/demo.xml',#demo
         'security/blog_security.xml',
         'security/ir.model.access.csv',
         'views/blog_views.xml',
@@ -37,5 +38,5 @@
         'views/blog_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/blog_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

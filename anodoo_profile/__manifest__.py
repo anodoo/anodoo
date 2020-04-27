@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/profile_data.xml',
+        #'demo/demo.xml',#demo
         'security/profile_security.xml',
         'security/ir.model.access.csv',
         'views/profile_views.xml',
@@ -37,5 +38,5 @@
         'views/profile_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/profile_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

@@ -8,7 +8,8 @@ class Pricelist(models.Model):
     date_start = fields.Date('开始时间', help="价格表的有效开始时间,适用于所有价格项")
     date_end = fields.Date('结束时间', help="价格表的有效结束时间,适用于所有价格项")
     
-    sale_territory_ids = fields.Many2many('anodoo.sale.territory', string='销售区域')
+    
+    #sale_territory_ids = fields.Many2many('anodoo.sale.territory', string='销售区域')
     
     customer_ids = fields.Many2many('res.partner', compute='_compute_customer_ids', store=False)
 

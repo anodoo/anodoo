@@ -23,11 +23,12 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'anodoo_team', 'anodoo_project', 'anodoo_content', 'anodoo_crm', ],
+        'anodoo_team', 'anodoo_proj', 'anodoo_content', 'anodoo_prod', 'anodoo_crm', ],
 
     # always loaded
     'data': [
         'data/sfa_data.xml',
+        #'demo/demo.xml',#demo
         'security/sfa_security.xml',
         'security/ir.model.access.csv',
         'views/res_config_settings_views.xml',
@@ -36,5 +37,5 @@
         'views/sfa_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/sfa_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

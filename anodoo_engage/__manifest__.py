@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/engage_data.xml',
+        #'demo/demo.xml',#demo
         'security/engage_security.xml',
         'security/ir.model.access.csv',
         'views/engage_views.xml',
@@ -35,5 +36,5 @@
         'views/engage_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/engage_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

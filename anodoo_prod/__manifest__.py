@@ -22,19 +22,21 @@
     'installable': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['product', 'sale_coupon', 'uom',
-                'anodoo_base', 'anodoo_sale'],
+    'depends': ['product',
+                'anodoo_base',],
 
     # always loaded
     'data': [
         'data/prod_data.xml',
+        #'demo/demo.xml',#demo
         'security/prod_security.xml',
         'security/ir.model.access.csv',
         'views/prod_views.xml',
+        'views/product_views.xml',
         'views/res_config_settings_views.xml',
         'views/prod_menu.xml',
         'views/prod_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/prod_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

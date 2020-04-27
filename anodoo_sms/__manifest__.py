@@ -28,6 +28,7 @@
     # always loaded
     'data': [
         'data/sms_data.xml',
+        #'demo/demo.xml',#demo
         'security/sms_security.xml',
         'security/ir.model.access.csv',
         'views/sms_views.xml',
@@ -35,5 +36,5 @@
         'views/sms_templates.xml',
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/sfa_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

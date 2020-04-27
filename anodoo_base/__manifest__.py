@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/base_data.xml',
+        #'demo/demo.xml',#demo
         'security/base_security.xml',
         'security/ir.model.access.csv', 
         #'views/iap_assets.xml',  #iap widget js依赖
@@ -46,5 +47,5 @@
         'views/res_config_settings_views.xml', 
     ],
     # only loaded in demonstration mode
-    'demo': ['demo/base_demo.xml',],
+    'demo': ['demo/demo.xml',],
 }

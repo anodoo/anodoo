@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
     	<!--修改gamification中对级别的定义-->
 	    <record id="gamification.rank_newbie" model="gamification.karma.rank">
 	        <field name="name">新学员</field>
