@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="purchase.menu_purchase_root" name="Anodoo 采购管理" sequence="83" web_icon="anodoo_purchase,static/description/icon.png"/>
+	</data>
+</odoo>

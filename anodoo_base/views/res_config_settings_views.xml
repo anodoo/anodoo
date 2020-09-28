@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 参考base.重新定一个配置中心 -->  
+        <record id="view_res_config_settings_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="基础配置" class="oe_form_configuration o_base_settings" js_class="base_settings">
+                    <div class="o_control_panel">
+                        <div class="o_panel">
+                            <div class="title h2 mb0 mt4 text-muted d-none d-md-block">配置</div>
+                            <div class="o_setting_search">
+                                <input type="text" class="searchInput" placeholder="搜索..."/>
+                                <span class="searchIcon"><i class="fa fa-search" role="img" aria-label="Search" title="Search"/></span>
+                            </div>
+                        </div>
+                        <header>
+                            <button string="保存" type="object" name="execute" class="oe_highlight" />
+                            <button string="丢弃" type="object" name="cancel" special="cancel" />
+                        </header>
+                    </div>
+                    <div class="o_setting_container">
+                        <div class="settings_tab"/>
+                        <div class="settings">
+                        
+                        	
+			                
+			                <!-- 系统配置 -->
+			                <field name="company_id" invisible="1"/>
+			                <div class="app_settings_block" data-string="System Config" string="系统配置" data-key="anodoo_base" groups="base.group_system">
+			                    <div id="invite_users">
+		                            <h2>用户</h2>
+		                            <div class="row mt16 o_settings_container">
+		                                <div class="col-12 col-lg-6 o_setting_box">
+		                                    <div class="o_setting_right_pane">
+		                                        <span class="fa fa-lg fa-users"/>
+		                                        <field name='active_user_count' class="w-auto pl-3 font-weight-bold"/>
+		                                        <span class='o_form_label'>
+		                                            内部用户
+		                                        </span>
+		
+		                                        <br/>
+		                                        <button name="%(base.action_res_users)d" icon="fa-arrow-right" type="action" string="管理内部用户" context="{'search_default_no_share': 1}" class="btn-link o_web_settings_access_rights"/>
+												<br/>
+												<span class="fa fa-lg fa-users"/>
+		                                        <field name='active_portal_user_count' class="w-auto pl-3 font-weight-bold"/>
+		                                        <span class='o_form_label'>
+		                                            外部用户
+		                                        </span>
+		
+		                                        <br/>
+		                                        <button name="%(base.action_res_users)d" icon="fa-arrow-right" type="action" string="管理外部用户" context="{'search_default_is_share': 1}" class="btn-link o_web_settings_access_rights"/>
+		
+		                                    </div>
+		                                </div>
+		                                <div class="col-12 col-lg-6 o_setting_box">
+		                                    <div class="o_setting_right_pane">
+		                                        <widget name='res_config_invite_users'/>
+		                                    </div>
+		                                </div>
+		                                <div class="col-12 col-lg-6 o_setting_box"  title="By default, new users get highest access rights for all installed apps." id="access_rights">
+				                            <div class="o_setting_left_pane">
+				                                <field name="user_default_rights"/>
+				                            </div>
+				                            <div class="o_setting_right_pane">
+				                                <label string="默认内部用户权限" for="user_default_rights"/>
+				                                <div class="text-muted">
+				                                    设置新建用户的默认权限
+				                                </div>
+				                                <div class="content-group" attrs="{'invisible': [('user_default_rights','=',False)]}">
+				                                    <div class="mt8">
+				                                        <button type="object" name="open_default_user" string="查看默认内部用户" icon="fa-arrow-right" class="btn-link"/>
+				                                    </div>
+				                                </div>
+				                            </div>
+				                        </div>
+				                        <div class="col-12 col-lg-6 o_setting_box" title=" To send invitations in B2B mode, open a contact or select several ones in list view and click on 'Portal Access Management' option in the dropdown menu *Action*.">
+						                    <div class="o_setting_left_pane">
+						                    </div>
+						                    <div class="o_setting_right_pane">
+						                        <label string="外部用户注册方式" for="auth_signup_uninvited"/>
+						                        <div class="text-muted">
+						                            是否开启外部用户自主注册模式.此模式下同时也可以邀请其他用户.
+						                        </div>
+						                        <div class="mt8">
+						                            <field name="auth_signup_uninvited" class="o_light_label" widget="radio" required="True"/>
+						                        </div>
+						                        <div class="content-group" >
+						                            <div class="mt8">
+						                            	<button type="object" name="open_template_user" string="查看默认外部用户" icon="fa-arrow-right" class="btn-link"/>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						                <div class="col-12 col-lg-6 o_setting_box">
+						                    <div class="o_setting_left_pane">
+						                        <field name="auth_signup_reset_password"/>
+						                    </div>
+						                    <div class="o_setting_right_pane">
+						                        <label string="重置密码" for="auth_signup_reset_password"/>
+						                        <div class="text-muted">
+						                            启动登陆页面的重置密码功能.
+						                        </div>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-12 col-lg-6 o_setting_box">
+						                    <div class="o_setting_left_pane">
+						                        
+						                    </div>
+						                    <div class="o_setting_right_pane">
+						                        <span class='o_form_label'>
+					                            用户登陆记录
+					                            </span>	
+						                        <div class="mt8">
+						                        	<button name="%(action_anodoo_login_record_list)d" icon="fa-arrow-right" type="action" string="查看用户登陆记录" class="btn-link o_web_settings_access_rights"/>
+					                           </div>
+						                    </div>
+						                </div>
+						                
+						                <!-- 直接复制auth_password_policy的内容到这里 -->
+						                <div class="col-12 col-lg-6 o_setting_box">
+						                    <div class="o_setting_left_pane"/>
+						                    <div class="o_setting_right_pane">
+						                        <label for="minlength"/>
+						                        <field name="minlength"/>
+						                    </div>
+						                </div>
+		                            </div>
+		                        </div>
+		                        
+			                    <div id="groups">
+			                    	<h2>组</h2>
+			                    	<div class="row mt16 o_settings_container">
+				                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead" title="Use leads if y.">
+				                            <div class="o_setting_left_pane">
+				                                
+				                            </div>
+				                            <div class="o_setting_right_pane">
+		                                        <field name='active_group_count' class="w-auto pl-3 font-weight-bold"/>
+		                                        <span class='o_form_label'>
+		                                            组
+		                                        </span>
+		
+		                                        <br/>
+		                                        <button name="%(base.action_res_groups)d" icon="fa-arrow-right" type="action" string="管理组" class="btn-link o_web_settings_access_rights"/>
+
+				                            </div>
+				                        </div>		                        
+				                    </div>				                    
+			                    </div>
+			                    
+			                    <div id="companies">
+		                            <h2>公司</h2>
+		                            <div class="row mt16 o_settings_container">
+		                                <div class="col-12 col-lg-6 o_setting_box">
+		                                    <div class="o_setting_right_pane">
+		                                        <field name="company_name" class="font-weight-bold"/>
+		                                        <br/>
+		                                        <field name="company_informations" class="text-muted" style="width: 90%;"/>
+		                                        <br/>
+		                                        <button name="open_company" icon="fa-arrow-right" type="object" string="查看详情" class="btn-link"/>
+		                                    </div>
+		                                </div>
+		                                <div class="col-12 col-lg-6 o_setting_box">
+		                                    <div class="o_setting_right_pane">
+		                                        <field name='company_count' class="w-auto pl-1 font-weight-bold"/>
+		                                        <span class="o_form_label">
+		                                            公司
+		                                        </span>
+		                                        <br/>
+		                                        <div class="mt8">
+		                                            <button name="%(base.action_res_company_form)d" icon="fa-arrow-right" type="action" string="管理公司" class="btn-link"/>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        
+		                        <div id="languages">
+		                            <h2>语言</h2>
+		                            <div class='row mt16 o_settings_container'>
+		                                <div class='col-xs-12 col-md-6 o_setting_box'>
+		                                    <div class='o_setting_right_pane'>
+		                                        <!-- TODO This is not an ideal solution but it looks ok on the interface -->
+		                                        <div class="w-50">
+		                                            <field name="language_count" class="w-auto pl-1 font-weight-bold"/>
+		                                            <span class="o_form_label">
+		                                                语言
+		                                            </span>
+		                                        </div>
+		                                        <div class="mt8">
+		                                            <button name="%(base.res_lang_act_window)d" icon="fa-arrow-right" type="action" string="管理语言" class="btn-link"/>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        
+		                        
+                        
+			               
+			                    <!-- 一部分 -->
+			                    <div id="sfa_test">
+			                    	<!-- 一行:标题 -->
+			                    	<h2>产品配置</h2>
+			                    	<!-- 一行 -->
+			                    	<div class="row mt16 o_settings_container">
+			                    		<!-- 一块 -->
+				                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead" title="Use leads if y.">
+				                            <div class="o_setting_left_pane">
+				                                
+				                            </div>
+				                            <div class="o_setting_right_pane">
+				                            	<field name="anodoo_product_id" invisible="1"/>
+				                                <label for="product_name"/> : <field name="product_name"/>
+				                                <br/>
+				                                <label for="product_website"/> : <field name="product_website"/>
+				                                <br/>				                                
+				                                <label for="product_description"/> : <field name="product_description"/>
+				                                <div class="text-muted">
+				                                    修改产品名称,Logo,Icon,用来替换系统内所有Anodoo的标识.
+				                                </div>
+				                            </div>
+				                        </div>
+				                        
+				                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead2" title="Use leads if y.">
+				                            <div class="o_setting_left_pane">
+				                            </div>
+				                            <div class="o_setting_right_pane">				                                
+				                                <label for="product_logo"/> : <field name="product_logo" widget="image" class="w-25 mt-2"/>
+				                                <br/>
+				                                <label for="product_icon"/> : <field name="product_icon" widget="image" class="w-25 mt-2"/>
+				                                <div class="text-muted">
+				                                    上传Logo,Icon文件,注意文件像素不要过大.
+				                                </div>
+				                            </div>
+				                        </div>				                        
+				                    </div>
+			                    </div>
+			                    <div id="addon_function">
+			                    	<h2>扩展功能</h2>
+				                    <div class="row mt16 o_settings_container">	                        
+				                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead3" title="Use leads if y.">
+				                            <div class="o_setting_left_pane">
+				                                
+				                            </div>
+				                            <div class="o_setting_right_pane">
+				                                <span class='o_form_label'>
+		                                        用户菜单扩展    
+		                                        </span>		
+		                                        <div class="text-muted">
+		                                        右上角用户菜单扩展,便于用户快速进入一些功能,或者外部链接.
+		                                        </div>
+		                                        <br/>
+		                                        <button name="%(anodoo_base.action_anodoo_usermenu_link_list)d" icon="fa-arrow-right" type="action" string="管理用户菜单链接" class="btn-link o_web_settings_access_rights"/>
+				                            </div>
+				                        </div>	
+				                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead3" title="Use leads if y.">
+				                            <div class="o_setting_left_pane">
+				                                
+				                            </div>
+				                            <div class="o_setting_right_pane">
+				                                <span class='o_form_label'>
+		                                        数据清理
+		                                        </span>		
+		                                        <div class="text-muted">
+		                                        数据清理,便于管理员快速清理系统一些功能的数据,清注意清理前的备份.
+		                                        </div>
+		                                        <br/>
+		                                        <button name="%(anodoo_base.action_anodoo_data_clean_list)d" icon="fa-arrow-right" type="action" string="管理数据清理" class="btn-link o_web_settings_access_rights"/>
+				                            </div>
+				                        </div>				                        
+				                    </div>
+				                    <div class="row mt16 o_settings_container">	                        
+				                        <div class="col-12 col-lg-6 o_setting_box" id="is_only_anodoo_menu" title="仅仅显示Anodoo根菜单">
+				                            <div class="o_setting_left_pane">
+				                                <field name="is_only_anodoo_menu"/>
+				                            </div>
+				                            <div class="o_setting_right_pane">
+				                                <span class='o_form_label'>
+		                                        <label for="is_only_anodoo_menu"/>
+		                                        </span>		
+		                                        <div class="text-muted">
+		                                        仅仅显示Anodoo根菜单,则其他根菜单会被移到设置的保留菜单下
+		                                        </div>
+		                                        <br/>
+		                                        <button name="%(base.grant_menu_access)d" icon="fa-arrow-right" type="action" string="管理用户菜单链接" class="btn-link o_web_settings_access_rights"/>
+				                            </div>
+				                        </div>		                        
+				                    </div>
+			                    </div>
+			                    
+			                    <div id='about'>
+		                            <h2>关于</h2>
+		                            <div class="row mt16 o_settings_container">
+		                            	<div class='col-xs-12 col-md-6 o_setting_box'>
+		                                    <div class='o_setting_right_pane'>
+		                                        <a class="d-block mx-auto" href='htp://www.anodoo.com' target="blank">
+	                                                <field name="product_logo" widget="image" class="w-25 mt-2"/>
+	                                            </a>
+		                                    </div>
+		                                </div>
+		                                <div class='col-xs-12 col-md-6 o_setting_box'>
+		                                    <div class='o_setting_right_pane'>
+	                                            <a class='d-block mx-auto' href='htp://www.anodoo.com' target="blank">
+	                                                <field name="product_name" readonly="1"/>
+	                                                <br/>
+	                                                <field name="product_description" readonly="1"/>
+	                                            </a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+			                </div>
+                        </div>
+                    </div>
+                </form>
+            </field>
+        </record>
+      
+        <record id="action_anodoo_general_settings" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_res_config_settings_form"></field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'anodoo_base'}</field>
+        </record>
+
+        <menuitem id="menu_anodoo_general_settings" name="Anodoo配置"  parent="base.menu_administration" action="action_anodoo_general_settings"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <!--手动-->
+        <!--
+		<function name="install_lang_zh" model="res.lang"/>
+	    -->
+
+
+		<!-- 增加Anodoo的module分类,这个给权限组分类使用-->
+        <!--暂时不用，避免其他模块对本模块的依赖-->
+        <!--
+	    <record model="ir.module.category" id="module_category_anodoo">
+	        <field name="name">Anodoo</field>
+	        <field name="description">Anodoo Application, 所有Anodoo应用，模块，权限的分类</field>
+	        <field name="sequence">0</field>
+	    </record>
+	    -->
+	    
+	    <!-- Anodoo -->
+	    <record model="anodoo.product" id="default_anodoo_product">
+	        <field name="product_name">Anodoo</field>
+	        <field name="product_description">Anodoo, 基于Odoo和GPL的开源免费CRM</field>
+	    </record>
+        
+
+
+	</data>
+</odoo>

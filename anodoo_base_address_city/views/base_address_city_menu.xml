@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="menu_anodoo_base_address" name="地址" parent="base.menu_custom" />
+			<menuitem parent="menu_anodoo_base_address" id="menu_anodoo_base_address_country" name="国家"  action="base.action_country" />
+			<menuitem parent="menu_anodoo_base_address" id="menu_anodoo_base_address_state" name="省" action="base.action_country_state" />
+			<menuitem parent="menu_anodoo_base_address" id="menu_anodoo_base_address_city" name="市" action="base_address_city.action_res_city_tree" />
+
+	</data>
+</odoo>

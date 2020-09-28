@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 增加背景,去掉powered by odoo   后续用同意的module做
+		<template id="login_layout" inherit_id="web.login_layout" name="Anodoo Login Layout" priority="19">
+			<xpath expr="//t/div" position="attributes">
+				<attribute name="style">background-image: url('/anodoo_base/static/src/img/background_login_1.png');max-width:100%;</attribute>
+			</xpath>
+			<xpath expr="//t/div/div/div/div[last()]" position="replace">
+				<t t-if="not disable_database_manager">
+                                <a class="border-left pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                            </t>
+			</xpath>
+		</template>
+		-->
+	</data>
+</odoo>

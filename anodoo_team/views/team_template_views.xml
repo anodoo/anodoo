@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 团队模板 model_id: anodoo.team.template-->
+	    <record id="view_anodoo_team_template_form" model="ir.ui.view">
+	        <field name="name">anodoo.team.template.view.form</field>
+	        <field name="model">anodoo.team.template</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_team_template">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="leader_user_id" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="description" />
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+							<page name="member" string="成员" autofocus="autofocus">
+							    <field name="member_user_ids"/>
+							</page>
+						</notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_team_template_list" model="ir.ui.view">
+	        <field name="name">anodoo.team.template.view.list</field>
+	        <field name="model">anodoo.team.template</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="leader_user_id" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_team_template_search" model="ir.ui.view">
+	        <field name="name">anodoo.team.template.view.search</field>
+	        <field name="model">anodoo.team.template</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 动作 anodoo.team.template-->
+		<record id="action_anodoo_team_template_list" model="ir.actions.act_window">
+	        <field name="name">团队模板</field>
+	        <field name="res_model">anodoo.team.template</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	</data>
+</odoo>
