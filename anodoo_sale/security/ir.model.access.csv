@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_anodoo_sale_territory_user,anodoo.sale.territory.user,model_anodoo_sale_territory,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_model_user,anodoo.sale.goal.model.user,model_anodoo_sale_goal_model,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_breakdown_dimension_field_user,anodoo.sale.goal.breakdown.dimension.field.user,model_anodoo_sale_goal_breakdown_dimension_field,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_state_user,anodoo.sale.goal.state.user,model_anodoo_sale_goal_state,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_breakdown_dimension_user,anodoo.sale.goal.breakdown.dimension.user,model_anodoo_sale_goal_breakdown_dimension,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_user,anodoo.sale.goal.user,model_anodoo_sale_goal,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_breakdown_user,anodoo.sale.goal.breakdown.user,model_anodoo_sale_goal_breakdown,anodoo_base.group_anodoo_user,1,1,1,1
-access_anodoo_sale_goal_breakdown_dimension_relation_user,anodoo.sale.goal.breakdown.dimension.relation.user,model_anodoo_sale_goal_breakdown_dimension_relation,anodoo_base.group_anodoo_user,1,1,1,1
