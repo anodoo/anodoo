@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="view_anodoo_opportunity_qualify_lost_form" model="ir.ui.view">
+            <field name="name">anodoo.opportunity.qualify.lost.form</field>
+            <field name="model">anodoo.opportunity.qualify.lost</field>
+            <field name="arch" type="xml">
+                <form string="认定失败原因">
+                    <group class="oe_title">
+                        <field name="lost_reason_id"/>
+                    </group>
+                    <footer>
+                        <button name="action_lost_reason_apply" string="Submit" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_anodoo_opportunity_qualify_lost" model="ir.actions.act_window">
+            <field name="name">Qualify Lost Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">anodoo.opportunity.qualify.lost</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_anodoo_opportunity_qualify_lost_form"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

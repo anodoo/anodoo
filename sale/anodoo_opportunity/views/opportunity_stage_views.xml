@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 商机生命周期 model_id: anodoo.opportunity.lifetime-->
+	    <record id="view_anodoo_opportunity_lifetime_form" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.lifetime.view.form</field>
+	        <field name="model">anodoo.opportunity.lifetime</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_opportunity_lifetime">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                     <field name="is_default" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="team_id" />
+			                     <field name="opportunity_domain" placeholder="设置匹配的多个条件" widget="domain" options="{'model': 'crm.lead', 'in_dialog': true}" />
+			                 </group>
+			                 <group name="group_bottom" colspan="4">
+			                     <field name="stage_ids" context="{'opportunity_lifetime_id': id, 'default_team_id':team_id}">
+			                     	<tree editable='bottom'>
+						                <field name="name" />
+						                <field name="sequence" />
+						                <field name="is_won" />
+						                <field name="is_qualify" />
+										<field name="stage_probability" />
+						                <field name="requirements" />
+						                <field name="fold" />
+						            </tree>
+			                     </field>
+			                 </group>
+			             </group>
+
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_opportunity_lifetime_list" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.lifetime.view.list</field>
+	        <field name="model">anodoo.opportunity.lifetime</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+
+	                <field name="sequence" widget="handle"/>
+	                <field name="name" />
+	                <field name="is_default" />
+	                <field name="team_id" />
+	                <field name="opportunity_domain" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_opportunity_lifetime_search" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.lifetime.view.search</field>
+	        <field name="model">anodoo.opportunity.lifetime</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+    </data>
+</odoo>

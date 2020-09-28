@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem parent="anodoo_sales.sales_menu_root_anodoo" id="sales_menu_team" name="销售团队" sequence="20"/>
+    		<menuitem parent="sales_menu_team" id="sales_menu_team_list" name="销售团队" action="sales_team.crm_team_salesteams_act" />
+
+		<menuitem parent="anodoo_sales.sales_menu_analysis" id="sales_menu_analysis_team" name="销售团队" />
+
+		<menuitem parent="anodoo_sales.sales_menu_config" id="sales_menu_config_team" name="团队" />
+			<menuitem parent="sales_menu_config_team" id="sales_menu_config_team_config" name="销售团队配置" action="sales_team.sales_team_config_action" />
+	</data>
+</odoo>

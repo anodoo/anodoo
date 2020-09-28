@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+
+    
+    
+  
+    <menuitem id="sales_menu_root_anodoo" name="Anodoo 销售管理"  sequence="57"  web_icon="anodoo_sales,static/description/icon.png"/>
+
+
+    	<menuitem parent="sales_menu_root_anodoo" id="sales_menu_analysis" name="分析" sequence="90"/>
+
+    	<menuitem parent="sales_menu_root_anodoo" id="sales_menu_config" name="设置" sequence="100"/>
+    		<menuitem parent="sales_menu_config" id="sales_menu_config_setting" name="基础设置" action="sale.action_sale_config_settings" />
+
+
+          		
+
+				
+			
+</odoo>

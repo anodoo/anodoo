@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 伙伴类型
+        <record id="anodoo_partner_type_1" model="anodoo.partner.type">
+        	<field name="name">两年内无交易</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        	<field name="users" eval="[(4,ref('user_zhao_customer'))]"/>
+        	<field name="label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_12'), ref('anodoo_customer_label_category_00')])]"/>
+        </record>
+        -->
+    </data>
+</odoo>

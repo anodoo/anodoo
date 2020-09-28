@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_sales_goal_model_user,anodoo.sales.goal.model.user,model_anodoo_sales_goal_model,base.group_user,1,1,1,1
+access_anodoo_sales_goal_breakdown_dimension_field_user,anodoo.sales.goal.breakdown.dimension.field.user,model_anodoo_sales_goal_breakdown_dimension_field,base.group_user,1,1,1,1
+access_anodoo_sales_goal_state_user,anodoo.sales.goal.state.user,model_anodoo_sales_goal_state,base.group_user,1,1,1,1
+access_anodoo_sales_goal_breakdown_dimension_user,anodoo.sales.goal.breakdown.dimension.user,model_anodoo_sales_goal_breakdown_dimension,base.group_user,1,1,1,1
+access_anodoo_sales_goal_user,anodoo.sales.goal.user,model_anodoo_sales_goal,base.group_user,1,1,1,1
+access_anodoo_sales_goal_breakdown_user,anodoo.sales.goal.breakdown.user,model_anodoo_sales_goal_breakdown,base.group_user,1,1,1,1
+access_anodoo_sales_goal_breakdown_dimension_relation_user,anodoo.sales.goal.breakdown.dimension.relation.user,model_anodoo_sales_goal_breakdown_dimension_relation,base.group_user,1,1,1,1
+
+
+
