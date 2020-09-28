@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+	    <record id="group_use_multi_customer_type" model="res.groups">
+	        <field name="name">启用多客户类型</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_multi_customer_size" model="res.groups">
+	        <field name="name">启用多客户规模</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_customer_lifetime" model="res.groups">
+	        <field name="name">启动客户生命周期管理</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_can_customer_belong_team" model="res.groups">
+	        <field name="name">客户可以按团队分配</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_customer_pool" model="res.groups">
+	        <field name="name">启用客户池分配客户</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_customer_user" model="res.groups">
+	        <field name="name">启用客户应用的用户管理</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    
+	    <record id="access_res_partner_salesman_rule" model="ir.rule">
+	        <field name="name">销售人员增删改查自己的客户和联系人</field>
+	        <field name="model_id" ref="base.model_res_partner"/>
+	        <field name="domain_force">['|', ('user_id', '=', False), ('user_id', '=', user.id)]</field>
+	        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+	        <field name="perm_create" eval="1"/>
+	        <field name="perm_write" eval="1"/>
+	        <field name="perm_unlink" eval="1"/>
+	        <field name="perm_read" eval="1"/>
+	    </record>
+	</data>
+</odoo>

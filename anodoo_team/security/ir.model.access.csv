@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_team_role_user,anodoo.team.role.user,model_anodoo_team_role,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_team_member_user,anodoo.team.member.user,model_anodoo_team_member,anodoo_base.group_anodoo_user,1,1,1,1

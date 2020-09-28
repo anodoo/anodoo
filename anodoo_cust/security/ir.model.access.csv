@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_customer_type_user,anodoo.customer.type.user,model_anodoo_customer_type,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_size_user,anodoo.customer.size.user,model_anodoo_customer_size,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_label_category_user,anodoo.customer.label.category.user,model_anodoo_customer_label_category,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_label_user,anodoo.customer.label.user,model_anodoo_customer_label,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_segment_user,anodoo.customer.segment.user,model_anodoo_customer_segment,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_segment_snapshot_user,anodoo.customer.segment.snapshot.user,model_anodoo_customer_segment_snapshot,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_pool_user,anodoo.customer.pool.user,model_anodoo_customer_pool,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_allot_user,anodoo.customer.allot.user,model_anodoo_customer_allot,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_lifetime_user,anodoo.customer.lifetime.user,model_anodoo_customer_lifetime,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_lifetime_stage_user,anodoo.customer.lifetime.stage.user,model_anodoo_customer_lifetime_stage,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_relation_customer_user,anodoo.customer.relation.customer.user,model_anodoo_customer_relation_customer,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_user_user,anodoo.customer.user.user,model_anodoo_customer_user,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_user_operation_user,anodoo.customer.user.operation.user,model_anodoo_customer_user_operation,anodoo_base.group_anodoo_user,1,1,1,1
+access_anodoo_customer_application_user,anodoo.customer.application.user,model_anodoo_customer_application,anodoo_base.group_anodoo_user,1,1,1,1
+
+access_res_partner_salesman,销售人员增删改查自己的客户和联系人,base.model_res_partner,sales_team.group_sale_salesman,1,1,1,1

@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 
+	<record id="action_contact_customer_person_list" model="ir.actions.act_window">
+        <field name="name">个人客户联系信息</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner_type':'customer', 'default_is_company':False, 'search_default_is_person':True}</field>
+        <field name="domain">[('partner_type', '=', 'customer'), ('customer_type', '=', 'person')]</field>
+        <field name="search_view_id" ref="view_contact_search"/>
+    </record>
+    <record id="action_view_contact_customer_person_kanban" model="ir.actions.act_window.view">
+        <field eval="0" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_contact_kanban_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_person_list"/>
+    </record>
+    <record id="action_view_contact_customer_person_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_contact_list_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_person_list"/>
+    </record>    
+    <record id="action_view_contact_customer_person_form" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_contact_form_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_person_list"/>
+    </record>
+     
+    
+    <record id="action_contact_customer_company_list" model="ir.actions.act_window">
+        <field name="name">企业客户联系信息</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner_type':'customer', 'default_is_company':True, 'search_default_is_company':True}</field>
+        <field name="domain">[('partner_type', '=', 'customer'), ('customer_type', '=', 'company')]</field>
+        <field name="search_view_id" ref="view_contact_search"/>
+    </record>
+    <record id="action_view_contact_customer_company_kanban" model="ir.actions.act_window.view">
+        <field eval="0" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_contact_kanban_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_company_list"/>
+    </record>
+    <record id="action_view_contact_customer_company_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_contact_list_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_company_list"/>
+    </record>    
+    <record id="action_view_contact_customer_company_form" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_contact_form_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_company_list"/>
+    </record>
+    
+    <record id="action_contact_customer_other_list" model="ir.actions.act_window">
+        <field name="name">其他客户联系信息</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner_type':'customer', 'default_is_company':True, 'search_default_is_company':True}</field>
+        <field name="domain">['&amp;', ('partner_type', '=', 'customer'), '&amp;', ('customer_type', '!=', 'person'), ('customer_type', '!=', 'company')]</field>
+        <field name="search_view_id" ref="view_contact_search"/>
+    </record>
+    <record id="action_view_contact_customer_other_kanban" model="ir.actions.act_window.view">
+        <field eval="0" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_contact_kanban_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_other_list"/>
+    </record>
+    <record id="action_view_contact_customer_other_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_contact_list_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_other_list"/>
+    </record>    
+    <record id="action_view_contact_customer_other_form" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_contact_form_customer"/>
+        <field name="act_window_id" ref="action_contact_customer_other_list"/>
+    </record>
+    -->
+    
+	<!-- 参考：action_partner_form-->
+	
+	<record id="action_contact_person_list" model="ir.actions.act_window">
+        <field name="name">个人联系人</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,activity</field>
+        <field name="context">{'default_partner_type':'contact', 'default_is_company':False}</field>
+        <field name="domain">[('partner_type', '=', 'contact'), ('is_company', '=', False)]</field>
+        <field name="search_view_id" ref="view_contact_search"/>
+        <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_contact_list')}),                          
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_contact_form')})
+                          ]"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            创建一个新的个人联系人
+          </p>
+        </field>
+    </record>
+    <record id="action_contact_person_list_tree" model="ir.actions.act_window">
+        <field name="name">所有联系人</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="context">{'default_partner_type':'contact', 'default_is_company':False}</field>
+        <field name="domain">[('partner_type', '=', 'contact')]</field>
+        <field name="search_view_id" ref="view_contact_search_tree"/>
+        <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_contact_kanban')}),          
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_contact_form')})
+                          ]"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            创建一个新的个人联系人
+          </p>
+        </field>
+    </record>
+    <record id="action_contact_company_list" model="ir.actions.act_window">
+        <field name="name">公司联系人</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,activity</field>
+        <field name="context">{'default_partner_type':'contact', 'default_is_company':True}</field>
+        <field name="domain">[('partner_type', '=', 'contact'), ('is_company', '=', True)]</field>
+        <field name="search_view_id" ref="view_contact_search"/>
+        <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_contact_list')}),                          
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_contact_form')})
+                          ]"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            创建一个新的公司联系人
+          </p>
+        </field>
+    </record>    
+  
+    <menuitem parent="anodoo_crm.crm_menu_root_anodoo" id="contact_menu_root_anodoo" name="联系人" sequence="20" />
+    	
+    	<menuitem parent="contact_menu_root_anodoo" id="contact_menu_tree" name="所有联系人" action="action_contact_person_list_tree" />
+    	<menuitem parent="contact_menu_root_anodoo" id="contact_menu_contact" name="个人联系人" action="action_contact_person_list"/>
+    	<menuitem parent="contact_menu_root_anodoo" id="contact_menu_contact_company" name="公司联系人" action="action_contact_company_list"/>
+    	<menuitem parent="contact_menu_root_anodoo" id="contact_menu_tag" name="联系人分类" action="base.action_partner_category_form" />
+    	
+    	<!-- 
+    		<menuitem parent="contact_menu_contact" id="contact_menu_contact_person" name="个人联系人" action="action_contact_person_list"/>
+    		<menuitem parent="contact_menu_contact" id="contact_menu_contact_company" name="公司联系人" action="action_contact_company_list"/>
+    	
+    	<menuitem parent="contact_menu_root_anodoo" id="contact_menu_customer" name="客户联系信息" />
+    		<menuitem parent="contact_menu_customer" id="contact_menu_customer_person" name="个人客户联系信息" action="action_contact_customer_person_list"/>
+    		<menuitem parent="contact_menu_customer" id="contact_menu_customer_company" name="公司客户联系信息" action="action_contact_customer_company_list"/>
+    		<menuitem parent="contact_menu_customer" id="contact_menu_customer_other" name="其他客户联系信息" action="action_contact_customer_other_list"/>
+    		 -->
+    		 
+    	<!-- 注入到crm -->
+    	<menuitem parent="anodoo_crm.crm_menu_analysis" id="contact_menu_analysis" name="分析人信息完整度" />
+    	
+    	<!-- 注入到crm -->
+   		<menuitem parent="anodoo_crm.crm_menu_config" id="contact_menu_config_contacts" name="联系人" />
+			<menuitem parent="contact_menu_config_contacts" id="contact_menu_config_contacts_title" name="联系人称谓" action="base.action_partner_title_contact" />
+			
+		
+		<!-- 
+		<menuitem parent="anodoo_crm.crm_menu_config" id="contact_menu_config_bank" name="银行" />
+			<menuitem parent="contact_menu_config_bank" id="contact_menu_config_bank_list" name="银行" action="base.action_res_bank_form" />
+			<menuitem parent="contact_menu_config_bank" id="contact_menu_config_bank_account" name="银行账号" action="base.action_res_partner_bank_account_form"/>
+		 -->
+    		
+    	
+    	
+
+</odoo>

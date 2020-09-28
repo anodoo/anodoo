@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 动作 anodoo.sale.territory-->
+	<record id="action_anodoo_sale_territory_list" model="ir.actions.act_window">
+        <field name="name">销售区域</field>
+        <field name="res_model">anodoo.sale.territory</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_is_parent':1}</field>
+    </record>
+    
+    <!-- 动作 anodoo.sale.goal.model-->
+	<record id="action_anodoo_sale_goal_model_list" model="ir.actions.act_window">
+        <field name="name">目标模型</field>
+        <field name="res_model">anodoo.sale.goal.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <!-- 动作 anodoo.sale.goal.state-->
+	<record id="action_anodoo_sale_goal_state_list" model="ir.actions.act_window">
+        <field name="name">目标阶段</field>
+        <field name="res_model">anodoo.sale.goal.state</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <!-- 动作 anodoo.sale.goal.breakdown.dimension-->
+	<record id="action_anodoo_sale_goal_breakdown_dimension_list" model="ir.actions.act_window">
+        <field name="name">目标分解纬度</field>
+        <field name="res_model">anodoo.sale.goal.breakdown.dimension</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('parent_id', '=', False)]</field>
+    </record>
+    
+    <!-- 动作 anodoo.sale.goal-->
+	<record id="action_anodoo_sale_goal_list" model="ir.actions.act_window">
+        <field name="name">销售目标</field>
+        <field name="res_model">anodoo.sale.goal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <!-- 动作 anodoo.sale.goal.breakdown-->
+	<record id="action_anodoo_sale_goal_breakdown_list" model="ir.actions.act_window">
+        <field name="name">目标分解</field>
+        <field name="res_model">anodoo.sale.goal.breakdown</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('parent_id', '=', False)]</field>
+    </record>
+    <record id="action_anodoo_sale_goal_breakdown_list_my" model="ir.actions.act_window">
+        <field name="name">我的目标</field>
+        <field name="res_model">anodoo.sale.goal.breakdown</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'list_my':True}</field>
+    </record>
+  
+    <menuitem parent="anodoo_sfa.sfa_menu_root_anodoo" id="sale_menu_root_anodoo" name="销售管理" action="sales_team.sales_team_config_action" sequence="80"  web_icon="sale_management,static/description/icon.png"/>
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_territory" name="销售区域" />
+    		<menuitem parent="sale_menu_territory" id="sale_menu_territory_anodoo_sale_territory" name="销售区域" action="action_anodoo_sale_territory_list"/>
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_team" name="销售团队" />
+    		<menuitem parent="sale_menu_team" id="sale_menu_team_list" name="销售团队" action="sales_team.crm_team_salesteams_act" />
+   		<menuitem parent="sale_menu_root_anodoo" id="sale_menu_quota" name="销售目标" />
+   			<menuitem parent="sale_menu_quota" id="sale_menu_quota_anodoo_sale_goal" name="销售目标" action="action_anodoo_sale_goal_list"/>
+   			<menuitem parent="sale_menu_quota" id="sale_menu_quota_anodoo_sale_goal_breakdown" name="目标分解" action="action_anodoo_sale_goal_breakdown_list"/>
+   			<menuitem parent="sale_menu_quota" id="sale_menu_quota_anodoo_sale_goal_my" name="我的目标" action="action_anodoo_sale_goal_breakdown_list_my"/>
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_forecast" name="销售预测" />
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_spm" name="绩效与佣金" />
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_channel" name="多渠道协同" />
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_agent" name="代理商" />
+    	
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_enable" name="销售赋能" />
+    	<menuitem parent="sale_menu_root_anodoo" id="sale_menu_analysis" name="分析" />
+    		<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_forcast" name="目标与预测" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_spm" name="绩效与佣金" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_channel" name="多渠道协同" />
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_anget" name="代理商" />
+				<!-- <menuitem parent="sale_menu_analysis_anget" id="sale_menu_analysis_anget_analysis" name="代理商分析" action="website_crm_partner_assign.action_report_crm_partner_assign" />-->
+			<menuitem parent="sale_menu_analysis" id="sale_menu_analysis_team" name="销售团队" />
+				
+    	<menuitem parent="anodoo_sfa.sfa_menu_analysis" id="sale_menu_config" name="销售管理" />
+    		<menuitem parent="sale_menu_config" id="sale_menu_config_setting" name="基础设置" action="sale.action_sale_config_settings" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_team" name="团队" />
+				<menuitem parent="sale_menu_config_team" id="sale_menu_config_team_config" name="销售团队配置" action="sales_team.sales_team_config_action" />
+          	<menuitem parent="sale_menu_config" id="sale_menu_config_quota" name="销售目标" />
+          		<menuitem parent="sale_menu_config_quota" id="sale_menu_config_quota_anodoo_sale_goal_model" name="目标模型" action="action_anodoo_sale_goal_model_list"/>
+          		<menuitem parent="sale_menu_config_quota" id="sale_menu_config_quota_anodoo_sale_goal_state" name="目标阶段" action="action_anodoo_sale_goal_state_list"/>
+          		<menuitem parent="sale_menu_config_quota" id="sale_menu_config_quota_anodoo_sale_goal_breakdown_dimension" name="目标分解纬度" action="action_anodoo_sale_goal_breakdown_dimension_list"/>
+          		
+			<menuitem parent="sale_menu_config" id="sale_menu_config_forcast" name="销售预测" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_spm" name="绩效与佣金" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_channel" name="多渠道协同" />
+			<menuitem parent="sale_menu_config" id="sale_menu_config_anget" name="代理商" />
+				<!-- 
+				<menuitem parent="sale_menu_config_anget" id="sale_menu_config_anget_grade" name="代理商级别" action="website_crm_partner_assign.res_partner_grade_action" />
+				<menuitem parent="sale_menu_config_anget" id="sale_menu_config_anget_activation" name="代理商激励" action="website_crm_partner_assign.res_partner_activation_act" />
+           -->
+				
+			
+</odoo>
