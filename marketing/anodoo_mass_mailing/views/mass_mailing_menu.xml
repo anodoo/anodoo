@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="mass_mailing.mass_mailing_menu_root"  name="Anodoo 邮件营销" sequence="32" web_icon="anodoo_mass_mailing,static/description/icon.png"/>
+	</data>
+</odoo>
