@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem parent="website.menu_website_configuration" id="website_menu_users" name="社区" sequence="50" />
+				<menuitem parent="website_menu_users" id="website_menu_users_list" name="社区会员" action="action_profile_users"  sequence="30" />
+	</data>
+</odoo>

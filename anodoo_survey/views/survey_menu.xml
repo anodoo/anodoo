@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--项目使用odoo的菜单-->
+			<menuitem id="survey.menu_surveys" name="Anodoo 问卷调查" sequence="76" web_icon="anodoo_survey,static/description/icon.png"/>
+
+	</data>
+</odoo>

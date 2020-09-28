@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- Blog views -->
+        <record id="view_blog_blog_list" model="ir.ui.view">
+            <field name="name">blog.blog.list</field>
+            <field name="model">blog.blog</field>
+            <field name="inherit_id" ref="website_blog.view_blog_blog_list"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='website_id']" position="after">
+            		<field name="subtitle" />
+            		<field name="is_public" />
+                    <field name="sequence" />
+                </xpath>
+                <xpath expr="//field[@name='active']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_blog_blog_form" model="ir.ui.view">
+            <field name="name">blog.blog.form</field>
+            <field name="model">blog.blog</field>
+            <field name="inherit_id" ref="website_blog.view_blog_blog_form"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='website_id']" position="after">
+            		<field name="is_public" />
+            		<field name="sequence" />
+                    <field name="content" />
+                    <field name="cover_properties" />
+                </xpath>
+            </field>
+        </record>
+        <record id="blog_blog_view_search" model="ir.ui.view">
+            <field name="name">blog.blog.search</field>
+            <field name="model">blog.blog</field>
+            <field name="inherit_id" ref="website_blog.blog_blog_view_search"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//filter[@name='inactive']" position="after">
+            		<group expand="1" string="Group By">
+		           		<filter name="groupby_website_id"  string="网站" context="{'group_by':'website_id'}" />               	
+		           	</group>   
+                </xpath>
+            </field>
+        </record>
+    
+    	<record id="view_blog_post_form" model="ir.ui.view">
+            <field name="name">blog.post.form</field>
+            <field name="model">blog.post</field>
+            <field name="inherit_id" ref="website_blog.view_blog_post_form"/> 
+            <field name="arch" type="xml">
+            	
+            	<xpath expr="//field[@name='blog_id']" position="after">
+            		<field name="is_post_blog_mana2many" invisible="1"/>
+                    <field name="multi_blog_ids" widget="many2many_tags" domain="[('id', '!=', blog_id)]" attrs="{'invisible': [('is_post_blog_mana2many', '=', False)]}"/>
+                    <field name="series_id" domain="['|', ('website_id', '=', False), ('website_id', '=', website_id)]"/>
+                </xpath>
+                <xpath expr="//field[@name='website_id']" position="after">
+                    <field name="multi_website_ids"  widget="many2many_tags" attrs="{'invisible': [('is_post_blog_mana2many', '=', False)]}"  groups="website.group_multi_website"/>
+                    <field name="is_public" />
+                </xpath>      
+                <xpath expr="//page[@name='seo']" position="after">
+                	<page name="relative" string="相关文章">
+                         <field name="relative_post_ids" domain="[('id', '!=', id), '|', ('website_id', '=', False), ('website_id', '=', website_id)]">
+                         	<tree>
+                         		<field name="name"/>
+			                    <field name="blog_id"/>
+			                    <field name="website_id" groups="website.group_multi_website"/>
+			                    <field name="visits"/>
+			                    <field name="write_uid"/>
+			                    <field name="write_date"/>
+                         	</tree>
+                         </field>
+                     </page>
+                </xpath>
+            </field>
+        </record>
+    
+    	<!-- page list view  -->
+        <record id="view_blog_post_list" model="ir.ui.view">
+            <field name="name">blog.post.list</field>
+            <field name="model">blog.post</field>
+            <field name="inherit_id" ref="website_blog.view_blog_post_list"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='website_id']" position="after">
+            		<field name="is_post_blog_mana2many" invisible="1"/>
+            		<field name="multi_blog_ids" attrs="{'invisible': [('is_post_blog_mana2many', '=', False)]}"/>
+            		<field name="multi_website_ids" attrs="{'invisible': [('is_post_blog_mana2many', '=', False)]}"/>
+            		<field name="series_id" />
+            		<field name="tag_ids" />
+                    <field name="is_public" />
+                    <field name="is_published" />
+                    <field name="message_unread_counter" />
+                    <field name="message_needaction_counter" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

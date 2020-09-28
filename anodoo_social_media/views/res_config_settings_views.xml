@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+		<record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.website</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='social_twitter']//..//.." position="inside">
+                                        <div class="row">
+                                            <label for="social_qq" string="QQ" class="col-md-3 o_light_label"/>
+                                            <field name="social_qq"/>
+                                        </div>
+                                        <div class="row">
+                                            <label for="social_weixin" string="微信" class="col-md-3 o_light_label"/>
+                                            <field name="social_weixin"/>
+                                        </div>
+                                        <div class="row">
+                                            <label for="social_weibo" string="微博" class="col-md-3 o_light_label"/>
+                                            <field name="social_weibo"/>
+                                        </div>
+                                        <div class="row">
+                                            <label for="social_tencent_weibo" string="腾讯微博" class="col-md-3 o_light_label"/>
+                                            <field name="social_tencent_weibo"/>
+                                        </div>
+                                        <div class="row">
+                                            <label for="social_renren" string="人人网" class="col-md-3 o_light_label"/>
+                                            <field name="social_renren"/>
+                                        </div>
+                </xpath>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

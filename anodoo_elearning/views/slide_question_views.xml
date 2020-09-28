@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+
+	    <record id="slide_question_view_tree" model="ir.ui.view">
+	        <field name="name">slide.question.view.tree</field>
+	        <field name="model">slide.question</field>
+	        <field name="inherit_id" ref="website_slides.slide_question_view_tree" />
+	        <field name="arch" type="xml">
+	            <field name="slide_id" position="replace"/>
+	        </field>
+	    </record>
+	
+	    <record id="slide_question_view_search" model="ir.ui.view">
+	        <field name="name">slide.question.view.search</field>
+	        <field name="model">slide.question</field>
+	        <field name="inherit_id" ref="website_slides.slide_question_view_search" />
+	        <field name="arch" type="xml">
+	            <field name="slide_id" position="replace"/>
+	        </field>
+	    </record>
+	</data>
+</odoo>

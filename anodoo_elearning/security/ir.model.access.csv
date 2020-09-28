@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_slide_slide_link_user,slide.slide.link.user,website_slides.model_slide_slide_link,base.group_user,1,1,1,1
+access_slide_question_user,slide.question.user,website_slides.model_slide_question,base.group_user,1,1,1,1
+access_slide_channel_category_user,slide.channel.category.user,model_slide_channel_category,base.group_user,1,1,1,1
+access_slide_channel_category_all,slide.channel.category.all,model_slide_channel_category,,1,0,0,0
+
+
+
+

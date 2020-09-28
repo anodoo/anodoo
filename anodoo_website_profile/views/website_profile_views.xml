@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="view_website_form" model="ir.ui.view">
+            <field name="name">website.form</field>
+            <field name="model">website</field>
+            <field name="inherit_id" ref="website.view_website_form"/>
+            <field name="arch" type="xml">
+                <field name="default_lang_id" position="after">
+                	<field name="karma_profile_min"/>
+                </field>
+            </field>
+        </record>
+
+		<!-- 社区用户的视图,res.users -->
+		<record id="view_profile_users_form" model="ir.ui.view">
+	        <field name="name">profile.users.view.form</field>
+	        <field name="model">res.users</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="profile_users">
+	                <sheet>
+	                	<field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" required="1"/></h1>
+                            <label for="login" class="oe_edit_only" string="Email Address"/>
+                            <h3><field name="login"/></h3>
+                        </div>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="email" />
+			                     <field name="login"/>
+	                			<field name="karma" />
+				                <field name="rank_id" />
+				                <field name="next_rank_id" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="gold_badge" />
+				                <field name="silver_badge" />
+				                <field name="bronze_badge" />
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+							<page name="location" string="论坛帖子" autofocus="autofocus">
+
+							</page>
+						</notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_profile_users_list" model="ir.ui.view">
+	        <field name="name">profile.users.view.list</field>
+	        <field name="model">res.users</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name"/>
+                    <field name="login"/>
+	                <field name="karma" />
+	                <field name="rank_id" />
+	                <field name="next_rank_id" />
+	                <field name="gold_badge" />
+	                <field name="silver_badge" />
+	                <field name="bronze_badge" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_profile_users_search" model="ir.ui.view">
+	        <field name="name">profile.users.view.search</field>
+	        <field name="model">res.users</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<field name="login" filter_domain="[('login', 'ilike', self)]" />
+	            	<field name="rank_id" filter_domain="[('rank_id', 'ilike', self)]" />
+		            <separator/>
+	            </search>
+	        </field>
+	    </record>
+
+			    <record id="action_profile_users" model="ir.actions.act_window">
+            <field name="name">社区用户</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_profile_users_search"/>
+			<field name="view_ids"
+		                   eval="[(5, 0, 0),
+		                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_profile_users_list')}),
+		                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_profile_users_form')})]"/>
+			<field name="context">{}</field>
+			<field name="domain">[('karma', '>', 0)]</field>
+
+        </record>
+	</data>
+</odoo>
