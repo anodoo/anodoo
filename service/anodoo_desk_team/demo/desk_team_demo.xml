@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="team1" model="anodoo.desk.team">
+            <field name="name">客服团队</field>
+            <field name="description">Anodoo Desk中使用的客服团队</field>
+            <field name="leader_user_id" ref="base.user_admin"/>
+            <field name="member_user_ids" eval="[(4, ref('base.user_demo')), (4, ref('base.user_admin'))]"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="anodoo_desk.desk_ticket_1" model='anodoo.desk.ticket'>
+            <field name="team_id" ref="team1"/>
+        </record>
+    </data>
+</odoo>

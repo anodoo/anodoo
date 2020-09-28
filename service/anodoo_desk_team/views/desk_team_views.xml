@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_anodoo_desk_team_list" model="ir.ui.view">
+	        <field name="name">anodoo.team.view.list</field>
+	        <field name="model">anodoo.desk.team</field>
+            <field name="inherit_id" ref="anodoo_team.view_anodoo_team_list"/>
+            <field name="mode">primary</field>
+	        <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='customer_id']" position="attributes">
+	        		<attribute name="optional">hide</attribute>
+	        	</xpath>
+	        </field>
+	    </record>
+
+
+        <record id="view_anodoo_desk_team_form" model="ir.ui.view">
+            <field name="name">desk.team.form</field>
+            <field name="model">anodoo.desk.team</field>
+            <field name="inherit_id" ref="anodoo_team.view_anodoo_team_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='customer_id']" position="attributes">
+	        		<attribute name="attrs">{'invisible': 1}</attribute>
+	        	</xpath>
+
+                <xpath expr="//group" position="inside">
+	        		<group name="group_desk">
+                        <field name="assign_method" widget="radio"/>
+                     </group>
+	        	</xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+        <record id="view_anodoo_desk_team_kanban" model="ir.ui.view" >
+            <field name="name">desk.team.kanban</field>
+            <field name="model">anodoo.desk.team</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_desk_kanban" create="0">
+                    <field name="name"/>
+                    <field name="color"/>
+                    <field name="unassigned_ticket_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                                <span class="oe_kanban_color_help" t-attf-title="In #{kanban_getcolorname(record.color.raw_value)}" role="img" t-attf-aria-label="In #{kanban_getcolorname(record.color.raw_value)}"/>
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary"><field name="name"/></div>
+
+                                    </div>
+                                    <div class="o_kanban_manage_button_section" t-if="!selection_mode" groups="anodoo_desk.group_desk_manager">
+                                        <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                    <div class="row">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary" name="%(desk_ticket_action_team)d" type="action">团队工单</button>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+
+                                            <div class="mb4">
+                                                <a name="170" type="action" context="{'search_default_team_id': active_id, 'default_team_id': active_id}"><t t-esc="record.unassigned_ticket_count.raw_value"/> 个未分配工单</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div><div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                        <div role="menuitem" aria-haspopup="true" class="col-8">
+                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                        </div>
+                                        <div role="menuitem" class="col-4 text-right">
+                                            <a type="edit">设置</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="desk_team_action" model="ir.actions.act_window">
+            <field name="name">服务团队</field>
+            <field name="res_model">anodoo.desk.team</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="desk_team_board_action" model="ir.actions.act_window">
+            <field name="name">团队概览</field>
+            <field name="res_model">anodoo.desk.team</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+
+
+
+    </data>
+</odoo>

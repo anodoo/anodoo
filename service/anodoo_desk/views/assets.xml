@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="assets_backend" name="desk assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/anodoo_desk/static/src/js/tours/desk.js"></script>
+        </xpath>
+    </template>
+</odoo>

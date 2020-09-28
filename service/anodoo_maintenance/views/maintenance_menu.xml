@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="maintenance.menu_maintenance_title" name="Anodoo 质保服务"  sequence="66"  web_icon="anodoo_maintenance,static/description/icon.png"/>
+	</data>
+</odoo>

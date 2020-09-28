@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="assets_backend" name="helpdesk assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/anodoo_desk_team/static/src/scss/desk_team.scss"/>
+        </xpath>
+    </template>
+</odoo>

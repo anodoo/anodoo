@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- anodoo.desk.stage -->
+        <record id="desk_stage_view_tree" model="ir.ui.view">
+            <field name="name">desk.stages.tree</field>
+            <field name="model">anodoo.desk.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Stage">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="is_close"/>
+                    <field name="fold"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="desk_stage_view_form" model="ir.ui.view">
+            <field name="name">desk.stage.form</field>
+            <field name="model">anodoo.desk.stage</field>
+            <field name="arch" type="xml">
+                <form string="Stage Search">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="template_id" options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="is_close"/>
+                                <field name="fold"/>
+                            </group>
+                        </group>
+                        <group string="阶段描述和提示">
+                            <p class="text-muted" colspan="2">
+                                可以为每一个阶段设置三种状态说明，包括正常状态，阻塞状态和就绪状态。可以为每一个状态设置说明和提示内容。
+                            </p>
+                            <label for="legend_normal" string=" " class="o_status oe_project_kanban_legend"
+                                title="Task in progress. Click to block or set as done."
+                                aria-label="Task in progress. Click to block or set as done." role="img"/>
+                            <field name="legend_normal" nolabel="1"/>
+                            <label for="legend_blocked" string=" " class="o_status o_status_red oe_project_kanban_legend"
+                                title="Task is blocked. Click to unblock or set as done."
+                                aria-label="Task is blocked. Click to unblock or set as done." role="img"/>
+                            <field name="legend_blocked" nolabel="1"/>
+                            <label for="legend_done" string=" " class="o_status o_status_green oe_project_kanban_legend"
+                                title="This step is done. Click to block or set in progress."
+                                aria-label="This step is done. Click to block or set in progress." role="img"/>
+                            <field name="legend_done" nolabel="1"/>
+
+                            <p class="text-muted" colspan="2">
+
+                            </p>
+                            <field name="description" placeholder="阶段描述..." nolabel="1" colspan="2"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="desk_stage_view_search" model="ir.ui.view">
+	        <field name="name">desk_stage.view.search</field>
+	        <field name="model">anodoo.desk.stage</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		            <filter name="active_true"  string="启用" domain="[('active','=',True)]" />
+		            <filter name="active_false"  string="未启用" domain="[('active','=',False)]" />
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_active"  string="状态" context="{'group_by':'active'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+        <record id="desk_stage_action" model="ir.actions.act_window">
+            <field name="name">工单阶段</field>
+            <field name="res_model">anodoo.desk.stage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	</data>
+</odoo>

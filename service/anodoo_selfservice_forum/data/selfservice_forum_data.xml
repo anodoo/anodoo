@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="forum_selfservice" model="forum.forum">
+            <field name="name">自助服务</field>
+            <field name="description">这个栏目是自助服务的栏目</field>
+        </record>
+
+        <function model="ir.config_parameter" name="set_param" eval="('anodoo_selfservice.selfservice_forum_id', ref('forum_selfservice'))"/>
+    </data>
+</odoo>

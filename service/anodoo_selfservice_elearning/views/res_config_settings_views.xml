@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="anodoo_selfservice.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='module_anodoo_selfservice_elearning']" position="after">
+                            <div class="col-12 col-lg-6 o_setting_box" id="selfservice_elearning_id" title="" attrs="{'invisible':[('module_anodoo_selfservice_elearning', '=', False)]}">
+                                <div class="o_setting_left_pane">
+
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="selfservice_elearning_id"/>
+                                     <div class="text-muted">
+                                        设置自助服务的课程
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="selfservice_elearning_id"/>
+                                        </div>
+                                    </div>
+                                    <div class="mt8">
+                                        <button type="action" name="%(base.action_view_base_language_install)d" string="查看课程" class="btn-link" icon="fa-arrow-right"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

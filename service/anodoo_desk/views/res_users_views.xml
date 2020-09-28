@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <!-- res.users -->
+        <record id="view_users_simple_form" model="ir.ui.view">
+            <field name="name">res.users.simplified.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <group id="desk_target">
+                        <field name="desk_target_closed" widget="integer"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_desk_users_kanban" model="ir.ui.view">
+            <field name="name">desk.users.kanban</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="lang"/>
+                    <field name="active"/>
+                    <field name="login_date"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar" t-att-src="kanban_image('res.users', 'image_128', record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li class="text-success float-right mb4" t-if="record.active.raw_value"><i class="fa fa-circle" role="img" aria-label="Ok" title="Ok"></i></li>
+                                        <li class="text-danger float-right mb4" t-if="!record.active.raw_value"><i class="fa fa-circle" role="img" aria-label="Invalid" title="Invalid"></i></li>
+                                        <li class="mb4">
+                                            <strong><field name="name"/></strong>
+                                        </li>
+                                        <li class="badge badge-pill float-right mb4" t-if="record.lang.raw_value"><field name="lang"/></li>
+                                        <li class="mb4" t-if="record.login.raw_value" title="Login"><i class="fa fa-envelope" role="img" aria-label="Login"/> <field name="login"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_desk_users" model="ir.actions.act_window">
+            <field name="name">客服人员</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="search_view_id" ref="base.view_users_search"/>
+            <field name="context">{'search_default_no_share': 1}</field>
+            <field name="domain" eval="[('groups_id', 'in', ref('anodoo_desk.group_desk_user'))]" />
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.view_res_users_kanban')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_users_simple_form')})]"/>
+        </record>
+    </data>
+</odoo>

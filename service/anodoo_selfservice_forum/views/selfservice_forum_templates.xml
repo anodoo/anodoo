@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <template id="forum_posts_page" name="Top 10 Posts">
+            <p class="question-block" t-foreach="questions" t-as="question">
+                <div class="question-name">
+                    <a t-attf-href="/forum/#{ slug(forum) }/question/#{ slug(question) }">
+                        <span t-field="question.name"/>
+                    </a>
+                    <span t-if="question.has_validated_answer" title="Question has accepted answer"><i class="fa fa-check-circle oe_answer_true" role="img" aria-label="Question has accepted answer"/></span>
+                </div>
+                <div>
+                    <t t-raw="post_content"/>
+                </div>
+                <small class="text-muted">
+                    <i t-attf-class="fa fa-question-circle" title="Question" role="img" aria-label="Question"/>
+                    <span> • </span><span t-field="question.create_uid" t-options='{"widget": "contact", "country_image": true, "fields": ["name", "country_id"]}' style="display: inline-block;"/>
+                    <span> • </span><span t-field="question.write_date" t-options='{"format":"short"}'/>
+                    <span> • </span><span t-field="question.views" /> 浏览量
+                </small>
+            </p>
+            <p t-if="questions_limit and questions_limit &gt; 10">
+                <a t-attf-href="/forum/#{ slug(forum) }?search=#{search}">点击查看更多...</a>
+            </p>
+        </template>
+
+        <template id="selfservice" inherit_id="anodoo_selfservice.selfservice">
+            <xpath expr="//h2[@id='team-page']" position="after">
+
+                   <div class="col-lg-6" id="forum_posts">
+                        <h2>论坛热门问题</h2>
+                        <div class="col-lg-10" id="forum_posts" style="padding-left:0px;">
+                            <p t-if="not questions" class="text-muted">
+                                当前还没有问题。
+                            </p>
+                            <t t-call="anodoo_selfservice_forum.forum_posts_page"/>
+                        </div>
+                    </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
