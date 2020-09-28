@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!--  继承base, 创建crm应用的配置 -->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">anodoo.config.settings.view.form.inherit.contacts</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Contacts" string="联系人360" data-key="anodoo_contacts" >
+                    	<div id="contacts">
+	                    	<h2>联系人</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="group_use_multi_customer_type" title="多客户类型支持">
+		                            <div class="o_setting_left_pane">
+		                                <field name="support_many_child_ids"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="support_many_child_ids"/>
+		                                <div class="text-muted">
+		                                    默认一个联系人可以使用一对多关系来关联多个联系人。通过启动支持多对多的联系人，一个联系人和他的子联系人是多对多关系。
+		                                </div>
+		                            </div>
+		                        </div>
+
+		                    </div>
+	                    </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- 在anodoo crm中的菜单 -->
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+	        <field name="name">基础配置</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.config.settings</field>
+	        <field name="view_id" ref="res_config_settings_view_form"/>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	        <field name="context">{'module' : 'anodoo_contacts'}</field>
+	    </record>
+	</data>
+</odoo>

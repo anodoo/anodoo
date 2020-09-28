@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="action_anodoo_relation_contact_list" model="ir.actions.act_window">
+	        <field name="name">联系人与联系人关系</field>
+	        <field name="res_model">anodoo.contact.relation.contact</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<record id="action_anodoo_relation_customer_list" model="ir.actions.act_window">
+	        <field name="name">客户与客户关系</field>
+	        <field name="res_model">anodoo.customer.relation.customer</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+
+		<!-- Anodoo CRM根目录 -->
+		<menuitem id="relationship_menu_root_anodoo" name="Anodoo 客户关系管理" sequence="22" web_icon="anodoo_relationship,static/description/icon.png"/>
+			<menuitem parent="relationship_menu_root_anodoo" id="relationship_menu_root_anodoo_contact" name="联系人关系" sequence="10" action="action_anodoo_relation_contact_list"/>
+			<menuitem parent="relationship_menu_root_anodoo" id="relationship_menu_root_anodoo_customer" name="客户关系" sequence="20" action="action_anodoo_relation_customer_list"/>
+		
+			<menuitem parent="relationship_menu_root_anodoo" id="relationship_menu_analysis" name="分析"  sequence="90" />
+			
+    		<menuitem parent="relationship_menu_root_anodoo" id="relationship_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+    			<menuitem parent="relationship_menu_config" id="relationship_menu_config_settings" name="基本配置" action="res_config_settings_action2"/>
+
+	</data>
+</odoo>
