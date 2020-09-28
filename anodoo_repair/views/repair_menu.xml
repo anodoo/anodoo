@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="repair.menu_repair_order" name="Anodoo 维修服务"  sequence="66"  web_icon="anodoo_repair,static/description/icon.png"/>
+	</data>
+</odoo>

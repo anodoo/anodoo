@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="5"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Desk" string="Desk" data-key="anodoo_desk" groups="anodoo_desk.group_desk_manager">
+                        <h2>desk</h2>
+                        <div class="row mt16 o_settings_container">
+                            <!--
+                            <div class="col-12 col-lg-6 o_setting_box" id="desk_lead" title="">
+                                <div class="o_setting_left_pane">
+                                    <field name="group_use_lead"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="group_use_lead"/>
+                                    <div class="text-muted">
+                                        Add a qualification step before the creation of an opportunity
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+            <field name="name">设置</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'anodoo_desk'}</field>
+        </record>
+
+    </data>
+</odoo>

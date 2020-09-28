@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+         <record id="desk_channel_view_tree" model="ir.ui.view">
+            <field name="name">desk.channel.tree</field>
+            <field name="model">anodoo.desk.channel</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Tag">
+                    <field name="sequence" widget="handle" groups="base.group_no_one"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="desk_channel_action" model="ir.actions.act_window">
+            <field name="name">工单来源</field>
+            <field name="res_model">anodoo.desk.channel</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <!-- Page : default team -->
+        <template id="selfservice" name="自助服务">
+            <t t-call="website.layout">
+                <t t-set="additional_title">自助服务</t>
+                <div class="container mt16">
+                    <div class="navbar navbar-expand-md navbar-light bg-light">
+                        <div class="navbar-brand">自助服务</div>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#o-desk-teams-navbar-collapse">
+                            <span class="navbar-toggler-icon"/>
+                        </button>
+                        <div class="collapse navbar-collapse" id="o-desk-teams-navbar-collapse">
+
+                            <form class="form-inline ml-auto" role="search" t-attf-action="#" method="get">
+                                <t t-call="website.website_search_box"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="wrap" class="container">
+                    <div class="row mb16">
+                        <div class="oe_structure" id="oe_structure_website_team_1"/>
+                        <div class="col-md-9" id="left-column">
+                            <h2 class="o_page_header mt0 d-none" id="team-page"/>
+                        </div>
+
+                    </div>
+                    <div class="oe_structure" id="oe_structure_website_team_4"/>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

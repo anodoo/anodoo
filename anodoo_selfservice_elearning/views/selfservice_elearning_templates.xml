@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <template id="slides_page" name="Top 10 Posts">
+            <p t-if="slides">
+                <p class="question-block" t-foreach="slides" t-as="slide" >
+                    <div class="media">
+                        <a t-attf-href="/slides/slide/#{slug(slide)}">
+                            <img class="mr-3 oe_slides_apart_small" t-att-src="website.image_url(slide, 'image_128')" alt="Slide image"/>
+                        </a>
+                        <div class="media-body">
+                            <a t-attf-href="/slides/slide/#{slug(slide)}"><h5 class="mt-0" t-esc="slide.name"/></a>
+                            <small class="text-muted">
+                                <t t-esc="slide.total_views"/> 浏览量 . <timeago class="timeago" t-att-datetime="slide.create_date"></timeago>
+                            </small>
+                        </div>
+                    </div>
+                </p>
+            </p>
+            <p t-if="slides_limit &gt; 7">
+                <a t-attf-href="/slides/#{ slug(elearning) }?search=#{search}">点击查看更多...</a>
+            </p>
+        </template>
+
+        <template id="selfservice" inherit_id="anodoo_selfservice.selfservice">
+            <xpath expr="//h2[@id='team-page']" position="after">
+
+                    <div class="col-lg-6" id="slides_posts">
+                        <h2>学习课程热门内容</h2>
+                        <div class="col-lg-10" id="slides_posts" style="padding-left:0px;">
+                            <p t-if="not slides" class="text-muted">
+                                当前还没有内容。
+                            </p>
+                            <t t-call="anodoo_selfservice_elearning.slides_page"/>
+                        </div>
+                    </div>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>

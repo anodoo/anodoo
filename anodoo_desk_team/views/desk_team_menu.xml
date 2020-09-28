@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="desk_menu_team_kanban" action="desk_team_board_action" sequence="1" parent="anodoo_desk.desk_menu_root_anodoo" name="团队概览" groups="anodoo_desk.group_desk_user"/>
+
+			<!-- config -->
+			<menuitem id="desk_menu_config_team" name="客服团队" action="desk_team_action" parent="anodoo_desk.desk_menu_config" groups="anodoo_desk.group_desk_manager"/>
+	</data>
+</odoo>

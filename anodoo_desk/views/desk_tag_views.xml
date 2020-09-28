@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <record id="desk_tag_view_tree" model="ir.ui.view">
+            <field name="name">desk.tags.tree</field>
+            <field name="model">anodoo.desk.tag</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Tag">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="desk_tag_action" model="ir.actions.act_window">
+            <field name="name">工单标签</field>
+            <field name="res_model">anodoo.desk.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	</data>
+</odoo>

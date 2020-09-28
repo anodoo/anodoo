@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Activity types config -->
+    <record id="mail_activity_type_action_config_desk" model="ir.actions.act_window">
+        <field name="name">活动类型</field>
+        <field name="res_model">mail.activity.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|', ('res_model_id', '=', False), ('res_model_id.model', '=', 'anodoo.desk.ticket')]</field>
+        <field name="context">{'default_res_model': 'anodoo.desk.ticket'}</field>
+    </record>
+
+
+</odoo>

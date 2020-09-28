@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Desk-specific activities, for automatic generation mainly -->
+        <record id="mail_act_desk_handle" model="mail.activity.type">
+            <field name="name">处理工单</field>
+            <field name="icon">fa-ticket</field>
+            <field name="res_model_id" ref="model_anodoo_desk_ticket"/>
+        </record>
+
+        <!-- Ticket related subtypes for messaging / Chatter -->
+        <record id="mt_ticket_new" model="mail.message.subtype">
+            <field name="name">工单新建</field>
+            <field name="sequence">0</field>
+            <field name="res_model">anodoo.desk.ticket</field>
+            <field name="default" eval="False"/>
+            <field name="hidden" eval="True"/>
+            <field name="description">新建了一个工单</field>
+        </record>
+        <record id="mt_ticket_rated" model="mail.message.subtype">
+            <field name="name">工单评分</field>
+            <field name="sequence">5</field>
+            <field name="res_model">anodoo.desk.ticket</field>
+            <field name="default" eval="False"/>
+            <field name="hidden" eval="False"/>
+            <field name="description">评分了一个工单</field>
+        </record>
+        <record id="mt_ticket_stage" model="mail.message.subtype">
+            <field name="name">工单状态改变</field>
+            <field name="sequence">10</field>
+            <field name="res_model">anodoo.desk.ticket</field>
+            <field name="default" eval="False"/>
+            <field name="internal" eval="True"/>
+            <field name="description">改变了一个工单的状态</field>
+        </record>
+
+
+
+        <record id="new_ticket_request_email_template" model="mail.template">
+            <field name="name">工单: 收到确认</field>
+            <field name="model_id" ref="anodoo_desk.model_anodoo_desk_ticket"/>
+            <field name="subject">${object.display_name}</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="email_to">${(object.partner_email if not object.sudo().partner_id.email or object.sudo().partner_id.email != object.partner_email else '') | safe}</field>
+            <field name="partner_to">${object.partner_id.id if object.sudo().partner_id.email and object.sudo().partner_id.email == object.partner_email else ''}</field>
+            <field name="body_html" type="xml">
+    <div>
+        尊敬的 ${object.sudo().partner_id.name or '客户'},<br /><br />
+        您的工单：${object.name} 已经被接收并正在处理中.
+        参考的工单ID是： ${object.id}.<br /><br />
+
+
+        如有任何疑问和补充信息，请直接回复此邮件.<br/><br/>
+
+        谢谢,<br/><br/>
+        客服团队.
+    </div>
+            </field>
+            <field name="lang">${object.partner_id.lang or object.user_id.lang or user.lang}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="solved_ticket_request_email_template" model="mail.template">
+            <field name="name">工单: 已解决</field>
+            <field name="model_id" ref="anodoo_desk.model_anodoo_desk_ticket"/>
+            <field name="subject">${object.display_name}</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="email_to">${(object.partner_email if not object.sudo().partner_id.email or object.sudo().partner_id.email != object.partner_email else '') | safe}</field>
+            <field name="partner_to">${object.partner_id.id if object.sudo().partner_id.email and object.sudo().partner_id.email == object.partner_email else ''}</field>
+            <field name="body_html" type="xml">
+    <div>
+        尊敬的 ${object.sudo().partner_id.name or '客户'},<br /><br />
+        这封自动发送的邮件提醒您，我们已经解决了您的工单（工单号：${object.id}）。
+        我们希望您对我们的服务感到满意，如果您还有其他疑问或建议，您可以直接回复此邮件，我们将继续为您提供服务。<br /><br />
+        谢谢您的合作。<br />
+        祝您工作顺利。<br /><br />
+        客服团队
+
+    </div>
+            </field>
+            <field name="lang">${object.partner_id.lang or object.user_id.lang or user.lang}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

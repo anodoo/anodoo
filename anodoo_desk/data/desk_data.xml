@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="stage_new" model='anodoo.desk.stage'>
+            <field name="name">新建</field>
+            <field name="sequence">0</field>
+            <field name="template_id" ref="new_ticket_request_email_template"/>
+            <field name="is_close" eval="False"/>
+        </record>
+        <record id="stage_in_progress" model='anodoo.desk.stage'>
+            <field name="name">处理中</field>
+            <field name="sequence">1</field>
+            <field name="is_close" eval="False"/>
+        </record>
+        <record id="stage_solved" model='anodoo.desk.stage'>
+            <field name="name">已解决</field>
+            <field name="sequence">2</field>
+            <field name="template_id" ref="solved_ticket_request_email_template"/>
+            <field name="is_close" eval="True"/>
+        </record>
+        <record id="stage_cancelled" model='anodoo.desk.stage'>
+            <field name="name">已取消</field>
+            <field name="sequence">3</field>
+            <field name="is_close" eval="True"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="type_consult" model='anodoo.desk.type'>
+            <field name="name">咨询</field>
+        </record>
+        <record id="type_claim" model='anodoo.desk.type'>
+            <field name="name">投诉</field>
+        </record>
+        <record id="type_suggest" model='anodoo.desk.type'>
+            <field name="name">建议</field>
+        </record>
+
+    </data>
+</odoo>

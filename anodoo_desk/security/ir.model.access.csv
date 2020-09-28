@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_desk_tag,anodoo.desk.tag,model_anodoo_desk_tag,anodoo_desk.group_desk_user,1,1,1,1
+access_anodoo_desk_stage,anodoo.desk.stage,model_anodoo_desk_stage,anodoo_desk.group_desk_user,1,0,0,0
+access_anodoo_desk_stage_manager,anodoo.desk.stage.manager,model_anodoo_desk_stage,anodoo_desk.group_desk_manager,1,1,1,1
+access_anodoo_desk_stage_portal,anodoo.desk.stage.portal,anodoo_desk.model_anodoo_desk_stage,base.group_portal,1,0,0,0
+access_anodoo_desk_ticket_portal,anodoo.desk.ticket.portal,anodoo_desk.model_anodoo_desk_ticket,base.group_portal,1,0,0,0
+access_anodoo_desk_ticket,anodoo.desk.ticket,model_anodoo_desk_ticket,anodoo_desk.group_desk_user,1,1,1,1
+access_anodoo_desk_channel_user,anodoo.desk.channel.user,model_anodoo_desk_channel,anodoo_desk.group_desk_user,1,0,0,0
+access_anodoo_desk_channel_manager,anodoo.desk.channel.manager,model_anodoo_desk_channel,anodoo_desk.group_desk_manager,1,1,1,1
+access_anodoo_desk_type_user,anodoo.desk.type.user,model_anodoo_desk_type,anodoo_desk.group_desk_user,1,0,0,0
+access_anodoo_desk_type_manager,anodoo.desk.type.manager,model_anodoo_desk_type,anodoo_desk.group_desk_manager,1,1,1,1
+access_mail_activity_type_manager,mail.activity.type.manager,mail.model_mail_activity_type,anodoo_desk.group_desk_manager,1,1,1,1
+
+
+

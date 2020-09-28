@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<!-- 后台网站 -->
+		<menuitem id="selfservice_menu_root_anodoo" name="Anodoo 自助服务" sequence="60" web_icon="anodoo_selfservice,static/description/icon.png" groups="base.group_user"/>
+			<menuitem id="selfservice_menu_website" name="网站"  sequence="10" parent="selfservice_menu_root_anodoo"/>
+				<menuitem id="selfservice_menu_website_setting" name="网站设置"  parent="selfservice_menu_website" action="website.action_website_configuration"/>
+				<menuitem id="selfservice_menu_website_list" name="网站列表"  parent="selfservice_menu_website" action="website.action_website_list"/>
+				<menuitem id="selfservice_menu_website_page" name="网站页面"  parent="selfservice_menu_website" action="website.action_website_pages_list"/>
+				<menuitem id="selfservice_menu_website_rewrite" name="重定向"  parent="selfservice_menu_website" action="website.action_website_rewrite_list"/>
+				<menuitem id="selfservice_menu_website_menu" name="网站菜单"  parent="selfservice_menu_website" action="website.action_website_menu"/>
+
+			<menuitem id="selfservice_menu_visitors" name="访问者"  sequence="20" parent="selfservice_menu_root_anodoo"/>
+				<menuitem id="selfservice_menu_visitors_list" name="访问者"  parent="selfservice_menu_visitors" action="website.website_visitors_action"/>
+				<menuitem id="selfservice_menu_visitors_view" name="访问页面"  parent="selfservice_menu_visitors" action="website.website_visitor_view_action"/>
+
+
+			<menuitem id="selfservice_menu_analysis" name="分析"  sequence="90" parent="selfservice_menu_root_anodoo"/>
+
+
+    		<menuitem id="selfservice_menu_config" name="配置" sequence="100" parent="selfservice_menu_root_anodoo" groups="base.group_system"/>
+				<menuitem id="selfservice_menu_config_setting" name="配置" action="res_config_settings_action" parent="selfservice_menu_config" />
+
+		<!-- 前台网站 -->
+		<record id="website_menu_selfservice" model="website.menu">
+			<field name="name">自助服务</field>
+			<field name="url" eval="'/selfservice/'"/>
+			<field name="parent_id" ref="website.main_menu"/>
+			<field name="sequence" type="int">50</field>
+		</record>
+	</data>
+</odoo>
