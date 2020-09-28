@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 14 没有这个定义,因此这里新增 -->
+ 	    <record model="ir.actions.act_window" id="action_event_sponsor_type">
+            <field name="name">Sponsor Types</field>
+            <field name="res_model">event.sponsor.type</field>
+        </record>
+
+   
+	    <menuitem id="event.event_main_menu" name="Anodoo 活动营销" sequence="33" web_icon="anodoo_event,static/description/icon.png"/>
+
+	</data>
+</odoo>
