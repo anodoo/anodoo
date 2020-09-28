@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_portal_user,anodoo.portal.user,model_anodoo_portal,base.group_user,1,1,1,1
+
+
+

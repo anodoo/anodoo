@@ -1,0 +1,24 @@
+#. module: website_slides
+#: code:addons/website_slides/models/slide_channel.py:0
+#, python-format
+msgid "Attendees of %s"
+msgstr "%s 课程参与者"
+
+#. module: website_slides
+#: code:addons/website_slides/models/slide_channel.py:0
+#, python-format
+msgid "Not enough karma to review"
+msgstr "没有足够的贡献值進行评论"
+
+#. module: website_slides
+#: model_terms:ir.ui.view,arch_db:website_slides.courses_home
+msgid "Pick a course"
+msgstr "选择课程"
+
+#. module: website_slides
+#. openerp-web
+#: code:addons/website_slides/static/src/xml/website_slides_channel.xml:0
+#: model_terms:ir.ui.view,arch_db:website_slides.course_main
+#, python-format
+msgid "Review"
+msgstr "评论"

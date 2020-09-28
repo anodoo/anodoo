@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 摘要提示 model_id: digest.tip-->
+	    <record id="view_digest_tip_form" model="ir.ui.view">
+	        <field name="name">digest.tip.view.form</field>
+	        <field name="model">digest.tip</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="digest_tip">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+								 <field name="name" />
+			                     <field name="group_id" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="tip_description" />
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+							<page name="user_ids" string="接收用户" autofocus="autofocus">
+							    <field name="user_ids"/>
+							</page>
+						</notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_digest_tip_list" model="ir.ui.view">
+	        <field name="name">digest.tip.view.list</field>
+	        <field name="model">digest.tip</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="sequence" widget="handle"/>
+					<field name="name" />
+	                <field name="group_id" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_digest_tip_search" model="ir.ui.view">
+	        <field name="name">digest.tip.view.search</field>
+	        <field name="model">digest.tip</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+					<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<field name="tip_description" filter_domain="[('tip_description', 'ilike', self)]" />
+					<field name="user_ids" filter_domain="[('user_ids', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 动作 digest.tip-->
+		<record id="digest_tip_action" model="ir.actions.act_window">
+	        <field name="name">摘要提示</field>
+	        <field name="res_model">digest.tip</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	</data>
+</odoo>

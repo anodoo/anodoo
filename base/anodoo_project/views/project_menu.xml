@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 
+	<record id="project.open_view_project_all" model="ir.actions.act_window">
+		<field name="domain">[('project_type', '=', 'common')]</field>
+	</record>
+	 -->
+  		<!--项目使用odoo的菜单-->
+			<menuitem id="project.menu_main_pm" name="Anodoo 项目管理" sequence="87" web_icon="anodoo_project,static/description/icon.png"/>
+</odoo>

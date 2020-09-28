@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 参考crm. res_config_settings_views.xml-->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Product Config" string="产品管理" data-key="anodoo_product" >
+                    	<h2>产品单位</h2>
+	                    <div class="row mt16 o_settings_container" id="product_general_settings">
+	                        <div class="col-12 col-lg-6 o_setting_box">
+	                            <div class="o_setting_left_pane">
+	                            </div>
+	                            <div class="o_setting_right_pane">
+	                                <label for="product_weight_in_lbs" string="重量单位"/>
+	                                <div class="text-muted">
+	                                    选择测量重量的单位
+	                                </div>
+	                                <div class="content-group">
+	                                    <div class="mt16">
+	                                        <field name="product_weight_in_lbs" class="o_light_label" widget="radio"/>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-12 col-lg-6 o_setting_box">
+	                            <div class="o_setting_right_pane">
+	                                <label for="product_volume_volume_in_cubic_feet" string="体积单位"/>
+	                                <div class="text-muted">
+	                                    选择测量体积的单位
+	                                </div>
+	                                <div class="content-group">
+	                                    <div class="mt16">
+	                                        <field name="product_volume_volume_in_cubic_feet" class="o_light_label" widget="radio"/>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-12 col-lg-6 o_setting_box">
+	                            <div class="o_setting_left_pane">
+	                                <field name="group_uom"/>
+	                            </div>
+	                            <div class="o_setting_right_pane">
+	                                <label for="group_uom"/>
+	                                <div class="text-muted">
+	                                    允许产品使用多计量单位进行采购与销售。
+	                                </div>
+	                                <div class="content-group" attrs="{'invisible': [('group_uom','=',False)]}">
+	                                    <div class="mt8">
+	                                        <button name="%(uom.product_uom_form_action)d" icon="fa-arrow-right" type="action" string="计量单位管理" class="btn-link"/>
+	                               
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+                    	<h2>产品目录</h2>
+	                    <div class="row mt16 o_settings_container">
+	                        <div class="col-12 col-lg-6 o_setting_box">
+	                            <div class="o_setting_left_pane">
+	                                <field name="group_product_variant"/>
+	                            </div>
+	                            <div class="o_setting_right_pane">
+	                                <label for="group_product_variant"/>
+	                                <div class="text-muted">
+	                                    使用属性(大小、颜色等)销售产品的变体
+	                                </div>
+	                                <div class="content-group" attrs="{'invisible': [('group_product_variant','=',False)]}">
+	                                    <div class="mt8">
+	                                        <button name="%(product.attribute_action)d" icon="fa-arrow-right" type="action" string="管理产品属性" class="btn-link"/>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-12 col-lg-6 o_setting_box" title="Ability to select a package type in sales orders and to force a quantity that is a multiple of the number of units per package.">
+	                            <div class="o_setting_left_pane">
+	                                <field name="group_stock_packaging"/>
+	                            </div>
+	                            <div class="o_setting_right_pane">
+	                                <label for="group_stock_packaging"/>
+	                                <div class="text-muted">
+	                                    支持按照产品包方式销售产品
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <h2>价格</h2>
+	                    <div class="row mt16 o_settings_container">
+	                      
+	                        <div class="col-12 col-lg-6 o_setting_box">
+	                            <div class="o_setting_left_pane">
+	                                <field name="group_product_pricelist"/>
+	                            </div>
+	                            <div class="o_setting_right_pane">
+	                                <label for="group_product_pricelist"/>
+	                                <div class="text-muted">
+	                                    通过价格表实现产品多价格，自动折扣等功能
+	                                </div>
+	                                <div class="content-group" attrs="{'invisible': [('group_product_pricelist' ,'=', False)]}">
+	                                    <div class="mt16">
+	                                        <field name="group_sale_pricelist" invisible="1"/>
+	                                        <field name="product_pricelist_setting" widget="radio" class="o_light_label"/>
+	                                    </div>
+	                                    <div class="mt8">
+	                                        <button name="%(product.product_pricelist_action2)d" icon="fa-arrow-right" type="action" string="管理价格表" groups="product.group_product_pricelist" class="btn-link"/>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-12 col-lg-6 o_setting_box" title="Apply manual discounts on sales order lines or display discounts computed from pricelists (option to activate in the pricelist configuration).">
+	                           <div class="o_setting_left_pane">
+	                               <field name="group_discount_per_so_line"/>
+	                           </div>
+	                           <div class="o_setting_right_pane">
+	                               <label for="group_discount_per_so_line"/>
+	                               <div class="text-muted">
+	                                   在订单中可以按照产品设定折扣
+	                               </div>
+	                           </div>
+	                       </div>
+	                    </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+            <field name="name">设置</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'anodoo_product'}</field>
+        </record>
+	</data>
+</odoo>

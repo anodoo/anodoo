@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+			<!--在odoo的讨论的菜单基础上增加-->
+		<menuitem id="mail.menu_root_discuss" name="Anodoo 讨论"   sequence="1" web_icon="anodoo_discuss,static/description/icon.png"/>
+
+			<menuitem parent="mail.menu_root_discuss" id="discuss_menu_group" name="群组" groups="base.group_system"/>
+				<menuitem parent="discuss_menu_group" id="discuss_menu_group_all" name="所有群组" action="mail.mail_channel_action_view"/>
+
+
+
+
+			<menuitem parent="mail.menu_root_discuss" id="discuss_menu_analysis" name="分析"  sequence="90" groups="base.group_system"/>
+
+			<menuitem parent="mail.menu_root_discuss" id="discuss_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+				<menuitem parent="discuss_menu_config" id="discuss_menu_config_message" name="消息"/>
+					<menuitem parent="discuss_menu_config_message" id="discuss_menu_config_message_all" name="所有消息" action="mail.action_view_mail_message"/>
+					<menuitem parent="discuss_menu_config_message" id="discuss_menu_config_message_subtype" name="消息子类型" action="mail.action_view_message_subtype"/>
+					<menuitem parent="discuss_menu_config_message" id="discuss_menu_config_message_tracking" name="追踪值" action="mail.action_view_mail_tracking_value"/>
+					<menuitem parent="discuss_menu_config_message" id="discuss_menu_config_message_followers" name="关注者" action="mail.action_view_followers"/>
+				<menuitem parent="discuss_menu_config" id="discuss_menu_config_group" name="群组"/>
+					<menuitem parent="discuss_menu_config_group" id="discuss_menu_config_group_blacklist" name="群组黑名单" action="mail.mail_moderation_action"/>
+					<menuitem parent="discuss_menu_config_group" id="discuss_menu_config_group_member" name="群组成员" action="mail.mail_channel_partner_action"/>
+	</data>
+</odoo>

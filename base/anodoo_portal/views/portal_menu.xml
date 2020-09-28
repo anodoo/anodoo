@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 动作 anodoo.portal-->
+		<record id="action_anodoo_portal_list" model="ir.actions.act_window">
+	        <field name="name">门户</field>
+	        <field name="res_model">anodoo.portal</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<menuitem id="multi_portal" name="多Portal" parent="base.menu_custom" action="action_anodoo_portal_list"/>
+	</data>
+</odoo>

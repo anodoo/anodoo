@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--修改gamification中对级别的定义-->
+	    <record id="gamification.rank_newbie" model="gamification.karma.rank">
+	        <field name="name">新学员</field>
+	        <field name="description" type="html"><p>您是新学员,欢迎您的加入!</p></field>
+	        <field name="description_motivational" type="html">
+	            <div class="media align-items-center">
+	                <div class="media-body">开始您的学习旅程,获取积分.</div>
+	                <img class="ml-3 img img-fluid" style="max-height: 72px;" src="/gamification/static/img/rank_newbie_badge.svg"/>
+	            </div>
+	        </field>
+	    </record>
+
+	    <record id="gamification.rank_student" model="gamification.karma.rank">
+	        <field name="name">学员</field>
+	        <field name="description" type="html"><p>您已经成为正式学员,享受学习的乐趣吧.</p></field>
+	        <field name="description_motivational" type="html">
+	            <div class="media align-items-center">
+	                <div class="media-body">获取积分,进入更高级别.</div>
+	                <img class="ml-3 img img-fluid" style="max-height: 72px;" src="/gamification/static/img/rank_student_badge.svg"/>
+	            </div>
+	        </field>
+	    </record>
+
+	    <record id="gamification.rank_bachelor" model="gamification.karma.rank">
+	        <field name="name">学士</field>
+	        <field name="description" type="html"><p>您的学习渐入佳境,再努力获取更高学位.</p></field>
+	        <field name="description_motivational" type="html">
+	            <div class="media align-items-center">
+	                <div class="media-body">获取积分,进入更高级别.</div>
+	                <img class="ml-3 img img-fluid" style="max-height: 72px;" src="/gamification/static/img/rank_bachelor_badge.svg"/>
+	            </div>
+	        </field>
+	    </record>
+
+	    <record id="gamification.rank_master" model="gamification.karma.rank">
+	        <field name="name">硕士</field>
+	        <field name="description" type="html"><p>您已经小有成就了,和大家展现您的博学多才吧.</p></field>
+	        <field name="description_motivational" type="html">
+	            <div class="media align-items-center">
+	                <div class="media-body">获取积分,进入更高级别.</div>
+	                <img class="ml-3 img img-fluid" style="max-height: 72px;" src="/gamification/static/img/rank_master_badge.svg"/>
+	            </div>
+	        </field>
+	    </record>
+
+	    <record id="gamification.rank_doctor" model="gamification.karma.rank">
+	        <field name="name">博士</field>
+	        <field name="description" type="html"><p>恭喜您已经达到最高级别</p></field>
+	        <field name="description_motivational" type="html">
+	            <div class="media align-items-center">
+	                <div class="media-body">获取积分,展现不一样的自己.</div>
+	                <img class="ml-3 img img-fluid" style="max-height: 72px;" src="/gamification/static/img/rank_doctor_badge.svg"/>
+	            </div>
+	        </field>
+	    </record>
+
+        <record id="gamification.mail_template_data_new_rank_reached" model="mail.template">
+            <field name="name">用户达到新级别</field>
+            <field name="subject">恭喜您达到新的用户级别: ${object.rank_id.name}</field>
+            <field name="body_html" type="html">
+<div style="background:#F0F0F0;color:#515166;padding:10px 0px;font-family:Arial,Helvetica,sans-serif;font-size:14px;">
+<table style="width:600px;margin:0px auto;background:white;border:1px solid #e1e1e1;">
+    <tbody>
+        <tr>
+            <td style="padding:15px 20px 10px 20px;">
+                <p>
+                    你好, <span>${object.name or ''}</span>!
+                </p>
+                <p>
+                    恭喜您达到新的会员级别 : <strong>${object.rank_id.name}</strong>
+                </p>
+                <p>继续努力,您将达到下一个会员级别: <strong>${object.next_rank_id.name}</strong> !</p>
+                <div style="margin: 16px 0px 16px 0px;">
+                    % set gamification_redirection_data = object.get_gamification_redirection_data()
+                    % for data in gamification_redirection_data
+                        % set url = data['url']
+                        % set label = data['label']
+                        <a href="${url}" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">${label}</a>
+                    % endfor
+                </div>
+            </td>
+            <td style="padding:15px 20px 10px 20px;">
+                <p style="text-align: center;">
+                    <img src="/web/image/gamification.karma.rank/${object.rank_id.id}/image_128"/>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+ </table>
+</div></field>
+        </record>
+    </data>
+</odoo>

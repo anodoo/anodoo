@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+	
+		<!-- 用户菜单扩展 model_id: anodoo.usermenu.link-->
+	    <record id="view_anodoo_usermenu_link_form" model="ir.ui.view">
+	        <field name="name">anodoo.usermenu.link.view.form</field>
+	        <field name="model">anodoo.usermenu.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_usermenu_link">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_right">
+			                 	<field name="groups" />
+			                     <field name="isblank" />
+			                     <field name="url" />
+			                     <field name="onclick" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_usermenu_link_list" model="ir.ui.view">
+	        <field name="name">anodoo.usermenu.link.view.list</field>
+	        <field name="model">anodoo.usermenu.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="isblank" />
+	                <field name="url" />
+	                <field name="onclick" />
+	                <field name="sequence" />
+	                <field name="groups" />
+	                <field name="description" />                
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_usermenu_link_search" model="ir.ui.view">
+	        <field name="name">anodoo.usermenu.link.view.search</field>
+	        <field name="model">anodoo.usermenu.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.usermenu.link-->
+		<record id="action_anodoo_usermenu_link_list" model="ir.actions.act_window">
+	        <field name="name">用户菜单扩展</field>
+	        <field name="res_model">anodoo.usermenu.link</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{'active_test':True}</field>
+	    </record>
+	    
+	    <!-- 数据清理 model_id: anodoo.data.clean-->
+	    <record id="view_anodoo_data_clean_form" model="ir.ui.view">
+	        <field name="name">anodoo.data.clean.view.form</field>
+	        <field name="model">anodoo.data.clean</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_data_clean">
+	            	<header>
+	            		<button string="执行清理" name="action_data_clean" type="object" class="btn oe_highlight" title="执行清理过程"/>
+	            	</header>
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="table_name" />			                     
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="class_name" />
+			                     <field name="method_name" />
+			                     <field name="method_define" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_data_clean_list" model="ir.ui.view">
+	        <field name="name">anodoo.data.clean.view.list</field>
+	        <field name="model">anodoo.data.clean</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="table_name" />
+	                <field name="class_name" />
+	                <field name="method_name" />
+	                <field name="method_define" />                
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_data_clean_search" model="ir.ui.view">
+	        <field name="name">anodoo.data.clean.view.search</field>
+	        <field name="model">anodoo.data.clean</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		             	
+	            </search>
+	        </field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.data.clean-->
+		<record id="action_anodoo_data_clean_list" model="ir.actions.act_window">
+	        <field name="name">数据清理</field>
+	        <field name="res_model">anodoo.data.clean</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{'active_test':True}</field>
+	    </record>
+	    
+		
+	    <!-- 用户登陆记录 model_id: anodoo.login.record-->
+	    <record id="view_anodoo_login_record_form" model="ir.ui.view">
+	        <field name="name">anodoo.login.record.view.form</field>
+	        <field name="model">anodoo.login.record</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_login_record">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="user_id" />
+			                     <field name="login_time" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="login_ip" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_login_record_list" model="ir.ui.view">
+	        <field name="name">anodoo.login.record.view.list</field>
+	        <field name="model">anodoo.login.record</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="user_id" />
+	                <field name="login_time" />
+	                <field name="login_ip" />             
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_login_record_search" model="ir.ui.view">
+	        <field name="name">anodoo.login.record.view.search</field>
+	        <field name="model">anodoo.login.record</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="user_id" filter_domain="[('user_id.name', 'ilike', self)]" />         	
+	            </search>
+	        </field>
+	    </record>
+
+		<!-- 动作 anodoo.login.record-->
+		<record id="action_anodoo_login_record_list" model="ir.actions.act_window">
+	        <field name="name">用户登陆记录</field>
+	        <field name="res_model">anodoo.login.record</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	    
+	</data>
+</odoo>

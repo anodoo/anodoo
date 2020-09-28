@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 级别 -->
+	    <record id="gamification_karma_ranks_view_tree" model="ir.ui.view">
+            <field name="name">gamification.karma.ranks.view.tree</field>
+            <field name="model">gamification.karma.rank</field>
+            <field name="inherit_id" ref="gamification.gamification_karma_ranks_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                	<field name="category" />
+                </field>
+            </field>
+        </record>
+
+        <record id="gamification_karma_rank_view_form" model="ir.ui.view">
+            <field name="name">gamification.karma.rank.view.form</field>
+            <field name="model">gamification.karma.rank</field>
+            <field name="inherit_id" ref="gamification.gamification_karma_rank_view_form"/>
+            <field name="arch" type="xml">
+            	<field name="karma_min" position="before">
+            		<field name="category" />
+            	</field>
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,4 @@
+#. module: website_profile
+#: model:ir.model.fields,field_description:website_profile.field_website__karma_profile_min
+msgid "Minimal karma to see other user's profile"
+msgstr "查看他人资料所需最小积分"

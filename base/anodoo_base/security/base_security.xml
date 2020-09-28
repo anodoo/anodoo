@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">    
+
+	    
+	    <!-- 外网用户只能查看自己的partner的资料,这个会导致在如课程里看不到别人的信息,暂时修改
+
+	    <record model="ir.rule" id="base.res_partner_portal_public_rule">
+	    	<field name="perm_create" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>-->
+
+	</data>
+</odoo>

@@ -1,0 +1,27 @@
+#. module: base
+#: model:ir.model.fields,field_description:base.field_base_partner_merge_automatic_wizard__dst_partner_id
+msgid "Destination Contact"
+msgstr "目标联系人"
+
+#. module: base
+#: model_terms:ir.ui.view,arch_db:base.view_users_form
+#: model_terms:ir.ui.view,arch_db:base.view_users_simple_form
+msgid "Email Address"
+msgstr "登陆账号"
+
+#. module: base
+#: model:ir.actions.act_window,name:base.res_partner_industry_action
+#: model:ir.model,name:base.model_res_partner_industry
+#: model:ir.model.fields,field_description:base.field_res_partner__industry_id
+#: model:ir.model.fields,field_description:base.field_res_users__industry_id
+#: model_terms:ir.ui.view,arch_db:base.res_partner_industry_view_form
+#: model_terms:ir.ui.view,arch_db:base.res_partner_industry_view_tree
+msgid "Industry"
+msgstr "行业"
+
+#. module: base
+#: model:ir.model.fields,field_description:base.field_res_partner__title
+#: model:ir.model.fields,field_description:base.field_res_partner_title__name
+#: model:ir.model.fields,field_description:base.field_res_users__title
+msgid "Title"
+msgstr "称谓"
