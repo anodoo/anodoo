@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--
+    	<record id="engage_channel_email" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.email</field>
+	        <field name="name">电子邮件</field>
+	        <field name="sequence">12</field>
+	        <field name="online">online</field>
+	        <field name="type">outtype</field>
+	        <field name="description">通过第三方邮件平台和客户交互</field>
+	    </record>
+
+		<record id="engage_channel_email_send" model="mail.activity.type">
+            <field name="name">发送邮件</field>
+            <field name="engage_channel_id" ref="engage_channel_email"/>
+        </record>
+        <record id="engage_channel_email_send" model="mail.activity.type">
+            <field name="name">接收邮件</field>
+            <field name="engage_channel_id" ref="engage_channel_email"/>
+        </record>
+         -->
+
+        <!--
+    	<record id="engage_channel_event" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.event</field>
+	        <field name="name">活动</field>
+	        <field name="sequence">15</field>
+	        <field name="online">on_and_off</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过线上或者线下的活动和客户交互,活动有大型联谊,峰会,会展等,也有小型宴请,线上培训.相关的其他交互类型有日常会议,日常拜访等</field>
+	    </record>
+
+	    <record id="engage_channel_event_event" model="mail.activity.type">
+            <field name="name">参加活动</field>
+            <field name="engage_channel_id" ref="engage_channel_event"/>
+        </record>
+         -->
+
+        <!--
+    	<record id="engage_channel_meeting" model="anodoo.engage.channel" >
+	    	<field name="code">engage.channel.meeting</field>
+	        <field name="name">会议</field>
+	        <field name="sequence">14</field>
+	        <field name="online">on_and_off</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过线上或者线下的会议形式和客户交互.相关的其他交互类型有活动,日常拜访等</field>
+	    </record>
+
+    	<record id="engage_channel_meeting_meeting" model="mail.activity.type">
+            <field name="name">会议</field>
+            <field name="engage_channel_id" ref="engage_channel_meeting"/>
+        </record> -->
+
+        <!--
+    	<record id="engage_channel_sms" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.sms</field>
+	        <field name="name">短信</field>
+	        <field name="sequence">11</field>
+	        <field name="online">online</field>
+	        <field name="type">outtype</field>
+	        <field name="description">通过短信和客户交互.相关的其他交互类型有电子邮件等</field>
+	    </record>
+
+	    <record id="engage_channel_sms_send" model="mail.activity.type">
+            <field name="name">发送短信</field>
+            <field name="engage_channel_id" ref="engage_channel_sms"/>
+        </record>
+        <record id="engage_channel_sms_receive" model="mail.activity.type">
+            <field name="name">接收短信</field>
+            <field name="engage_channel_id" ref="engage_channel_sms"/>
+        </record>
+         -->
+
+        <!--
+    	<record id="engage_channel_website" model="anodoo.engage.channel" >
+	    	<field name="code">engage.channel.website</field>
+	        <field name="name">官网</field>
+	        <field name="sequence">1</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网和客户交互,官网还包含了一系列相关的交互形式,如官方博客,官方论坛,官方电商,在线学习等</field>
+	    </record>
+
+	    <record id="engage_channel_website_visit" model="mail.activity.type">
+            <field name="name">访问网站</field>
+            <field name="engage_channel_id" ref="engage_channel_website"/>
+        </record>
+        <record id="engage_channel_website_page" model="mail.activity.type">
+            <field name="name">浏览网页</field>
+            <field name="engage_channel_id" ref="engage_channel_website"/>
+        </record>
+        <record id="engage_channel_website_review" model="mail.activity.type">
+            <field name="name">评论网页</field>
+            <field name="engage_channel_id" ref="engage_channel_website"/>
+        </record>
+
+
+	    <record id="engage_channel_website_blog" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.blog</field>
+	        <field name="name">官网博客</field>
+	        <field name="sequence">2</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网博客和客户交互,还可以通过一些第三方博客平台和客户交互</field>
+	    </record>
+	    <record id="engage_channel_website_blog_push" model="mail.activity.type">
+            <field name="name">推送文章</field>
+            <field name="engage_channel_id" ref="engage_channel_website_blog"/>
+        </record>
+	    <record id="engage_channel_website_blog_visit" model="mail.activity.type">
+            <field name="name">浏览文章</field>
+            <field name="engage_channel_id" ref="engage_channel_website_blog"/>
+        </record>
+        <record id="engage_channel_website_blog_add" model="mail.activity.type">
+            <field name="name">收藏文章</field>
+            <field name="engage_channel_id" ref="engage_channel_website_blog"/>
+        </record>
+        <record id="engage_channel_website_blog_review" model="mail.activity.type">
+            <field name="name">评论文章</field>
+            <field name="engage_channel_id" ref="engage_channel_website_blog"/>
+        </record>
+
+	    <record id="engage_channel_website_forum" model="anodoo.engage.channel" >
+	    	<field name="code">engage.channel.forum</field>
+	        <field name="name">官网论坛</field>
+	        <field name="sequence">3</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网论坛和客户交互,还可以通过第三方论坛,社区等</field>
+	    </record>
+	    <record id="engage_channel_website_forum_visit" model="mail.activity.type">
+            <field name="name">浏览帖子</field>
+            <field name="engage_channel_id" ref="engage_channel_website_forum"/>
+        </record>
+        <record id="engage_channel_website_forum_create" model="mail.activity.type">
+            <field name="name">发表帖子</field>
+            <field name="engage_channel_id" ref="engage_channel_website_forum"/>
+        </record>
+        <record id="engage_channel_website_forum_review" model="mail.activity.type">
+            <field name="name">回复帖子</field>
+            <field name="engage_channel_id" ref="engage_channel_website_forum"/>
+        </record>
+
+	    <record id="engage_channel_website_livechat" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.livechat</field>
+	        <field name="name">官网在线聊天</field>
+	        <field name="sequence">4</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网的在线聊天功能和客户交互,还可以通过一些第三方在线客服,第三方协助建设的呼叫中心等</field>
+	    </record>
+
+	    <record id="engage_channel_website_survey" model="anodoo.engage.channel" >
+	    	<field name="code">engage.channel.survey</field>
+	        <field name="name">官网问卷调查</field>
+	        <field name="sequence">5</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网的问卷调查和客户交互,还可以通过第三方提供的问卷调查小程序等</field>
+	    </record>
+
+	    <record id="engage_channel_website_elearning" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.elearning</field>
+	        <field name="name">官网在线课程</field>
+	        <field name="sequence">6</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网的在线课程和客户交互,还可以通过第三方培训平台等</field>
+	    </record>
+
+	    <record id="engage_channel_website_portal" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.portal</field>
+	        <field name="name">官网客户门户</field>
+	        <field name="sequence">7</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网的客户门户和客户交互</field>
+	    </record>
+
+	    <record id="engage_channel_website_prm" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.prm</field>
+	        <field name="name">官网代理商门户</field>
+	        <field name="sequence">8</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网代理商或伙伴门户和客户交互,这里主要是指通过代理商和客户产生的交互活动等</field>
+	    </record>
+
+	    <record id="engage_channel_website_ecom" model="anodoo.engage.channel">
+	    	<field name="code">engage.channel.ecom</field>
+	        <field name="name">官网电商</field>
+	        <field name="sequence">9</field>
+	        <field name="online">online</field>
+	        <field name="type">intype</field>
+	        <field name="description">通过官网电商和客户交互,也可以通过第三方电商平台等</field>
+	    </record> -->
+    </data>
+</odoo>

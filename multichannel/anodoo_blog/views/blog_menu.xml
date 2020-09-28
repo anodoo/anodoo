@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+	<data noupdate="0">
+		<record id="website_blog.action_blog_blog" model="ir.actions.act_window">
+            <field name="name">栏目</field>
+        </record>
+        
+		<record id="website_blog.action_blog_blog" model="ir.actions.act_window">
+	        <field name="context">{'active_test' : False}</field>
+	    </record>
+    
+    	<!-- 动作 anodoo.blog.post.series-->
+		<record id="action_anodoo_blog_post_series_list" model="ir.actions.act_window">
+	        <field name="name">文章系列</field>
+	        <field name="res_model">anodoo.blog.post.series</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	    
+	    <!--旧的菜单需要设置为失效-->
+        <menuitem id='website_blog.menu_website_blog_root' active="False"/>
+		<menuitem id='website_blog.menu_website_blog_root_global' active="False"/>
+        
+		<menuitem id="blog_menu_root_anodoo" name="Anodoo 博客" sequence="72" web_icon="anodoo_blog,static/description/icon.png"/>
+	    	<menuitem parent="blog_menu_root_anodoo" id="blog_menu_blog" name="栏目" action="website_blog.action_blog_blog" sequence="10" />
+    		<menuitem parent="blog_menu_root_anodoo" id="blog_menu_post" name="文章" sequence="20" />
+    			<menuitem parent="blog_menu_post" id="blog_menu_post_list" name="文章列表" action="website_blog.action_blog_post" sequence="10" />
+    			<menuitem parent="blog_menu_post" id="blog_menu_post_series" name="文章系列" action="action_anodoo_blog_post_series_list" sequence="20"/>
+    		<menuitem parent="blog_menu_root_anodoo" id="blog_menu_tag" name="标签" sequence="30" />
+    			<menuitem parent="blog_menu_tag" id="blog_menu_tag_tagcategory" name="标签分类" action="website_blog.action_tag_category"/>
+    			<menuitem parent="blog_menu_tag" id="blog_menu_tag_tags" name="标签" action="website_blog.action_tags"/>
+   			<menuitem parent="blog_menu_root_anodoo" id="blog_menu_analyse" name="分析" sequence="90"/>
+    		<menuitem parent="blog_menu_root_anodoo" id="blog_menu_config" name="配置" sequence="100"  groups="base.group_system"/>
+    			<menuitem parent="blog_menu_config" id="blog_menu_config_settings" name="基础配置" action="res_config_settings_action"/>
+    			
+    			    			
+	    	
+	</data>
+</odoo>

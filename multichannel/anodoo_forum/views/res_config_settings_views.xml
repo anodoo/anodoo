@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 参考crm. res_config_settings_views.xml-->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Forum Config" string="论坛管理" data-key="anodoo_forum" >
+      
+	                    <div id="forum_base_settings">
+	                    	<h2>基础配置</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="forum_lead" title="Use leads if y.">
+		                            <div class="o_setting_left_pane">
+		                                <!-- <field name="is_hide_footer"/> -->
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	 <!--<label for="is_hide_footer"/> -->
+		                                <div class="text-muted">
+		                                    如果博客和官网在一起,可以选择隐藏官网的Footer.
+		                                </div>
+		                            </div>
+		                        </div>                      
+		                    </div>
+	                    </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- 在anodoo forum中的菜单 -->
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+            <field name="name">设置</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'anodoo_forum'}</field>
+        </record>
+	</data>
+</odoo>

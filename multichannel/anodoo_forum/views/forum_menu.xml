@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--旧的菜单需要设置为失效-->
+        <menuitem id='website_forum.menu_website_forum' active="False"/>
+		<menuitem id='website_forum.menu_website_forum_global' active="False"/>
+
+		<menuitem id="forum_menu_root_anodoo" name="Anodoo 论坛" sequence="72" web_icon="anodoo_event,static/description/icon.png"/>
+			<menuitem parent="forum_menu_root_anodoo" id="forum_menu_forums" name="板块" action="website_forum.action_forum_forum" sequence="10"/>
+			
+			<menuitem parent="forum_menu_root_anodoo" id="forum_menu_posts" name="帖子" action="website_forum.action_forum_post" sequence="20"/>
+			
+			<menuitem parent="forum_menu_root_anodoo" id="forum_menu_tags" name="标签" action="website_forum.forum_tag_action" sequence="30"/>
+	    
+    		<menuitem parent="forum_menu_root_anodoo" id="forum_menu_report" name="分析" sequence="90" />
+    			<!-- 
+    			<menuitem parent="forum_menu_report" id="forum_menu_forum_report_forum" name="板块分析" action="website_slides_forum.forum_post_action_report"/>
+    			 -->
+    		<menuitem parent="forum_menu_root_anodoo" id="forum_menu_config" name="配置" sequence="100"  groups="base.group_system"/>
+    			<menuitem parent="forum_menu_config" id="forum_menu_config_setting" name="基本配置" action="res_config_settings_action" sequence="0"/>
+
+    			<menuitem parent="forum_menu_config" id="forum_menu_forum_config_ranks" name="级别" action="gamification.gamification_karma_ranks_action"/>
+
+    			
+    	
+	</data>
+</odoo>

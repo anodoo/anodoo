@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="view_company_form_inherit_social_media" model="ir.ui.view">
+            <field name="name">res.company.form.inherit.social.media</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="social_media.view_company_form_inherit_social_media"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='social_media']" position="attributes">
+                    <attribute name="groups"></attribute>
+                </xpath>
+                <xpath expr="//group[@name='social_media']" position="inside">
+                    <field name="social_qq"/>
+                    <field name="social_weixin"/>
+                    <field name="social_weibo"/>
+                    <field name="social_tencent_weibo"/>
+                    <field name="social_renren"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>
+
+

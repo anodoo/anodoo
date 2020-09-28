@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 动作 slide.channel.category-->
+		<record id="action_slide_channel_category_list" model="ir.actions.act_window">
+	        <field name="name">课程目录</field>
+	        <field name="res_model">slide.channel.category</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	    
+	    
+		<!-- 动作 slide.slide.link-->
+		<record id="action_slide_slide_link_list" model="ir.actions.act_window">
+	        <field name="name">参考链接</field>
+	        <field name="res_model">slide.slide.link</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	    
+	    <!-- 动作 slide.question-->
+		<record id="action_slide_question_list" model="ir.actions.act_window">
+	        <field name="name">题目</field>
+	        <field name="res_model">slide.question</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	    
+	   
+	    <record id="website_slides.slide_channel_action_overview" model="ir.actions.act_window">
+            <field name="domain">[('is_template', '=', False)]</field>
+        </record>
+        
+        <record id="slide_channel_template_action" model="ir.actions.act_window">
+            <field name="name">课程模板</field>
+            <field name="res_model">slide.channel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_template', '=', True)]</field>
+            <field name="context">{'default_is_template':True}</field>
+        </record>
+
+		<!--以后使用自带的菜单：root:website_slides.website_slides_menu_root
+		website_slides_menu_courses
+website_slides_menu_report
+website_slides_menu_configuration
+-->
+	    
+		<menuitem  id="website_slides.website_slides_menu_root" name="Anodoo 在线学习" sequence="76" web_icon="anodoo_elearning,static/description/icon.png"/>
+    		
+    		<menuitem parent="website_slides.website_slides_menu_root" id="website_slides.website_slides_menu_courses"/>
+    			<menuitem parent="website_slides.website_slides_menu_courses" id="elearning_menu_contents_slide_slide_link" name="参考链接" action="action_slide_slide_link_list"/>
+    			 <menuitem parent="website_slides.website_slides_menu_courses" id="elearning_menu_contents_slide_question" name="题目" action="action_slide_question_list"/>
+
+			
+			<menuitem parent="website_slides.website_slides_menu_root" id="website_slides.website_slides_menu_report" sequence="90"/>
+			
+			<menuitem parent="website_slides.website_slides_menu_root" id="website_slides.website_slides_menu_configuration" sequence="100" groups="base.group_system"/>
+				<menuitem parent="website_slides.website_slides_menu_configuration" id="elearning_menu_config_slide_channel_category" name="课程目录" action="action_slide_channel_category_list"/>
+	    		<menuitem parent="website_slides.website_slides_menu_configuration" id="elearning_menu_config_slide_channel_template" name="课程模板" action="slide_channel_template_action"/>
+	
+	</data>
+</odoo>

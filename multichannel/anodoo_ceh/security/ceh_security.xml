@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- 
+	<record id="engage_channel_rule" model="ir.rule">
+        <field name="name">Engage Channel Manager Access</field>
+        <field name="model_id" ref="model_anodoo_engage_channel" />
+        <field name="groups" eval="[(4,ref('base.group_user'))]" />
+    </record>
+     -->
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 网站表单 -->
+        <record id="model_anodoo_website_form" model="ir.model">
+            <field name="website_form_key">create_website_form</field>
+            <field name="website_form_access">True</field>
+            <field name="website_form_label">网站表单</field>
+            <field name="website_form_default_field_id" ref="anodoo_website_form.field_anodoo_website_form__custom_data"/>
+        </record>
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>anodoo.website.form</value>
+            <value eval="[
+                'name', 'description', 'number_field', 'date_field', 'date_time_field'
+            ]"/>
+        </function>
+    </data>
+</odoo>

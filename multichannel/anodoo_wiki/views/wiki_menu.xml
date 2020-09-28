@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="wiki_menu_root_anodoo" name="Anodoo SEO" sequence="77" web_icon="anodoo_wiki,static/description/icon.png"/>
+				
+	    	
+	    	<menuitem parent="wiki_menu_root_anodoo" id="wiki_menu_analysis" name="分析" sequence="90" />   		
+	   			
+	    	<menuitem parent="wiki_menu_root_anodoo" id="wiki_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+	</data>
+</odoo>

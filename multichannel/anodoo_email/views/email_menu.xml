@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<menuitem id="email_menu_root_anodoo" name="Anodoo 电子邮件" sequence="79" web_icon="anodoo_email,static/description/icon.png"/>
+	    	<menuitem parent="email_menu_root_anodoo" id="email_menu_mail" name="邮件" />
+	    		<menuitem parent="email_menu_mail" id="email_menu_mail_list" name="邮件列表" action="mail.action_view_mail_mail"/>
+
+	    	<menuitem parent="email_menu_root_anodoo" id="email_menu_analysis" name="分析" sequence="90"/>
+
+	    	<menuitem parent="email_menu_root_anodoo" id="email_menu_config" name="配置" sequence="100"  groups="base.group_system"/>
+
+				<menuitem parent="email_menu_config" id="email_menu_config_mail_fetch" name="收件服务器" action="fetchmail.action_email_server_tree"/>
+				<menuitem parent="email_menu_config" id="email_menu_config_mail_send" name="发件服务器" action="base.action_ir_mail_server_list"/>
+				<menuitem parent="email_menu_config" id="email_menu_config_mail_template" name="邮件模板" action="mail.action_email_template_tree_all"/>
+				<menuitem parent="email_menu_config" id="email_menu_config_mail_alias" name="邮件别名" action="mail.action_view_mail_alias"/>
+				<menuitem parent="email_menu_config" id="email_menu_config_mkt_blacklist" name="群发黑名单" action="mail.mail_blacklist_action"/>
+
+
+	</data>
+</odoo>
