@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="mail_activity_type_view_tree" model="ir.ui.view">
+	        <field name="name">mail.activity.type.view.tree</field>
+	        <field name="model">mail.activity.type</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree string="Activities">
+	                <field name="sequence" widget="handle"/>
+	                <field name="name"/>
+	                <field name="category"/>
+	                <field name="default_user_id"/>
+	                <field name="summary"/>
+	                <field name="delay_count" string="Planned in"/>
+	                <field name="delay_unit" string="Unit"/>
+	                <field name="delay_from" string="Type"/>
+	                <field name="opportunity_lifetime_id" groups="base.group_no_one"/>
+	                <field name="stage_id" groups="base.group_no_one"/>
+	                <field name="icon" groups="base.group_no_one"/>
+	                <field name="force_next"/>
+	                <field name="default_next_type_id"/>
+	            </tree>
+	        </field>
+	    </record>
+	    
+	    <record id="mail_activity_type_view_search" model="ir.ui.view">
+	        <field name="name">mail.activity.type.search</field>
+	        <field name="model">mail.activity.type</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search string="Activities">
+	                <field name="name"/>
+	                <filter string="Archived" domain="[('active', '=', False)]" name="archived"/>
+	                <group expand="1" string="Group By">
+		           		<filter name="groupby_stage_id"  string="阶段" context="{'group_by':'stage_id'}" />               	
+		           	</group>    
+	            </search>
+	        </field>
+	    </record>
+	
+		<record id="mail_activity_type_view_form" model="ir.ui.view">
+	        <field name="name">mail.activity.type.view.form</field>
+	        <field name="model">mail.activity.type</field>
+	        <field name="inherit_id" ref="mail.mail_activity_type_view_form"/> 
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='res_model_id']" position="after">
+	        		<field name="opportunity_lifetime_id" groups="base.group_no_one" />
+	        		<field name="stage_id" groups="base.group_no_one" />
+	        		<field name="is_inner"/>
+	        		<field name="is_passive"/>
+	        	</xpath>
+	        </field>
+	    </record>
+	    
+	    <record id="process_activity_list" model="ir.ui.view">
+	        <field name="name">process_activity_list</field>
+	        <field name="model">mail.activity</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree string="Next Activities"
+	                    decoration-danger="date_deadline &lt; current_date"
+	                    decoration-success="date_deadline == current_date"
+	                    default_order="date_deadline" create="false">
+	                <field name="res_name" string="商机名称"/>
+	                <field name="stage_id" string="阶段"/>
+	                <field name="activity_type_id"/>
+	                <field name="summary"/>
+	                <field name="date_deadline"/>
+	            </tree>
+	        </field>
+	    </record>
+	  
+	    <record id="process_activity_view_search" model="ir.ui.view">
+	        <field name="name">process.activity.view.search</field>
+	        <field name="model">mail.activity</field>
+	        <field name="arch" type="xml">
+	            <search string="Activity">
+	                <field name="res_model_id"/>
+	                <field name="summary"/>
+	                <field name="activity_type_id"/>
+	                <field name="res_name" string="商机"/>
+	                <filter invisible="1" string="Late Activities" name="activities_overdue"
+	                        domain="[('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+	                        help="Show all records which has next action date is before today"/>
+	                <filter invisible="1" string="Today Activities" name="activities_today"
+	                        domain="[('date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+	                <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+	                        domain="[('date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
+	                        ]"/>
+	                <group expand="0" string="Group By">
+	                	<filter string="商机" name="groupby_opportunity" context="{'group_by': 'res_name'}"/>
+	                    <filter string="Deadline" name="date_deadline" context="{'group_by': 'date_deadline'}"/>
+	                    <filter string="Created By" name="createdby" context="{'group_by': 'create_uid'}"/>
+	                    <filter string="Activity Type" name="activittype" context="{'group_by': 'activity_type_id'}"/>
+	                </group>
+	            </search>
+	        </field>
+	    </record>
+	    
+	    <record id="process_activity_kanban" model="ir.ui.view">
+            <field name="name">process_activity_kanban</field>
+            <field name="model">mail.activity</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_small_column" default_group_by="stage_id">
+                	<field name="stage_id" options='{"group_by_tooltip": {"requirements": "Description"}}'/>
+                	<field name="color"/>
+                	<field name="user_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click">
+                            	<div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                    </div>
+                                </div>
+	                            <div class="oe_kanban_content">
+	                            	<div>
+		                                 <strong class="text-dark"><field name="activity_type_id"/></strong>
+		                             </div>
+		                                <div>
+		                                	<strong class="text-dark">到期日期：<field name="date_deadline"/></strong>
+		                                </div>
+		                                <div>
+		                                	<span>描述：<field name="summary"/></span>
+		                                </div>
+		                                <div class="o_kanban_record_bottom">                                        
+		                                 <div class="oe_kanban_bottom_left">
+		                                     <strong class="text-dark"><field name="state"/></strong>
+		                                 </div>
+		                                 <div class="oe_kanban_bottom_right">
+                                            <img t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)" t-att-title="record.user_id.value" t-att-alt="record.user_id.value" class="oe_kanban_avatar"/>
+                                        </div>
+		                             </div>
+	                            </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+	</data>
+</odoo>

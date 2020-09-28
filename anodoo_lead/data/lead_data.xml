@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<record model="anodoo.lead.lifetime" id="lead_lifetime_default">
+	        <field name="name">默认的线索生命周期</field>
+	        <field name="is_default">1</field>
+	        <field name="description">默认的生命周期</field>	        
+	    </record>
+    	
+    	<record model="anodoo.lead.stage" id="stage_lead1">
+	        <field name="name">新建</field>
+	        <field name="sequence">1</field>
+	        <field name="can_convert">0</field>
+	        <field name="fold" eval="False"/>
+	        <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+	    </record>
+	    <record model="anodoo.lead.stage" id="stage_lead2">
+	        <field name="name">认定</field>
+	        <field name="sequence">2</field>
+	        <field name="is_qualify">1</field>
+	        <field name="can_convert">0</field>
+	        <field name="fold" eval="False"/>
+	        <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+	    </record>
+	    <record model="anodoo.lead.stage" id="stage_lead5">
+	        <field name="name">分派</field>
+	        <field name="sequence">4</field>
+	        <field name="can_convert">0</field>
+	        <field name="fold" eval="False"/>
+	        <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+	    </record>
+	    <record model="anodoo.lead.stage" id="stage_lead3">
+	        <field name="name">培育</field>
+	        <field name="sequence">5</field>
+	        <field name="can_convert">1</field>
+	        <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+	    </record>
+	    <record model="anodoo.lead.stage" id="stage_lead4">
+	        <field name="name">赢得</field>
+	        <field name="fold" eval="False"/>
+	        <field name="is_won">True</field>
+	        <field name="can_convert">0</field>
+	        <field name="sequence">70</field>
+	        <field name="fold" eval="False"/>
+	        <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+	    </record>
+
+
+    </data>
+</odoo>

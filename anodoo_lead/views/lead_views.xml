@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+
+	    
+
+	    
+	    <!-- 线索/商机合并规则 model_id: anodoo.lead.merge.rule-->
+	    <record id="view_anodoo_lead_merge_rule_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.rule.view.form</field>
+	        <field name="model">anodoo.lead.merge.rule</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_lead_merge_rule">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                     <field name="field_ids" widget="many2many_tags"/>
+			                 </group>
+			                 <group name="group_right">
+			                 		<field name="merge_type" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_lead_merge_rule_list" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.rule.view.list</field>
+	        <field name="model">anodoo.lead.merge.rule</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="merge_type" />
+	                <field name="field_ids" />
+	                <field name="sequence" />
+	                <field name="description" />                
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_lead_merge_rule_search" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.rule.view.search</field>
+	        <field name="model">anodoo.lead.merge.rule</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		            <filter name="is_active_true"  string="启用" domain="[('active','=',True)]" /> 
+		            <filter name="is_active_false"  string="未启用" domain="[('active','=',False)]" />   
+	            </search>
+	        </field>
+	    </record>
+	    
+	    <!-- 线索/商机合并记录 model_id: anodoo.lead.merge.relation-->
+	    <record id="view_anodoo_lead_merge_relation_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.relation.view.form</field>
+	        <field name="model">anodoo.lead.merge.relation</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_lead_merge_relation">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="merge_to_id" />
+			                     <field name="merge_from_id" />
+			                     <field name="is_ignore" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="merge_rule_id" />
+			                     <field name="is_merged" />
+			                     <field name="is_copy" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_lead_merge_relation_list" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.relation.view.list</field>
+	        <field name="model">anodoo.lead.merge.relation</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="merge_to_id" />
+	                <field name="merge_from_id" />
+	                <field name="is_ignore" />
+	                <field name="merge_rule_id" />
+	                <field name="is_merged" />
+	                <field name="is_copy" />                
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_lead_merge_relation_search" model="ir.ui.view">
+	        <field name="name">anodoo.lead.merge.relation.view.search</field>
+	        <field name="model">anodoo.lead.merge.relation</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="merge_to_id" filter_domain="['|', ('merge_to_id.name', 'ilike', self), ('merge_from_id.name', 'ilike', self)]" />
+		            <separator/>
+		            <filter name="need_merge"  string="重复记录" domain="[('is_ignore','=',False), ('is_merged','=',False), ('is_copy','=',False)]" /> 
+		            <filter name="have_merged"  string="已合并记录" domain="[('is_merged','=', True)]" />       
+		            <filter name="is_copy"  string="人工复制记录" domain="[('is_copy','=', True)]" />      
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

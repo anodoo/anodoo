@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_opportunity_qualify_lost_reason_user,anodoo.opportunity.qualify.lost.reason.user,model_anodoo_opportunity_qualify_lost_reason,base.group_user,1,1,1,1
+access_anodoo_opportunity_lifetime_user,anodoo.opportunity.lifetime.user,model_anodoo_opportunity_lifetime,base.group_user,1,1,1,1
+access_anodoo_opportunity_relation_user,anodoo.sfa.opportunity.relation.user,model_anodoo_opportunity_relation,base.group_user,1,1,1,1
+access_anodoo_opportunity_register_user,anodoo.sfa.opportunity.register.user,model_anodoo_opportunity_register,base.group_user,1,1,1,1
+
+
+
+

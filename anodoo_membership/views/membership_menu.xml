@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="membership.menu_association"  name="Anodoo 会员销售" sequence="45" web_icon="anodoo_membership,static/description/icon.png"/>
+	</data>
+</odoo>

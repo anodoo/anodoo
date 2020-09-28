@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="reason_1" model="anodoo.lead.qualify.lost.reason">
+    		<field name="name">线索信息不完整</field>
+    	</record>
+    	<record id="reason_2" model="anodoo.lead.qualify.lost.reason">
+    		<field name="name">联系人无法联系</field>
+    	</record>
+    	<record id="reason_3" model="anodoo.lead.qualify.lost.reason">
+    		<field name="name">客户需求不成立</field>
+    	</record>
+    	<record id="reason_4" model="anodoo.lead.qualify.lost.reason">
+    		<field name="name">客户需求不匹配</field>
+    	</record>
+
+    </data>
+</odoo>

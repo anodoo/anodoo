@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<record model="anodoo.opportunity.lifetime" id="opportunity_lifetime_default">
+	        <field name="name">默认的商机生命周期</field>
+	        <field name="is_default">1</field>
+	        <field name="description">默认的商机生命周期</field>	        
+	    </record>
+    	
+    	<record model="crm.stage" id="stage_opportunity1">
+	        <field name="name">新建</field>
+	        <field name="sequence">1</field>
+	        <field name="fold" eval="False"/>
+	        <field name="stage_probability" eval="0"/>
+	        <field name="opportunity_lifetime_id" ref="opportunity_lifetime_default"/>
+	    </record>
+	    <record model="crm.stage" id="stage_opportunity2">
+	        <field name="name">认定</field>
+	        <field name="sequence">2</field>
+	        <field name="is_qualify">1</field>
+	        <field name="fold" eval="False"/>
+	        <field name="stage_probability" eval="20"/>
+	        <field name="opportunity_lifetime_id" ref="opportunity_lifetime_default"/>
+	    </record>
+	    <record model="crm.stage" id="stage_opportunity3">
+	        <field name="name">分派</field>
+	        <field name="sequence">4</field>
+	        <field name="fold" eval="False"/>
+	        <field name="stage_probability" eval="30"/>
+	        <field name="opportunity_lifetime_id" ref="opportunity_lifetime_default"/>
+	    </record>
+	    <record model="crm.stage" id="stage_opportunity4">
+	        <field name="name">投标</field>
+	        <field name="sequence">5</field>
+	        <field name="fold" eval="False"/>
+	        <field name="stage_probability" eval="80"/>
+	        <field name="opportunity_lifetime_id" ref="opportunity_lifetime_default"/>
+	    </record>
+	    <record model="crm.stage" id="stage_opportunity5">
+	        <field name="name">赢得</field>
+	        <field name="fold" eval="False"/>
+	        <field name="is_won">True</field>
+	        <field name="sequence">70</field>
+	        <field name="stage_probability" eval="100"/>
+	        <field name="opportunity_lifetime_id" ref="opportunity_lifetime_default"/>
+	    </record>
+    </data>
+</odoo>
