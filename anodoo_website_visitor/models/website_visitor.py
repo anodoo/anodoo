@@ -15,7 +15,7 @@ class WebsiteVisitor(models.Model):
     _inherit = 'website.visitor'
 
     #Override, 增加referrer
-    def _handle_website_page_visit(self, response, website_page, visitor_sudo):
+    def _handle_website_page_visit(self, website_page, visitor_sudo):
         """ Called on dispatch. This will create a website.visitor if the http request object
         is a tracked website page or a tracked view. Only on tracked elements to avoid having
         too much operations done on every page or other http requests.

@@ -68,6 +68,8 @@
         <field name="model">anodoo.engage.channel</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name" filter_domain="[('name', 'ilike', self)]" />
+
                 <filter name="filter_online"  string="线上渠道" domain="[('online','=','online')]" />
                	<filter name="filter_offline" string="线下渠道" domain="[('online','=', 'offline')]" />      
                	

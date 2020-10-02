@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo ELearning",
+    'name': "在线学习",
 
     'summary': """
         在线学习

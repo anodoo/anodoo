@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Blog",
+    'name': "博客",
 
     'summary': """
         博客

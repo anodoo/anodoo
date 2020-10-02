@@ -29,8 +29,6 @@
 			
 			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_price" name="价格" sequence="30" />
 				<menuitem parent="ecommerce_menu_price" id="ecommerce_menu_price_pricelist" name="价格表" action="product.product_pricelist_action2" groups="product.group_product_pricelist"/>
-				<menuitem parent="ecommerce_menu_price" id="ecommerce_menu_price_promotion" name="促销" action="sale_coupon.sale_coupon_program_action_promo_program" groups="sales_team.group_sale_manager"/>
-    			<menuitem parent="ecommerce_menu_price" id="ecommerce_menu_price_coupon" name="优惠券" action="sale_coupon.sale_coupon_program_action_coupon_program" groups="sales_team.group_sale_manager"/>
 				
 			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_cart" name="购物车" sequence="40"/>
 				<menuitem parent="ecommerce_menu_cart" id="ecommerce_menu_cart_list" name="购物车列表" action="action_view_cart_tree"/>
