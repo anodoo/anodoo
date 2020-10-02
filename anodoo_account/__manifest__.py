@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "会计",
+    'name': "财务管理",
 
     'summary': """
-        会计，财务等，是销售管理的基础模块
+        财务，会计，发票等，是销售管理的基础模块
     """,
 
     'description': """
-        会计，财务等，是销售管理的基础模块
+        财务，会计，发票等，是销售管理的基础模块
     """,
 
     'author': "Anodoo",
@@ -25,8 +25,7 @@
     'depends': [
         'account',
 
-        'l10n_cn_small_business',
-        'l10n_cn_standard',
+        'l10n_cn',
     ],
 
     # always loaded

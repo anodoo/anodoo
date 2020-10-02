@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Dashboard",
+    'name': "仪表盘",
 
     'summary': """
         仪表盘

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Project",
+    'name': "项目管理",
 
     'summary': """
         项目管理

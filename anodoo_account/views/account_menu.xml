@@ -3,7 +3,7 @@
 	<data noupdate="0">
 
 		<!--使用account的目录-->
-		<menuitem id="account.menu_finance" name="Anodoo 开票"   sequence="82" web_icon="anodoo_account,static/description/icon.png"/>
+		<menuitem id="account.menu_finance" name="Anodoo 财务管理"   sequence="82" web_icon="anodoo_account,static/description/icon.png"/>
 
 		<!--
 		<menuitem parent="anodoo_sfa.sfa_menu_root_anodoo" id="sfa_menu_invoice" name="开票"   sequence="50" />

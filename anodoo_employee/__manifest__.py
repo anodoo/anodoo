@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Employee",
+    'name': "员工管理",
 
     'summary': """
         员工管理

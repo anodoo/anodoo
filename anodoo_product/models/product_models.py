@@ -13,8 +13,10 @@ class ProductCategory(models.Model):
 class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
-    
-    type = fields.Selection(selection_add=[('saas', 'SaaS产品'), ('member', '会员产品'), ('software', '软件产品'), ('digit', '数字产品')])
+
+    #新增类型需要在不同的模块扩展。
+    # type = fields.Selection(selection_add=[('saas', 'SaaS产品'), ('member', '会员产品'), ('software', '软件产品'), ('digit', '数字产品')]
+    # , ondelete="set default“)
 
     #放在anodoo sale模块
     #user_id = fields.Many2one('res.users', string='销售负责人')

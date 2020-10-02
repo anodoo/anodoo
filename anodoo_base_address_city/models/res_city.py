@@ -53,7 +53,7 @@ class Location(models.Model):
 
     street = fields.Char(string='地址')
 
-    city_id = fields.Many2one("res.country.state.city", string='城市', ondelete='restrict',
+    city_id = fields.Many2one("res.city", string='城市', ondelete='restrict',
                               domain="[('state_id', '=?', state_id)]")
     state_id = fields.Many2one("res.country.state", string='省份', ondelete='restrict',
                                domain="[('country_id', '=?', country_id)]")
