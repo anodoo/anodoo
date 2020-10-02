@@ -57,14 +57,5 @@
 	        </t>
 	    </template>
 
-
-	    <template id="multi_portal_link" name="Link to frontend portal" inherit_id="portal.frontend_layout">
-	        <xpath expr="//a[@id='o_logout']" position="before">
-	        	<!--
-	            <a href="/portal/customer" role="menuitem" class="dropdown-item" groups="anodoo_customer_portal">客户门户</a>
-	            <a href="/portal/partner" role="menuitem" class="dropdown-item" groups="anodoo_partner_portal">代理商门户</a>
-	            -->
-	        </xpath>
-	    </template>
     </data>
 </odoo>
