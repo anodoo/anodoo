@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Sales",
+    'name': "销售管理",
 
     'summary': """
         销售管理

@@ -39,7 +39,7 @@
 	        <field name="priority">100</field>
 	        <field name="arch" type="xml">
 	            <search>
-
+					<field name="name" filter_domain="[('name', 'ilike', self)]" />
                     <filter string="所有" name="allactive" domain="['|', ('active', '=', True), ('active', '=', False)]"/>
                     <separator/>
                     <filter string="已存档" name="inactive" domain="[('active', '=', False)]"/>

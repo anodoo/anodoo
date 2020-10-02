@@ -36,7 +36,7 @@
 		
 	    	<menuitem parent="opportunity_menu_root_anodoo" id="opportunity_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
 	    		<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
-				<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_tags" name="商机标签"  action="crm.crm_lead_tag_action" />
+				<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_tags" name="商机标签"  action="sales_team.sales_team_crm_tag_action" />
             	<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_stage" name="商机生命周期" action="action_anodoo_opportunity_lifetime_list"/>
             	<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_qualify_lost_reason" name="商机认定失败原因" action="action_anodoo_opportunity_qualify_lost_reason_list"/>
      			<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_lostreason" name="丢单原因" action="crm.crm_lost_reason_action" />

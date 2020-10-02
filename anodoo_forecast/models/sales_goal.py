@@ -127,11 +127,11 @@ class SaleGoalBreakdown(models.Model):
     parent_path = fields.Char(index=True)
         
     owner_territory_id = fields.Many2one('anodoo.sales.territory', string='销售区域')
-    owner_team_id = fields.Many2one('crm.team', string='销售团队', domain="[('team_type', '=', 'sales')]")
+    owner_team_id = fields.Many2one('crm.team', string='销售团队')
     owner_salesperson_id = fields.Many2one('res.users', string='销售员')
-    owner_customer_id = fields.Many2one('res.partner', string='客户', domain="[('partner_type', '=', 'customer')]")
+    owner_customer_id = fields.Many2one('res.partner', string='客户')
     owner_product_category_id = fields.Many2one('product.category', string='产品类别')
-    owner_product_template_id = fields.Many2one('product.template', string='产品', domain="[('sale_ok','=', True)]")
+    owner_product_template_id = fields.Many2one('product.template', string='产品')
     
     owner_year = fields.Char('年')
     owner_quarter = fields.Char('季度')

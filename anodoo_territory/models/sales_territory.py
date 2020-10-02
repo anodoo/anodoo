@@ -49,7 +49,7 @@ class SalesTerritory(models.Model):
 
     #display_name = fields.Char(string='Display Name')
     
-    team_ids = fields.Many2many('crm.team', 'sale_territory_team_rel', 'territory_id', 'team_id', string='销售团队', help='负责该销售区域的团队', domain='[("team_type","=","sales")]')
+    team_ids = fields.Many2many('crm.team', 'sale_territory_team_rel', 'territory_id', 'team_id', string='销售团队', help='负责该销售区域的团队')
     
     
 #     @api.constrains('parent_id')

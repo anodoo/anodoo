@@ -8,10 +8,9 @@ class Lead(models.Model):
     #name = fields.Char('名称')
     
     #继续使用lead自带的partner_id
-    #'&', ('partner_type', '=', 'customer'), 
     #partner_id = fields.Many2one('res.partner', string='客户', domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
     
-    contact_id = fields.Many2one('res.partner', string='联系人', domain="['&', ('partner_type', '=', 'contact'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]", help="关联联系人,自动带出其联系信息")
+    contact_id = fields.Many2one('res.partner', string='联系人', domain="['&', ('type', '=', 'contact'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]", help="关联联系人,自动带出其联系信息")
     
     #owner_type = fields.Selection([('team', '分配给线索团队'), ('user', '分配给负责人')], required=True, string='分配方式', default='user', help="线索可以分配给团队负责,或者分配给指定具体人员负责")
     
