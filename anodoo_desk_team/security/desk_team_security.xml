@@ -3,7 +3,6 @@
 	<data noupdate="0">
         <record id="group_desk_team_leader" model="res.groups">
             <field name="name">组长</field>
-            <field name="category_id" ref="base.module_category_operations_helpdesk"/>
             <field name="implied_ids" eval="[(4, ref('anodoo_desk.group_desk_user'))]"/>
         </record>
 
