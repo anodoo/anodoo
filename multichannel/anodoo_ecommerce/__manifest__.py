@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Commerce",
+    'name': "电子商务",
 
     'summary': """
         电子商务
@@ -23,7 +23,7 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'sales_team',
+        'sales_team',  #以下依赖要从新整理
         'product',
         'sale_coupon',
         'payment',

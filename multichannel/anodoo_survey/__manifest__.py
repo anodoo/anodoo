@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Survey",
+    'name': "问卷调查",
 
     'summary': """
-        调查研究，客户交互渠道之一
+        问卷调查，客户交互渠道之一
     """,
 
     'description': """
-        调查研究，客户交互渠道之一
+        问卷调查，客户交互渠道之一
     """,
 
     'author': "Anodoo",

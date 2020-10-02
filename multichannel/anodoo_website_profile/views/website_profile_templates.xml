@@ -44,11 +44,12 @@
 	        </t>
 	    </template>
 
+		<!--  在14中，o_logout没有了
         <template id="my_profile_link" name="Link to frontend portal" inherit_id="portal.frontend_layout">
 	        <xpath expr="//a[@id='o_logout']" position="before">
 	            <a t-att-href="'/profile/user/%s' % uid" role="menuitem" class="dropdown-item">社区中心</a>
 	        </xpath>
 	    </template>
-
+		-->
     </data>
 </odoo>

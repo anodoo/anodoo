@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Email",
+    'name': "邮件",
 
     'summary': """
         邮件交互

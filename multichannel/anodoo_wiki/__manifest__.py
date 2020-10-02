@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Wiki",
+    'name': "Wiki百科",
 
     'summary': """
         wiki百科，交互渠道之一

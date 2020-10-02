@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Forum",
+    'name': "论坛",
 
     'summary': """
         论坛
