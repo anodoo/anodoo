@@ -186,7 +186,7 @@
                 <menuitem parent="lead_menu_config" id="lead_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
                 <menuitem parent="lead_menu_config" id="lead_menu_config_lead_activity" name="线索活动" action="sales_team.mail_activity_type_action_config_sales"/>
                 <menuitem parent="lead_menu_config" id="lead_menu_config_lead_lead_anodoo_lead_lifetime" name="线索生命周期" action="action_anodoo_lead_lifetime_list"/>
-                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_lead_tags" name="线索标签"  action="crm.crm_lead_tag_action" />
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_lead_tags" name="线索标签"  action="sales_team.sales_team_crm_tag_action" />
                 <menuitem parent="lead_menu_config" id="lead_menu_config_lead_qualify_anodoo_lead_qualify_lost_reason" name="认定失败原因" action="action_anodoo_lead_qualify_lost_reason_list"/>
                 <menuitem parent="lead_menu_config" id="lead_menu_config_lead_merge_anodoo_lead_merge_rule" name="线索/商机合并规则" action="action_anodoo_lead_merge_rule_list"/>
 

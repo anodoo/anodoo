@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Anodoo Forecast",
+    'name': "销售预测",
 
     'summary': """
         销售目标，计划与预测
@@ -20,7 +20,7 @@
     'installable': True,
 
     'depends': [
-        'base'
+        'anodoo_territory',#依赖了销售区域的概念，后续通过粘合模块实现
     ],
 
     'data': [
