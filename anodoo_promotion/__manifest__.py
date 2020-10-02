@@ -20,7 +20,7 @@
     'installable': True,
 
     'depends': [
-        'sale_coupon',
+        'coupon',
     ],
 
     'data': [
