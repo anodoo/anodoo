@@ -12,6 +12,9 @@ class Parnter(models.Model):
 
     support_many_child_ids = fields.Boolean('是否支持多对多联系人', compute='_compute_support_many_child_ids')
 
+    contact_relation_contact_ids = fields.One2many('anodoo.contact.relation.contact', 'contact_id', string='相关联系人')
+
+
     #个人客户或个人联系人的信息扩展
     birth_date = fields.Date(string="出生日期")
     gender_type = fields.Selection(

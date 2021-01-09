@@ -18,14 +18,7 @@
 	        <field name="is_active">True</field>
 	        <field name="description">个人客户</field>
 	    </record>
-	    <record model="anodoo.customer.type" id="default_customer_type_family">
-	        <field name="name">家庭客户</field>
-	        <field name="type">family</field>
-	        <field name="sequence">3</field>
-	        <field name="is_default">False</field>
-	        <field name="is_active">True</field>
-	        <field name="description">家庭客户</field>
-	    </record>
+		<!--
 	    <record model="anodoo.customer.type" id="default_customer_type_government">
 	        <field name="name">政府客户</field>
 	        <field name="type">government</field>
@@ -42,6 +35,7 @@
 	        <field name="is_active">False</field>
 	        <field name="description">组织客户</field>
 	    </record>
+	    -->
 
 	    <!-- 客户规模 -->
 	    <record model="anodoo.customer.size" id="default_customer_size_strategy">
@@ -75,14 +69,6 @@
 	        <field name="is_default">False</field>
 	        <field name="is_active">False</field>
 	        <field name="description">小微客户</field>
-	    </record>
-
-	    <!-- 客户池 -->
-    	<record model="anodoo.customer.pool" id="default_public_customer_pool">
-	        <field name="name">默认公有客户池</field>
-	        <field name="description">默认公有客户池，自动地，动态地包含了所有的未分配客户。默认公有客户池是系统默认自带的客户池，无法修改配置信息，对所有人可见。</field>
-	        <field name="is_private">False</field>
-	        <field name="is_default_public">True</field>
 	    </record>
 
 	    <!-- 默认生命周期和阶段定义 -->

@@ -12,9 +12,9 @@ class Customer(models.Model):
     # belong_team_id = fields.Many2one('crm.team', string='客户团队', help='客户所属的客户团队')
     # 团队功能后续扩展
 
-    is_alloted_bypool = fields.Boolean('通过客户池分配', default=False, help="是否通过多种模式已经分配到人或团队")
 
 
+    customer_relation_customer_ids = fields.One2many('anodoo.customer.relation.customer', 'customer_id', string='客户与客户关系')
 
     def _default_customer_type(self):
         customer_types = self.env['anodoo.customer.type'].search([], order="is_default desc, sequence", limit=1)
@@ -53,17 +53,8 @@ class Customer(models.Model):
     is_losing = fields.Boolean('是否流失客户', compute='_compute_is_losing', store=True)
     is_success = fields.Boolean('是否成功客户', compute='_compute_is_success', store=True)
 
-    customer_label_ids = fields.Many2many('anodoo.customer.label', 'anodoo_customer_label_ref', 'customer_id',
-                                          'label_id', string='客户标签', help='客户当前的所有标签')
-    customer_label_auto_ids = fields.Many2many('anodoo.customer.label', 'anodoo_customer_label_auto_ref', 'customer_id',
-                                               'label_id', string='客户标签(自动)', help='客户自动标签')
 
-    # 家庭客户
-    member_type = fields.Selection(
-        [('grandpa', '爷爷'), ('grandma', '奶奶'), ('father', '爸爸'), ('mother', '妈妈'), ('child1', '孩子'), ('child2', '孩子2')],
-        string='成员类型', default='father', help="")
-    family_members = fields.One2many('res.partner', 'parent_id', string='家庭成员', help="一个家庭客户有多个成员")
-    is_contact_members = fields.Boolean('家庭主联系人')
+
 
 
 
