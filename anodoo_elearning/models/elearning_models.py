@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from odoo import _
 from odoo import models, fields, api
 
 from odoo.tools.translate import html_translate

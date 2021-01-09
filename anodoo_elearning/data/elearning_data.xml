@@ -3,37 +3,64 @@
     <data noupdate="0">
     	<!-- 课程标签 -->
     	<record id="slide_channel_tag_group_role" model="slide.channel.tag.group">
-	        <field name="name">目标岗位3</field>
+	        <field name="name">学员岗位</field>
 	        <field name="is_published" eval="True"/>
 	    </record>
-	    <record id="slide_channel_tag_role_salesman" model="slide.channel.tag">
-	        <field name="name">销售人员</field>
-	        <field name="group_id" ref="slide_channel_tag_group_role"/>
-	    </record>
-	    <record id="slide_channel_tag_role_manager" model="slide.channel.tag">
-	        <field name="name">管理人员</field>
-	        <field name="group_id" ref="slide_channel_tag_group_role"/>
-	    </record>
-	    <record id="slide_channel_tag_role_it" model="slide.channel.tag">
-	        <field name="name">IT人员</field>
-	        <field name="group_id" ref="slide_channel_tag_group_role"/>
-	    </record>
+            <record id="slide_channel_tag_role_common" model="slide.channel.tag">
+                <field name="name">通用岗位</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+
+            <record id="slide_channel_tag_role_marketing" model="slide.channel.tag">
+                <field name="name">营销人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_salesman" model="slide.channel.tag">
+                <field name="name">销售人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_service" model="slide.channel.tag">
+                <field name="name">服务人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_finance" model="slide.channel.tag">
+                <field name="name">财务人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_supplychain" model="slide.channel.tag">
+                <field name="name">供应链人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_manufacturing" model="slide.channel.tag">
+                <field name="name">生产人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_manager" model="slide.channel.tag">
+                <field name="name">管理人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+            <record id="slide_channel_tag_role_it" model="slide.channel.tag">
+                <field name="name">IT人员</field>
+                <field name="group_id" ref="slide_channel_tag_group_role"/>
+            </record>
+        <!--原模块已经定义-->
+        <!--
         <record id="slide_channel_tag_group_level" model="slide.channel.tag.group">
-	        <field name="name">课程等级2</field>
+	        <field name="name">课程等级</field>
 	        <field name="is_published" eval="True"/>
 	    </record>
-	    <record id="slide_channel_tag_level_basic" model="slide.channel.tag">
-	        <field name="name">基础2</field>
-	        <field name="group_id" ref="slide_channel_tag_group_level"/>
-	    </record>
-	    <record id="slide_channel_tag_level_intermediate" model="slide.channel.tag">
-	        <field name="name">中级2</field>
-	        <field name="group_id" ref="slide_channel_tag_group_level"/>
-	    </record>
-	    <record id="slide_channel_tag_level_advanced" model="slide.channel.tag">
-	        <field name="name">高级2</field>
-	        <field name="group_id" ref="slide_channel_tag_group_level"/>
-	    </record>
+            <record id="slide_channel_tag_level_basic" model="slide.channel.tag">
+                <field name="name">基础</field>
+                <field name="group_id" ref="slide_channel_tag_group_level"/>
+            </record>
+            <record id="slide_channel_tag_level_intermediate" model="slide.channel.tag">
+                <field name="name">中级</field>
+                <field name="group_id" ref="slide_channel_tag_group_level"/>
+            </record>
+            <record id="slide_channel_tag_level_advanced" model="slide.channel.tag">
+                <field name="name">高级</field>
+                <field name="group_id" ref="slide_channel_tag_group_level"/>
+            </record>-->
 	
 	    
 	    
