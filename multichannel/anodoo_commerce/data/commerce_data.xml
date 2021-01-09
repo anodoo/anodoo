@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="website_sale.menu_shop" model="website.menu">
+            <field name="name">商店</field>
+        </record>
+
+        <record id="sales_team.salesteam_website_sales" model="crm.team">
+            <field name="name">电商团队</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

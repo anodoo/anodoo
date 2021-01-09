@@ -6,10 +6,10 @@ from odoo.osv import expression
 class Blog(models.Model):
     _inherit = 'blog.blog'
     _order = 'sequence'
-    
-    name = fields.Char('栏目名称')
-    subtitle = fields.Char('栏目概述')
-    
+
+    # name = fields.Char('栏目名称')
+    # subtitle = fields.Char('栏目概述')
+
     sequence = fields.Integer('序号', default=10)
     
     is_public = fields.Boolean('是否公开', default=True, help="有些栏目不在列表显示,但可以单独链接浏览")
