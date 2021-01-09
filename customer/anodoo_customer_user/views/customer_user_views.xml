@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 客户用户 model_id: anodoo.customer.user-->
+	    <record id="view_anodoo_customer_user_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.view.form</field>
+	        <field name="model">anodoo.customer.user</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_user">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="customer_id" />
+			                     <field name="user_identity" />
+			                     <field name="application_id" />
+			                 </group>
+			                 <group name="group_right">
+
+			                     <field name="contact_id" />
+			                     <field name="register_date" />
+			                     <field name="comment" />
+			                 </group>
+			                 <!-- 测试图片使用
+			                 <group name="group_left2">
+			                 	<field name="image_1920" widget='image' options='{"preview_image": "image_128"}'/>
+			                 	<field name="attachment_ids" widget="many2many_binary"/>
+			                 	<field name="attachment2_ids" />
+			                 	<field name="ir_attachment_id" />
+			                 </group>
+			                  -->
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_user_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.view.tree</field>
+	        <field name="model">anodoo.customer.user</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="customer_id" />
+	                <field name="user_identity" />
+	                <field name="application_id" />
+	                <field name="contact_id" />
+	                <field name="register_date" />
+	                <field name="comment" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_user_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.view.search</field>
+	        <field name="model">anodoo.customer.user</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="user_identity" filter_domain="[('user_identity', 'ilike', self)]" />
+		           	<field name="customer_id" filter_domain="[('customer_id.name', 'ilike', self)]" />
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_customer_id"  string="客户" context="{'group_by':'customer_id'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 用户操作 model_id: anodoo.customer.user.operation-->
+	    <record id="view_anodoo_customer_user_operation_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.operation.view.form</field>
+	        <field name="model">anodoo.customer.user.operation</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_user_operation">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="user_id" />
+			                     <field name="customer_name" />
+			                     <field name="application_id" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="operation_type" />
+			                     <field name="operation_time" />
+			                     <field name="comment" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_user_operation_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.operation.view.tree</field>
+	        <field name="model">anodoo.customer.user.operation</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="user_id" />
+	                <field name="customer_name" />
+	                <field name="application_id" />
+	                <field name="operation_type" />
+	                <field name="operation_time" />
+	                <field name="comment" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_user_operation_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.user.operation.view.search</field>
+	        <field name="model">anodoo.customer.user.operation</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="user_id" filter_domain="[('user_id.user_identity', 'ilike', self)]" />
+		            <field name="customer_name" filter_domain="[('customer_name', 'ilike', self)]" />
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_operation_type"  string="操作类型" context="{'group_by':'operation_type'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 客户应用 model_id: anodoo.customer.application-->
+	    <record id="view_anodoo_customer_application_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.form</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_application">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_application_list" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.list</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="sequence" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_application_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.application.view.search</field>
+	        <field name="model">anodoo.customer.application</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+
+	            </search>
+	        </field>
+	    </record>
+	    <!-- 动作 anodoo.customer.application-->
+		<record id="action_anodoo_customer_application_list" model="ir.actions.act_window">
+	        <field name="name">客户应用</field>
+	        <field name="res_model">anodoo.customer.application</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+	</data>
+</odoo>

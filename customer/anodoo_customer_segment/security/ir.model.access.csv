@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_customer_label_category_user,anodoo.customer.label.category.user,model_anodoo_customer_label_category,base.group_user,1,1,1,1
+access_anodoo_customer_label_user,anodoo.customer.label.user,model_anodoo_customer_label,base.group_user,1,1,1,1
+access_anodoo_customer_segment_user,anodoo.customer.segment.user,model_anodoo_customer_segment,base.group_user,1,1,1,1
+access_anodoo_customer_segment_snapshot_user,anodoo.customer.segment.snapshot.user,model_anodoo_customer_segment_snapshot,base.group_user,1,1,1,1
+
+
+
+

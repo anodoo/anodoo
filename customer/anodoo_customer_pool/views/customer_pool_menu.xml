@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<!-- 动作 anodoo.customer.allot-->
+		<record id="action_anodoo_customer_allot_list" model="ir.actions.act_window">
+	        <field name="name">客户分配操作记录</field>
+	        <field name="res_model">anodoo.customer.allot</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+			<menuitem parent="anodoo_customer.customer_menu_root_anodoo" id="customer_menu_allot" name="客户池"/>
+				<menuitem parent="customer_menu_allot" id="customer_menu_allot_anodoo_customer_pool" name="客户池" action="action_anodoo_customer_pool_list"/>
+				<menuitem parent="customer_menu_allot" id="customer_menu_allot_anodoo_customer_allot" name="客户分配操作记录" action="action_anodoo_customer_allot_list"/>
+
+
+	</data>
+</odoo>
