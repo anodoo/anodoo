@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 项目阶段 model_id: project.stage-->
+	    <record id="view_project_stage_form" model="ir.ui.view">
+	        <field name="name">project.stage.view.form</field>
+	        <field name="model">project.stage</field>
+	        <field name="arch" type="xml">
+	            <form string="project_stage">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                 </group>
+			                 <group name="group_right">
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_project_stage_list" model="ir.ui.view">
+	        <field name="name">project.stage.view.list</field>
+	        <field name="model">project.stage</field>
+	        <field name="arch" type="xml">
+	            <tree>
+
+	                <field name="sequence" widget="handle"/>
+	                <field name="name" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_project_stage_search" model="ir.ui.view">
+	        <field name="name">project.stage.view.search</field>
+	        <field name="model">project.stage</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+    </data>
+</odoo>

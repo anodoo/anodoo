@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Anodoo',
-    'version': '13.1',
+    'version': '14.0.0', #publish at 2020-10-3
     'application': True,
     'installable': True,
 
@@ -33,6 +33,8 @@
         'security/project_security.xml',
         'security/ir.model.access.csv',
         'views/project_views.xml',
+        'views/project_stage_views.xml',
+        'views/project_type_views.xml',
         'views/project_menu.xml',
         'views/project_templates.xml',
     ],
