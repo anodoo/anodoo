@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="action_delivery_all" model="ir.actions.act_window">
+            <field name="name">所有配送单</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain">[('picking_type_id.code', '=', 'outgoing')]</field>
+            <field name="context">{'contact_display': 'partner_address', 'default_company_id': allowed_company_ids[0]}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+
+		<record id="action_delivery_my" model="ir.actions.act_window">
+            <field name="name">我的配送单</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain">[('picking_type_id.code', '=', 'outgoing'), ('user_id', '=', uid)]</field>
+            <field name="context">{'contact_display': 'partner_address', 'default_company_id': allowed_company_ids[0]}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+
+
+		<menuitem id="delivery_menu_root_anodoo" name="Anodoo 配送管理" sequence="53" web_icon="anodoo_delivery,static/description/icon.png"/>
+			<menuitem parent="delivery_menu_root_anodoo" id="delivery_menu_list" name="配送单" sequence="10" />
+				<menuitem parent="delivery_menu_list" id="delivery_menu_list_all" name="所有配送单" action="action_delivery_all"/>
+	    		<menuitem parent="delivery_menu_list" id="delivery_menu_list_my" name="我的配送单" action="action_delivery_my"/>
+
+	    	<menuitem parent="delivery_menu_root_anodoo" id="delivery_menu_analysis" name="分析" sequence="90" />   		
+	   			
+	    	<menuitem parent="delivery_menu_root_anodoo" id="delivery_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+	    		<menuitem parent="delivery_menu_config" id="delivery_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
+				<menuitem parent="delivery_menu_config" id="delivery_menu_config_delivery_carrier_form" name="配送方式" action="delivery.action_delivery_carrier_form" />
+				<menuitem parent="delivery_menu_config" id="delivery_menu_config_order_delivery_packaging_view" name="发货邮包" action="delivery.action_delivery_packaging_view" />
+	</data>
+</odoo>
