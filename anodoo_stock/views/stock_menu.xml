@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="stock.menu_stock_root" name="Anodoo 库存管理" sequence="81" web_icon="anodoo_stock,static/description/icon.png"/>
+	</data>
+</odoo>
