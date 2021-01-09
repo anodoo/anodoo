@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="payment_menu_root_anodoo" name="Anodoo 回款管理" sequence="52" web_icon="anodoo_payment,static/description/icon.png"/>
+			<menuitem parent="payment_menu_root_anodoo" id="payment_menu_payment_customer" name="客户付款" action="account.action_account_payments" />
+	    	
+	    	<menuitem parent="payment_menu_root_anodoo" id="payment_menu_analysis" name="分析" sequence="90" />   		
+	   			
+	    	<menuitem parent="payment_menu_root_anodoo" id="payment_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+	    		<menuitem parent="payment_menu_config" id="payment_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
+				<menuitem parent="payment_menu_config" id="payment_menu_config_payment_acquirers" name="付款方式"  action="payment.action_payment_acquirer"/>
+     			<menuitem parent="payment_menu_config" id="payment_menu_config_payment_data" name="付款令牌"  action="payment.payment_token_action"/>
+     			<menuitem parent="payment_menu_config" id="payment_menu_config_payment_transaction" name="交易记录"  action="payment.action_payment_transaction"/>
+     			<menuitem parent="payment_menu_config" id="payment_menu_config_payment_icons" name="支付图标"  action="payment.action_payment_icon"/>
+     	
+     			
+	</data>
+</odoo>
