@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<menuitem parent="anodoo_sales.sales_menu_root_anodoo" id="sales_menu_territory" name="销售区域" sequence="10"/>
+    		<menuitem parent="sales_menu_territory" id="sales_menu_territory_anodoo_sales_territory" name="销售区域" action="action_anodoo_sales_territory_list"/>
+
+
+	</data>
+</odoo>

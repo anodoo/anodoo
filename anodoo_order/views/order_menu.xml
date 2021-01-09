@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data noupdate="0">
-		<menuitem id="order_menu_root_anodoo" name="Anodoo 订单管理" sequence="51" web_icon="anodoo_order,static/description/icon.png"/>
-	    	<menuitem parent="order_menu_root_anodoo" id="order_menu_order" name="订单"  sequence="40" />
-				<menuitem parent="order_menu_order" id="order_menu_order_my" name="我的订单" action="sale.action_orders" />    		
-				<menuitem parent="order_menu_order" id="order_menu_order_to_invoice" name="待开票订单" action="sale.action_orders_to_invoice" />
-				<menuitem parent="order_menu_order" id="order_menu_order_upselling" name="追加销售" action="sale.action_orders_upselling" />
-				
-	    	
-	    	<menuitem parent="order_menu_root_anodoo" id="order_menu_analysis" name="分析" sequence="90" />   		
-	   			
-	    	<menuitem parent="order_menu_root_anodoo" id="order_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
-	    		<menuitem parent="order_menu_config" id="order_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
 
-
-     			
 	</data>
 </odoo>
