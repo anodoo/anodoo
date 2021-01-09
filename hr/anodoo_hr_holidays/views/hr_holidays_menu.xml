@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+
+		<menuitem id="hr_holidays.menu_hr_holidays_root" name="Anodoo 员工假期" sequence="13" web_icon="anodoo_hr_holidays,static/description/icon.png"/>
+	</data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 动作 hr.job.level-->
+		<record id="action_hr_job_level_list" model="ir.actions.act_window">
+	        <field name="name">岗位级别</field>
+	        <field name="res_model">hr.job.level</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<menuitem id="hr.menu_hr_root" name="Anodoo 员工管理" sequence="10" web_icon="anodoo_hr,static/description/icon.png"/>
+
+			<menuitem parent="hr.menu_human_resources_configuration" id="menu_hr_job" name="岗位"/>
+				<menuitem parent="menu_hr_job" id="hr.menu_view_hr_job" />
+				<menuitem parent="menu_hr_job" id="menu_hr_job_level" name="岗位级别" action="action_hr_job_level_list"/>
+
+	</data>
+</odoo>

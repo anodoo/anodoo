@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+
+		<menuitem id="hr_timesheet.timesheet_menu_root" name="Anodoo 员工工时" sequence="13" web_icon="anodoo_hr_timesheet,static/description/icon.png"/>
+	</data>
+</odoo>
