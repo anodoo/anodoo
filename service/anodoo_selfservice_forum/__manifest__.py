@@ -15,7 +15,7 @@
 
 
     'category': 'Anodoo',
-    'version': '13.1',
+    'version': '14.0.0', #publish at 2020-10-3
     'application': False,
     'installable': True,
     'auto_install': True,
