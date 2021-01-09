@@ -1,0 +1,61 @@
+模块:iap       ID:23      Name:In-App Purchases
+
+
+================== Models ======================
+
+###iap.account name:IAP Account inherit:ir.model()  access:ir.model.access(122, 121)  rule:ir.rule(24,)  transient:False  modules:iap
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+###iap.iap_account_action  name:IAP Account view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###iap.account
+
+iap.iap_account_view_form  type:form  priority:16  arch_fs:iap/views/iap_views.xml  inherit_id:
+
+iap.iap_account_view_tree  type:tree  priority:16  arch_fs:iap/views/iap_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+iap.res_config_settings_view_form  type:form  priority:16  arch_fs:iap/views/res_config_settings.xml  inherit_id:base_setup.res_config_settings_view_form
+
+
+================== qWeb ======================
+
+iap.assets_backend  type:qweb  priority:16  arch_fs:iap/views/assets.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+###iap.account
+
+account_token Label:Account Token  ttype:char    required:False  compute:False  depends:False  modules:iap  help:False
+company_ids Label:Company  ttype:many2many  relation:res.company    required:False  compute:False  depends:False  modules:iap  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:iap  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:iap  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:iap  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:iap  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:iap  help:False
+service_name Label:Service Name  ttype:char    required:False  compute:False  depends:False  modules:iap  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:iap  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:iap  help:False
+
+================== Extended Fields ======================
+
+
+###res.config.settings

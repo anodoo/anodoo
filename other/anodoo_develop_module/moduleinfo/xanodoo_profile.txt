@@ -1,0 +1,41 @@
+模块:anodoo_profile       ID:139      Name:社区会员
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###gamification.karma.rank name:Rank based on karma inherit:ir.model()  transient:False  modules:anodoo_blog, anodoo_forum, anodoo_profile, gamification
+
+###res.config.settings name:配置设置 inherit:ir.model()  transient:True  modules:account, anodoo_base, anodoo_blog, anodoo_content, anodoo_crm, anodoo_forum, anodoo_mktauto, anodoo_prod, anodoo_profile, anodoo_proj, anodoo_sfa, anodoo_team, auth_oauth, auth_password_policy, auth_signup, base, base_setup, crm, crm_iap_lead_enrich, digest, event, iap, mail, mass_mailing, product, project, sale, sale_management, sale_stock, snailmail, stock, stock_account, website, website_form, website_livechat, website_sale, website_slides
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== qWeb ======================
+
+anodoo_profile.badge_list_main  type:qweb  priority:16  arch_fs:anodoo_profile/views/profile_templates.xml  inherit_id:
+
+anodoo_profile.my_profile_link  type:qweb  priority:16  arch_fs:anodoo_profile/views/profile_templates.xml  inherit_id:portal.frontend_layout
+
+anodoo_profile.rank_list_main  type:qweb  priority:16  arch_fs:anodoo_profile/views/profile_templates.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###gamification.karma.rank
+
+
+###res.config.settings
+
+need_email_validate Label:需要邮件确认  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_profile  help:False
+need_karma_to_view_profile Label:需要最低积分去查看他人信息  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_profile  help:False

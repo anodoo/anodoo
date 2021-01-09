@@ -1,0 +1,250 @@
+模块:anodoo_team       ID:29      Name:Anodoo Team
+
+
+================== Models ======================
+
+###note.note name:Note inherit:ir.model()  access:ir.model.access(176,)  rule:ir.rule(35, 36)  transient:False  modules:anodoo_team, note, note_pad
+
+###crm.team name:Sales Team inherit:ir.model(122,)  access:ir.model.access(186, 184, 185)  rule:ir.rule(38, 39)  transient:False  modules:anodoo_team, sales_team
+
+###anodoo.team.member name:团队成员 inherit:ir.model()  access:ir.model.access(197,)  rule:ir.rule()  transient:False  modules:anodoo_team
+
+###anodoo.team.role name:团队角色 inherit:ir.model()  access:ir.model.access(196,)  rule:ir.rule()  transient:False  modules:anodoo_team
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+###note.action_note_note  name:Notes view_mode:kanban,tree,form,activity domain:False  context:{}
+
+###crm.crm_team_act_tree  name:Cases by Sales Team view_mode:tree,form domain:False  context:{}
+
+###sales_team.crm_team_salesteams_act  name:Sales Teams view_mode:kanban,form domain:[('team_type', '=', 'sales')]  context:{'in_sales_app': True, 'default_team_type':'sales'}
+
+###sales_team.sales_team_config_action  name:Sales Teams view_mode:tree,form domain:[('team_type', '=', 'sales')]  context:{'default_team_type':'sales'}
+
+###sales_team.crm_team_salesteams_pipelines_act  name:Team Pipelines view_mode:kanban,form domain:[('use_opportunities', '=', True)]  context:{}
+
+###anodoo_team.action_anodoo_team_list  name:团队列表 view_mode:kanban,tree,form domain:False  context:{'default_team_type':'sales'}
+
+###anodoo_team.action_anodoo_team_template_list  name:团队模板 view_mode:kanban,tree,form domain:[('is_template', '=', True)]  context:{'default_is_template':True}
+
+
+================== Views ======================
+
+
+###note.note
+
+note.view_note_note_form  type:form  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+anodoo_team.view_note_note_form  type:form  priority:16  arch_fs:anodoo_team/views/note_views.xml  inherit_id:note.view_note_note_form
+
+note.view_note_note_kanban  type:kanban  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_note_filter  type:search  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_note_tree  type:tree  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note_pad.view_note_note_pad_form  type:form  priority:16  arch_fs:note_pad/views/note_views.xml  inherit_id:note.view_note_note_form
+
+
+###crm.team
+
+crm.sales_team_form_view_in_crm  type:form  priority:12  arch_fs:crm/views/crm_team_views.xml  inherit_id:sales_team.crm_team_view_form
+
+sales_team.crm_team_salesteams_view_kanban  type:kanban  priority:16  arch_fs:sales_team/views/sales_team_dashboard.xml  inherit_id:
+
+sales_team.crm_team_view_form  type:form  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+sales_team.crm_team_view_kanban  type:kanban  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+crm.crm_team_salesteams_view_kanban  type:kanban  priority:16  arch_fs:crm/views/crm_team_views.xml  inherit_id:sales_team.crm_team_salesteams_view_kanban
+
+sales_team.crm_team_view_tree  type:tree  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+sales_team.crm_team_salesteams_search  type:search  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+anodoo_team.view_anodoo_team_form  type:form  priority:20  arch_fs:anodoo_team/views/team_views.xml  inherit_id:
+
+anodoo_team.view_anodoo_team_list  type:tree  priority:20  arch_fs:anodoo_team/views/team_views.xml  inherit_id:
+
+anodoo_team.view_anodoo_team_search  type:search  priority:20  arch_fs:anodoo_team/views/team_views.xml  inherit_id:
+
+anodoo_team.view_anodoo_team_kanban  type:kanban  priority:100  arch_fs:anodoo_team/views/team_views.xml  inherit_id:
+
+
+###anodoo.team.member
+
+
+###anodoo.team.role
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+anodoo_team.view_res_config_settings_team_form  type:form  priority:16  arch_fs:anodoo_team/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###note.note
+
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:note  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:note  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:note  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:note  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:note  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:note  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+date_done Label:Date done  ttype:date    required:False  compute:False  depends:False  modules:note  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+memo Label:Note Content  ttype:html    required:False  compute:False  depends:False  modules:note  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:note  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:note  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:note  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:note  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:note  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of unread messages
+model Label:Model Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+name Label:Note Summary  ttype:text    required:False  compute:False  depends:False  modules:note  help:False
+note_pad_url Label:Pad Url  ttype:char    required:False  compute:False  depends:False  modules:note_pad  help:False
+open Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:False
+reference Label:Reference  ttype:char    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+res_id Label:Record ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:ID of the target record in the database
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+stage_id Label:Stage  ttype:many2one  relation:note.stage    required:False  compute:False  depends:False  modules:note  help:False
+stage_ids Label:Stages of Users  ttype:many2many  relation:note.stage    required:False  compute:False  depends:False  modules:note  help:False
+tag_ids Label:Tags  ttype:many2many  relation:note.tag    required:False  compute:False  depends:False  modules:note  help:False
+user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+
+###crm.team
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If the active field is set to false, it will allow you to hide the Sales Team without removing it.
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:True  compute:False  depends:False  modules:crm  help:The email address associated with this channel. New emails received will automatically create new leads assigned to the channel.
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:The color of the channel
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:sales_team  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:sales_team  help:False
+dashboard_button_name Label:Dashboard Button  ttype:char    required:False  compute:False  depends:False  modules:sales_team  help:False
+dashboard_graph_data Label:Dashboard Graph Data  ttype:text    required:False  compute:False  depends:False  modules:sales_team  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sales_team  help:False
+favorite_user_ids Label:Favorite Members  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+is_favorite Label:Show on dashboard  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:Favorite teams to display them in the dashboard and access them easily.
+is_template Label:团队模板  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+member_ids Label:Channel Members  ttype:one2many  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:Add members to automatically assign their documents to this sales team. You can only be member of one team.
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of unread messages
+name Label:Sales Team  ttype:char    required:True  compute:False  depends:False  modules:sales_team  help:False
+opportunities_amount Label:Opportunities Revenues  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+opportunities_count Label:Number of open opportunities  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+overdue_opportunities_amount Label:Overdue Opportunities Revenues  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+overdue_opportunities_count Label:Number of overdue opportunities  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+team_leader_id Label:团度负责人  ttype:many2one  relation:anodoo.team.member    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_member_count Label:成员数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_member_ids Label:团队成员  ttype:one2many  relation:anodoo.team.member    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_roles Label:团队角色  ttype:one2many  relation:anodoo.team.role    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_type Label:团队类型  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_team  help:团队类型定义，可扩展
+unassigned_leads_count Label:Unassigned Leads  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+use_leads Label:Leads  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:Check this box to filter and qualify incoming requests as leads before converting them into opportunities and assigning them to a salesperson.
+use_opportunities Label:Pipeline  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:Check this box to manage a presales process with opportunities.
+user_id Label:Team Leader  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+
+###anodoo.team.member
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+role_id Label:团队角色  ttype:many2one  relation:anodoo.team.role    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_id Label:团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+user_id Label:团队成员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+
+###anodoo.team.role
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+group_id Label:关联权限组  ttype:many2one  relation:res.groups    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+is_default Label:是否默认角色  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+is_leader Label:是否团队负责人  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_team  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+team_id Label:团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_team  help:False
+
+================== Extended Fields ======================
+
+
+###res.config.settings

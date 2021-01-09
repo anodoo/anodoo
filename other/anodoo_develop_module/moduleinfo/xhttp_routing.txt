@@ -1,0 +1,55 @@
+模块:http_routing       ID:78      Name:Web Routing
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###ir.ui.view name:View inherit:ir.model()  transient:False  modules:base, http_routing, mail, web_editor
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###ir.http
+
+
+###ir.ui.view
+
+
+================== qWeb ======================
+
+http_routing.400  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.403  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.404  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.500  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.error_message  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.http_error  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+http_routing.http_error_debug  type:qweb  priority:16  arch_fs:http_routing/views/http_routing_template.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###ir.http
+
+
+###ir.ui.view

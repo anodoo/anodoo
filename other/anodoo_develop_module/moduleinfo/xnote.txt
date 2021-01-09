@@ -1,0 +1,161 @@
+模块:note       ID:72      Name:Notes
+
+
+================== Models ======================
+
+###note.stage name:Note Stage inherit:ir.model()  access:ir.model.access(175,)  rule:ir.rule(37,)  transient:False  modules:note
+
+###note.tag name:Note Tag inherit:ir.model()  access:ir.model.access(177,)  rule:ir.rule()  transient:False  modules:note
+
+
+================== Extended Models ======================
+
+###note.note name:Note inherit:ir.model()  transient:False  modules:anodoo_team, note, note_pad
+
+###mail.activity name:Activity inherit:ir.model()  transient:False  modules:mail, note
+
+###mail.activity.type name:Activity Type inherit:ir.model()  transient:False  modules:mail, note
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+###note.action_note_stage  name:Stages view_mode:tree,form domain:[('user_id','=',uid)]  context:{}
+
+###note.note_tag_action  name:Tags view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###note.stage
+
+note.view_note_stage_form  type:form  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_stage_tree  type:tree  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+
+###note.tag
+
+note.note_tag_view_form  type:form  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.note_tag_view_tree  type:tree  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###note.note
+
+note.view_note_note_form  type:form  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_note_kanban  type:kanban  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_note_filter  type:search  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note.view_note_note_tree  type:tree  priority:16  arch_fs:note/views/note_views.xml  inherit_id:
+
+note_pad.view_note_note_pad_form  type:form  priority:16  arch_fs:note_pad/views/note_views.xml  inherit_id:note.view_note_note_form
+
+
+###mail.activity
+
+
+###mail.activity.type
+
+
+###res.users
+
+
+================== qWeb ======================
+
+note.assets_backend  type:qweb  priority:16  arch_fs:note/views/note_templates.xml  inherit_id:web.assets_backend
+
+note.qunit_suite  type:qweb  priority:16  arch_fs:note/views/note_templates.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+###note.stage
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+fold Label:Folded by Default  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+name Label:Stage Name  ttype:char    required:True  compute:False  depends:False  modules:note  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Used to order the note stages
+user_id Label:Owner  ttype:many2one  relation:res.users    required:True  compute:False  depends:False  modules:note  help:Owner of the note stage
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+
+###note.tag
+
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+name Label:Tag Name  ttype:char    required:True  compute:False  depends:False  modules:note  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+
+================== Extended Fields ======================
+
+
+###note.note
+
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:note  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:note  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:note  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:note  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:note  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:note  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+date_done Label:Date done  ttype:date    required:False  compute:False  depends:False  modules:note  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:note  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+memo Label:Note Content  ttype:html    required:False  compute:False  depends:False  modules:note  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:note  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:note  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of messages with delivery error
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:note  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:note  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:note  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:note  help:Number of unread messages
+name Label:Note Summary  ttype:text    required:False  compute:False  depends:False  modules:note  help:False
+open Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:note  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:note  help:False
+stage_id Label:Stage  ttype:many2one  relation:note.stage    required:False  compute:False  depends:False  modules:note  help:False
+stage_ids Label:Stages of Users  ttype:many2many  relation:note.stage    required:False  compute:False  depends:False  modules:note  help:False
+tag_ids Label:Tags  ttype:many2many  relation:note.tag    required:False  compute:False  depends:False  modules:note  help:False
+user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:note  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:note  help:False
+
+###mail.activity
+
+note_id Label:Related Note  ttype:many2one  relation:note.note    required:False  compute:False  depends:False  modules:note  help:False
+
+###mail.activity.type
+
+
+###res.users

@@ -1,0 +1,31 @@
+模块:calendar       ID:66      Name:Calendar
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+calendar.assets_backend  type:qweb  priority:16  arch_fs:calendar/views/calendar_templates.xml  inherit_id:web.assets_backend
+
+calendar.invitation_page_anonymous  type:qweb  priority:16  arch_fs:calendar/views/calendar_templates.xml  inherit_id:
+
+calendar.qunit_suite  type:qweb  priority:16  arch_fs:calendar/views/calendar_templates.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================

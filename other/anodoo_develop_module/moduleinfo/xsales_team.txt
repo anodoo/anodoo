@@ -1,0 +1,95 @@
+模块:sales_team       ID:79      Name:Sales Teams
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###crm.team name:Sales Team inherit:ir.model(122,)  transient:False  modules:anodoo_team, sales_team
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+
+###crm.team
+
+sales_team.crm_team_salesteams_view_kanban  type:kanban  priority:16  arch_fs:sales_team/views/sales_team_dashboard.xml  inherit_id:
+
+sales_team.crm_team_view_form  type:form  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+sales_team.crm_team_view_kanban  type:kanban  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+sales_team.crm_team_view_tree  type:tree  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+sales_team.crm_team_salesteams_search  type:search  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:
+
+
+###res.users
+
+
+================== qWeb ======================
+
+sales_team.assets_backend  type:qweb  priority:16  arch_fs:sales_team/views/crm_team_views.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+
+###crm.team
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If the active field is set to false, it will allow you to hide the Sales Team without removing it.
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:The color of the channel
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:sales_team  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:sales_team  help:False
+dashboard_button_name Label:Dashboard Button  ttype:char    required:False  compute:False  depends:False  modules:sales_team  help:False
+dashboard_graph_data Label:Dashboard Graph Data  ttype:text    required:False  compute:False  depends:False  modules:sales_team  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sales_team  help:False
+favorite_user_ids Label:Favorite Members  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+is_favorite Label:Show on dashboard  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:Favorite teams to display them in the dashboard and access them easily.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+member_ids Label:Channel Members  ttype:one2many  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:Add members to automatically assign their documents to this sales team. You can only be member of one team.
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of messages with delivery error
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:sales_team  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:sales_team  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:Number of unread messages
+name Label:Sales Team  ttype:char    required:True  compute:False  depends:False  modules:sales_team  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:sales_team  help:False
+user_id Label:Team Leader  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sales_team  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sales_team  help:False
+
+###res.users
+
+sale_team_id Label:User's Sales Team  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:sales_team  help:Sales Team the user is member of. Used to compute the members of a Sales Team through the inverse one2many

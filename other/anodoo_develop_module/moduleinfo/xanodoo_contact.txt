@@ -1,0 +1,85 @@
+模块:anodoo_contact       ID:73      Name:联系人360
+
+
+================== Models ======================
+
+###anodoo.contact.relation.contact name:联系人与联系人的关系 inherit:ir.model()  access:ir.model.access(252,)  rule:ir.rule()  transient:False  modules:anodoo_contact
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+###anodoo.contact.relation.contact
+
+anodoo_contact.view_anodoo_contact_relation_contact_form  type:form  priority:100  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_anodoo_contact_relation_contact_list  type:tree  priority:100  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_anodoo_contact_relation_contact_search  type:search  priority:100  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+anodoo_contact.view_contact_form  type:form  priority:1  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_form_customer  type:form  priority:1  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_list  type:tree  priority:8  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_list_customer  type:tree  priority:8  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_kanban  type:kanban  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_kanban_customer  type:kanban  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_search  type:search  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_search_tree  type:search  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+anodoo_contact.assets_backend  type:qweb  priority:16  arch_fs:anodoo_contact/views/contact_templates.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+###anodoo.contact.relation.contact
+
+contact_id Label:联系人  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_contact  help:联系人与联系人的关系的主方
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+description Label:备注  ttype:text    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+is_reverse Label:是否双向保存关系  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_contact  help:联系人和联系人关系的定义一般都是双方的,可以选择是否双方都保存
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+relation_contact_id Label:关系联系人  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_contact  help:联系人与联系人的关系的从方
+relation_type Label:关系类型  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_contact  help:联系人与联系人关系的类型
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+belong_company Label:工作公司  ttype:char    required:False  compute:False  depends:False  modules:anodoo_contact  help:个人客户所工作公司
+birth_date Label:出生日期  ttype:date    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+company_type Label:Company Type  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_contact, base  help:False
+function Label:工作职位  ttype:char    required:False  compute:False  depends:False  modules:anodoo_contact, base  help:False
+gender_type Label:性别  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+private_user_id Label:所属人  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_contact  help:如果所属人不为空,则该联系人为此人私有
+relation_contact_ids Label:相关联系人  ttype:one2many  relation:anodoo.contact.relation.contact    required:False  compute:False  depends:False  modules:anodoo_contact  help:False

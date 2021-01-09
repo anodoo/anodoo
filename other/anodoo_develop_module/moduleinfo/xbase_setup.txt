@@ -1,0 +1,79 @@
+模块:base_setup       ID:58      Name:Initial Setup Tools
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+base_setup.res_config_settings_view_form  type:form  priority:0  arch_fs:base_setup/views/res_config_settings_views.xml  inherit_id:base.res_config_settings_view_form
+
+
+###ir.http
+
+
+###res.users
+
+
+================== qWeb ======================
+
+base_setup.assets_backend  type:qweb  priority:16  arch_fs:base_setup/views/assets.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.config.settings
+
+active_user_count Label:Number of Active Users  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+company_count Label:Number of Companies  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:base_setup  help:False
+company_informations Label:Company Informations  ttype:text    required:False  compute:False  depends:False  modules:base_setup  help:False
+company_name Label:Company Name  ttype:char    required:False  compute:False  depends:False  modules:base_setup  help:False
+external_email_server_default Label:External Email Servers  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+external_report_layout_id Label:Document Template  ttype:many2one  relation:ir.ui.view    required:False  compute:False  depends:False  modules:base_setup  help:False
+group_multi_currency Label:Multi-Currencies  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:Allows to work in a multi currency environment
+language_count Label:Number of Languages  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_auth_ldap Label:LDAP Authentication  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_auth_oauth Label:Use external authentication providers (OAuth)  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_gengo Label:Translate Your Website with Gengo  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_geolocalize Label:GeoLocalize  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_import Label:Allow users to import data from CSV/XLS/XLSX/ODS files  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_google_calendar Label:Allow the users to synchronize their calendar  with Google Calendar  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_google_drive Label:Attach Google documents to any record  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_google_spreadsheet Label:Google Spreadsheet  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_inter_company_rules Label:Manage Inter Company  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_pad Label:Collaborative Pads  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_partner_autocomplete Label:Partner Autocomplete  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_voip Label:Asterisk (VoIP)  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_web_unsplash Label:Unsplash Image Library  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+paperformat_id Label:Paper format  ttype:many2one  relation:report.paperformat    required:False  compute:False  depends:False  modules:base_setup  help:False
+report_footer Label:Custom Report Footer  ttype:text    required:False  compute:False  depends:False  modules:base_setup  help:Footer text displayed at the bottom of all reports.
+show_effect Label:Show Effect  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+user_default_rights Label:Default Access Rights  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+
+###ir.http
+
+
+###res.users

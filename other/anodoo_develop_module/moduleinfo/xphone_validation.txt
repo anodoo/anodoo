@@ -1,0 +1,112 @@
+模块:phone_validation       ID:9      Name:Phone Numbers Validation
+
+
+================== Models ======================
+
+###phone.blacklist name:Phone Blacklist inherit:ir.model()  access:ir.model.access(179, 178)  rule:ir.rule()  transient:False  modules:phone_validation
+
+###mail.thread.phone name:Phone Blacklist Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:phone_validation, sms
+
+###phone.validation.mixin name:Phone Validation Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:phone_validation
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+
+================== Actions ======================
+
+###phone_validation.phone_blacklist_action  name:Phone Blacklist view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###phone.blacklist
+
+phone_validation.phone_blacklist_view_form  type:form  priority:16  arch_fs:phone_validation/views/phone_blacklist_views.xml  inherit_id:
+
+phone_validation.phone_blacklist_view_search  type:search  priority:16  arch_fs:phone_validation/views/phone_blacklist_views.xml  inherit_id:
+
+phone_validation.phone_blacklist_view_tree  type:tree  priority:16  arch_fs:phone_validation/views/phone_blacklist_views.xml  inherit_id:
+
+
+###mail.thread.phone
+
+
+###phone.validation.mixin
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###phone.blacklist
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:phone_validation  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:phone_validation  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:phone_validation  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of unread messages
+number Label:Phone Number  ttype:char    required:True  compute:False  depends:False  modules:phone_validation  help:Number should be E164 formatted
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:phone_validation  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:phone_validation  help:False
+
+###mail.thread.phone
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:phone_validation  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:phone_validation  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:Number of unread messages
+phone_blacklisted Label:Phone Blacklisted  ttype:boolean    required:False  compute:False  depends:False  modules:phone_validation  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+phone_sanitized Label:Sanitized Number  ttype:char    required:False  compute:False  depends:False  modules:phone_validation  help:Field used to store sanitized phone number. Helps speeding up searches and comparisons.
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###phone.validation.mixin
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:phone_validation  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:phone_validation  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:phone_validation  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner

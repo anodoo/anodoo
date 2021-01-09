@@ -1,0 +1,146 @@
+模块:fetchmail       ID:36      Name:Email Gateway
+
+
+================== Models ======================
+
+###fetchmail.server name:Incoming Mail Server inherit:ir.model()  access:ir.model.access(174,)  rule:ir.rule()  transient:False  modules:fetchmail
+
+###mail.mail name:Outgoing Mails inherit:ir.model(126,)  access:ir.model.access(128, 127, 129, 126)  rule:ir.rule()  transient:False  modules:fetchmail, mail
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###fetchmail.action_email_server_tree  name:Incoming Mail Servers view_mode:tree,form domain:False  context:{}
+
+###mail.action_view_mail_mail  name:Emails view_mode:tree,form domain:False  context:{}
+
+###fetchmail.act_server_history  name:Messages view_mode:tree,form domain:[('email_from', '!=', False), ('fetchmail_server_id', '=', active_id)]  context:{'search_default_server_id': active_id, 'default_fetchmail_server_id': active_id}
+
+
+================== Views ======================
+
+
+###fetchmail.server
+
+fetchmail.view_email_server_form  type:form  priority:16  arch_fs:fetchmail/views/fetchmail_views.xml  inherit_id:
+
+fetchmail.view_email_server_tree  type:tree  priority:16  arch_fs:fetchmail/views/fetchmail_views.xml  inherit_id:
+
+fetchmail.view_email_server_search  type:search  priority:16  arch_fs:fetchmail/views/fetchmail_views.xml  inherit_id:
+
+
+###mail.mail
+
+mail.view_mail_form  type:form  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+fetchmail.email_message_tree_view  type:form  priority:16  arch_fs:fetchmail/views/mail_mail_views.xml  inherit_id:mail.view_mail_form
+
+mail.view_mail_search  type:search  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+mail.view_mail_tree  type:tree  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###fetchmail.server
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:fetchmail  help:False
+attach Label:Keep Attachments  ttype:boolean    required:False  compute:False  depends:False  modules:fetchmail  help:Whether attachments should be downloaded. If not enabled, incoming emails will be stripped of any attachments before being processed
+configuration Label:Configuration  ttype:text    required:False  compute:False  depends:False  modules:fetchmail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:fetchmail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:fetchmail  help:False
+date Label:Last Fetch Date  ttype:datetime    required:False  compute:False  depends:False  modules:fetchmail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:fetchmail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:fetchmail  help:False
+is_ssl Label:SSL/TLS  ttype:boolean    required:False  compute:False  depends:False  modules:fetchmail  help:Connections are encrypted with SSL/TLS through a dedicated port (default: IMAPS=993, POP3S=995)
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:fetchmail  help:False
+message_ids Label:Messages  ttype:one2many  relation:mail.mail    required:False  compute:False  depends:False  modules:fetchmail  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:fetchmail  help:False
+object_id Label:Create a New Record  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:fetchmail  help:Process each incoming mail as part of a conversation corresponding to this document type. This will create new documents for new conversations, or attach follow-up emails to the existing conversations (documents).
+original Label:Keep Original  ttype:boolean    required:False  compute:False  depends:False  modules:fetchmail  help:Whether a full original copy of each email should be kept for reference and attached to each processed message. This will usually double the size of your message database.
+password Label:Password  ttype:char    required:False  compute:False  depends:False  modules:fetchmail  help:False
+port Label:Port  ttype:integer    required:False  compute:False  depends:False  modules:fetchmail  help:False
+priority Label:Server Priority  ttype:integer    required:False  compute:False  depends:False  modules:fetchmail  help:Defines the order of processing, lower values mean higher priority
+script Label:Script  ttype:char    required:False  compute:False  depends:False  modules:fetchmail  help:False
+server Label:Server Name  ttype:char    required:False  compute:False  depends:False  modules:fetchmail  help:Hostname or IP of the mail server
+server_type Label:Server Type  ttype:selection    required:True  compute:False  depends:False  modules:fetchmail  help:False
+state Label:Status  ttype:selection    required:False  compute:False  depends:False  modules:fetchmail  help:False
+user Label:Username  ttype:char    required:False  compute:False  depends:False  modules:fetchmail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:fetchmail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:fetchmail  help:False
+
+###mail.mail
+
+add_sign Label:Add Sign  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:Attachments are linked to a document through model / res_id and to the message through this field.
+author_avatar Label:Author's avatar  ttype:binary    required:False  compute:False  depends:False  modules:mail  help:False
+author_id Label:Author  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:Author of the message. If not set, email_from may hold an email address that did not match any partner.
+auto_delete Label:Auto Delete  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Permanently delete this email after sending it, to save space
+body Label:Contents  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+body_html Label:Rich-text Contents  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Rich-text/HTML message
+canned_response_ids Label:Canned Responses  ttype:one2many  relation:mail.shortcode    required:False  compute:False  depends:False  modules:mail  help:False
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+child_ids Label:Child Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+date Label:Date  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_cc Label:Cc  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Carbon copy message recipients
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.
+email_layout_xmlid Label:Layout  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_to Label:To  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Message recipients (emails)
+failure_reason Label:Failure Reason  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Failure reason. This is usually the exception thrown by the email server, stored to ease the debugging of mailing issues.
+fetchmail_server_id Label:Inbound Mail Server  ttype:many2one  relation:fetchmail.server    required:False  compute:False  depends:False  modules:fetchmail  help:False
+has_error Label:Has error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Has error
+has_sms_error Label:Has SMS error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:Has error
+headers Label:Headers  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+letter_ids Label:Letter  ttype:one2many  relation:snailmail.letter    required:False  compute:False  depends:False  modules:snailmail  help:False
+mail_activity_type_id Label:Mail Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+mail_ids Label:Mails  ttype:one2many  relation:mail.mail    required:False  compute:False  depends:False  modules:mail  help:False
+mail_message_id Label:Message  ttype:many2one  relation:mail.message    required:True  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing mail server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:False
+message_id Label:Message-Id  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Message unique identifier
+message_type Label:Type  ttype:selection    required:True  compute:False  depends:False  modules:mail, sms, snailmail  help:Message type: email for email message, notification for system message, comment for other messages such as user replies
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_status Label:Moderation Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+moderator_id Label:Moderated By  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+needaction Label:Need Action  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Need Action
+need_moderation Label:Need moderation  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+no_auto_thread Label:No threading for answers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Answers do not go in the original document discussion thread. This has an impact on the generated message-id.
+notification Label:Is Notification  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Mail has been created to notify people of an existing mail.message
+notification_ids Label:Notifications  ttype:one2many  relation:mail.notification    required:False  compute:False  depends:False  modules:mail  help:False
+notified_partner_ids Label:Partners with Need Action  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+parent_id Label:Parent Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:Initial thread message.
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+rating_ids Label:Related ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:rating  help:False
+rating_value Label:Rating Value  ttype:float    required:False  compute:False  depends:False  modules:rating  help:False
+recipient_ids Label:To (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+record_name Label:Message Record Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name get of the related document.
+references Label:References  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Message references, such as identifiers of previous messages
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Reply email address. Setting the reply_to bypasses the automatic thread creation.
+res_id Label:Related Document ID  ttype:many2one_reference    required:False  compute:False  depends:False  modules:mail  help:False
+scheduled_date Label:Scheduled Send Date  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible.
+snailmail_error Label:Snailmail message in error  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_status Label:Snailmail Status  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+starred Label:Starred  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Current user has a starred notification linked to this message
+starred_partner_ids Label:Favorited By  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+state Label:Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+subtype_id Label:Subtype  ttype:many2one  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:False
+tracking_value_ids Label:Tracking values  ttype:one2many  relation:mail.tracking.value    required:False  compute:False  depends:False  modules:mail  help:Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+================== Extended Fields ======================

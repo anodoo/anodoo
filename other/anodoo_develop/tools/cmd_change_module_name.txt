@@ -1,0 +1,23 @@
+cd ~/PycharmProjects/Anodoo_
+
+先改目录名称
+anodoo_ceh 批量替换为新模块
+/ceh 批量替换为新模块
+/engage 批量替换为旧模块
+
+
+mv anodoo_ceh/controllers/engage_controllers.py anodoo_ceh/controllers/ceh_controllers.py;
+mv anodoo_ceh/data/engage_data.xml anodoo_ceh/data/ceh_data.xml;
+mv anodoo_ceh/demo/engage_demo.xml anodoo_ceh/demo/ceh_demo.xml;
+mv anodoo_ceh/models/engage_models.py anodoo_ceh/models/ceh_models.py;
+mv anodoo_ceh/security/engage_security.xml anodoo_ceh/security/ceh_security.xml;
+mv anodoo_ceh/views/engage_analysis_views.xml anodoo_ceh/views/ceh_analysis_views.xml;
+mv anodoo_ceh/views/engage_menu.xml anodoo_ceh/views/ceh_menu.xml;
+mv anodoo_ceh/views/engage_templates.xml anodoo_ceh/views/ceh_templates.xml;
+mv anodoo_ceh/views/engage_views.xml anodoo_ceh/views/ceh_views.xml;
+ls;
+
+进入eclipse, 刷新, 选择模块, 在当前resource中, 批量替换 crm_relationship 为 relationship  应该有13个地方在3个文件内
+
+修改mani文件
+

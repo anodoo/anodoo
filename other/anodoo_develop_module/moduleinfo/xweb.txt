@@ -1,0 +1,149 @@
+模块:web       ID:48      Name:Web
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###ir.actions.act_window.view name:Action Window View inherit:ir.model()  transient:False  modules:base, mail, web
+
+###base name:Base inherit:ir.model()  transient:False  modules:base, mail, web
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###ir.qweb.field.image name:Qweb Field Image inherit:ir.model()  transient:False  modules:base, web, web_editor
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###ir.actions.act_window.view
+
+
+###base
+
+
+###ir.http
+
+
+###ir.qweb.field.image
+
+
+================== qWeb ======================
+
+web.address_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web._assets_backend_helpers  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_bootstrap  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_common_lazy  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:web.assets_common
+
+web._assets_common_minimal_js  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_common_minimal_js  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_frontend_helpers  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_frontend_lazy  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:web.assets_frontend
+
+web._assets_frontend_minimal_js  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_frontend_minimal_js  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_helpers  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_primary_variables  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_secondary_variables  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web._assets_utils  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_backend  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.basic_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.brand_promotion  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.brand_promotion_message  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_common  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.debug_icon  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.external_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.external_layout_background  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.external_layout_boxed  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.external_layout_clean  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.external_layout_standard  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.frontend_layout  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:web.layout
+
+web.html_container  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.internal_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.login  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.login_layout  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.minimal_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.pdf_js_lib  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.preview_externalreport  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.preview_internalreport  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.report_assets_common  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.report_assets_pdf  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.report_layout  type:qweb  priority:16  arch_fs:web/views/report_templates.xml  inherit_id:
+
+web.assets_tests  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.conditional_assets_tests  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.benchmark_suite  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.js_tests_assets  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.layout  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.qunit_mobile_suite  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.qunit_suite  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.assets_frontend  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+web.webclient_bootstrap  type:qweb  priority:16  arch_fs:web/views/webclient_templates.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###ir.actions.act_window.view
+
+
+###base
+
+
+###ir.http
+
+
+###ir.qweb.field.image

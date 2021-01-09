@@ -1,0 +1,61 @@
+模块:anodoo_quote       ID:101      Name:报价
+
+
+================== Models ======================
+
+###sale.order.template name:报价单模板 inherit:ir.model()  access:ir.model.access(546, 547)  rule:ir.rule(113,)  transient:False  modules:anodoo_quote, sale_management
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###sale_management.sale_order_template_action  name:报价单模板 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###sale.order.template
+
+sale_management.sale_order_template_view_form  type:form  priority:16  arch_fs:sale_management/views/sale_order_template_views.xml  inherit_id:
+
+sale_management.sale_order_template_view_search  type:search  priority:16  arch_fs:sale_management/views/sale_order_template_views.xml  inherit_id:
+
+sale_management.sale_order_template_view_tree  type:tree  priority:16  arch_fs:sale_management/views/sale_order_template_views.xml  inherit_id:
+
+anodoo_quote.sfa_sale_order_template_view_form  type:form  priority:16  arch_fs:anodoo_quote/views/quote_views.xml  inherit_id:sale_management.sale_order_template_view_form
+
+anodoo_quote.sfa_sale_order_template_view_tree  type:tree  priority:16  arch_fs:anodoo_quote/views/quote_views.xml  inherit_id:sale_management.sale_order_template_view_tree
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###sale.order.template
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:sale_management  help:如果取消选中，将允许您隐藏报价模板而不将其删除。
+company_id Label:公司  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:sale_management  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:sale_management  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sale_management  help:False
+description Label:模板使用备注  ttype:text    required:False  compute:False  depends:False  modules:anodoo_quote  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:sale_management  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sale_management  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:sale_management  help:False
+mail_template_id Label:确认邮件  ttype:many2one  relation:mail.template    required:False  compute:False  depends:False  modules:sale_management  help:此EMail模板将在确认时发送。留空即表示没有要发送的内容。
+name Label:报价单模板  ttype:char    required:True  compute:False  depends:False  modules:sale_management  help:False
+note Label:条款和条件  ttype:text    required:False  compute:False  depends:False  modules:sale_management  help:False
+number_of_days Label:报价单时长  ttype:integer    required:False  compute:False  depends:False  modules:sale_management  help:用于报价单有效日期计算的天数
+require_payment Label:在线支付  ttype:boolean    required:False  compute:False  depends:False  modules:sale_management  help:向客户申请在线支付，以便自动确认订单。 
+require_signature Label:在线签名  ttype:boolean    required:False  compute:False  depends:False  modules:sale_management  help:向客户申请在线签名，以便自动确认订单。 
+sale_order_template_line_ids Label:明细行  ttype:one2many  relation:sale.order.template.line    required:False  compute:False  depends:False  modules:sale_management  help:False
+sale_order_template_option_ids Label:可选产品  ttype:one2many  relation:sale.order.template.option    required:False  compute:False  depends:False  modules:sale_management  help:False
+sequence Label:排序  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_quote  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:sale_management  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sale_management  help:False
+
+================== Extended Fields ======================

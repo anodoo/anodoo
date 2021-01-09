@@ -1,0 +1,35 @@
+模块:anodoo_content       ID:17      Name:Anodoo Content
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+anodoo_content.view_res_config_settings_content_form  type:form  priority:16  arch_fs:anodoo_content/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.config.settings

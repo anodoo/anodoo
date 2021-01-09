@@ -1,0 +1,37 @@
+模块:note_pad       ID:22      Name:Memos pad
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###note.note name:Note inherit:ir.model()  transient:False  modules:anodoo_team, note, note_pad
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###note.note
+
+note_pad.view_note_note_pad_form  type:form  priority:16  arch_fs:note_pad/views/note_views.xml  inherit_id:note.view_note_note_form
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###note.note
+
+note_pad_url Label:Pad Url  ttype:char    required:False  compute:False  depends:False  modules:note_pad  help:False

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 产品类目， 参考prod_data.xml中定义了： 
+        所有(product.product_category_all)
+        	所有/销售类 product.product_category_1
+        	所有/报销类 product.cat_expense-->
+
+        <record id="product_category_2" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">内部</field>
+        </record>
+        <record id="product_category_3" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">服务</field>
+        </record>
+        <record id="product_category_6" model="product.category">
+            <field name="parent_id" ref="product_category_3"/>
+            <field name="name">可售</field>
+        </record>
+        <record id="product_category_4" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">软件</field>
+        </record>
+        <record id="product_category_5" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">办公家具</field>
+        </record>
+        <record id="product_category_consumable" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">消耗品</field>
+        </record>
+    </data>
+</odoo>

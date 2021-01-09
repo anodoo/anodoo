@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 客户标签分类 -->
+        <record id="anodoo_customer_label_category_0" model="anodoo.customer.label.category">
+        	<field name="name">基本标签</field>
+        </record>
+        <record id="anodoo_customer_label_category_1" model="anodoo.customer.label.category">
+        	<field name="name">营销类标签</field>
+        </record>
+        <record id="anodoo_customer_label_category_2" model="anodoo.customer.label.category">
+        	<field name="name">销售类标签</field>
+        </record>
+        
+        <!-- 客户标签 -->
+        <record id="anodoo_customer_label_category_00" model="anodoo.customer.label">
+        	<field name="name">行业龙头</field>
+        	<field name="color">1</field>
+        	<field name="is_auto">1</field>
+        	<field name="customers_domain">[["partner_type","=","customer"]]</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_0"/>
+        </record>
+        <record id="anodoo_customer_label_category_10" model="anodoo.customer.label">
+        	<field name="name">促销敏感</field>
+        	<field name="color">2</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_1"/>
+        </record>
+        <record id="anodoo_customer_label_category_11" model="anodoo.customer.label">
+        	<field name="name">参加过营销会议</field>
+        	<field name="color">3</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_1"/>
+        </record>
+        <record id="anodoo_customer_label_category_12" model="anodoo.customer.label">
+        	<field name="name">邮件营销</field>
+        	<field name="color">4</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_1"/>
+        </record>
+        <record id="anodoo_customer_label_category_20" model="anodoo.customer.label">
+        	<field name="name">频繁购买</field>
+        	<field name="color">5</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        </record>
+        <record id="anodoo_customer_label_category_21" model="anodoo.customer.label">
+        	<field name="name">金额大</field>
+        	<field name="color">6</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        </record>
+        <record id="anodoo_customer_label_category_22" model="anodoo.customer.label">
+        	<field name="name">两年内无交易</field>
+        	<field name="color">7</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        </record>
+        
+        <!-- 个人客户 -->
+        <record id="partner_zhao_customer" model="res.partner">
+            <field name="name">赵客户</field>
+            <field name="customer_identity">P2050001</field>
+            <field name="email">zhao.customer@sw-zh.cn</field>
+            <field name="street">中山路1号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_7.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">customer</field>
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="customer_type" ref="default_customer_type_person"/>
+            <field name="customer_size" ref="default_customer_size_smb"/>
+            <field name="customer_priority">2</field>
+        </record>
+        <record id="user_zhao_customer" model="res.users" >
+            <field name="partner_id" ref="partner_zhao_customer"/>
+            <field name="login">zhao.customer</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>赵客户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_zhao_customer'))]"/>
+        </record>
+        
+        <record id="partner_qian_customer" model="res.partner">
+            <field name="name">钱客户</field>
+            <field name="customer_identity">P2050002</field>
+            <field name="email">qian.customer@sw-zh.cn</field>
+            <field name="street">佛山路322号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_18.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">customer</field>
+            <field name="user_id" ref="user_qian_sales"/>
+            <field name="customer_type" ref="default_customer_type_person"/>
+            <field name="customer_size" ref="default_customer_size_smb"/>
+            <field name="customer_priority">3</field>
+        </record>
+        <record id="user_qian_customer" model="res.users" >
+            <field name="partner_id" ref="partner_qian_customer"/>
+            <field name="login">qian.customer</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>钱客户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_qian_customer'))]"/>
+        </record>
+        
+        <record id="partner_sun_customer" model="res.partner">
+            <field name="name">孙客户</field>
+            <field name="customer_identity">P2050003</field>
+            <field name="email">sun.customer@sw-zh.cn</field>
+            <field name="street">东莞路3152号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_28.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">customer</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+            <field name="customer_type" ref="default_customer_type_person"/>
+            <field name="customer_size" ref="default_customer_size_smb"/>
+            <field name="customer_priority">2</field>
+        </record>
+        <record id="user_sun_customer" model="res.users" >
+            <field name="partner_id" ref="partner_sun_customer"/>
+            <field name="login">sun.customer</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>孙客户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_sun_customer'))]"/>
+        </record>
+        
+        <record id="partner_li_customer" model="res.partner">
+            <field name="name">李客户</field>            
+            <field name="customer_identity">P2050004</field>
+            <field name="email">li.customer@sw-zh.cn</field>
+            <field name="street">顺德路3112号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_10.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">customer</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+            <field name="customer_priority">1</field>
+            <field name="customer_type" ref="default_customer_type_person"/>
+            <field name="customer_size" ref="default_customer_size_smb"/>
+        </record>
+        <record id="user_li_customer" model="res.users" >
+            <field name="partner_id" ref="partner_li_customer"/>
+            <field name="login">li.customer</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>李客户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_li_customer'))]"/>
+        </record>
+        
+        <!-- 公司客户 -->
+        <record id="customer_1" model="res.partner">
+            <field name="name">兆富科技有限公司</field>
+            <field name="customer_identity">C1010001</field>
+            <field name="is_company">1</field>
+            <field name="street">市民广场西路232号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">wood.corner26@zhaofu.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="website">http://www.wood-corner.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_1-image.png"/>
+            <field name="partner_type">customer</field>            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="customer_priority">2</field>            
+            <field name="customer_type" ref="default_customer_type_company"/>
+            <field name="customer_size" ref="default_customer_size_smb"/>
+            <field name="industry_id" ref="base.res_partner_industry_K" />
+            <field  name="customer_label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_12'), ref('anodoo_customer_label_category_00')])]"/>
+            
+        </record>
+        <record id="customer_address_1" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">发票地址</field>
+            <field name="parent_id" eval="ref('customer_1')"/>
+            <field name="street">市民广场西路232号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">wood.corner26@zhaofu.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="user_id" ref="user_zhao_sales"/>
+        </record>
+        <record id="customer_2" model="res.partner">
+            <field name="name">乾宁软件有限公司</field>
+            <field name="customer_identity">C1010002</field>
+            <field name="is_company">1</field>
+            <field name="street">五和大道32号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">deco.addict82@example.com</field>
+            <field name="phone">(603)-996-3829</field>
+            <field name="website">http://www.deco-addict.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_2-image.png"/>
+            <field name="partner_type">customer</field>
+            <field name="user_id" ref="user_qian_sales"/>
+            <field name="customer_priority">1</field>
+            <field name="industry_id" ref="base.res_partner_industry_K" />            
+            <field name="customer_type" ref="default_customer_type_company"/>
+            <field name="customer_size" ref="default_customer_size_ka"/>
+            <field  name="customer_label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_22'), ref('anodoo_customer_label_category_10')])]"/>
+        </record>
+        <record id="customer_address_2" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">发票地址</field>
+            <field name="parent_id" eval="ref('customer_2')"/>
+            <field name="street">五和大道32号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">deco.addict82@example.com</field>
+            <field name="phone">(603)-996-3829</field>
+            <field name="user_id" ref="user_qian_sales"/>
+        </record>
+        <record id="customer_3" model="res.partner">
+            <field name="name">笋青培训有限公司</field>
+            <field name="customer_identity">C1010003</field>
+            <field name="is_company">1</field>
+            <field name="street">大芬路21号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">gemini.furniture39@example.com</field>
+            <field name="phone">(941)-284-4875</field>
+            <field name="website">http://www.gemini-furniture.com/</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_3-image.png"/>
+            <field name="partner_type">customer</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+            <field name="customer_priority">2</field>
+            <field name="industry_id" ref="base.res_partner_industry_K" />                     
+            <field name="customer_type" ref="default_customer_type_company"/>
+            <field name="customer_size" ref="default_customer_size_ka"/>
+        </record>
+        <record id="customer_address_3" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">发票地址</field>
+            <field name="parent_id" eval="ref('customer_3')"/>
+            <field name="street">大芬路21号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">gemini.furniture39@example.com</field>
+            <field name="phone">(941)-284-4875</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+        </record>
+        <record id="customer_4" model="res.partner">
+            <field name="name">理广实业有限公司</field>
+            <field name="customer_identity">C1010004</field>
+            <field name="is_company">1</field>
+            <field name="street">东门路12号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+            <field name="website">http://www.ready-mat.com/</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_4-image.png"/>
+            <field name="partner_type">customer</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+            <field name="customer_priority">3</field>
+            <field name="industry_id" ref="base.res_partner_industry_K" />                     
+            <field name="customer_type" ref="default_customer_size_strategy"/>
+            <field name="customer_size" ref="default_customer_size_ka"/>
+        </record>
+        <record id="customer_address_4" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">发票地址</field>
+            <field name="parent_id" eval="ref('customer_4')"/>
+            <field name="street">东门路12号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+            <field name="belong_team_id" ref="team_sales_1"/>
+        </record>
+        
+        
+        
+        <!-- 客户分群 -->
+        <record id="anodoo_customer_segment_1" model="anodoo.customer.segment">
+        	<field name="name">今年重点营销客户分群</field>
+        	<field  name="label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_12'), ref('anodoo_customer_label_category_00')])]"/>
+        </record>
+        <record id="anodoo_customer_segment_2" model="anodoo.customer.segment">
+        	<field name="name">流失客户分群</field>
+        	<field  name="label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_22'), ref('anodoo_customer_label_category_10')])]"/>
+        </record>
+        
+        <!-- 客户应用 -->
+        <record id="anodoo_customer_application_1" model="anodoo.customer.application">
+        	<field name="name">官方网站</field>
+        </record>
+        <record id="anodoo_customer_application_2" model="anodoo.customer.application">
+        	<field name="name">手机APP</field>
+        </record>
+        <record id="anodoo_customer_application_3" model="anodoo.customer.application">
+        	<field name="name">Saa平台</field>
+        </record>
+        <record id="anodoo_customer_application_4" model="anodoo.customer.application">
+        	<field name="name">微信公众号</field>
+        </record>
+        
+        <!-- 客户用户 -->
+        <record id="anodoo_customer_user_1" model="anodoo.customer.user">
+        	<field name="customer_id" ref="partner_zhao_customer"/>
+        	<field name="user_identity">zhao.customer</field>
+        	<field name="application_id" ref="anodoo_customer_application_1"/>
+        	<field name="register_date" eval="DateTime.now() - timedelta(days=18)"/>
+        </record>
+        
+        <record id="anodoo_customer_user_operation_1" model="anodoo.customer.user.operation">
+        	<field name="user_id" ref="anodoo_customer_user_1"/>
+        	<field name="application_id" ref="anodoo_customer_application_1"/>
+        	<field name="operation_type">register</field>
+        	<field name="operation_time" eval="DateTime.now() - timedelta(days=18)"/>
+        </record>
+        <record id="anodoo_customer_user_operation_2" model="anodoo.customer.user.operation">
+        	<field name="user_id" ref="anodoo_customer_user_1"/>
+        	<field name="application_id" ref="anodoo_customer_application_1"/>
+        	<field name="operation_type">login</field>
+        	<field name="operation_time" eval="DateTime.now() - timedelta(days=15)"/>
+        </record>
+        <record id="anodoo_customer_user_operation_3" model="anodoo.customer.user.operation">
+        	<field name="user_id" ref="anodoo_customer_user_1"/>
+        	<field name="application_id" ref="anodoo_customer_application_1"/>
+        	<field name="operation_type">read blog</field>
+        	<field name="operation_time" eval="DateTime.now() - timedelta(days=17)"/>
+        </record>
+        
+        
+        <!-- 默认生命周期和阶段定义 -->
+	    <record model="anodoo.customer.lifetime" id="default_customer_lifetime_person">
+	        <field name="name">客户生命周期定义</field>
+	        <field name="description">个人客户从潜在客户,免费客户,收费客户,流失客户的生命周期</field>
+	        <field name="sequence">1</field>
+	        <field name="is_default">False</field>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_person_1">
+	        <field name="name">潜在客户</field>
+	        <field name="sequence">0</field>
+	        <field name="is_default">True</field>
+	        <field name="is_prospect">True</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime_person"/>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_person_2">
+	        <field name="name">免费客户</field>
+	        <field name="sequence">1</field>
+	        <field name="is_default">False</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime_person"/>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_person_3">
+	        <field name="name">收费客户</field>
+	        <field name="sequence">3</field>
+	        <field name="is_default">False</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime_person"/>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_person_4">
+	        <field name="name">流失客户</field>
+	        <field name="sequence">4</field>
+	        <field name="is_default">False</field>
+	        <field name="is_losing">True</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime_person"/>
+	    </record>
+	    
+	    <!-- 客户池 -->
+    	<record id="default_public_customer_pool_1" model="anodoo.customer.pool" >
+	        <field name="name">重点行业公有客户池</field>
+	        <field name="description">重点行业的未分配客户,销售部一组可以在这里选择自己的大客户</field>
+	        <field name="is_private">False</field>
+	        <field name="is_default_public">False</field>
+	        <field name="manager_user_id" ref="user_zhao_sales" />
+	        <field name="belong_team_id" ref="team_sales_1" />
+	        <field name="customers_domain">[('customer_type.type', '=', 'company'), ('industory_id.name', '=', 'Finance/Insurance')]</field>
+	    </record>
+	    <record id="default_private_customer_pool_2" model="anodoo.customer.pool">
+	        <field name="name">销售部二组私有客户池</field>
+	        <field name="description">销售部二组的共享客户</field>
+	        <field name="is_private">True</field>
+	        <field name="is_default_public">False</field>
+	        <field name="manager_user_id" ref="user_sun_sales" />
+	        <field name="belong_team_id" ref="team_sales_2" />
+	    </record>
+	    
+	    <!-- 客户池分配记录 -->
+	    <record id="anodoo_customer_allot_1" model="anodoo.customer.allot">
+	    	<field name="from_pool_id" ref="default_public_customer_pool_1" />
+	    	<field name="to_pool_id" ref="default_private_customer_pool_2" />
+	    	<field name="allot_type">get</field>
+	    	<field name="customer_id" ref="customer_3" />
+	    	<field name="description">管理员领取客户到自己的刻有客户池</field>
+	    	<field name="create_uid" ref="user_sun_sales"/>
+	    </record>
+    </data>    
+</odoo>

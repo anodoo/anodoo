@@ -1,0 +1,202 @@
+模块:analytic       ID:6      Name:Analytic Accounting
+
+
+================== Models ======================
+
+###account.analytic.account name:Analytic Account inherit:ir.model()  access:ir.model.access(224, 164, 223)  rule:ir.rule(31,)  transient:False  modules:analytic, project
+
+###account.analytic.distribution name:Analytic Account Distribution inherit:ir.model()  access:ir.model.access(168,)  rule:ir.rule()  transient:False  modules:analytic
+
+###account.analytic.group name:Analytic Categories inherit:ir.model()  access:ir.model.access(167,)  rule:ir.rule(33,)  transient:False  modules:analytic
+
+###account.analytic.line name:Analytic Line inherit:ir.model()  access:ir.model.access(225, 165)  rule:ir.rule(32,)  transient:False  modules:analytic
+
+###account.analytic.tag name:Analytic Tags inherit:ir.model()  access:ir.model.access(166,)  rule:ir.rule(34,)  transient:False  modules:analytic
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###analytic.action_account_analytic_account_form  name:Analytic Accounts view_mode:tree,kanban,form domain:False  context:{'search_default_active':1}
+
+###analytic.action_analytic_account_form  name:Chart of Analytic Accounts view_mode:tree,kanban,form domain:False  context:{'search_default_active':1}
+
+###analytic.account_analytic_group_action  name:Analytic Account Groups view_mode:tree,form domain:False  context:{}
+
+###analytic.account_analytic_line_action_entries  name:Analytic Items view_mode:tree,kanban,form,graph,pivot domain:False  context:{}
+
+###analytic.account_analytic_line_action  name:Costs & Revenues view_mode:tree,form,graph,pivot domain:[('account_id','=', active_id)]  context:{'search_default_group_date': 1, 'default_account_id': active_id}
+
+###analytic.account_analytic_tag_action  name:Analytic Tags view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###account.analytic.account
+
+analytic.view_account_analytic_account_list  type:tree  priority:8  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_account_kanban  type:kanban  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_account_search  type:search  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_account_form  type:form  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+project.account_analytic_account_view_form_inherit  type:form  priority:18  arch_fs:project/views/analytic_views.xml  inherit_id:analytic.view_account_analytic_account_form
+
+
+###account.analytic.distribution
+
+
+###account.analytic.group
+
+analytic.account_analytic_group_form_view  type:form  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.account_analytic_group_tree_view  type:tree  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+
+###account.analytic.line
+
+analytic.view_account_analytic_line_form  type:form  priority:1  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_line_graph  type:graph  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_line_kanban  type:kanban  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_line_pivot  type:pivot  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_line_filter  type:search  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.view_account_analytic_line_tree  type:tree  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+
+###account.analytic.tag
+
+analytic.account_analytic_tag_form_view  type:form  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.account_analytic_tag_tree_view  type:tree  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+analytic.account_analytic_tag_view_search  type:search  priority:16  arch_fs:analytic/views/analytic_account_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###account.analytic.account
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:If the active field is set to False, it will allow you to hide the account without removing it.
+balance Label:Balance  ttype:monetary    required:False  compute:False  depends:False  modules:analytic  help:False
+code Label:Reference  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:analytic  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+credit Label:Credit  ttype:monetary    required:False  compute:False  depends:False  modules:analytic  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:analytic  help:False
+debit Label:Debit  ttype:monetary    required:False  compute:False  depends:False  modules:analytic  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+group_id Label:Group  ttype:many2one  relation:account.analytic.group    required:False  compute:False  depends:False  modules:analytic  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+line_ids Label:Analytic Lines  ttype:one2many  relation:account.analytic.line    required:False  compute:False  depends:False  modules:analytic  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:analytic  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:analytic  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:analytic  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:analytic  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:analytic  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:Number of unread messages
+name Label:Analytic Account  ttype:char    required:True  compute:False  depends:False  modules:analytic  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:analytic  help:False
+project_count Label:Project Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+project_ids Label:Projects  ttype:one2many  relation:project.project    required:False  compute:False  depends:False  modules:project  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+
+###account.analytic.distribution
+
+account_id Label:Analytic Account  ttype:many2one  relation:account.analytic.account    required:True  compute:False  depends:False  modules:analytic  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+percentage Label:Percentage  ttype:float    required:True  compute:False  depends:False  modules:analytic  help:False
+tag_id Label:Parent tag  ttype:many2one  relation:account.analytic.tag    required:True  compute:False  depends:False  modules:analytic  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+
+###account.analytic.group
+
+children_ids Label:Childrens  ttype:one2many  relation:account.analytic.group    required:False  compute:False  depends:False  modules:analytic  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:analytic  help:False
+complete_name Label:Complete Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+description Label:Description  ttype:text    required:False  compute:False  depends:False  modules:analytic  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:analytic  help:False
+parent_id Label:Parent  ttype:many2one  relation:account.analytic.group    required:False  compute:False  depends:False  modules:analytic  help:False
+parent_path Label:Parent Path  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+
+###account.analytic.line
+
+account_id Label:Analytic Account  ttype:many2one  relation:account.analytic.account    required:True  compute:False  depends:False  modules:analytic  help:False
+amount Label:Amount  ttype:monetary    required:True  compute:False  depends:False  modules:analytic  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:analytic  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:analytic  help:False
+date Label:Date  ttype:date    required:True  compute:False  depends:False  modules:analytic  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+group_id Label:Group  ttype:many2one  relation:account.analytic.group    required:False  compute:False  depends:False  modules:analytic  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+name Label:Description  ttype:char    required:True  compute:False  depends:False  modules:analytic  help:False
+partner_id Label:Partner  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:analytic  help:False
+product_uom_category_id Label:Category  ttype:many2one  relation:uom.category    required:False  compute:False  depends:False  modules:analytic  help:Conversion between Units of Measure can only occur if they belong to the same category. The conversion will be made based on the ratios.
+product_uom_id Label:Unit of Measure  ttype:many2one  relation:uom.uom    required:False  compute:False  depends:False  modules:analytic  help:False
+tag_ids Label:Tags  ttype:many2many  relation:account.analytic.tag    required:False  compute:False  depends:False  modules:analytic  help:False
+unit_amount Label:Quantity  ttype:float    required:False  compute:False  depends:False  modules:analytic  help:False
+user_id Label:User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+
+###account.analytic.tag
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:Set active to false to hide the Analytic Tag without removing it.
+active_analytic_distribution Label:Analytic Distribution  ttype:boolean    required:False  compute:False  depends:False  modules:analytic  help:False
+analytic_distribution_ids Label:Analytic Accounts  ttype:one2many  relation:account.analytic.distribution    required:False  compute:False  depends:False  modules:analytic  help:False
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:analytic  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:analytic  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:analytic  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+name Label:Analytic Tag  ttype:char    required:True  compute:False  depends:False  modules:analytic  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:analytic  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:analytic  help:False
+
+================== Extended Fields ======================

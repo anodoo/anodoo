@@ -1,0 +1,24 @@
+模块:anodoo_website       ID:136      Name:官网
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== qWeb ======================
+
+anodoo_website.login_layout  type:qweb  priority:19  arch_fs:anodoo_website/views/website_templates.xml  inherit_id:web.login_layout
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================

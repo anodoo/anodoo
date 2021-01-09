@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+<template id="sankey">
+&lt;!DOCTYPE html&gt;
+<html>
+<head>
+    <meta charset="utf-8"/>
+        <script type="text/javascript" src="/anodoo_develop_module/static/src/js/my.js"></script>
+        <script type="text/javascript" src="/anodoo_develop_module/static/src/js/echarts.js"></script>
+        <script type="text/javascript" src="/anodoo_develop_module/static/src/js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 100%;height:1000px"></div>
+<script type="text/javascript">
+        var height = getQueryVariable('height');
+        var div = document.getElementById('main')
+        if (height != '') {
+            div.style.height = height;
+        }
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(div);
+
+        var c_type = getQueryVariable('c_type');
+        var c_only_prefix = getQueryVariable('c_only_prefix');
+        var c_only = getQueryVariable('c_only');
+        var c_baseon = getQueryVariable('c_baseon');
+        var json_url = '/dev/sankey.json?c_type='+c_type+'&amp;c_only_prefix='+c_only_prefix+'&amp;c_only='+c_only+'&amp;c_baseon='+c_baseon;
+
+        myChart.showLoading();
+$.get(json_url, function (data) {
+    myChart.hideLoading();
+
+    myChart.setOption(option = {
+        title: {
+            text: 'Node Align Left'
+        },
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        animation: false,
+        series: [
+            {
+                type: 'sankey',
+                focusNodeAdjacency: 'allEdges',
+                nodeAlign: 'left',
+                //orient: 'vertical',
+                data: data.nodes,
+                links: data.links,
+                layoutIterations:100,
+                nodeWidth:20,
+                nodeGap:10,
+                lineStyle: {
+                    color: 'source',
+                    curveness: 0.5
+                }
+            }
+        ]
+    });
+});
+
+    </script>
+</body>
+</html>
+</template>
+    </data>
+</odoo>

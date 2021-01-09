@@ -1,0 +1,417 @@
+模块:anodoo_cust       ID:74      Name:客户360
+
+
+================== Models ======================
+
+###anodoo.customer.pool name:个人私有客户池 inherit:ir.model()  access:ir.model.access(232,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.user name:客户下的具体用户 inherit:ir.model()  access:ir.model.access(237,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.relation.customer name:客户与客户的关系 inherit:ir.model()  access:ir.model.access(236,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.segment.snapshot name:客户快照，是客户细分的静态客户列表，它是某一个时刻对该客户细分下客户列表的一个快照。 inherit:ir.model()  access:ir.model.access(231,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.type name:客户性质 inherit:ir.model()  access:ir.model.access(226,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.label name:客户标签 inherit:ir.model()  access:ir.model.access(229,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.label.category name:客户标签分类 inherit:ir.model()  access:ir.model.access(228,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.allot name:客户池分配动作记录 inherit:ir.model()  access:ir.model.access(233,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.lifetime name:客户生命周期 inherit:ir.model()  access:ir.model.access(234,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.lifetime.stage name:客户生命周期阶段 inherit:ir.model()  access:ir.model.access(235,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.segment name:客户细分，客户群，客户分群 inherit:ir.model()  access:ir.model.access(230,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.size name:客户规模 inherit:ir.model()  access:ir.model.access(227,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+###anodoo.customer.user.operation name:用户操作，汇集所有的用户操作，从而进行用户分析和洞察 inherit:ir.model()  access:ir.model.access(238,)  rule:ir.rule()  transient:False  modules:anodoo_cust
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+
+================== Actions ======================
+
+###anodoo_cust.action_anodoo_customer_pool_list  name:客户池 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_user_list  name:客户用户 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_type_list  name:客户性质 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_label_list  name:客户标签 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_label_category_list  name:客户标签分类 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_allot_list  name:客户分配操作记录 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_lifetime_list  name:客户生命周期 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_segment_list  name:客户细分 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_size_list  name:客户规模 view_mode:tree,form domain:False  context:{}
+
+###anodoo_cust.action_anodoo_customer_user_operation_list  name:用户操作 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###anodoo.customer.pool
+
+anodoo_cust.view_anodoo_customer_pool_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_pool_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_pool_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.user
+
+anodoo_cust.view_anodoo_customer_user_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_user_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_user_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.relation.customer
+
+
+###anodoo.customer.segment.snapshot
+
+
+###anodoo.customer.type
+
+anodoo_cust.anodoo_customer_type_view_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.anodoo_customer_type_view_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.anodoo_customer_type_view_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.label
+
+anodoo_cust.view_anodoo_customer_label_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_label_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_label_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.label.category
+
+anodoo_cust.view_anodoo_customer_label_category_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_label_category_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_label_category_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.allot
+
+anodoo_cust.view_anodoo_customer_allot_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_allot_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_allot_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.lifetime
+
+anodoo_cust.view_anodoo_customer_lifetime_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_lifetime_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_lifetime_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.lifetime.stage
+
+
+###anodoo.customer.segment
+
+anodoo_cust.view_anodoo_customer_segment_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_segment_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_segment_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.size
+
+anodoo_cust.view_anodoo_customer_size_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_size_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_size_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+###anodoo.customer.user.operation
+
+anodoo_cust.view_anodoo_customer_user_operation_form  type:form  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_user_operation_search  type:search  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_anodoo_customer_user_operation_tree  type:tree  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+anodoo_cust.view_customer_form  type:form  priority:1  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_customer_list  type:tree  priority:8  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_customer_kanban  type:kanban  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_customer_search  type:search  priority:20  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_customer_prospect_search  type:search  priority:20  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###anodoo.customer.pool
+
+belong_person_id Label:私有人  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:私有人不为空时，表示这是个人私有客户池
+belong_team_ids Label:所属团队  ttype:many2many  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户池所属团队，可以是一个或多个
+belong_user_ids Label:所属个人  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户池所属用户，可以是一个或多个
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+dynamic_customer_ids Label:动态客户列表  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户池下的动态客户列表，根据关联客户细分动态计算并刷新
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_default_public Label:是否默认公有客户池  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_private Label:是否私有  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:私有客户池或公有客户池
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+manager_user_id Label:管理员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:客户池名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+segment_ids Label:客户细分  ttype:many2many  relation:anodoo.customer.segment    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户池通过管理客户细分来是实现动态的客户列表关联
+static_customer_ids Label:静态客户列表  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分下的静态客户列表
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.user
+
+attachment2_ids Label:Attachments2  ttype:one2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+comment Label:备注  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+contact_id Label:关联联系人  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+image_1024 Label:Image 1024  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+image_128 Label:Image 128  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+image_1920 Label:Image  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+image_256 Label:Image 256  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+image_512 Label:Image 512  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+ir_attachment_id Label:Related attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+product Label:产品  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+register_date Label:注册日期  ttype:date    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+user_identity Label:唯一标识信息  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:用户唯一标识信息
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.relation.customer
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_id Label:客户1  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户与客户的关系的主方
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_reverse Label:是否反向关系  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户和客户关系的定义一般都是反向的
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+relation_customer_id Label:客户2  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户与客户的关系的从方
+relation_type Label:关系类型  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_cust  help:客户与客户关系的类型
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.segment.snapshot
+
+create_date Label:快照日期  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:快照人  ttype:many2one  relation:_unknown    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_count Label:客户数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_ids Label:客户  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分下的静态客户列表
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+segment_id Label:客户细分  ttype:many2one  relation:anodoo.customer.segment    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.type
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_active Label:是否启动  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+key Label:类型  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户类型定义，可扩展
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.label
+
+category_id Label:标签分类  ttype:many2one  relation:anodoo.customer.label.category    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+color Label:颜色  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:标签名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.label.category
+
+child_ids Label:子分类  ttype:one2many  relation:anodoo.customer.label.category    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:分类名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+parent_id Label:父分类  ttype:many2one  relation:anodoo.customer.label.category    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+parent_path Label:Parent Path  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.allot
+
+allot_type Label:操作类型  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户池分配动作，可扩展
+create_date Label:操作时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:操作人  ttype:many2one  relation:_unknown    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+from_pool_id Label:源客户池  ttype:many2one  relation:anodoo.customer.pool    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+to_pool_id Label:目标客户池  ttype:many2one  relation:anodoo.customer.pool    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.lifetime
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customers_domain Label:适用客户  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:可以使用该生命周期的客户
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_default Label:默认生命周期  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户生命周期序号
+stage_ids Label:生命周期阶段  ttype:one2many  relation:anodoo.customer.lifetime.stage    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.lifetime.stage
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+fold Label:合并  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_default Label:默认阶段  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_losing Label:是否流失客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_prospect Label:是否潜在客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_success Label:是否成功客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+lifetime_id Label:生命周期  ttype:many2one  relation:anodoo.customer.lifetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户生命周期阶段的序号
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.segment
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+dynamic_customer_ids Label:动态客户列表  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分下的动态客户列表，根据标签动态计算并刷新
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+label_ids Label:客户标签  ttype:many2many  relation:anodoo.customer.label    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分对应的客户标签，根据标签批判客户
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:客户细分名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+segment_snapshot_ids Label:客户快照  ttype:one2many  relation:anodoo.customer.segment.snapshot    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分的序号
+static_customer_ids Label:静态客户列表  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户细分下的静态客户列表
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.size
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_active Label:是否启动  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+key Label:类型  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户规模定义，可扩展
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_cust  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+###anodoo.customer.user.operation
+
+comment Label:备注  ttype:text    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_name Label:客户  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+_date Label:操作时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+operation_time Label:操作时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+operation_type Label:操作类习惯  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+product Label:产品  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+user_id Label:用户  ttype:many2one  relation:anodoo.customer.user    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+customer_identity Label:唯一标识信息  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户唯一标识信息
+customer_label_ids Label:客户标签  ttype:many2many  relation:anodoo.customer.label    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户当前的所有标签
+customer_priority Label:优先级  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_relation_customer_ids Label:客户与客户关系  ttype:one2many  relation:anodoo.customer.relation.customer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_size Label:客户规模  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户规模定义，可扩展
+customer_type Label:客户性质  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户类型定义，可扩展
+is_alloted Label:是否已分配  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_losing Label:是否流失客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_prospect Label:是否潜在客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_success Label:是否成功客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+lifetime_id Label:客户生命周期  ttype:many2one  relation:anodoo.customer.lifetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户使用的生命周期定义
+lifetime_stage_id Label:客户生命周期阶段  ttype:many2one  relation:anodoo.customer.lifetime.stage    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户当前的生命周期阶段

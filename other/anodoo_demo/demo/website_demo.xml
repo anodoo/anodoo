@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<record id="user_zhao_portal" model="res.users" >
+        	<field name="karma">350</field>
+        </record>
+        <record id="user_qian_portal" model="res.users" >
+        	<field name="karma">520</field>
+        </record>
+        <record id="user_sun_portal" model="res.users" >
+        	<field name="karma">100</field>
+        </record>
+        <record id="user_li_portal" model="res.users" >
+        	<field name="karma">1700</field>
+        </record>
+        
+    	<record id="partner_zhao_portal" model="res.partner">
+    		<field name="is_published">True</field>
+    	</record>
+        <record id="partner_qian_portal" model="res.partner">
+    		<field name="is_published">True</field>
+    	</record>
+    	<record id="partner_sun_portal" model="res.partner">
+    		<field name="is_published">True</field>
+    	</record>
+    	<record id="partner_li_portal" model="res.partner">
+    		<field name="is_published">True</field>
+    	</record>
+    	
+    	<!-- 在线聊天 -->
+    	<record id="im_livechat.im_livechat_channel_data" model="im_livechat.channel">
+            <field name="name">huangsiwei.com</field>            
+        </record>
+        
+        <record id="im_livechat_channel_data2" model="im_livechat.channel">
+            <field name="name">anodoo.com</field> 
+            <field name="button_text">欢迎在线咨询...</field>
+            <field name="default_message">您好,请问有什么可以帮您?</field>
+            <field name="input_placeholder">您好,请输入您的问题.</field>
+                       
+        </record>
+        
+    	<record id="website.default_website" model="website">
+            <field name="name">huangsiwei.com</field>
+            <field name="domain">www.huangsiwei.com</field>
+        </record>
+        
+        <record id="website_demo_2" model="website">
+            <field name="name">anodoo.com</field>
+            <field name="domain">www.anodoo.com</field>
+            <field name="favicon" model="anodoo.product" eval="obj()._get_default_favicon()"/>
+            <field name="logo" type="base64" file="anodoo_base/static/src/img/anodoo-logo.png"/>
+            <field name="auth_signup_uninvited">b2c</field>
+            <field name="language_ids" eval="[(4, ref('base.lang_zh_CN'))]"/>
+            <field name="channel_id" ref="im_livechat_channel_data2"></field>
+        </record>       
+        
+        <!-- 公司网站联系信息 -->
+	    <record id="base.main_company" model="res.company">
+            <field name="social_qq">3422885414</field>
+            <field name="social_weixin">18927534101</field>
+            <field name="social_weibo">http://www.weibo.com/anodoo</field> 
+            <field name="social_tencent_weibo">http://weibo.qq.com/anodoo</field> 
+            <field name="social_renren">http://www.renren.com/anodoo</field>
+        </record>
+    </data>
+</odoo>

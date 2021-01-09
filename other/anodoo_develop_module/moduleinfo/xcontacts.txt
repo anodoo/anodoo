@@ -1,0 +1,33 @@
+模块:contacts       ID:56      Name:Contacts
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###res.users
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.users

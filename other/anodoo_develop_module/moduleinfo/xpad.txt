@@ -1,0 +1,63 @@
+模块:pad       ID:55      Name:Collaborative Pads
+
+
+================== Models ======================
+
+###pad.common name:Pad Common inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:pad
+
+
+================== Extended Models ======================
+
+###res.company name:Companies inherit:ir.model()  transient:False  modules:base, mail, pad, resource, snailmail
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+###pad.common
+
+
+================== Extended Views ======================
+
+
+###res.company
+
+
+###res.config.settings
+
+pad.res_config_settings_view_form  type:form  priority:16  arch_fs:pad/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+
+================== qWeb ======================
+
+pad.assets_backend  type:qweb  priority:16  arch_fs:pad/views/pad.xml  inherit_id:web.assets_backend
+
+pad.qunit_suite  type:qweb  priority:16  arch_fs:pad/views/pad.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+###pad.common
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:pad  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:pad  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:pad  help:False
+
+================== Extended Fields ======================
+
+
+###res.company
+
+pad_key Label:Pad Api Key  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite api key.
+pad_server Label:Pad Server  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite server. Example: beta.primarypad.com
+
+###res.config.settings
+
+pad_key Label:Pad Api Key *  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite api key.
+pad_server Label:Pad Server *  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite server. Example: beta.primarypad.com

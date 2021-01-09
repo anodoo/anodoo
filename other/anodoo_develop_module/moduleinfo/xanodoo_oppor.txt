@@ -1,0 +1,91 @@
+模块:anodoo_oppor       ID:103      Name:商机
+
+
+================== Models ======================
+
+###anodoo.sfa.opportunity.relation name:商机和商机的关系 inherit:ir.model()  access:ir.model.access(544,)  rule:ir.rule()  transient:False  modules:anodoo_oppor
+
+###anodoo.sfa.opportunity.register name:商机注册,商机报备 inherit:ir.model()  access:ir.model.access(545,)  rule:ir.rule()  transient:False  modules:anodoo_oppor
+
+
+================== Extended Models ======================
+
+###crm.lead name:线索/商机 inherit:ir.model()  transient:False  modules:anodoo_lead, anodoo_oppor, crm, crm_iap_lead, crm_iap_lead_enrich
+
+###crm.stage name:CRM 阶段 inherit:ir.model()  transient:False  modules:anodoo_lead, anodoo_oppor, crm
+
+
+================== Actions ======================
+
+###anodoo_oppor.action_anodoo_sfa_opportunity_register_list  name:商机报备 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###anodoo.sfa.opportunity.relation
+
+
+###anodoo.sfa.opportunity.register
+
+anodoo_oppor.view_anodoo_sfa_opportunity_register_form  type:form  priority:100  arch_fs:anodoo_oppor/views/oppor_views.xml  inherit_id:
+
+anodoo_oppor.view_anodoo_sfa_opportunity_register_list  type:tree  priority:100  arch_fs:anodoo_oppor/views/oppor_views.xml  inherit_id:
+
+anodoo_oppor.view_anodoo_sfa_opportunity_register_search  type:search  priority:100  arch_fs:anodoo_oppor/views/oppor_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###anodoo.sfa.opportunity.relation
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+description Label:说明  ttype:text    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+opportunity_id Label:商机  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+opportunity_to_id Label:商机  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+relation_type Label:关系类型  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_oppor  help:商机和商机的关系
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+
+###anodoo.sfa.opportunity.register
+
+contact_info Label:联系信息  ttype:char    required:True  compute:False  depends:False  modules:anodoo_oppor  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+customer_info Label:客户信息  ttype:char    required:True  compute:False  depends:False  modules:anodoo_oppor  help:False
+date_deadline Label:预计关闭日期  ttype:date    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_oppor  help:False
+planned_revenue Label:预计收入  ttype:float    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+priority Label:优先级  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+tag_ids Label:商机标签  ttype:many2many  relation:crm.lead.tag    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+
+================== Extended Fields ======================
+
+
+###crm.lead
+
+lead_id Label:线索  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+opportunity_relation_ids Label:商机与商机关系  ttype:one2many  relation:anodoo.sfa.opportunity.relation    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_id Label:商机项目  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_name Label:项目名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_task_count Label:任务数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_task_ids Label:任务  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_user_id Label:项目负责人  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+
+###crm.stage
+
+stage_probability Label:阶段成功率  ttype:float    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False

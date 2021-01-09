@@ -1,0 +1,58 @@
+模块:anodoo_portal       ID:148      Name:客户门户
+
+
+================== Models ======================
+
+###anodoo.portal name:门户定义.系统支持多个门户 inherit:ir.model()  access:ir.model.access(810,)  rule:ir.rule()  transient:False  modules:anodoo_portal
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###anodoo_portal.action_anodoo_portal_list  name:门户 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###anodoo.portal
+
+anodoo_portal.view_anodoo_portal_form  type:form  priority:100  arch_fs:anodoo_portal/views/portal_views.xml  inherit_id:
+
+anodoo_portal.view_anodoo_portal_list  type:tree  priority:100  arch_fs:anodoo_portal/views/portal_views.xml  inherit_id:
+
+anodoo_portal.view_anodoo_portal_search  type:search  priority:100  arch_fs:anodoo_portal/views/portal_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+anodoo_portal.multi_portal_link  type:qweb  priority:16  arch_fs:anodoo_portal/views/portal_templates.xml  inherit_id:portal.frontend_layout
+
+anodoo_portal.portal_partner_home  type:qweb  priority:16  arch_fs:anodoo_portal/views/portal_templates.xml  inherit_id:
+
+anodoo_portal.portal_customer_home  type:qweb  priority:16  arch_fs:anodoo_portal/views/portal_templates.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+###anodoo.portal
+
+active Label:激活  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+code Label:标识  ttype:char    required:True  compute:False  depends:False  modules:anodoo_portal  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+group_id Label:权限组  ttype:many2one  relation:res.groups    required:True  compute:False  depends:False  modules:anodoo_portal  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+is_default Label:是否默认  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_portal  help:False
+view_id Label:界面视图  ttype:many2one  relation:ir.ui.view    required:True  compute:False  depends:False  modules:anodoo_portal  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_portal  help:False
+
+================== Extended Fields ======================

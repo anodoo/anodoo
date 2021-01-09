@@ -1,0 +1,155 @@
+模块:anodoo_engage       ID:163      Name:客户交互
+
+
+================== Models ======================
+
+###anodoo.engage.channel name:客户交互渠道 inherit:ir.model()  access:ir.model.access(800,)  rule:ir.rule(156,)  transient:False  modules:anodoo_engage
+
+###mail.activity name:活动 inherit:ir.model()  access:ir.model.access(142, 141)  rule:ir.rule(25,)  transient:False  modules:anodoo_engage, calendar, mail
+
+###mail.activity.type name:活动类型 inherit:ir.model()  access:ir.model.access(144, 270, 219, 542, 145, 143)  rule:ir.rule()  transient:False  modules:anodoo_engage, calendar, mail
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###anodoo_engage.action_engage_channel  name:交互渠道 view_mode:tree,form domain:[]  context:{}
+
+###mail.mail_activity_action  name:活动 view_mode:tree,form domain:False  context:{}
+
+###mail.mail_activity_type_action  name:活动类型 view_mode:tree,form domain:False  context:{}
+
+###project.mail_activity_type_action_config_project_types  name:活动类型 view_mode:tree,form domain:['|', ('res_model_id', '=', False), ('res_model_id.model', '=', 'project.task')]  context:{'default_res_model': 'project.task'}
+
+###sales_team.mail_activity_type_action_config_sales  name:活动类型 view_mode:tree,form domain:['|', ('res_model_id', '=', False), ('res_model_id.model', 'in', ['sale.order', 'res.partner', 'product.template', 'product.product'])]  context:{'default_res_model': 'crm.lead'}
+
+###sale.mail_activity_type_action_config_sale  name:活动类型 view_mode:tree,form domain:['|', ('res_model_id', '=', False), ('res_model_id.model', '=', 'sale.order')]  context:{'default_res_model': 'sale.order'}
+
+
+================== Views ======================
+
+
+###anodoo.engage.channel
+
+anodoo_engage.engage_channel_view_form  type:form  priority:16  arch_fs:anodoo_engage/views/engage_views.xml  inherit_id:
+
+anodoo_engage.engage_channel_view_search  type:search  priority:16  arch_fs:anodoo_engage/views/engage_views.xml  inherit_id:
+
+anodoo_engage.engage_channel_view_tree  type:tree  priority:16  arch_fs:anodoo_engage/views/engage_views.xml  inherit_id:
+
+
+###mail.activity
+
+mail.mail_activity_view_calendar  type:calendar  priority:2  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+calendar.mail_activity_view_form_popup  type:form  priority:16  arch_fs:calendar/views/mail_activity_views.xml  inherit_id:mail.mail_activity_view_form_popup
+
+mail.mail_activity_view_search  type:search  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_view_form_popup  type:form  priority:20  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+
+###mail.activity.type
+
+anodoo_engage.engage_activity_type_view_form  type:form  priority:16  arch_fs:anodoo_engage/views/engage_views.xml  inherit_id:mail.mail_activity_type_view_form
+
+anodoo_engage.engage_activity_type_view_tree  type:tree  priority:16  arch_fs:anodoo_engage/views/engage_views.xml  inherit_id:mail.mail_activity_type_view_tree
+
+mail.mail_activity_type_view_search  type:search  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_type_view_form  type:form  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_type_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###anodoo.engage.channel
+
+code Label:代码  ttype:char    required:True  compute:False  depends:False  modules:anodoo_engage  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_engage  help:False
+online Label:线上或线下  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_engage  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+type Label:是否自有交互渠道  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_engage  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+
+###mail.activity
+
+activity_category Label:动作执行  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:操作可能触发特定的行为，如打开日历视图或在上传文档时自动标记
+activity_decoration Label:排版类型  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:修改此类相关活动的背景
+activity_type_id Label:活动类型  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+automated Label:自动活动  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:表示这个活动是自动生成的，不是任何用户创建。
+calendar_event_id Label:日历会议  ttype:many2one  relation:calendar.event    required:False  compute:False  depends:False  modules:calendar  help:False
+can_write Label:可以写  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:如果当前用户没有访问权限，则隐藏按钮。
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+customer_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+date_deadline Label:到期日期  ttype:date    required:True  compute:False  depends:False  modules:mail  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+force_next Label:触发下一个活动  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+has_recommended_activities Label:下一活动可用  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:用于UX目的技术字段
+icon Label:图标  ttype:char    required:False  compute:False  depends:False  modules:mail  help:完美的图标，例如FA任务
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_template_ids Label:电子邮件模板  ttype:many2many  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+note Label:备注  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+previous_activity_type_id Label:前一活动类型  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+recommended_activity_type_id Label:推荐的活动类型  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+res_id Label:相关文档编号  ttype:many2one_reference    required:True  compute:False  depends:False  modules:mail  help:False
+res_model Label:相关的文档模型  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+res_model_id Label:文档模型  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:mail  help:False
+res_name Label:文档名称  ttype:char    required:False  compute:False  depends:False  modules:mail  help:相关文档的显示名称
+state Label:状态  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+summary Label:摘要  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+user_id Label:分派给  ttype:many2one  relation:res.users    required:True  compute:False  depends:False  modules:mail  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.activity.type
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+cancreate Label:是否可创建  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+category Label:动作执行  ttype:selection    required:False  compute:False  depends:False  modules:calendar, mail  help:操作可能触发特定的行为，如打开日历视图或在上传文档时自动标记
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:创建Uid  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+decoration_type Label:排版类型  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:修改此类相关活动的背景
+default_description Label:默认简介  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+default_next_type_id Label:设置默认下一个活动  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+default_user_id Label:默认用户  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+delay_count Label:安排的日期  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:在执行该操作前几天/周/月，允许操的截止日期。
+delay_from Label:延迟类型  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:延迟类别
+delay_unit Label:延迟单位  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:延迟单位
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+engage_channel_id Label:交互渠道  ttype:many2one  relation:anodoo.engage.channel    required:False  compute:False  depends:False  modules:anodoo_engage  help:False
+force_next Label:触发下一个活动  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+icon Label:图标  ttype:char    required:False  compute:False  depends:False  modules:mail  help:完美的图标，例如FA任务
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+initial_res_model_id Label:初始模型  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:用于在UX相关行为的版本开始时跟踪模型的技术领域
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_template_ids Label:电子邮件模板  ttype:many2many  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+next_type_ids Label:推荐的下一活动  ttype:many2many  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+previous_type_ids Label:预先活动  ttype:many2many  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+res_model_change Label:模型已更改  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:用于UX目的技术字段
+res_model_id Label:模型  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:如果活动应特定于某个模型并且在管理其他模型的活动时不可用，则指定一个模型。
+sequence Label:单号规则  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+summary Label:默认摘要  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+================== Extended Fields ======================

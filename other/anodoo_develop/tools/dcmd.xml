@@ -1,0 +1,19 @@
+
+命令行启动
+
+
+
+
+cd ~/odoo-dev/
+source odoo-dev-python3/bin/activate
+python3 odoo13/odoo.py -c /home/lionger/odoo-dev/odoo.conf --limit-time-real=6000  --log-web  --dev=xml
+
+
+createdb --locale='zh_CN.UTF-8' -T template0 forelearn3
+
+中文环境
+使用命令行 -i base
+登陆admin,设置中文
+-i anodoo_base
+-i anodoo_profile
+设置网站的语言

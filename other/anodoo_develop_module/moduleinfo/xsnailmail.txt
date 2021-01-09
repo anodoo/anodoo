@@ -1,0 +1,207 @@
+模块:snailmail       ID:68      Name:Snail Mail
+
+
+================== Models ======================
+
+###snailmail.letter.cancel name:Dismiss notification for resend by model inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:snailmail
+
+###snailmail.letter.format.error name:Format Error Sending a Snailmail Letter inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:snailmail
+
+###snailmail.letter name:Snailmail Letter inherit:ir.model()  access:ir.model.access(189, 188, 190, 187)  rule:ir.rule()  transient:False  modules:snailmail
+
+###snailmail.letter.missing.required.fields name:Update address of partner inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:snailmail
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###res.company name:Companies inherit:ir.model()  transient:False  modules:base, mail, pad, resource, snailmail
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###mail.message name:Message inherit:ir.model()  transient:False  modules:mail, portal, rating, sms, snailmail
+
+###ir.qweb.field.contact name:Qweb Field Contact inherit:ir.model()  transient:False  modules:base, snailmail, web_editor
+
+###ir.actions.report name:Report Action inherit:ir.model()  transient:False  modules:base, snailmail
+
+
+================== Actions ======================
+
+###snailmail.snailmail_letter_cancel_action  name:Discard snailmail delivery failures view_mode:form domain:False  context:{}
+
+###snailmail.snailmail_letter_format_error_action  name:Format Error view_mode:form domain:False  context:{}
+
+###snailmail.action_mail_letters  name:Snailmail Letters view_mode:form,tree domain:[('state', '!=', 'draft')]  context:{}
+
+###snailmail.snailmail_letter_missing_required_fields_action  name:Failed letter view_mode:form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###snailmail.letter.cancel
+
+snailmail.snailmail_letter_cancel  type:form  priority:16  arch_fs:snailmail/wizard/snailmail_letter_cancel_views.xml  inherit_id:
+
+
+###snailmail.letter.format.error
+
+snailmail.snailmail_letter_format_error  type:form  priority:16  arch_fs:snailmail/wizard/snailmail_letter_format_error_views.xml  inherit_id:
+
+
+###snailmail.letter
+
+snailmail.snailmail_letter_form  type:form  priority:16  arch_fs:snailmail/views/snailmail_views.xml  inherit_id:
+
+snailmail.snailmail_letter_list  type:tree  priority:16  arch_fs:snailmail/views/snailmail_views.xml  inherit_id:
+
+
+###snailmail.letter.missing.required.fields
+
+snailmail.snailmail_letter_missing_required_fields  type:form  priority:16  arch_fs:snailmail/wizard/snailmail_letter_missing_required_fields_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+
+###res.company
+
+
+###res.config.settings
+
+
+###mail.message
+
+
+###ir.qweb.field.contact
+
+
+###ir.actions.report
+
+
+================== qWeb ======================
+
+snailmail.assets_backend  type:qweb  priority:16  arch_fs:snailmail/views/assets.xml  inherit_id:web.assets_backend
+
+snailmail.minimal_layout  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:web.minimal_layout
+
+snailmail.report_assets_snailmail  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:
+
+snailmail.report_layout  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:web.report_layout
+
+snailmail.qunit_suite  type:qweb  priority:16  arch_fs:snailmail/views/assets.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+###snailmail.letter.cancel
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+help_message Label:Help message  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:snailmail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+model Label:Model  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###snailmail.letter.format.error
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:snailmail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+message_id Label:Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_cover Label:Add a Cover Page  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###snailmail.letter
+
+attachment_datas Label:Document  ttype:binary    required:False  compute:False  depends:False  modules:snailmail  help:False
+attachment_fname Label:Attachment Filename  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+attachment_id Label:Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:snailmail  help:False
+city Label:City  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+color Label:Color  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:snailmail  help:False
+country_id Label:Country  ttype:many2one  relation:res.country    required:False  compute:False  depends:False  modules:snailmail  help:False
+cover Label:Cover Page  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+duplex Label:Both side  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+error_code Label:Error  ttype:selection    required:False  compute:False  depends:False  modules:snailmail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:snailmail  help:False
+info_msg Label:Information  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+message_id Label:Snailmail Status Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:snailmail  help:False
+model Label:Model  ttype:char    required:True  compute:False  depends:False  modules:snailmail  help:False
+partner_id Label:Recipient  ttype:many2one  relation:res.partner    required:True  compute:False  depends:False  modules:snailmail  help:False
+reference Label:Related Record  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+report_template Label:Optional report to print and attach  ttype:many2one  relation:ir.actions.report    required:False  compute:False  depends:False  modules:snailmail  help:False
+res_id Label:Document ID  ttype:integer    required:True  compute:False  depends:False  modules:snailmail  help:False
+state Label:Status  ttype:selection    required:True  compute:False  depends:False  modules:snailmail  help:When a letter is created, the status is 'Pending'.
+If the letter is correctly sent, the status goes in 'Sent',
+If not, it will got in state 'Error' and the error message will be displayed in the field 'Error Message'.
+state_id Label:State  ttype:many2one  relation:res.country.state    required:False  compute:False  depends:False  modules:snailmail  help:False
+street Label:Street  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+street2 Label:Street2  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+user_id Label:Sent by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+zip Label:Zip  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###snailmail.letter.missing.required.fields
+
+city Label:City  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+country_id Label:Country  ttype:many2one  relation:res.country    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:snailmail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+letter_id Label:Letter  ttype:many2one  relation:snailmail.letter    required:False  compute:False  depends:False  modules:snailmail  help:False
+partner_id Label:Partner  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:snailmail  help:False
+state_id Label:State  ttype:many2one  relation:res.country.state    required:False  compute:False  depends:False  modules:snailmail  help:False
+street Label:Street  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+street2 Label:Street2  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:snailmail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:snailmail  help:False
+zip Label:Zip  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+
+###res.company
+
+snailmail_color Label:Color  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_cover Label:Add a Cover Page  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_duplex Label:Both sides  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###res.config.settings
+
+snailmail_color Label:Print In Color  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_cover Label:Add a Cover Page  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_duplex Label:Print Both sides  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###mail.message
+
+letter_ids Label:Letter  ttype:one2many  relation:snailmail.letter    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_error Label:Snailmail message in error  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_status Label:Snailmail Status  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+
+###ir.qweb.field.contact
+
+
+###ir.actions.report

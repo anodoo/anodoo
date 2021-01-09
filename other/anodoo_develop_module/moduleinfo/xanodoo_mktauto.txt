@@ -1,0 +1,27 @@
+模块:anodoo_mktauto       ID:40      Name:营销自动化
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.config.settings name:配置设置 inherit:ir.model()  transient:True  modules:account, anodoo_base, anodoo_blog, anodoo_content, anodoo_crm, anodoo_forum, anodoo_mktauto, anodoo_prod, anodoo_profile, anodoo_proj, anodoo_sfa, anodoo_team, auth_oauth, auth_password_policy, auth_signup, base, base_setup, crm, crm_iap_lead_enrich, digest, event, iap, mail, mass_mailing, product, project, sale, sale_management, sale_stock, snailmail, stock, stock_account, website, website_form, website_livechat, website_sale, website_slides
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.config.settings

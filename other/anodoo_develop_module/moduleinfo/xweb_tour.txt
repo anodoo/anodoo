@@ -1,0 +1,60 @@
+模块:web_tour       ID:60      Name:Tours
+
+
+================== Models ======================
+
+###web_tour.tour name:Tours inherit:ir.model()  access:ir.model.access(103, 104)  rule:ir.rule(20,)  transient:False  modules:web_tour
+
+
+================== Extended Models ======================
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+
+================== Actions ======================
+
+###web_tour.edit_tour_action  name:Tours view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###web_tour.tour
+
+web_tour.edit_tour_search  type:search  priority:16  arch_fs:web_tour/views/tour_views.xml  inherit_id:
+
+web_tour.edit_tour_list  type:tree  priority:16  arch_fs:web_tour/views/tour_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###ir.http
+
+
+================== qWeb ======================
+
+web_tour.assets_frontend  type:qweb  priority:16  arch_fs:web_tour/views/tour_templates.xml  inherit_id:web.assets_frontend
+
+web_tour.assets_common_disable_tour  type:qweb  priority:16  arch_fs:web_tour/data/web_tour_demo.xml  inherit_id:web.assets_common
+
+web_tour.assets_common  type:qweb  priority:16  arch_fs:web_tour/views/tour_templates.xml  inherit_id:web.assets_common
+
+web_tour.assets_backend  type:qweb  priority:16  arch_fs:web_tour/views/tour_templates.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+###web_tour.tour
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:web_tour  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:web_tour  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:web_tour  help:False
+name Label:Tour name  ttype:char    required:True  compute:False  depends:False  modules:web_tour  help:False
+user_id Label:Consumed by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:web_tour  help:False
+
+================== Extended Fields ======================
+
+
+###ir.http

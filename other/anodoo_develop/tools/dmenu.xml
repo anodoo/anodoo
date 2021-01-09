@@ -1,0 +1,55 @@
+          <menuitem id="menu_custom" name="Technical" parent="menu_administration" sequence="110" groups="base.group_no_one"/>
+              <menuitem id="next_id_2" name="User Interface" parent="menu_custom"/>
+              <menuitem id="menu_email" name="Email" parent="menu_custom" sequence="1"/>
+              <menuitem id="next_id_9" name="Database Structure" parent="base.menu_custom"/>
+              <menuitem id="menu_automation" name="Automation" parent="base.menu_custom"/>
+              <menuitem id="menu_security" name="Security" parent="menu_custom" sequence="25"/>
+              <menuitem id="menu_ir_property" name="Parameters" parent="menu_custom" sequence="24"/>
+
+
+<?xml version="1.0"?>
+<odoo>
+	<!-- 一个Menu一个Action -->
+	<field name="view_id" ref="view_customer_form"></field>	
+	<field name="search_view_id" ref="view_customer_prospect_search"/>
+	<field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('crm_case_tree_view_leads')}),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_crm_lead_kanban')})]"/>
+	<field name="context">{'default_partner_type':'customer'}</field>
+	<field name="domain">[('partner_type', '=', 'customer'), ('is_prospect', '=', True)]</field>
+	
+	<!-- 单独一个form -->
+	<record id="action_customer_create" model="ir.actions.act_window">
+        <field name="name">创建客户</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_customer_form"></field>
+        <field name="context">{'default_partner_type':'customer'}</field>
+
+
+	<field name="context">{'active_test' : False}</field>
+    </record>
+</odoo>
+
+绑定菜单
+<act_window
+        name="Generate a Payment Link"
+        res_model="payment.link.wizard"
+        binding_model="sale.order"
+        binding_views="form"
+        view_mode="form"
+        target="new"
+        view_id="payment.payment_link_wizard_view_form"
+        id="action_sale_order_generate_link"
+    />
+    
+    <!-- Share Button in action menu -->
+        <record id="model_account_move_action_share" model="ir.actions.server">
+            <field name="name">Share</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_share()</field>
+        </record>

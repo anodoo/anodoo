@@ -1,0 +1,70 @@
+执行方法：修改目录，后执行
+
+cd ~/Release/anodoo_enterprise
+
+git remote add Anodoo_Base https://gitee.com/microwei/Anodoo_Base.git;
+git remote add Anodoo_Multichannel https://gitee.com/microwei/Anodoo_Multichannel.git;
+git remote add Anodoo_Customer https://gitee.com/microwei/Anodoo_Customer.git;
+git remote add Anodoo_Marketing https://gitee.com/microwei/Anodoo_Marketing.git;
+git remote add Anodoo_Sale https://gitee.com/microwei/Anodoo_Sale.git;
+git remote add Anodoo_Service https://gitee.com/microwei/Anodoo_Service.git;
+
+git remote add Anodoo_Base_Ent https://gitee.com/microwei/Anodoo_Base_Ent.git;
+git remote add Anodoo_Multichannel_Ent https://gitee.com/microwei/Anodoo_Multichannel_Ent.git;
+git remote add Anodoo_Customer_Ent https://gitee.com/microwei/Anodoo_Customer_Ent.git;
+git remote add Anodoo_Marketing_Ent https://gitee.com/microwei/Anodoo_Marketing_Ent.git;
+git remote add Anodoo_Sale_Ent https://gitee.com/microwei/Anodoo_Sale_Ent.git;
+git remote add Anodoo_Service_Ent https://gitee.com/microwei/Anodoo_Service_Ent.git;
+
+git add --prefix=base Anodoo_Base master --squash;
+git subtree add --prefix=multichannel Anodoo_Multichannel master --squash;
+git subtree add --prefix=customer Anodoo_Customer master --squash;
+git subtree add --prefix=marketing Anodoo_Marketing master --squash;
+git subtree add --prefix=sale Anodoo_Sale master --squash;
+git subtree add --prefix=service Anodoo_Service master --squash;
+
+git subtree add --prefix=base_enterprise Anodoo_Base_Ent master --squash;
+git subtree add --prefix=multichannel_enterprise Anodoo_Multichannel_Ent master --squash;
+git subtree add --prefix=customer_enterprise Anodoo_Customer_Ent master --squash;
+git subtree add --prefix=marketing_enterprise Anodoo_Marketing_Ent master --squash;
+git subtree add --prefix=sale_enterprise Anodoo_Sale_Ent master --squash;
+git subtree add --prefix=service_enterprise Anodoo_Service_Ent master --squash;
+
+git push origin master
+
+git branch "anodoo13"
+
+git checkout anodoo13
+
+git push origin anodoo13
+
+git checkout master
+
+git remote add gitee https://gitee.com/anodoo/anodoo.git
+git remote add github https://github.com/anodoo/anodoo.git
+
+#逐个运行
+git subtree pull --prefix=base Anodoo_Base master --squash;
+git subtree pull --prefix=multichannel Anodoo_Multichannel master --squash;
+git subtree pull --prefix=customer Anodoo_Customer master --squash;
+git subtree pull --prefix=marketing Anodoo_Marketing master --squash;
+git subtree pull --prefix=sale Anodoo_Sale master --squash;
+git subtree pull --prefix=service Anodoo_Service master --squash;
+
+git push origin anodoo14
+git push gitee anodoo14
+git push github anodoo14
+
+git tag -a V14.0.0 -m "Anodoo 14的初始版本";
+git push origin --tags;
+git push gitee --tags;
+git push github --tags;
+
+git subtree pull --prefix=base_enterprise Anodoo_Base_Ent master --squash;
+git subtree pull --prefix=multichannel_enterprise Anodoo_Multichannel_Ent master --squash;
+git subtree pull --prefix=customer_enterprise Anodoo_Customer_Ent master --squash;
+git subtree pull --prefix=marketing_enterprise Anodoo_Marketing_Ent master --squash;
+git subtree pull --prefix=sale_enterprise Anodoo_Sale_Ent master --squash;
+git subtree pull --prefix=service_enterprise Anodoo_Service_Ent master --squash;
+
+

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 课程目录  -->
+        <record id="slide_channel_category_1" model="slide.channel.category">
+        	<field name="name">行业</field>
+        	<field name="sequence">10</field>
+        </record>
+        <record id="slide_channel_category_1_1" model="slide.channel.category">
+        	<field name="name">消费品</field>
+        	<field name="sequence">10</field>
+        	<field name="parent_id" ref="slide_channel_category_1"/>
+        </record>
+        <record id="slide_channel_category_1_1" model="slide.channel.category">
+        	<field name="name">高科技</field>
+        	<field name="sequence">20</field>
+        	<field name="parent_id" ref="slide_channel_category_1"/>
+        </record>
+        <record id="slide_channel_category_2" model="slide.channel.category">
+        	<field name="name">Anodoo</field>
+        	<field name="sequence">10</field>
+        </record>
+        <record id="slide_channel_category_2_1" model="slide.channel.category">
+        	<field name="name">Anodoo CRM</field>
+        	<field name="sequence">10</field>
+        	<field name="parent_id" ref="slide_channel_category_2"/>
+        </record>
+        <record id="slide_channel_category_2_2" model="slide.channel.category">
+        	<field name="name">Anodoo SFA</field>
+        	<field name="sequence">20</field>
+        	<field name="parent_id" ref="slide_channel_category_2"/>
+        </record>
+       
+	    
+	    <!-- 课程模板 -->
+	    <record id="slide_channel_demo_template" model="slide.channel">
+	        <field name="name">课程模板</field>
+	        <field name="is_template">True</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_voted</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_0.jpg"/>
+	        <field name="description">课程模板中的设置信息,内容结构可以帮助快速创建同类课程</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=8)"/>
+	    </record>
+	    
+	    <!-- 课程 -->
+	    <!-- This channel will gain a forum -->
+	    <record id="slide_channel_demo_0" model="slide.channel">
+	        <field name="name">SaaS CC理论学习</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_voted</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_basic')),
+	                                     (4, ref('slide_channel_tag_role_manager'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_0.jpg"/>
+	        <field name="description">SaaS CC理论课程以SaaS行业的特点讲解以客户为中心方法论</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=8)"/>
+	    </record>
+	
+	    <!-- This channel will be set on payment -->
+	    <record id="slide_channel_demo_1_gard1" model="slide.channel">
+	        <field name="name">手机行业解决方案学习</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_1_1"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">latest</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_intermediate')),
+	                                     (4, ref('slide_channel_tag_role_salesman'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_1.jpg"/>
+	        <field name="description">3C领域下的手机行业CRM方案资料汇集,包括手机行业CRM系统所有的业务,需求,参考方案,成功案例资料等</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=7)"/>
+	    </record>
+	
+	    <!-- This channel will gain a forum -->
+	    <record id="slide_channel_demo_2_gard2" model="slide.channel">
+	        <field name="name">CX优秀产品研究</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">documentation</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_viewed</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_intermediate')),
+	                                     (4, ref('slide_channel_tag_role_it')),
+	                                     (4, ref('slide_channel_tag_role_manager'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_2.jpg"/>
+	        <field name="description">CRM产品领域国内外优秀的产品介绍,包括Oracle,Salesforce,SAP,Anodoo等</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=6)"/>
+	    </record>
+	
+	    <record id="slide_channel_demo_3_furn0" model="slide.channel">
+	        <field name="name">Anodoo SFA学习</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2_2"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">latest</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_basic')),
+	                                     (4, ref('slide_channel_tag_role_manager')),
+	                                     (4, ref('slide_channel_tag_role_it')),
+	                                     (4, ref('slide_channel_tag_role_salesman'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_3.jpg"/>
+	        <field name="description">帮助你学习Anodoo SFA产品的相关只是,包括产品架构,产品功能,开发手册,操作手册等</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=5)"/>
+	    </record>
+	
+	    <record id="slide_channel_demo_4_furn1" model="slide.channel">
+	        <field name="name">Odoo 14.0 学习</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2"/>
+	        <field name="enroll">invite</field>
+	        <field name="channel_type">documentation</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_voted</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_intermediate')),
+	                                     (4, ref('slide_channel_tag_role_it'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_4.jpg"/>
+	        <field name="description">将于2020年发布的Odoo 14.0最新版,让我们一起学习吧.</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=4)"/>
+	    </record>
+	
+	    <!-- This channel will gain a certification slide -->
+	    <record id="slide_channel_demo_5_furn2" model="slide.channel">
+	        <field name="name">CRM选型研究</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2_1"/>
+	        <field name="enroll">invite</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">latest</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                     (4, ref('slide_channel_tag_level_intermediate')),
+	                                     (4, ref('slide_channel_tag_role_it'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_5.jpg"/>
+	        <field name="description">所有关于CRM系统选型的知识</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=3)"/>
+	    </record>
+	
+	    <!-- This channel will be set on payment -->
+	    <!-- This channel will gain a certification slide -->
+	    <record id="slide_channel_demo_6_furn3" model="slide.channel">
+	        <field name="name">Anodoo CRM学习</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="category_id" ref="slide_channel_category_2_1"/>
+	        <field name="enroll">invite</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_voted</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="tag_ids" eval="[(5, 0),
+	                                 (4, ref('slide_channel_tag_level_advanced')),
+	                                 (4, ref('slide_channel_tag_role_manager')),
+	                                 (4, ref('slide_channel_tag_role_it')),
+	                                 (4, ref('slide_channel_tag_role_salesman'))]"/>
+	        <field name="image_1920" type="base64" file="anodoo_elearn/static/src/img/channel_demo_6.jpg"/>
+	        <field name="description">Anodoo CRM的高级学习资料</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=2)"/>
+	    </record>
+	    
+	    <!-- 课程内容标签 -->
+	    <record id="slide_tag_demo_introduction" model="slide.tag">
+	        <field name="name">介绍</field>
+	    </record>
+	    <record id="slide_tag_demo_solution" model="slide.tag">
+	        <field name="name">解决方案</field>
+	    </record>
+	    <record id="slide_tag_demo_product" model="slide.tag">
+	        <field name="name">产品</field>
+	    </record>
+	    <record id="slide_tag_demo_tools" model="slide.tag">
+	        <field name="name">工具</field>
+	    </record>
+	    <record id="slide_tag_demo_requirment" model="slide.tag">
+	        <field name="name">需求</field>
+	    </record>
+	    
+	    <!-- 参考链接 -->
+        <record id="slide_slide_link_1" model="slide.slide.link">
+        	<field name="name">Huangsiwei首页</field>
+        	<field name="link">http://www.huangsiwei.com</field>
+        </record>
+        <record id="slide_slide_link_2" model="slide.slide.link">
+        	<field name="name">Anodoo官网首页</field>
+        	<field name="link">http://www.anodoo.com</field>
+        </record>
+        
+        <!-- 题目 -->
+        <record id="slide_question_1" model="slide.question">
+        	<field name="question">Odoo的开发语言</field>
+        </record>
+        <record id="slide_question_1_1" model="slide.answer">
+            <field name="text_value">Python</field>
+            <field name="is_correct" eval="True"/>
+            <field name="question_id" ref="slide_question_1"/>
+        </record>
+        <record id="slide_question_1_2" model="slide.answer">
+            <field name="text_value">Java</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_1"/>
+        </record>
+        <record id="slide_question_1_3" model="slide.answer">
+            <field name="text_value">C++</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_1"/>
+        </record>
+        
+        <record id="slide_question_2" model="slide.question">
+        	<field name="question">SaaS CC中的CC代表什么</field>
+        </record>
+        <record id="slide_question_2_1" model="slide.answer">
+            <field name="text_value">Customer Centricity</field>
+            <field name="is_correct" eval="True"/>
+            <field name="question_id" ref="slide_question_2"/>
+        </record>
+        <record id="slide_question_2_2" model="slide.answer">
+            <field name="text_value">Call Center</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_2"/>
+        </record>
+        <record id="slide_question_2_3" model="slide.answer">
+            <field name="text_value">Customer Center</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_2"/>
+        </record>
+        
+        <record id="slide_question_3" model="slide.question">
+        	<field name="question">支持SaaS CC理论的IT系统是什么</field>
+        </record>
+        <record id="slide_question_3_1" model="slide.answer">
+            <field name="text_value">CRM</field>
+            <field name="is_correct" eval="True"/>
+            <field name="question_id" ref="slide_question_3"/>
+        </record>
+        <record id="slide_question_3_2" model="slide.answer">
+            <field name="text_value">ERP</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_3"/>
+        </record>
+        <record id="slide_question_3_3" model="slide.answer">
+            <field name="text_value">OA</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_question_3"/>
+        </record>
+        
+	    
+	    <!-- CHANNEL 0:  -->
+	    <!-- ================================================== -->
+	    <record id="slide_slide_demo_0_0" model="slide.slide">
+	        <field name="name">什么是SaaS CC</field>
+	        <field name="sequence">1</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="datas" type="base64" file="anodoo_elearn/static/src/img/anodoo-cx-introduction.pdf"/>
+	        <field name="image_1920" type="base64" file="website_slides/static/src/img/channel-training-default.jpg"/>
+	        <field name="slide_type">presentation</field>
+	        <field name="channel_id" ref="slide_channel_demo_0"/>
+	        <field name="is_published" eval="True"/>
+	        <field name="is_preview" eval="True"/>
+	        <field name="public_views">10</field>
+	        <field name="completion_time">2.5</field>
+	        <field name="tag_ids" eval="[(4, ref('slide_tag_demo_introduction')), (4, ref('slide_tag_demo_requirment'))]"/>
+	        <field name="description">通过Presentation向你讲解什么是SaaS CC</field>
+	    </record>
+	    <record id="slide_slide_demo_0_1" model="slide.slide">
+	        <field name="name">一张图了解SaaS CC的组成</field>
+	        <field name="sequence">2</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="image_1920" type="base64" file="website_slides/static/src/img/slide_demo_gardening_1.jpg"/>
+	        <field name="slide_type">infographic</field>
+	        <field name="channel_id" ref="slide_channel_demo_0"/>
+	        <field name="is_published" eval="True"/>
+	        <field name="is_preview" eval="False"/>
+	        <field name="public_views">5</field>
+	        <field name="completion_time">1</field>
+	        <field name="tag_ids" eval="[(4, ref('slide_tag_demo_tools')), (4, ref('slide_tag_demo_introduction'))]"/>
+	        <field name="description">通过一张图让你了解SaaS CC的组成</field>
+	    </record>
+	    <record id="slide_slide_demo_0_2" model="slide.slide">
+	        <field name="name">客户关系的新趋势</field>
+	        <field name="sequence">3</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="image_1920" type="base64" file="website_slides/static/src/img/slide_demo_gardening_2.jpg"/>
+	        <field name="slide_type">webpage</field>
+	        <field name="channel_id" ref="slide_channel_demo_0"/>
+	        <field name="html_content" type="html">
+	        <span>这是HTML代码,请在网页编辑模式下设计</span>
+	        </field>
+	        <field name="is_published" eval="True"/>
+	        <field name="is_preview" eval="False"/>
+	        <field name="public_views">2</field>
+	        <field name="completion_time">2</field>
+	        <field name="tag_ids" eval="[(4, ref('slide_tag_demo_tools')), (4, ref('slide_tag_demo_introduction'))]"/>
+	        <field name="description">通过精美设计的网页,让你了解客户关系的新趋势</field>
+	    </record>
+	    <record id="slide_slide_demo_0_3" model="slide.slide">
+	        <field name="name">SaaS CC理论精义</field>
+	        <field name="sequence">4</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="datas" type="base64" file="anodoo_elearn/static/src/img/anodoo-cx-introduction.pdf"/>
+	        <field name="image_1920" type="base64" file="website_slides/static/src/img/slide_demo_thumb_l0JZ25VvbwE.jpg"/>
+	        <field name="slide_type">document</field>
+	        <field name="channel_id" ref="slide_channel_demo_0"/>
+	        <field name="is_published" eval="True"/>
+	        <field name="is_preview" eval="False"/>
+	        <field name="public_views">0</field>
+	        <field name="completion_time">1</field>
+	        <field name="tag_ids" eval="[(4, ref('slide_tag_demo_introduction'))]"/>
+	        <field name="description">通过SaaS理论的详细文档学习,让你掌握该理论的详细知识</field>
+	    </record>
+	    <record id="slide_slide_demo_0_4" model="slide.slide">
+	        <field name="name">小测验</field>
+	        <field name="sequence">5</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="image_1920" type="base64" file="website_slides/static/src/img/slide_demo_owl.jpg"/>
+	        <field name="slide_type">quiz</field>
+	        <field name="channel_id" ref="slide_channel_demo_0"/>
+	        <field name="is_published" eval="True"/>
+	        <field name="is_preview" eval="False"/>
+	        <field name="public_views">0</field>
+	        <field name="completion_time">1</field>
+	        <field name="description">简单小测验来让你检测学习成果</field>
+	    </record>
+        <record id="slide_slide_demo_0_4_question_0" model="slide.question">
+            <field name="question">SaaS CC中的CC代表什么</field>
+            <field name="slide_id" ref="slide_slide_demo_0_4"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_0_0" model="slide.answer">
+            <field name="text_value">Customer Centricity</field>
+            <field name="is_correct" eval="True"/>
+            <field name="question_id" ref="slide_slide_demo_0_4_question_0"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_0_1" model="slide.answer">
+            <field name="text_value">Call Center</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_slide_demo_0_4_question_0"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_0_2" model="slide.answer">
+            <field name="text_value">Customer Center</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_slide_demo_0_4_question_0"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_1" model="slide.question">
+            <field name="question">支持SaaS CC理论的IT系统是什么</field>
+            <field name="slide_id" ref="slide_slide_demo_0_4"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_1_0" model="slide.answer">
+            <field name="text_value">CRM</field>
+            <field name="is_correct" eval="True"/>
+            <field name="question_id" ref="slide_slide_demo_0_4_question_1"/>
+        </record>
+        <record id="slide_slide_demo_0_4_question_1_1" model="slide.answer">
+            <field name="text_value">ERP</field>
+            <field name="is_correct" eval="False"/>
+            <field name="question_id" ref="slide_slide_demo_0_4_question_1"/>
+        </record>
+    </data>
+</odoo>

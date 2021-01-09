@@ -1,0 +1,187 @@
+# 批量提交所有代码到develop
+
+cd /home/lionger/PycharmProjects/Anodoo_Base;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Base_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Customer;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Customer_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Marketing;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Marketing_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Sale;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Sale_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+
+cd /home/lionger/PycharmProjects/Anodoo_Service;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Service_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Multichannel;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Multichannel_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_OA;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_OA_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_HR;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_HR_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Finance;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Finance_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Manufacturing;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Manufacturing_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+
+cd /home/lionger/PycharmProjects/Anodoo_SupplyChain;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_SupplyChain_Ent;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;
+
+cd /home/lionger/PycharmProjects/Anodoo_Other;
+git checkout develop;
+git status;
+git add .;
+git status;
+git commit -m "feat(all):commit all to develop together";
+git push origin develop;

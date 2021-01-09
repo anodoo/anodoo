@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 个人联系人 -->
+        <record id="partner_zhao_contact" model="res.partner">
+            <field name="name">赵富</field>
+            <field name="email">zhao.customer@anodoo.com</field>
+            
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_11.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">contact</field>
+            <field name="belong_company">兆富科技</field>
+            <field name="function">总经理</field>
+            <field name="birth_date" eval="DateTime.now() - timedelta(days=14000)"/>
+            <field name="gender_type">man</field>
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_0'), ref('res_partner_category_11')])]"/>
+            <field name="user_id" ref="user_zhao_sales"/>
+        </record>
+        <record id="res_partner_address_zhao" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">个人地址</field>
+            <field name="parent_id" eval="ref('partner_zhao_contact')"/>
+            <field name="street">中山路1号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+            <field name="user_id" ref="user_zhao_sales"/>
+        </record>
+        <record id="partner_qian_contact" model="res.partner">
+            <field name="name">钱宁</field>
+            <field name="email">qian.customer@anodoo.com</field>
+            
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_32.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">contact</field>
+            <field name="belong_company">乾宁软件</field>
+            <field name="function">董事长</field>
+            <field name="birth_date" eval="DateTime.now() - timedelta(days=18000)"/>
+            <field name="gender_type">woman</field>
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_0'), ref('res_partner_category_2')])]"/>
+            <field name="user_id" ref="user_qian_sales"/>
+        </record>
+        <record id="res_partner_address_qian" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">个人地址</field>
+            <field name="parent_id" eval="ref('partner_qian_contact')"/>
+            <field name="street">佛山路322号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+            <field name="user_id" ref="user_qian_sales"/>
+        </record>
+        <record id="partner_sun_contact" model="res.partner">
+            <field name="name">孙青</field>
+            <field name="email">sun.customer@anodoo.com</field>
+            <field name="street">东莞路3152号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_13.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">contact</field>
+            <field name="belong_company">笋青培训</field>
+            <field name="function">营销部负责人</field>
+            <field name="birth_date" eval="DateTime.now() - timedelta(days=15000)"/>
+            <field name="gender_type">woman</field>
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_8'), ref('res_partner_category_12')])]"/>
+        </record>
+        <record id="res_partner_address_sun" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">个人地址</field>
+            <field name="parent_id" eval="ref('partner_sun_contact')"/>
+            <field name="street">东莞路3152号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+        </record>
+        <record id="partner_li_contact" model="res.partner">
+            <field name="name">李光</field>            
+            <field name="email">li.customer@anodoo.com</field>
+            
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_14.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">contact</field>
+            <field name="belong_company">理广实业</field>
+            <field name="function">副总经理</field>
+            <field name="birth_date" eval="DateTime.now() - timedelta(days=16000)"/>
+            <field name="gender_type">woman</field>        
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_0'), ref('res_partner_category_14')])]"/>    
+        </record>
+        <record id="res_partner_address_li" model="res.partner">
+        	<field name="partner_type">address</field>
+        	<field name="name">个人地址</field>
+            <field name="parent_id" eval="ref('partner_li_contact')"/>
+            <field name="street">顺德路3112号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">ready.mat28@example.com</field>
+            <field name="phone">(803)-873-6126</field>
+        </record>
+        
+        <!-- 公司联系人 -->
+        <record id="res_partner_11" model="res.partner">
+            <field name="name">先民科技有限公司</field>
+            <field name="is_company">1</field>
+            <field name="street">市民广场西路232号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">wood.corner26@zhaofu.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="website">http://www.wood-corner.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_1-image.png"/>
+            <field name="partner_type">contact</field>
+            <field name="industry_id" ref="base.res_partner_industry_J" />
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_0'), ref('res_partner_category_11')])]"/>
+        </record>
+        <record id="res_partner_12" model="res.partner">
+            <field name="name">中资科技有限公司</field>
+            <field name="is_company">1</field>
+            <field name="street">市民广场西路232号</field>
+            <field name="city">深圳市</field>
+            <field name="state_id"  model="res.country.state" search="[('name','ilike','广东省')]"/>
+            <field name="zip">953802</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">wood.corner26@zhaofu.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="website">http://www.wood-corner.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_2-image.png"/>
+            <field name="partner_type">contact</field>
+            <field name="industry_id" ref="base.res_partner_industry_K" />
+            <field  name="category_id" eval="[(6, 0, [ref('res_partner_category_0'), ref('res_partner_category_11')])]"/>
+        </record>
+    </data>
+</odoo>
