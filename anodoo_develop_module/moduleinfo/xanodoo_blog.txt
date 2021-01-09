@@ -1,0 +1,239 @@
+模块:anodoo_blog       ID:145      Name:博客
+
+
+================== Models ======================
+
+###blog.blog name:博客 inherit:ir.model()  access:ir.model.access(661, 660)  rule:ir.rule()  transient:False  modules:anodoo_blog, website_blog
+
+###blog.post name:博客文章 inherit:ir.model()  access:ir.model.access(663, 662)  rule:ir.rule(125,)  transient:False  modules:anodoo_blog, website_blog
+
+###gamification.karma.rank name:Rank based on karma inherit:ir.model()  access:ir.model.access(668, 624, 623)  rule:ir.rule()  transient:False  modules:anodoo_blog, anodoo_forum, anodoo_profile, gamification
+
+###anodoo.blog.post.series name:文章所属的系列文章 inherit:ir.model()  access:ir.model.access(806, 811)  rule:ir.rule()  transient:False  modules:anodoo_blog
+
+
+================== Extended Models ======================
+
+###res.config.settings name:配置设置 inherit:ir.model()  transient:True  modules:account, anodoo_base, anodoo_blog, anodoo_content, anodoo_crm, anodoo_forum, anodoo_mktauto, anodoo_prod, anodoo_profile, anodoo_proj, anodoo_sfa, anodoo_team, auth_oauth, auth_password_policy, auth_signup, base, base_setup, crm, crm_iap_lead_enrich, digest, event, iap, mail, mass_mailing, product, project, sale, sale_management, sale_stock, snailmail, stock, stock_account, website, website_form, website_livechat, website_sale, website_slides
+
+
+================== Actions ======================
+
+###website_blog.action_blog_blog  name:栏目 view_mode:tree,form domain:False  context:{'active_test' : False}
+
+###website_blog.action_blog_post  name:博文 view_mode:tree,form,kanban domain:False  context:{}
+
+###gamification.gamification_karma_ranks_action  name:Ranks view_mode:tree,form domain:False  context:{}
+
+###anodoo_blog.action_anodoo_blog_post_series_list  name:文章系列 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###blog.blog
+
+website_blog.view_blog_blog_form  type:form  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+anodoo_blog.view_blog_blog_form  type:form  priority:16  arch_fs:anodoo_blog/views/website_blog_views.xml  inherit_id:website_blog.view_blog_blog_form
+
+website_blog.view_blog_blog_list  type:tree  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+anodoo_blog.view_blog_blog_list  type:tree  priority:16  arch_fs:anodoo_blog/views/website_blog_views.xml  inherit_id:website_blog.view_blog_blog_list
+
+website_blog.blog_blog_view_search  type:search  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+anodoo_blog.blog_blog_view_search  type:search  priority:16  arch_fs:anodoo_blog/views/website_blog_views.xml  inherit_id:website_blog.blog_blog_view_search
+
+
+###blog.post
+
+website_blog.view_blog_post_form  type:form  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+anodoo_blog.view_blog_post_form  type:form  priority:16  arch_fs:anodoo_blog/views/website_blog_views.xml  inherit_id:website_blog.view_blog_post_form
+
+website_blog.blog_post_view_kanban  type:kanban  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+website_blog.view_blog_post_list  type:tree  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+anodoo_blog.view_blog_post_list  type:tree  priority:16  arch_fs:anodoo_blog/views/website_blog_views.xml  inherit_id:website_blog.view_blog_post_list
+
+website_blog.view_blog_post_search  type:search  priority:16  arch_fs:website_blog/views/website_blog_views.xml  inherit_id:
+
+
+###gamification.karma.rank
+
+gamification.gamification_karma_ranks_view_search  type:search  priority:16  arch_fs:gamification/views/gamification_karma_rank_views.xml  inherit_id:
+
+gamification.gamification_karma_ranks_view_tree  type:tree  priority:16  arch_fs:gamification/views/gamification_karma_rank_views.xml  inherit_id:
+
+anodoo_profile.gamification_karma_ranks_view_tree  type:tree  priority:16  arch_fs:anodoo_profile/views/profile_views.xml  inherit_id:gamification.gamification_karma_ranks_view_tree
+
+gamification.gamification_karma_rank_view_form  type:form  priority:16  arch_fs:gamification/views/gamification_karma_rank_views.xml  inherit_id:
+
+anodoo_profile.gamification_karma_rank_view_form  type:form  priority:16  arch_fs:anodoo_profile/views/profile_views.xml  inherit_id:gamification.gamification_karma_rank_view_form
+
+
+###anodoo.blog.post.series
+
+anodoo_blog.view_anodoo_blog_post_series_form  type:form  priority:100  arch_fs:anodoo_blog/views/blog_views.xml  inherit_id:
+
+anodoo_blog.view_anodoo_blog_post_series_list  type:tree  priority:100  arch_fs:anodoo_blog/views/blog_views.xml  inherit_id:
+
+anodoo_blog.view_anodoo_blog_post_series_search  type:search  priority:100  arch_fs:anodoo_blog/views/blog_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+anodoo_blog.opt_sidebar_blog_index_series  type:qweb  priority:4  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.sidebar_blog_index
+
+anodoo_blog.opt_blog_post_series_display  type:qweb  priority:5  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.blog_post_sidebar
+
+anodoo_blog.opt_blog_post_series_display  type:qweb  priority:5  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.blog_post_sidebar
+
+anodoo_blog.opt_blog_post_relative_display  type:qweb  priority:5  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.blog_post_sidebar
+
+anodoo_blog.opt_blog_post_relative_display  type:qweb  priority:5  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.blog_post_sidebar
+
+anodoo_blog.opt_blog_post_tags_display_no_edit_in_backend  type:qweb  priority:16  arch_fs:anodoo_blog/views/blog_templates.xml  inherit_id:website_blog.opt_blog_post_tags_display
+
+
+================== Fields ======================
+
+
+###blog.blog
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+content Label:内容  ttype:html    required:False  compute:False  depends:False  modules:website_blog  help:False
+cover_properties Label:封面属性  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:website_blog  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:False
+is_public Label:是否公开  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:有些栏目不在列表显示,但可以单独链接浏览
+is_seo_optimized Label:SEO优化  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_attachment_count Label:附件数量  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_channel_ids Label:关注者(渠道)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_follower_ids Label:关注者  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_has_error Label:消息传递错误  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:如果勾选此项， 某些消息将会产生传递错误。
+message_has_error_counter Label:错误数  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:递送错误消息数量
+message_has_sms_error Label:短信发送错误  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:如果勾选此项， 某些消息将会产生传递错误。
+message_ids Label:消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_is_follower Label:关注者  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_main_attachment_id Label:附件  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_needaction Label:需要采取行动  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:确认后, 出现提示消息.
+message_needaction_counter Label:操作次数  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:需要操作消息数量
+message_partner_ids Label:关注者(业务伙伴)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_unread Label:未读消息  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:确认后, 出现提示消息.
+message_unread_counter Label:未读消息计数器  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:未读消息数量
+name Label:博客名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_blog, website_blog  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+subtitle Label:博文副标题  ttype:char    required:False  compute:False  depends:False  modules:anodoo_blog, website_blog  help:False
+website_id Label:网站  ttype:many2one  relation:website    required:False  compute:False  depends:False  modules:website_blog  help:限制发布到本网站。
+website_message_ids Label:网站消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:website_blog  help:网上沟通记录
+website_meta_description Label:网站原说明  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_keywords Label:网站meta关键词  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_og_img Label:网站opengraph图像  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_title Label:网站标题meta元素  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:website_blog  help:False
+
+###blog.post
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+author_avatar Label:头像  ttype:binary    required:False  compute:False  depends:False  modules:website_blog  help:False
+author_id Label:作者  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:website_blog  help:False
+blog_id Label:博客  ttype:many2one  relation:blog.blog    required:True  compute:False  depends:False  modules:website_blog  help:False
+can_publish Label:可以发布  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+content Label:内容  ttype:html    required:False  compute:False  depends:False  modules:website_blog  help:False
+cover_properties Label:封面属性  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:website_blog  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:False
+is_post_blog_mana2many Label:是否属于多栏目  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:根据配置计算
+is_public Label:是否公开  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:有些文章不在列表显示,但可以单独链接浏览
+is_published Label:已发布  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+is_seo_optimized Label:SEO优化  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_attachment_count Label:附件数量  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_channel_ids Label:关注者(渠道)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_follower_ids Label:关注者  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_has_error Label:消息传递错误  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:如果勾选此项， 某些消息将会产生传递错误。
+message_has_error_counter Label:错误数  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:递送错误消息数量
+message_has_sms_error Label:短信发送错误  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:如果勾选此项， 某些消息将会产生传递错误。
+message_ids Label:消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_is_follower Label:关注者  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_main_attachment_id Label:附件  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_needaction Label:需要采取行动  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:确认后, 出现提示消息.
+message_needaction_counter Label:操作次数  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:需要操作消息数量
+message_partner_ids Label:关注者(业务伙伴)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:website_blog  help:False
+message_unread Label:未读消息  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:确认后, 出现提示消息.
+message_unread_counter Label:未读消息计数器  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:未读消息数量
+multi_blog_ids Label:其他栏目  ttype:many2many  relation:blog.blog    required:False  compute:False  depends:False  modules:anodoo_blog  help:一个文章属于多个博客栏目,这里为主栏目的其他栏目
+multi_website_ids Label:其他网站  ttype:many2many  relation:website    required:False  compute:False  depends:False  modules:anodoo_blog  help:根据文章所与多个栏目,如果栏目属于不同网站,则文章属于多个网站
+name Label:标题  ttype:char    required:True  compute:False  depends:False  modules:website_blog  help:False
+post_date Label:发布日期  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:如果博客文章设为已发布，则网站的访客从即日起能够看到此博客文章。
+published_date Label:发布日期  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+relative_post_ids Label:相关文章  ttype:many2many  relation:blog.post    required:False  compute:False  depends:False  modules:anodoo_blog  help:本文章的其他相关文章
+series_id Label:文章系列  ttype:many2one  relation:anodoo.blog.post.series    required:False  compute:False  depends:False  modules:anodoo_blog  help:当前文章所属的文章系列
+subtitle Label:副标题  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+tag_ids Label:标签  ttype:many2many  relation:blog.tag    required:False  compute:False  depends:False  modules:website_blog  help:False
+teaser Label:预告  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+teaser_manual Label:预告内容  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+visits Label:浏览数量  ttype:integer    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_id Label:网站  ttype:many2one  relation:website    required:False  compute:False  depends:False  modules:anodoo_blog, website_blog  help:限制发布到本网站。
+website_message_ids Label:网站消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:website_blog  help:网上沟通记录
+website_meta_description Label:网站原说明  ttype:text    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_keywords Label:网站meta关键词  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_og_img Label:网站opengraph图像  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_meta_title Label:网站标题meta元素  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_published Label:在当前网站显示  ttype:boolean    required:False  compute:False  depends:False  modules:website_blog  help:False
+website_url Label:网站网址  ttype:char    required:False  compute:False  depends:False  modules:website_blog  help:通过网站访问文档的完整网址。
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:website_blog  help:False
+write_uid Label:最近的贡献者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:website_blog  help:False
+
+###gamification.karma.rank
+
+category Label:分类  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_blog, anodoo_forum, anodoo_profile  help:级别所属的分类
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:gamification  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:gamification  help:False
+description Label:说明  ttype:html    required:False  compute:False  depends:False  modules:gamification  help:False
+description_motivational Label:Motivational  ttype:html    required:False  compute:False  depends:False  modules:gamification  help:Motivational phrase to reach this rank
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:gamification  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:gamification  help:False
+image_1024 Label:图像 1024  ttype:binary    required:False  compute:False  depends:False  modules:gamification  help:False
+image_128 Label:图像128  ttype:binary    required:False  compute:False  depends:False  modules:gamification  help:False
+image_1920 Label:图像  ttype:binary    required:False  compute:False  depends:False  modules:gamification  help:False
+image_256 Label:图像 256  ttype:binary    required:False  compute:False  depends:False  modules:gamification  help:False
+image_512 Label:图像 512  ttype:binary    required:False  compute:False  depends:False  modules:gamification  help:False
+karma_min Label:Required Karma  ttype:integer    required:False  compute:False  depends:False  modules:gamification  help:Minimum karma needed to reach this rank
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:gamification  help:False
+name Label:Rank Name  ttype:text    required:True  compute:False  depends:False  modules:gamification  help:False
+user_ids Label:用户  ttype:one2many  relation:res.users    required:False  compute:False  depends:False  modules:gamification  help:Users having this rank
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:gamification  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:gamification  help:False
+
+###anodoo.blog.post.series
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_blog  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+website_id Label:网站  ttype:many2one  relation:website    required:False  compute:False  depends:False  modules:anodoo_blog  help:文章系列所属的网站,不设置则所有的网站可见
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+
+================== Extended Fields ======================
+
+
+###res.config.settings
+
+is_blog_website_mana2many Label:一个栏目属于多个网站  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+is_hide_footer Label:隐藏网站Footer  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:False
+is_post_blog_mana2many Label:一个文章属于多个栏目  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_blog  help:False

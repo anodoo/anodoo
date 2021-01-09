@@ -1,0 +1,325 @@
+模块:sms       ID:12      Name:SMS gateway
+
+
+================== Models ======================
+
+###sms.cancel name:Dismiss notification for resend by model inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:sms
+
+###sms.sms name:Outgoing SMS inherit:ir.model()  access:ir.model.access(192, 191)  rule:ir.rule()  transient:False  modules:sms
+
+###sms.resend.recipient name:Resend Notification inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:sms
+
+###sms.composer name:Send SMS Wizard inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:sms
+
+###sms.api name:SMS API inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:sms
+
+###sms.resend name:SMS Resend inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:sms
+
+###sms.template.preview name:SMS Template Preview inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:sms
+
+###sms.template name:SMS Templates inherit:ir.model()  access:ir.model.access(194, 195, 193)  rule:ir.rule()  transient:False  modules:sms
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###mail.thread name:Email Thread inherit:ir.model()  transient:False  modules:mail, portal, rating, sms
+
+###mail.thread.phone name:Phone Blacklist Mixin inherit:ir.model()  transient:False  modules:phone_validation, sms
+
+###mail.followers name:Document Followers inherit:ir.model()  transient:False  modules:mail, sms
+
+###mail.message name:Message inherit:ir.model()  transient:False  modules:mail, portal, rating, sms, snailmail
+
+###mail.notification name:Message Notifications inherit:ir.model()  transient:False  modules:mail, sms
+
+###ir.model name:Models inherit:ir.model()  transient:False  modules:base, mail, sms
+
+###ir.actions.server name:Server Action inherit:ir.model()  transient:False  modules:base, mail, sms
+
+
+================== Actions ======================
+
+###sms.sms_cancel_action  name:Discard SMS delivery failures view_mode:form domain:False  context:{}
+
+###sms.sms_sms_action  name:SMS view_mode:tree,form domain:False  context:{}
+
+###sms.sms_composer_action_form  name:Send SMS Text Message view_mode:form domain:False  context:{}
+
+###sms.res_partner_act_window_sms_composer_multi  name:Send SMS Text Message view_mode:form domain:[]  context:{'default_composition_mode': 'mass', 'default_mass_keep_log': True, 'default_res_ids': active_ids}
+
+###sms.res_partner_act_window_sms_composer_single  name:Send SMS Text Message view_mode:form domain:[]  context:{'default_composition_mode': 'comment', 'default_res_id': active_id}
+
+###sms.sms_resend_action  name:Sending Failures view_mode:form domain:False  context:{}
+
+###sms.sms_template_preview_action  name:Template Preview view_mode:form domain:False  context:{'default_sms_template_id':active_id}
+
+###sms.sms_template_action  name:Templates view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###sms.cancel
+
+sms.sms_cancel  type:form  priority:16  arch_fs:sms/wizard/sms_cancel_views.xml  inherit_id:
+
+
+###sms.sms
+
+sms.sms_tsms_view_form  type:form  priority:16  arch_fs:sms/views/sms_sms_views.xml  inherit_id:
+
+sms.sms_sms_view_search  type:search  priority:16  arch_fs:sms/views/sms_sms_views.xml  inherit_id:
+
+sms.sms_sms_view_tree  type:tree  priority:16  arch_fs:sms/views/sms_sms_views.xml  inherit_id:
+
+
+###sms.resend.recipient
+
+
+###sms.composer
+
+sms.sms_composer_view_form  type:form  priority:16  arch_fs:sms/wizard/sms_composer_views.xml  inherit_id:
+
+
+###sms.api
+
+
+###sms.resend
+
+sms.mail_resend_message_view_form  type:form  priority:16  arch_fs:sms/wizard/sms_resend_views.xml  inherit_id:
+
+
+###sms.template.preview
+
+sms.sms_template_preview_form  type:form  priority:16  arch_fs:sms/wizard/sms_template_preview_views.xml  inherit_id:
+
+
+###sms.template
+
+sms.sms_template_view_form  type:form  priority:16  arch_fs:sms/views/sms_template_views.xml  inherit_id:
+
+sms.sms_template_view_search  type:search  priority:16  arch_fs:sms/views/sms_template_views.xml  inherit_id:
+
+sms.sms_template_view_tree  type:tree  priority:16  arch_fs:sms/views/sms_template_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+sms.res_partner_view_form  type:form  priority:10  arch_fs:sms/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+
+###mail.thread
+
+
+###mail.thread.phone
+
+
+###mail.followers
+
+
+###mail.message
+
+
+###mail.notification
+
+
+###ir.model
+
+
+###ir.actions.server
+
+sms.ir_actions_server_view_form  type:form  priority:16  arch_fs:sms/views/ir_actions_views.xml  inherit_id:base.view_server_action_form
+
+
+================== qWeb ======================
+
+sms.assets_backend  type:qweb  priority:16  arch_fs:sms/views/assets.xml  inherit_id:web.assets_backend
+
+sms.qunit_suite  type:qweb  priority:16  arch_fs:sms/views/assets.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+###sms.cancel
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+help_message Label:Help message  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+model Label:Model  ttype:char    required:True  compute:False  depends:False  modules:sms  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.sms
+
+body Label:Body  ttype:text    required:False  compute:False  depends:False  modules:sms  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+error_code Label:Error Code  ttype:selection    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+mail_message_id Label:Mail Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:sms  help:False
+number Label:Number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:sms  help:False
+state Label:SMS Status  ttype:selection    required:True  compute:False  depends:False  modules:sms  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.resend.recipient
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+failure_type Label:Failure type  ttype:selection    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+notification_id Label:Notification  ttype:many2one  relation:mail.notification    required:True  compute:False  depends:False  modules:sms  help:False
+partner_id Label:Partner  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:sms  help:False
+partner_name Label:Recipient  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+resend Label:Resend  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+sms_number Label:Number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+sms_resend_id Label:Sms Resend  ttype:many2one  relation:sms.resend    required:True  compute:False  depends:False  modules:sms  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.composer
+
+active_domain Label:Active domain  ttype:text    required:False  compute:False  depends:False  modules:sms  help:False
+active_domain_count Label:Active records count  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:UX field computing the number of recipients in mass mode based on given active domain
+body Label:Message  ttype:text    required:True  compute:False  depends:False  modules:sms  help:False
+composition_mode Label:Composition Mode  ttype:selection    required:True  compute:False  depends:False  modules:sms  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+mass_force_send Label:Send directly  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+mass_keep_log Label:Keep a note on document  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+mass_use_blacklist Label:Use blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+number_field_name Label:Field holding number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+numbers Label:Recipients (Numbers)  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+partner_ids Label:Partner  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:sms  help:False
+recipient_count Label:# Valid recipients  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+recipient_description Label:Recipients (Partners)  ttype:text    required:False  compute:False  depends:False  modules:sms  help:False
+recipient_invalid_count Label:# Invalid recipients  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+res_id Label:Document ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+res_ids Label:Document IDs  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+res_ids_count Label:Visible records count  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:UX field computing the number of recipients in mass mode without active domain
+res_model Label:Document Model Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+sanitized_numbers Label:Sanitized Number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+template_id Label:Use Template  ttype:many2one  relation:sms.template    required:False  compute:False  depends:False  modules:sms  help:False
+use_active_domain Label:Use active domain  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.api
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.resend
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+has_cancel Label:Has Cancel  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+has_insufficient_credit Label:Has Insufficient Credit  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+mail_message_id Label:Message  ttype:many2one  relation:mail.message    required:True  compute:False  depends:False  modules:sms  help:False
+recipient_ids Label:Recipients  ttype:one2many  relation:sms.resend.recipient    required:False  compute:False  depends:False  modules:sms  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.template.preview
+
+body Label:Body  ttype:char    required:True  compute:False  depends:False  modules:sms  help:False
+copyvalue Label:Placeholder Expression  ttype:char    required:False  compute:False  depends:False  modules:sms  help:Final placeholder expression, to be copy-pasted in the desired template field.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+lang Label:Template Preview Language  ttype:selection    required:False  compute:False  depends:False  modules:sms  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+model_id Label:Applies to  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:sms  help:The type of document this template can be used with
+model_object_field Label:Field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:sms  help:Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+null_value Label:Default Value  ttype:char    required:False  compute:False  depends:False  modules:sms  help:Optional value to use if the target field is empty
+res_id Label:Record ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+resource_ref Label:Record reference  ttype:reference    required:False  compute:False  depends:False  modules:sms  help:False
+sidebar_action_id Label:Sidebar action  ttype:many2one  relation:ir.actions.act_window    required:False  compute:False  depends:False  modules:sms  help:Sidebar action to make this template available on records of the related document model
+sms_template_id Label:Sms Template  ttype:many2one  relation:sms.template    required:False  compute:False  depends:False  modules:sms  help:False
+sub_model_object_field Label:Sub-field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:sms  help:When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).
+sub_object Label:Sub-model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:sms  help:When a relationship field is selected as first field, this field shows the document model the relationship goes to.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+###sms.template
+
+body Label:Body  ttype:char    required:True  compute:False  depends:False  modules:sms  help:False
+copyvalue Label:Placeholder Expression  ttype:char    required:False  compute:False  depends:False  modules:sms  help:Final placeholder expression, to be copy-pasted in the desired template field.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:sms  help:False
+lang Label:Language  ttype:char    required:False  compute:False  depends:False  modules:sms  help:Use this field to either force a specific language (ISO code) or dynamically detect the language of your recipient by a placeholder expression (e.g. ${object.partner_id.lang})
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+model_id Label:Applies to  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:sms  help:The type of document this template can be used with
+model_object_field Label:Field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:sms  help:Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+null_value Label:Default Value  ttype:char    required:False  compute:False  depends:False  modules:sms  help:Optional value to use if the target field is empty
+sidebar_action_id Label:Sidebar action  ttype:many2one  relation:ir.actions.act_window    required:False  compute:False  depends:False  modules:sms  help:Sidebar action to make this template available on records of the related document model
+sub_model_object_field Label:Sub-field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:sms  help:When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).
+sub_object Label:Sub-model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:sms  help:When a relationship field is selected as first field, this field shows the document model the relationship goes to.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:sms  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:sms  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+
+###mail.thread
+
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+
+###mail.thread.phone
+
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+
+###mail.followers
+
+
+###mail.message
+
+has_sms_error Label:Has SMS error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:Has error
+
+###mail.notification
+
+sms_id Label:SMS  ttype:many2one  relation:sms.sms    required:False  compute:False  depends:False  modules:sms  help:False
+sms_number Label:SMS Number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+
+###ir.model
+
+is_mail_thread_sms Label:Mail Thread SMS  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:Whether this model supports messages and notifications through SMS
+
+###ir.actions.server
+
+sms_mass_keep_log Label:Log a note  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:False
+sms_template_id Label:SMS Template  ttype:many2one  relation:sms.template    required:False  compute:False  depends:False  modules:sms  help:False

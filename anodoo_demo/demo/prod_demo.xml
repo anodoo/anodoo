@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- We want to activate product variant by default for easier demoing. -->
+        <record id="base.group_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('product.group_product_variant'))]"/>
+        </record>
+        
+        <!-- 产品类目， 参考prod_data.xml中定义了： 
+        所有(product.product_category_all)
+        	所有/销售类 product.product_category_1
+        	所有/报销类 product.cat_expense-->
+
+        <record id="product_category_2" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">内部</field>
+        </record>
+        <record id="product_category_3" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">服务</field>
+        </record>
+        <record id="product_category_6" model="product.category">
+            <field name="parent_id" ref="product_category_3"/>
+            <field name="name">可售</field>
+        </record>
+        <record id="product_category_4" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">软件</field>
+        </record>
+        <record id="product_category_5" model="product.category">
+            <field name="parent_id" ref="product.product_category_1"/>
+            <field name="name">办公家具</field>
+        </record>
+        <record id="product_category_consumable" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">消耗品</field>
+        </record>
+
+        <!-- Expensable products -->
+        <!-- 
+        <record id="expense_product" model="product.product">
+            <field name="name">餐饮报销</field>
+            <field name="list_price">14.0</field>
+            <field name="standard_price">8.0</field>
+            <field name="type">service</field>
+            <field name="default_code">EXP_REST</field>
+            <field name="categ_id" ref="product.cat_expense"/>
+        </record>
+
+        <record id="expense_hotel" model="product.product">
+            <field name="name">酒店报销</field>
+            <field name="list_price">400.0</field>
+            <field name="standard_price">400.0</field>
+            <field name="type">service</field>
+            <field name="default_code">EXP_HA</field>
+            <field name="uom_id" ref="uom.product_uom_day"/>
+            <field name="uom_po_id" ref="uom.product_uom_day"/>
+            <field name="categ_id" ref="product.cat_expense"/>
+        </record>
+         -->
+
+        <!-- Service products -->
+        <record id="product_product_1" model="product.product">
+            <field name="name">室内设计服务</field>
+            <field name="categ_id" ref="product_category_3"/>
+            <field name="standard_price">20.5</field>
+            <field name="list_price">30.75</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="uom.product_uom_hour"/>
+            <field name="uom_po_id" ref="uom.product_uom_hour"/>
+            <field name="default_code">SERVICE_1</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_43-image.jpg"/>
+        </record>
+
+        <record id="product_product_2" model="product.product">
+            <field name="name">虚拟房屋布置</field>
+            <field name="categ_id" ref="product_category_3"/>
+            <field name="standard_price">25.5</field>
+            <field name="list_price">38.25</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="uom.product_uom_hour"/>
+            <field name="uom_po_id" ref="uom.product_uom_hour"/>
+            <field name="default_code">SERVICE_2</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_lamp.png"/>
+        </record>
+
+        <!-- Physical Products -->
+
+        <record id="product_delivery_01" model="product.product">
+            <field name="name">办公室椅子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">55.0</field>
+            <field name="list_price">70.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_7777</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_chair.png"/>
+        </record>
+
+        <record id="product_delivery_02" model="product.product">
+            <field name="name">办公室灯</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">35.0</field>
+            <field name="list_price">40.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_8888</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_lamp.png"/>
+        </record>
+
+        <record id="product_order_01" model="product.product">
+            <field name="name">办公室设计软件</field>
+            <field name="categ_id" ref="product_category_4"/>
+            <field name="standard_price">235.0</field>
+            <field name="list_price">280.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_9999</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_43-image.jpg"/>
+        </record>
+
+        <record id="product_product_3" model="product.product">
+            <field name="name">组合桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="list_price">450.0</field>
+            <field name="standard_price">300.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">组合桌子, 黑灰色 chair + desk + drawer.</field>
+            <field name="default_code">FURN_7800</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_3-image.jpg"/>
+        </record>
+
+        <!-- Variants -->
+
+        <record id="product_attribute_1" model="product.attribute">
+            <field name="name">材质</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="product_attribute_value_1" model="product.attribute.value">
+            <field name="name">钢</field>
+            <field name="attribute_id" ref="product_attribute_1"/>
+            <field name="sequence">1</field>
+        </record>
+        <record id="product_attribute_value_2" model="product.attribute.value">
+            <field name="name">铝</field>
+            <field name="attribute_id" ref="product_attribute_1"/>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="product_attribute_2" model="product.attribute">
+            <field name="name">颜色</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="product_attribute_value_3" model="product.attribute.value">
+            <field name="name">白</field>
+            <field name="attribute_id" ref="product_attribute_2"/>
+            <field name="sequence">1</field>
+        </record>
+        <record id="product_attribute_value_4" model="product.attribute.value">
+            <field name="name">黑</field>
+            <field name="attribute_id" ref="product_attribute_2"/>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="product_attribute_3" model="product.attribute">
+            <field name="name">时长</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="product_attribute_value_5" model="product.attribute.value">
+            <field name="name">1年</field>
+            <field name="attribute_id" ref="product_attribute_3"/>
+        </record>
+        <record id="product_attribute_value_6" model="product.attribute.value">
+            <field name="name">2年</field>
+            <field name="attribute_id" ref="product_attribute_3"/>
+        </record>
+
+		<!-- 以下：可配置桌子，两个属性，4个属性值，4个变体 -->
+
+        <record id="product_product_4_product_template" model="product.template">
+            <field name="name">可配置桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">500.0</field>
+            <field name="list_price">750.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">160x80cm, 大长腿.</field>
+            <field name="default_code">CUSTOM_2</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_5-image.png"/>
+        </record>
+
+        <!-- the product template attribute lines have to be defined before creating the variants -->
+        <record id="product_4_attribute_1_product_template_attribute_line" model="product.template.attribute.line">
+            <field name="product_tmpl_id" ref="product_product_4_product_template"/>
+            <field name="attribute_id" ref="product_attribute_1"/>
+            <field name="value_ids" eval="[(6, 0, [ref('product_attribute_value_1'), ref('product_attribute_value_2')])]"/>
+        </record>
+        <record id="product_4_attribute_2_product_template_attribute_line" model="product.template.attribute.line">
+            <field name="product_tmpl_id" ref="product_product_4_product_template"/>
+            <field name="attribute_id" ref="product_attribute_2"/>
+            <field name="value_ids" eval="[(6, 0, [ref('product_attribute_value_3'), ref('product_attribute_value_4')])]"/>
+        </record>
+
+        <!--
+        Handle automatically created product.template.attribute.value.
+        Meaning that the combination between the "customizable desk" and the attribute value "black" will be materialized
+        into a "product.template.attribute.value" with the ref "product.product_4_attribute_1_value_1".
+        This will allow setting fields like "price_extra" and "exclude_for"
+         -->
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'product_4_attribute_1_value_1',
+                'record': obj().env.ref('product_4_attribute_1_product_template_attribute_line').product_template_value_ids[0],
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_4_attribute_1_value_2',
+                'record': obj().env.ref('product_4_attribute_1_product_template_attribute_line').product_template_value_ids[1],
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_4_attribute_2_value_1',
+                'record': obj().env.ref('product_4_attribute_2_product_template_attribute_line').product_template_value_ids[0],
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_4_attribute_2_value_2',
+                'record': obj().env.ref('product_4_attribute_2_product_template_attribute_line').product_template_value_ids[1],
+                'noupdate': True,
+            },]"/>
+        </function>
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'product_product_4',
+                'record': obj().env.ref('product_product_4_product_template')._get_variant_for_combination(obj().env.ref('product_4_attribute_1_value_1') + obj().env.ref('product_4_attribute_2_value_1')),
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_product_4b',
+                'record': obj().env.ref('product_product_4_product_template')._get_variant_for_combination(obj().env.ref('product_4_attribute_1_value_1') + obj().env.ref('product_4_attribute_2_value_2')),
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_product_4c',
+                'record': obj().env.ref('product_product_4_product_template')._get_variant_for_combination(obj().env.ref('product_4_attribute_1_value_2') + obj().env.ref('product_4_attribute_2_value_1')),
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_product_4d',
+                'record': obj().env.ref('product_product_4_product_template')._get_variant_for_combination(obj().env.ref('product_4_attribute_1_value_2') + obj().env.ref('product_4_attribute_2_value_2')),
+                'noupdate': True,
+            },]"/>
+        </function>
+
+        <record id="product_product_4" model="product.product">
+            <field name="default_code">FURN_0096</field>
+            <field name="standard_price">500.0</field>
+            <field name="weight">0.01</field>
+            <field name="image_1920" type="base64" file="product/static/img/table02.png"/>
+        </record>
+        <record id="product_product_4b" model="product.product">
+            <field name="default_code">FURN_0097</field>
+            <field name="weight">0.01</field>
+            <field name="standard_price">500.0</field>
+            <field name="image_1920" type="base64" file="product/static/img/table04.png"/>
+        </record>
+        <record id="product_product_4c" model="product.product">
+            <field name="default_code">FURN_0098</field>
+            <field name="weight">0.01</field>
+            <field name="standard_price">500.0</field>
+            <field name="image_1920" type="base64" file="product/static/img/table03.png"/>
+        </record>
+        <record id="product_product_4d" model="product.product">
+            <field name="default_code">DESK0004</field>
+            <field name="weight">0.01</field>
+            <field name="standard_price">500.0</field>
+            <field name="image_1920" type="base64" file="product/static/img/table01.png"/>
+        </record>
+
+        <record id="product_product_5" model="product.product">
+            <field name="name">右转角桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">600.0</field>
+            <field name="list_price">147.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM06</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_5-image.png"/>
+        </record>
+
+        <record id="product_product_6" model="product.product">
+            <field name="name">大柜子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">800.0</field>
+            <field name="list_price">320.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM07</field>
+            <field name='weight'>0.330</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_6-image.png"/>
+        </record>
+
+        <record id="product_product_7" model="product.product">
+            <field name="name">储藏纸箱</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">70.0</field>
+            <field name="list_price">79.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM08</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_7-image.png"/>
+        </record>
+
+        <record id="product_product_8" model="product.product">
+            <field name="name">大桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">1299.0</field>
+            <field name="list_price">1799.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM09</field>
+            <field name='weight'>9.54</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_8-image.png"/>
+        </record>
+
+        <record id="product_product_9" model="product.product">
+            <field name="name">废纸篓</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">10.0</field>
+            <field name="list_price">47.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM10</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_9-image.png"/>
+        </record>
+
+        <record id="product_product_10" model="product.product">
+            <field name="name">橱柜含门</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">12.50</field>
+            <field name="list_price">14</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">E-COM11</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_10-image.png"/>
+        </record>
+
+        <record id="product_product_11_product_template" model="product.template">
+            <field name="name">可配置椅子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">14</field>
+            <field name="list_price">16.50</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">CUSTOM_1</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_11-image.png"/>
+        </record>
+
+        <!-- the product template attribute lines have to be defined before creating the variants -->
+        <record id="product_11_attribute_1_product_template_attribute_line" model="product.template.attribute.line">
+            <field name="product_tmpl_id" ref="product_product_11_product_template"/>
+            <field name="attribute_id" ref="product_attribute_1"/>
+            <field name="value_ids" eval="[(6,0,[ref('product_attribute_value_1'), ref('product_attribute_value_2')])]"/>
+        </record>
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'product_11_attribute_1_value_1',
+                'record': obj().env.ref('product_11_attribute_1_product_template_attribute_line').product_template_value_ids[0],
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_11_attribute_1_value_2',
+                'record': obj().env.ref('product_11_attribute_1_product_template_attribute_line').product_template_value_ids[1],
+                'noupdate': True,
+            }]"/>
+        </function>
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'product_product_11',
+                'record': obj().env.ref('product_product_11_product_template')._get_variant_for_combination(obj().env.ref('product_11_attribute_1_value_1')),
+                'noupdate': True,
+            }, {
+                'xml_id': 'product_product_11b',
+                'record': obj().env.ref('product_product_11_product_template')._get_variant_for_combination(obj().env.ref('product_11_attribute_1_value_2')),
+                'noupdate': True,
+            },]"/>
+        </function>
+
+        <record id="product_product_11" model="product.product">
+            <field name="default_code">E-COM12</field>
+            <field name="weight">0.01</field>
+        </record>
+        <record id="product_product_11b" model="product.product">
+            <field name="default_code">E-COM13</field>
+            <field name="weight">0.01</field>
+        </record>
+
+        <record id="product_4_attribute_1_value_2" model="product.template.attribute.value">
+            <field name="price_extra">50.40</field>
+        </record>
+
+        <record id="product_11_attribute_1_value_2" model="product.template.attribute.value">
+            <field name="price_extra">6.40</field>
+        </record>
+
+        <!-- MRP Demo Data-->
+
+        <record id="product_product_12" model="product.product">
+            <field name="name">黑色办公椅子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">18</field>
+            <field name="list_price">12.50</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_0269</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_12-image.png"/>
+        </record>
+
+        <record id="product_product_13" model="product.product">
+            <field name="name">黑色转角桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">78.0</field>
+            <field name="list_price">85.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_1118</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_13-image.png"/>
+        </record>
+
+        <record id="product_product_16" model="product.product">
+            <field name="name">黑色抽屉</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">20.0</field>
+            <field name="list_price">25.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_8900</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_16-image.png"/>
+        </record>
+
+        <record id="product_product_20" model="product.product">
+            <field name="name">翻转</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">1700.0</field>
+            <field name="list_price">1950.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_9001</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_20-image.png"/>
+        </record>
+        <record id="product_product_22" model="product.product">
+            <field name="name">带屏幕的桌面支架</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">2010.0</field>
+            <field name="list_price">2100.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_7888</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_22-image.png"/>
+        </record>
+
+        <record id="product_product_24" model="product.product">
+            <field name="name">个人工作场所</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">876.0</field>
+            <field name="list_price">885.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_0789</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_24-image.png"/>
+        </record>
+
+        <record id="product_product_25" model="product.product">
+            <field name="name">声学Bloc屏幕</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">2870.0</field>
+            <field name="list_price">2950.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">FURN_6666</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_25-image.png"/>
+        </record>
+
+        <record id="product_product_27" model="product.product">
+            <field name="name">抽屉</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">3300.0</field>
+            <field name="list_price">3645.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description">Drawer with two routing possiblities.</field>
+            <field name="default_code">FURN_8855</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_27-image.png"/>
+        </record>
+
+        <record id="consu_delivery_03" model="product.product">
+            <field name="name">四人桌子</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">25000.0</field>
+            <field name="list_price">23500.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">Four person modern office workstation</field>
+            <field name="default_code">FURN_8220</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_d03-image.png"/>
+        </record>
+
+        <record id="consu_delivery_02" model="product.product">
+            <field name="name">大会议桌</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">45000.0</field>
+            <field name="list_price">40000.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">Conference room table</field>
+            <field name="default_code">FURN_6741</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_46-image.png"/>
+        </record>
+
+        <record id="consu_delivery_01" model="product.product">
+            <field name="name">三人沙发</field>
+            <field name="categ_id" ref="product_category_5"/>
+            <field name="standard_price">65000.0</field>
+            <field name="list_price">60000.0</field>
+            <field name="type">consu</field>
+            <field name="weight">0.01</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="description_sale">Three Seater Sofa with Lounger in Steel Grey Colour</field>
+            <field name="default_code">FURN_8999</field>
+            <field name="image_1920" type="base64" file="product/static/img/product_product_d01-image.png"/>
+        </record>
+    </data>
+</odoo>

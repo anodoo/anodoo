@@ -1,0 +1,223 @@
+模块:resource       ID:77      Name:Resource
+
+
+================== Models ======================
+
+###resource.mixin name:Resource Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:resource
+
+###resource.resource name:Resources inherit:ir.model()  access:ir.model.access(117, 116)  rule:ir.rule()  transient:False  modules:resource
+
+###resource.calendar.leaves name:Resource Time Off Detail inherit:ir.model()  access:ir.model.access(118, 119, 217)  rule:ir.rule(21, 22, 23)  transient:False  modules:resource
+
+###resource.calendar name:Resource Working Time inherit:ir.model()  access:ir.model.access(112, 113, 215)  rule:ir.rule()  transient:False  modules:resource
+
+###resource.test name:Test Resource Model inherit:ir.model()  access:ir.model.access(120,)  rule:ir.rule()  transient:False  modules:resource
+
+###resource.calendar.attendance name:Work Detail inherit:ir.model()  access:ir.model.access(114, 115, 216)  rule:ir.rule()  transient:False  modules:resource
+
+
+================== Extended Models ======================
+
+###res.company name:Companies inherit:ir.model()  transient:False  modules:base, mail, pad, resource, snailmail
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+###resource.action_resource_resource_tree  name:Resources view_mode:tree,form domain:False  context:{}
+
+###resource.resource_resource_action_from_calendar  name:Resources view_mode:tree,form domain:False  context:{
+            'default_calendar_id': active_id,
+            'search_default_calendar_id': active_id}
+
+###resource.resource_calendar_closing_days  name:Closing Days view_mode:calendar,tree,form domain:[('calendar_id', '=', active_id), ('resource_id', '=', False)]  context:{'default_calendar_id': active_id}
+
+###resource.resource_calendar_resources_leaves  name:Resources Time Off view_mode:calendar,tree,form domain:[('calendar_id', '=', active_id), ('resource_id', '!=', False)]  context:{'default_calendar_id': active_id}
+
+###resource.action_resource_calendar_leave_tree  name:Resource Time Off view_mode:tree,form,calendar domain:False  context:{}
+
+###resource.resource_calendar_leaves_action_from_calendar  name:Resource Time Off view_mode:tree,form,calendar domain:False  context:{
+            'default_calendar_id': active_id,
+            'search_default_calendar_id': active_id}
+
+###resource.action_resource_calendar_form  name:Working Times view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###resource.mixin
+
+
+###resource.resource
+
+resource.resource_resource_form  type:form  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.view_resource_resource_search  type:search  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.resource_resource_tree  type:tree  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+
+###resource.calendar.leaves
+
+resource.view_resource_calendar  type:calendar  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.resource_calendar_leave_form  type:form  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.view_resource_calendar_leaves_search  type:search  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.resource_calendar_leave_tree  type:tree  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+
+###resource.calendar
+
+resource.resource_calendar_form  type:form  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.view_resource_calendar_search  type:search  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.view_resource_calendar_tree  type:tree  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+
+###resource.test
+
+
+###resource.calendar.attendance
+
+resource.view_resource_calendar_attendance_form  type:form  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+resource.view_resource_calendar_attendance_tree  type:tree  priority:16  arch_fs:resource/views/resource_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###res.company
+
+
+###res.users
+
+
+================== qWeb ======================
+
+resource.assets_backend  type:qweb  priority:16  arch_fs:resource/views/resource.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+###resource.mixin
+
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+resource_calendar_id Label:Working Hours  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:Define the schedule of resource
+resource_id Label:Resource  ttype:many2one  relation:resource.resource    required:True  compute:False  depends:False  modules:resource  help:False
+tz Label:Timezone  ttype:selection    required:False  compute:False  depends:False  modules:resource  help:This field is used in order to define in which timezone the resources will work.
+
+###resource.resource
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:resource  help:If the active field is set to False, it will allow you to hide the resource record without removing it.
+calendar_id Label:Working Time  ttype:many2one  relation:resource.calendar    required:True  compute:False  depends:False  modules:resource  help:Define the schedule of resource
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:resource  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:resource  help:False
+resource_type Label:Resource Type  ttype:selection    required:True  compute:False  depends:False  modules:resource  help:False
+time_efficiency Label:Efficiency Factor  ttype:float    required:True  compute:False  depends:False  modules:resource  help:This field is used to calculate the the expected duration of a work order at this work center. For example, if a work order takes one hour and the efficiency factor is 100%, then the expected duration will be one hour. If the efficiency factor is 200%, however the expected duration will be 30 minutes.
+tz Label:Timezone  ttype:selection    required:True  compute:False  depends:False  modules:resource  help:This field is used in order to define in which timezone the resources will work.
+user_id Label:User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:Related user name for the resource to manage its access.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+
+###resource.calendar.leaves
+
+calendar_id Label:Working Hours  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:resource  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+date_from Label:Start Date  ttype:datetime    required:True  compute:False  depends:False  modules:resource  help:False
+date_to Label:End Date  ttype:datetime    required:True  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+name Label:Reason  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+resource_id Label:Resource  ttype:many2one  relation:resource.resource    required:False  compute:False  depends:False  modules:resource  help:If empty, this is a generic time off for the company. If a resource is set, the time off is only for this resource
+time_type Label:Time Type  ttype:selection    required:False  compute:False  depends:False  modules:resource  help:Whether this should be computed as a time off or as work time (eg: formation)
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+
+###resource.calendar
+
+attendance_ids Label:Working Time  ttype:one2many  relation:resource.calendar.attendance    required:False  compute:False  depends:False  modules:resource  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:resource  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+global_leave_ids Label:Global Time Off  ttype:one2many  relation:resource.calendar.leaves    required:False  compute:False  depends:False  modules:resource  help:False
+hours_per_day Label:Average Hour per Day  ttype:float    required:False  compute:False  depends:False  modules:resource  help:Average hours per day a resource is supposed to work with this calendar.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+leave_ids Label:Time Off  ttype:one2many  relation:resource.calendar.leaves    required:False  compute:False  depends:False  modules:resource  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:resource  help:False
+two_weeks_calendar Label:Calendar in 2 weeks mode  ttype:boolean    required:False  compute:False  depends:False  modules:resource  help:False
+two_weeks_explanation Label:Explanation  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+tz Label:Timezone  ttype:selection    required:True  compute:False  depends:False  modules:resource  help:This field is used in order to define in which timezone the resources will work.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+
+###resource.test
+
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:resource  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+resource_calendar_id Label:Working Hours  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:Define the schedule of resource
+resource_id Label:Resource  ttype:many2one  relation:resource.resource    required:True  compute:False  depends:False  modules:resource  help:False
+tz Label:Timezone  ttype:selection    required:False  compute:False  depends:False  modules:resource  help:This field is used in order to define in which timezone the resources will work.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+
+###resource.calendar.attendance
+
+calendar_id Label:Resource's Calendar  ttype:many2one  relation:resource.calendar    required:True  compute:False  depends:False  modules:resource  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+date_from Label:Starting Date  ttype:date    required:False  compute:False  depends:False  modules:resource  help:False
+date_to Label:End Date  ttype:date    required:False  compute:False  depends:False  modules:resource  help:False
+dayofweek Label:Day of Week  ttype:selection    required:True  compute:False  depends:False  modules:resource  help:False
+day_period Label:Day Period  ttype:selection    required:True  compute:False  depends:False  modules:resource  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:resource  help:False
+display_type Label:Display Type  ttype:selection    required:False  compute:False  depends:False  modules:resource  help:Technical field for UX purpose.
+hour_from Label:Work from  ttype:float    required:True  compute:False  depends:False  modules:resource  help:Start and End time of working.
+A specific value of 24:00 is interpreted as 23:59:59.999999.
+hour_to Label:Work to  ttype:float    required:True  compute:False  depends:False  modules:resource  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:resource  help:False
+resource_id Label:Resource  ttype:many2one  relation:resource.resource    required:False  compute:False  depends:False  modules:resource  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:resource  help:Gives the sequence of this line when displaying the resource calendar.
+two_weeks_calendar Label:Calendar in 2 weeks mode  ttype:boolean    required:False  compute:False  depends:False  modules:resource  help:False
+week_type Label:Week Even/Odd  ttype:selection    required:False  compute:False  depends:False  modules:resource  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:resource  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:resource  help:False
+
+================== Extended Fields ======================
+
+
+###res.company
+
+resource_calendar_id Label:Default Working Hours  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:False
+resource_calendar_ids Label:Working Hours  ttype:one2many  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:False
+
+###res.users
+
+resource_calendar_id Label:Default Working Hours  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:resource  help:Define the schedule of resource
+resource_ids Label:Resources  ttype:one2many  relation:resource.resource    required:False  compute:False  depends:False  modules:resource  help:False

@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    
+
+    	
+    	<record id="team_sales_1" model="crm.team">
+            <field name="use_leads" eval="True"/>
+            <field name="alias_name">sales1</field>
+            <field name="alias_user_id" ref="base.user_admin"/>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="team_sales_2" model="crm.team">
+            <field name="use_leads" eval="True"/>
+            <field name="alias_name">sales2</field>
+            <field name="alias_user_id" ref="base.user_admin"/>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <!--  crm categories -->
+        <record id="categ_oppor1" model="crm.lead.tag">
+            <field name="name">产品</field>
+            <field name="color" eval="1"/>
+        </record>
+        <record id="categ_oppor2" model="crm.lead.tag">
+            <field name="name">软件</field>
+            <field name="color" eval="2"/>
+        </record>
+        <record id="categ_oppor3" model="crm.lead.tag">
+            <field name="name">服务</field>
+            <field name="color" eval="3"/>
+        </record>
+        <record id="categ_oppor4" model="crm.lead.tag">
+            <field name="name">信息</field>
+            <field name="color" eval="4"/>
+        </record>
+        <record id="categ_oppor5" model="crm.lead.tag">
+            <field name="name">设计</field>
+            <field name="color" eval="5"/>
+        </record>
+        <record id="categ_oppor6" model="crm.lead.tag">
+            <field name="name">培训</field>
+            <field name="color" eval="6"/>
+        </record>
+        <record id="categ_oppor7" model="crm.lead.tag">
+            <field name="name">咨询</field>
+            <field name="color" eval="7"/>
+        </record>
+        <record id="categ_oppor8" model="crm.lead.tag">
+            <field name="name">其他</field>
+            <field name="color" eval="8"/>
+        </record>
+        
+        <!--  Demo Leads -->
+        <record id="crm_case_1" model="crm.lead">
+            <field name="create_date" eval="DateTime.now() - relativedelta(days=8)"/>
+            <field name="type">lead</field>
+            <field name="name">需要立体办公室家具</field>
+            <field name="planned_revenue">128443</field>
+			<field name="probability">70</field>
+            <field name="contact_name">刘小姐</field>
+            <field name="partner_name">勒勒公司</field>
+            <field name="email_from">jdunagan@leclub.example.com</field>
+            <field name="function">Training Manager</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">93190</field>
+            <field name="street">Rue Léon Dierx 73</field>
+            <field name="phone">+33 1 25 54 45 69</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor6])]"/>
+            <field name="priority">1</field>
+            
+            <field name="user_id" ref="user_sun_sales"/>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/>
+            <field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="crm_case_2" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=8)"/>
+            <field name="type">lead</field>
+            <field name="name">需求设计软件</field>
+            <field name="planned_revenue">100000</field>
+			<field name="probability">70</field>
+            <field name="contact_name">高小姐</field>
+            <field name="partner_name">The Oil Company</field>
+            <field name="email_from">md@oilcompany.fr</field>
+            <field name="function">Purchase Manager</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">33000</field>
+            <field name="street">Rue Ignasse Blanchoux 214/32</field>
+            <field name="phone">+33 1 25 54 45 69</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor2])]"/>
+            <field name="priority">1</field>
+            
+            <field name="user_id" ref="user_zhao_marketing"/>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_spring"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="crm_case_3" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=2)"/>
+            <field name="type">lead</field>
+            <field name="name">了解25张桌子的价格</field>
+            <field name="planned_revenue">250000</field>
+			<field name="probability">40</field>
+            <field name="contact_name">李小姐</field>
+            <field name="partner_name">The Kompany</field>
+            <field name="email_from">contact@thekompany.example.com</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">10001</field>
+            <field name="street">Lafayette Ave 450/12</field>
+            <field name="phone">+1 555 754 3010</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor4, categ_oppor5])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_li_sales"/>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="crm_case_4" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=2)"/>
+            <field name="type">lead</field>
+            <field name="name">需求椅子</field>
+            <field name="planned_revenue">230000</field>
+			<field name="probability">30</field>
+            <field name="contact_name">张小姐</field>
+            <field name="partner_name">Burstein Applebee</field>
+            <field name="email_from">hmc@yahoo.example.com</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">03101</field>
+            <field name="street">United Street 68</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor5])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_zhao_marketing"/>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_spring"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="crm_case_5" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=4)"/>
+            <field name="type">lead</field>
+            <field name="planned_revenue">25100</field>
+			<field name="probability">65</field>
+            <field name="name">获取50张椅子的报价</field>
+            <field name="contact_name">赵小姐</field>
+            <field name="partner_name">Stonage IT</field>
+            <field name="email_from">helle@stonageit.example.com</field>
+            <field name="function">Purchase Manager</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">1909</field>
+            <field name="street">West Allegheny Ave 800</field>
+            <field name="phone">+1 813 494 5005</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_qian_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="description"></field>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="crm_case_6" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=5)"/>
+            <field name="type">lead</field>
+            <field name="planned_revenue">130000</field>
+			<field name="probability">70</field>
+            <field name="name">需求信息</field>
+            <field name="contact_name">张小姐</field>
+            <field name="partner_name">Opensides</field>
+            <field name="email_from">tina@opensides.example.com</field>
+            <field name="function">Consultant</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">00118</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor3, categ_oppor4])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_qian_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_7" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=5)"/>
+            <field name="type">lead</field>
+            <field name="name">桌子替换</field>
+            <field name="planned_revenue">25000</field>
+			<field name="probability">70</field>
+            <field name="contact_name">张小姐</field>
+            <field name="partner_name">Gardner Group</field>
+            <field name="function">Journalist</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">29000</field>
+            <field name="street">R. Sen. Pompeu</field>
+            <field name="phone">+11 55 21 5555 5555</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor4])]"/>
+            <field name="priority">0</field>
+            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_8" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=8)"/>
+            <field name="type">lead</field>
+            <field name="planned_revenue">33400</field>
+			<field name="probability">50</field>
+            <field name="name">获取产品目录</field>
+            <field name="contact_name">张小姐</field>
+            <field name="partner_name">ESM Expert</field>
+            <field name="email_from">logan_expert@gmail.example.com</field>
+            <field name="function">Sales</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">E1AB</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor4, categ_oppor8])]"/>
+            <field name="priority">1</field>
+            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_9" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=4)"/>
+            <field name="type">lead</field>
+            <field name="planned_revenue">25000</field>
+			<field name="probability">70</field>
+            <field name="name">分销办公家具</field>
+            <field name="contact_name">张总</field>
+            <field name="partner_name">Marketing Business</field>
+            <field name="email_from">d.albert@marketing-business.example.com</field>
+            <field name="function">Sales</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">OX1 1RQ</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor4, categ_oppor7])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_10" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=2)"/>
+            <field name="type">lead</field>
+            <field name="name">了解设计软件信息</field>
+            <field name="contact_name">钱总</field>
+            <field name="partner_name">Solar IT</field>
+            <field name="function">Medical illustrator</field>
+            <field name="email_from">jga@solar.example.com</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">28001</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_11" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=5)"/>
+            <field name="type">lead</field>
+            <field name="name">评估办公家具</field>
+            <field name="contact_name">张先生</field>
+            <field name="partner_name">艾迪数码公司</field>
+            <field name="email_from">p.thomas@agrolait.com</field>
+            <field name="function">Functional Consultant</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="zip">1300</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor7])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_zhao_sales"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+        </record>
+
+        <record id="crm_case_12" model="crm.lead">
+            <field name="create_date" eval="datetime.now() - timedelta(days=8)"/>
+            <field name="type">lead</field>
+            <field name="name">100张桌子的报价</field>
+            <field name="contact_name">高女士</field>
+            <field name="partner_name">佛乐多有限公司</field>
+            <field name="email_from">bhu.a100@ic.example.com</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">深圳</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+            <field name="priority">2</field>
+            
+            <field name="user_id" ref="user_zhao_marketing"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <!-- Call Function to Cancel the leads (set as Dead) -->
+        <function model="crm.lead" name="action_set_lost"
+            eval="[[ref('crm_case_7'), ref('crm_case_9'), ref('crm_case_11'), ref('crm_case_12')]]"
+            context="{'install_mode': True}"/>
+
+        <record id="crm_case_29" model="crm.lead">
+            <field name="create_date" eval="DateTime.now() - relativedelta(months=1)"/>
+            <field name="type">lead</field>
+            <field name="name">获取更多桌子</field>
+            <field name="contact_name">赵方</field>
+            <field name="partner_name">Le Club SARL</field>
+            <field name="email_from">jdunagan@leclub.example.com</field>
+            <field name="function">Training Manager</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">广州</field>
+            <field name="zip">93190</field>
+            <field name="street">Rue Léon Dierx 73</field>
+            <field name="phone">+33 1 25 54 45 69</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor6])]"/>
+            <field name="priority">1</field>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            
+			<field name="user_id" ref="user_zhao_sales"/>
+        </record>
+
+        <record id="crm_case_30" model="crm.lead">
+            <field name="create_date" eval="DateTime.now() - relativedelta(months=2)"/>
+            <field name="type">lead</field>
+            <field name="name">清华大学需求桌子</field>
+            <field name="contact_name">张总</field>
+            <field name="partner_name">Acadia College</field>
+            <field name="email_from">GastonRochon@example.com</field>
+            <field name="function">Director</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="city">广州</field>
+            <field name="zip">1080</field>
+            <field name="street">Rue du Commerce 93</field>
+            <field name="phone">+32 22 33 54 07</field>
+            <field name="tag_ids" eval="[(6, 0, [categ_oppor6])]"/>
+            <field name="priority">1</field>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            
+			<field name="user_id" ref="user_zhao_sales"/>
+        </record>
+
+<record id="crm_case_graph_1" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(months=1)"/>
+<field name="type">lead</field>
+<field name="name">续约配送合同</field>
+<field name="planned_revenue">36221</field>
+<field name="probability">20</field>
+<field name="contact_name">秦小姐</field>
+<field name="email_from">max123@itconsult.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">北京</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_qian_marketing"/>
+</record>
+
+<record id="crm_case_graph_2" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=18)"/>
+<field name="type">lead</field>
+<field name="name">了解产品价格</field>
+<field name="planned_revenue">28443</field>
+<field name="probability">80</field>
+<field name="contact_name">张小姐</field>
+<field name="email_from">aakreda@theglobeandmail.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">佛山</field>
+<field name="street">1 Russel square</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead3"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_qian_marketing"/>
+</record>
+
+<record id="crm_case_graph_3" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=24)"/>
+<field name="type">lead</field>
+<field name="name">新家具</field>
+<field name="planned_revenue">88715</field>
+<field name="probability">12</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Photobug</field>
+<field name="email_from">roxshott9@trellian.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">东莞</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_qian_marketing"/>
+</record>
+
+<record id="crm_case_graph_4" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=40)"/>
+<field name="type">lead</field>
+<field name="name">了解品牌家具</field>
+<field name="planned_revenue">7784</field>
+<field name="probability">20</field>
+<field name="contact_name">张小姐</field>
+<field name="email_from">mlimprecht8@fastcompany.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">上海</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_qian_marketing"/>
+</record>
+
+<record id="crm_case_graph_5" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=45)"/>
+<field name="type">lead</field>
+<field name="name">设计新架子</field>
+<field name="planned_revenue">54587</field>
+<field name="probability">81</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Jaloo</field>
+<field name="email_from">akalinovich7@tinypic.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">重庆</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+<record id="crm_case_graph_6" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=48)"/>
+<field name="type">lead</field>
+<field name="name">需要新办公椅子</field>
+<field name="planned_revenue">5474</field>
+<field name="probability">20</field>
+<field name="contact_name">张副总</field>
+<field name="partner_name">Shufflebeat</field>
+<field name="email_from">jjobbins6@simplemachines.org</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">唐山</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+<record id="crm_case_graph_7" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=80)"/>
+<field name="type">lead</field>
+<field name="name">清理家具</field>
+<field name="planned_revenue">11475</field>
+<field name="probability">25</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Realblab</field>
+<field name="email_from">eespinazo5@reuters.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">驻马店</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead1"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+<record id="crm_case_graph_8" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=37)"/>
+<field name="type">lead</field>
+<field name="name">办公桌（100张）</field>
+<field name="planned_revenue">9987</field>
+<field name="probability">20</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Muxo</field>
+<field name="email_from">credford4@salon.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">佛山</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+
+<field name="user_id" ref="user_sun_sales"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+</record>
+
+<record id="crm_case_graph_9" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=32)"/>
+<field name="type">lead</field>
+<field name="name">需要价格表</field>
+<field name="planned_revenue">4482</field>
+<field name="probability">90</field>
+<field name="contact_name">张姐</field>
+<field name="partner_name">Skibox</field>
+<field name="email_from">ikirvell3@gnu.org</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">深圳</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead3"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+<record id="crm_case_graph_10" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=18)"/>
+<field name="type">lead</field>
+<field name="name">新工厂需要新家具</field>
+<field name="planned_revenue">22500</field>
+<field name="probability">20</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Twinte</field>
+<field name="email_from">ngrabert2@dailymail.co.uk</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">深圳</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead2"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+<record id="crm_case_graph_11" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=52)"/>
+<field name="type">lead</field>
+<field name="name">翻新旧家具</field>
+<field name="planned_revenue">99755</field>
+<field name="probability">20</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Yozio</field>
+<field name="email_from">fseiller1@theglobeandmail.com</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">深圳</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead3"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+<field name="user_id" ref="user_sun_sales"/>
+</record>
+
+
+<record id="crm_case_graph_12" model="crm.lead">
+<field name="create_date" eval="datetime.now() - relativedelta(days=52)"/>
+<field name="type">lead</field>
+<field name="name">35个窗户的报价</field>
+<field name="planned_revenue">41421</field>
+<field name="probability">20</field>
+<field name="contact_name">张小姐</field>
+<field name="partner_name">Gabcube</field>
+<field name="email_from">tbrockhouse0@google.pl</field>
+<field name="country_id" ref="base.cn"/>
+<field name="city">深圳</field>
+<field name="tag_ids" eval="[(6, 0, [categ_oppor1])]"/>
+<field name="priority">1</field>
+<field name="user_id" ref="user_sun_sales"/>
+<field name="date_deadline" eval="(DateTime.today() + relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"/>
+<field name="lead_lifetime_id" ref="lead_lifetime_default"/><field name="stage_id" ref="stage_lead3"/>
+<field name="campaign_id" ref="utm_campaign_baidu"/>
+<field name="medium_id" ref="utm_medium_baidu"/>
+<field name="source_id" ref="utm_source_baidu"/>
+</record>
+
+
+    </data>
+</odoo>

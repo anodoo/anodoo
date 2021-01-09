@@ -1,0 +1,193 @@
+模块:portal       ID:11      Name:Customer Portal
+
+
+================== Models ======================
+
+###portal.wizard name:Grant Portal Access inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:portal
+
+###portal.mixin name:Portal Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:portal
+
+###portal.share name:Portal Sharing inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:portal
+
+###portal.wizard.user name:Portal User Config inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:portal
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###mail.thread name:Email Thread inherit:ir.model()  transient:False  modules:mail, portal, rating, sms
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###mail.message name:Message inherit:ir.model()  transient:False  modules:mail, portal, rating, sms, snailmail
+
+
+================== Actions ======================
+
+###portal.partner_wizard_action  name:Grant portal access view_mode:form domain:[]  context:{}
+
+###project.portal_share_action  name:Share view_mode:form domain:[]  context:{}
+
+###portal.portal_share_action  name:Share Document view_mode:form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###portal.wizard
+
+portal.wizard_view  type:form  priority:16  arch_fs:portal/wizard/portal_wizard_views.xml  inherit_id:
+
+
+###portal.mixin
+
+
+###portal.share
+
+portal.portal_share_wizard  type:form  priority:16  arch_fs:portal/wizard/portal_share_views.xml  inherit_id:
+
+
+###portal.wizard.user
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+
+###mail.thread
+
+
+###ir.http
+
+
+###mail.message
+
+
+================== qWeb ======================
+
+portal.assets_frontend  type:qweb  priority:15  arch_fs:portal/views/assets.xml  inherit_id:web_editor.assets_frontend
+
+portal.signature_form  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal._assets_frontend_helpers  type:qweb  priority:16  arch_fs:portal/views/assets.xml  inherit_id:web_editor._assets_frontend_helpers
+
+portal._assets_primary_variables  type:qweb  priority:16  arch_fs:portal/views/assets.xml  inherit_id:web._assets_primary_variables
+
+portal.portal_back_in_edit_mode  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_contact  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.my_account_link  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:portal.frontend_layout
+
+portal.frontend_layout  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:web.frontend_layout
+
+portal.message_thread  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_my_home  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_docs_entry  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_record_sidebar  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_table  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.pager  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_404  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:http_routing.404
+
+portal.portal_archive_groups  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.assets_tests  type:qweb  priority:16  arch_fs:portal/views/assets.xml  inherit_id:web.assets_tests
+
+portal.portal_breadcrumbs  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_layout  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_my_details  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.record_pager  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_searchbar  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_share_template  type:qweb  priority:16  arch_fs:portal/data/portal_data.xml  inherit_id:
+
+portal.portal_record_layout  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+portal.portal_show_sign_in  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:portal.frontend_layout
+
+portal.portal_sidebar  type:qweb  priority:16  arch_fs:portal/views/portal_templates.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+###portal.wizard
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:portal  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+user_ids Label:Users  ttype:one2many  relation:portal.wizard.user    required:False  compute:False  depends:False  modules:portal  help:False
+welcome_message Label:Invitation Message  ttype:text    required:False  compute:False  depends:False  modules:portal  help:This text is included in the email sent to new users of the portal.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+
+###portal.mixin
+
+access_token Label:Security Token  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+access_url Label:Portal Access URL  ttype:char    required:False  compute:False  depends:False  modules:portal  help:Customer Portal URL
+access_warning Label:Access warning  ttype:text    required:False  compute:False  depends:False  modules:portal  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:portal  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+
+###portal.share
+
+access_warning Label:Access warning  ttype:text    required:False  compute:False  depends:False  modules:portal  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:portal  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+note Label:Note  ttype:text    required:False  compute:False  depends:False  modules:portal  help:Add extra content to display in the email
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:True  compute:False  depends:False  modules:portal  help:False
+res_id Label:Related Document ID  ttype:integer    required:True  compute:False  depends:False  modules:portal  help:False
+res_model Label:Related Document Model  ttype:char    required:True  compute:False  depends:False  modules:portal  help:False
+share_link Label:Link  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+
+###portal.wizard.user
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+email Label:Email  ttype:char    required:False  compute:False  depends:False  modules:portal  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:portal  help:False
+in_portal Label:In Portal  ttype:boolean    required:False  compute:False  depends:False  modules:portal  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+partner_id Label:Contact  ttype:many2one  relation:res.partner    required:True  compute:False  depends:False  modules:portal  help:False
+user_id Label:Login User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+wizard_id Label:Wizard  ttype:many2one  relation:portal.wizard    required:True  compute:False  depends:False  modules:portal  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:portal  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:portal  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###mail.thread
+
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###ir.http
+
+
+###mail.message

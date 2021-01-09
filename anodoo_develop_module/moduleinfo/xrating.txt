@@ -1,0 +1,132 @@
+模块:rating       ID:50      Name:Customer Rating
+
+
+================== Models ======================
+
+###rating.rating name:Rating inherit:ir.model()  access:ir.model.access(180, 182, 181, 183)  rule:ir.rule()  transient:False  modules:rating
+
+###rating.mixin name:Rating Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:rating
+
+###rating.parent.mixin name:Rating Parent Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:rating
+
+
+================== Extended Models ======================
+
+###mail.thread name:Email Thread inherit:ir.model()  transient:False  modules:mail, portal, rating, sms
+
+###mail.message name:Message inherit:ir.model()  transient:False  modules:mail, portal, rating, sms, snailmail
+
+
+================== Actions ======================
+
+###project.rating_rating_action_task  name:Customer Ratings view_mode:kanban,tree,pivot,graph,form domain:[('res_model', '=', 'project.task'), ('res_id', '=', active_id), ('consumed', '=', True)]  context:{}
+
+###project.rating_rating_action_project_report  name:Customer Ratings view_mode:kanban,tree,pivot,graph,form domain:[('parent_res_model','=','project.project'), ('consumed', '=', True)]  context:{}
+
+###rating.action_view_rating  name:Rating view_mode:kanban,tree,graph,pivot,form domain:[('consumed','=',True)]  context:{}
+
+###project.rating_rating_action_view_project_rating  name:Rating view_mode:kanban,tree,graph,pivot,form domain:[('consumed','=',True), ('parent_res_model','=','project.project')]  context:{}
+
+
+================== Views ======================
+
+
+###rating.rating
+
+rating.rating_rating_view_form  type:form  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+rating.rating_rating_view_graph  type:graph  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+rating.rating_rating_view_kanban  type:kanban  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+rating.rating_rating_view_pivot  type:pivot  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+rating.rating_rating_view_search  type:search  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+project.rating_rating_view_search_project  type:search  priority:16  arch_fs:project/views/rating_views.xml  inherit_id:rating.rating_rating_view_search
+
+rating.rating_rating_view_tree  type:tree  priority:16  arch_fs:rating/views/rating_view.xml  inherit_id:
+
+
+###rating.mixin
+
+
+###rating.parent.mixin
+
+
+================== Extended Views ======================
+
+
+###mail.thread
+
+
+###mail.message
+
+
+================== qWeb ======================
+
+rating.rating_external_page_view  type:qweb  priority:16  arch_fs:rating/views/rating_template.xml  inherit_id:
+
+rating.rating_external_page_submit  type:qweb  priority:16  arch_fs:rating/views/rating_template.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+###rating.rating
+
+access_token Label:Security Token  ttype:char    required:False  compute:False  depends:False  modules:rating  help:Access token to set the rating of the value
+consumed Label:Filled Rating  ttype:boolean    required:False  compute:False  depends:False  modules:rating  help:Enabled if the rating has been filled.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:rating  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:rating  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+feedback Label:Comment  ttype:text    required:False  compute:False  depends:False  modules:rating  help:Reason of the rating
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:rating  help:False
+message_id Label:Linked message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:rating  help:Associated message when posting a review. Mainly used in website addons.
+parent_res_id Label:Parent Document  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:False
+parent_res_model Label:Parent Document Model  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+parent_res_model_id Label:Parent Related Document Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:rating  help:False
+parent_res_name Label:Parent Document Name  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:rating  help:Author of the rating
+rated_partner_id Label:Rated person  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:rating  help:Owner of the rated resource
+rating Label:Rating Number  ttype:float    required:False  compute:False  depends:False  modules:rating  help:Rating value: 0=Unhappy, 10=Happy
+rating_image Label:Image  ttype:binary    required:False  compute:False  depends:False  modules:rating  help:False
+rating_text Label:Rating  ttype:selection    required:False  compute:False  depends:False  modules:rating  help:False
+res_id Label:Document  ttype:integer    required:True  compute:False  depends:False  modules:rating  help:Identifier of the rated object
+res_model Label:Document Model  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+res_model_id Label:Related Document Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:rating  help:Model of the followed resource
+res_name Label:Resource name  ttype:char    required:False  compute:False  depends:False  modules:rating  help:The name of the rated resource.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:rating  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:rating  help:False
+
+###rating.mixin
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:rating  help:False
+rating_avg Label:Rating Average  ttype:float    required:False  compute:False  depends:False  modules:rating  help:False
+rating_count Label:Rating count  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:False
+rating_ids Label:Rating  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:rating  help:False
+rating_last_feedback Label:Rating Last Feedback  ttype:text    required:False  compute:False  depends:False  modules:rating  help:Reason of the rating
+rating_last_image Label:Rating Last Image  ttype:binary    required:False  compute:False  depends:False  modules:rating  help:False
+rating_last_value Label:Rating Last Value  ttype:float    required:False  compute:False  depends:False  modules:rating  help:False
+
+###rating.parent.mixin
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:rating  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:rating  help:False
+rating_ids Label:Ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:rating  help:False
+rating_percentage_satisfaction Label:Rating Satisfaction  ttype:integer    required:False  compute:False  depends:False  modules:rating  help:Percentage of happy ratings
+
+================== Extended Fields ======================
+
+
+###mail.thread
+
+
+###mail.message
+
+rating_ids Label:Related ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:rating  help:False
+rating_value Label:Rating Value  ttype:float    required:False  compute:False  depends:False  modules:rating  help:False

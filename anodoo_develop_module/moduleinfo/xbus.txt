@@ -1,0 +1,88 @@
+模块:bus       ID:24      Name:IM Bus
+
+
+================== Models ======================
+
+###bus.bus name:Communication Bus inherit:ir.model()  access:ir.model.access(109,)  rule:ir.rule()  transient:False  modules:bus
+
+###bus.presence name:User Presence inherit:ir.model()  access:ir.model.access(110, 111)  rule:ir.rule()  transient:False  modules:bus
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###ir.autovacuum name:Automatic Vacuum inherit:ir.model()  transient:False  modules:base, bus, mail
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+###bus.bus
+
+
+###bus.presence
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+
+###ir.autovacuum
+
+
+###res.users
+
+
+================== qWeb ======================
+
+bus.qunit_suite  type:qweb  priority:16  arch_fs:bus/views/bus.xml  inherit_id:web.qunit_suite
+
+bus.assets_backend  type:qweb  priority:16  arch_fs:bus/views/bus.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+###bus.bus
+
+channel Label:Channel  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:bus  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:bus  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+message Label:Message  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:bus  help:False
+
+###bus.presence
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:bus  help:False
+last_poll Label:Last Poll  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+last_presence Label:Last Presence  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:bus  help:False
+status Label:IM Status  ttype:selection    required:False  compute:False  depends:False  modules:bus  help:False
+user_id Label:Users  ttype:many2one  relation:res.users    required:True  compute:False  depends:False  modules:bus  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+im_status Label:IM Status  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+
+###ir.autovacuum
+
+
+###res.users
+
+im_status Label:IM Status  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False

@@ -1,0 +1,29 @@
+模块:web_kanban_gauge       ID:3      Name:Gauge Widget for Kanban
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+web_kanban_gauge.qunit_suite  type:qweb  priority:16  arch_fs:web_kanban_gauge/views/web_kanban_gauge_templates.xml  inherit_id:web.qunit_suite
+
+web_kanban_gauge.assets_backend  type:qweb  priority:16  arch_fs:web_kanban_gauge/views/web_kanban_gauge_templates.xml  inherit_id:web.assets_backend
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================

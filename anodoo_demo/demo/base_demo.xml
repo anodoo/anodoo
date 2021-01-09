@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 思微智慧科技有限公司 -->
+	    
+        <record id="siwei_company_partner" model="res.partner" context="{'default_is_company': True}">
+            <field name="name">思微智慧科技有限公司</field>
+            <field name="company_id" eval="None"/>
+            <field name="is_company" eval="True"/>
+            <field name="lang">zh_CN</field>
+            <field name="street">南沙区</field>
+            <field name="city">广州市</field>
+            <field name="zip">510000</field>
+            <field name="email">contact@sw-zh.cn</field> 
+            <field name="phone">13059195234</field> 
+            <field name="website">http://www.sw-zh.cn</field>  
+            <field name="image_1920" type="base64" file="anodoo_demo/static/src/img/siwei.png"/>
+            <field name="partner_type">company</field>
+        </record>
+        <record id="siwei_company" model="res.company">
+            <field name="name">思微智慧科技有限公司</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="email">contact@sw-zh.cn</field> 
+            <field name="phone">13059195234</field> 
+            <field name="website">http://www.sw-zh.cn</field> 
+            <field name="partner_id" ref="siwei_company_partner"/>
+            <field name="user_ids" eval="[(4, ref('base.user_admin')), (4, ref('base.user_demo'))]"/>           
+        </record>
+        
+        <!-- odoo自带的portal用户：Portal : partner and user -->
+        <record id="base.partner_demo_portal" model="res.partner">
+            <field name="name">黄用户</field>
+            <field name="street">林荫大道253号</field>
+            <field name="city">广州市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record id="base.demo_user0" model="res.users" context="{'no_reset_password': True}">
+            <field name="signature"><![CDATA[<span>-- <br/>黄用户</span>]]></field>
+        </record>
+        
+		<!-- 管理员2 -->		
+        <record model="res.partner" id="partner_admin2">
+            <field name="name">管理员2</field>
+            <field name="partner_type">user</field>
+            <field name="email">contact@anodoo.com</field>
+            <field name="tz">Asia/Shanghai</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_24.jpg"/>
+        </record>
+        <record id="user_admin2" model="res.users">
+            <field name="login">admin2</field>
+            <field name="password">123456</field>
+            <field name="partner_id" ref="partner_admin2"/>
+            <field name="company_id" ref="siwei_company"/>
+            <field name="company_ids" eval="[(4, ref('siwei_company'))]"/>
+            <field name="groups_id" eval="[(6,0,[])]"/>
+            <field name="signature"><![CDATA[<span>-- <br/>
+思微智慧科技有限公司管理员</span>]]></field>
+        </record>
+        <record id="base.group_system" model="res.groups">
+            <field name="users" eval="[(4,ref('user_admin2'))]"/>
+        </record>
+        
+        
+        
+		<!-- 增加赵钱孙李 4个门户用户 -->
+        <record id="partner_zhao_portal" model="res.partner">
+            <field name="name">赵用户</field>
+            <field name="email">zhao.portal@anodoo.com</field>
+            <field name="street">中山路1号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_7.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">user</field>
+        </record>
+        <record id="user_zhao_portal" model="res.users" >
+            <field name="partner_id" ref="partner_zhao_portal"/>
+            <field name="login">zhao.portal</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>赵用户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_zhao_portal'))]"/>
+        </record>
+        
+        <record id="partner_qian_portal" model="res.partner">
+            <field name="name">钱用户</field>
+            <field name="email">qian.portal@anodoo.com</field>
+            <field name="street">佛山路322号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_18.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">user</field>
+        </record>
+        <record id="user_qian_portal" model="res.users" >
+            <field name="partner_id" ref="partner_qian_portal"/>
+            <field name="login">qian.portal</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>钱用户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_qian_portal'))]"/>
+        </record>
+        
+        <record id="partner_sun_portal" model="res.partner">
+            <field name="name">孙用户</field>
+            <field name="email">sun.portal@anodoo.com</field>
+            <field name="street">东莞路3152号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_28.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">user</field>
+        </record>
+        <record id="user_sun_portal" model="res.users" >
+            <field name="partner_id" ref="partner_sun_portal"/>
+            <field name="login">sun.portal</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>孙用户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_sun_portal'))]"/>
+        </record>
+        
+        <record id="partner_li_portal" model="res.partner">
+            <field name="name">李用户</field>            
+            <field name="email">li.portal@anodoo.com</field>
+            <field name="street">顺德路3112号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_10.jpg"/>
+            <field name="phone">(683)-556-5104</field>
+            <field name="partner_type">user</field>
+        </record>
+        <record id="user_li_portal" model="res.users" >
+            <field name="partner_id" ref="partner_li_portal"/>
+            <field name="login">li.portal</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>李用户</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_li_portal'))]"/>
+        </record>
+        
+        
+        
+        <!-- 一个个人，一个公司 res.partner -->
+        <record id="res_partner_1" model="res.partner">
+            <field name="name">贾一方</field>
+            <field name="is_company">0</field>
+            <field name="street">西街巷235号</field>
+            <field name="city">北京</field>
+            <field name="zip">95380</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">jiayifagn@example.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_address_7.jpg"/>
+        </record>
+        <record id="user_1" model="res.users" >
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="login">jiayifang</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>贾一方</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_1'))]"/>
+        </record>
+        <record id="res_partner_2" model="res.partner">
+            <field name="name">德庆有限公司</field>
+            <field name="is_company">1</field>
+            <field name="street">东门大道23号</field>
+            <field name="city">深圳</field>
+            <field name="zip">94523</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="email">deqing@example.com</field>
+            <field name="phone">(603)-996-3829</field>
+            <field name="website">http://www.deco-addict.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_2-image.png"/>
+        </record>        
+        <record id="user_2" model="res.users" >
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="login">deqing</field>
+            <field name="password">123456</field>
+            <field name="signature"><![CDATA[<span>-- <br/>德庆有限公司</span>]]></field>
+            <field name="groups_id" eval="[(5,)]"/>
+        </record>
+        <record id="base.group_portal" model="res.groups"><!-- Add the demo user to the portal (and therefore to the portal member group) -->
+            <field name="users" eval="[(4,ref('user_2'))]"/>
+        </record>
+        
+        <!-- 赵用户的收货地址，账单地址 -->        
+        <record id="res_partner_address_deqing_delivery" model="res.partner">
+            <field name="name">赵向</field>
+            <field name="type">delivery</field>
+            <field name="parent_id" eval="ref('res_partner_2')"/>
+            <field name="email">deqing1@example.com</field>
+            <field name="street">中山二路123号</field>
+            <field name="city">南京市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="phone">(683)-556-5204</field>
+            <field name="partner_type">address</field>
+        </record>        
+        <record id="res_partner_address_deqing_invoice" model="res.partner">
+            <field name="name">赵方</field>
+            <field name="type">invoice</field>
+            <field name="parent_id" eval="ref('res_partner_2')"/>
+            <field name="email">deqing2@example.com</field>
+            <field name="street">大关三路123号</field>
+            <field name="city">苏州市</field>
+            <field model="res.country.state" name="state_id" search="[('name','ilike','江苏省')]"/>
+            <field name="zip">070020</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="phone">(683)-556-5304</field>
+            <field name="partner_type">address</field>
+        </record> 
+	</data>
+</odoo>

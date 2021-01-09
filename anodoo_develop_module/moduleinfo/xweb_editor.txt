@@ -1,0 +1,276 @@
+模块:web_editor       ID:57      Name:Web Editor
+
+
+================== Models ======================
+
+###web_editor.assets name:Assets Utils inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:web_editor
+
+###web_editor.converter.test.sub name:Web Editor Converter Subtest inherit:ir.model()  access:ir.model.access(102,)  rule:ir.rule()  transient:False  modules:web_editor
+
+###web_editor.converter.test name:Web Editor Converter Test inherit:ir.model()  access:ir.model.access(101,)  rule:ir.rule()  transient:False  modules:web_editor
+
+
+================== Extended Models ======================
+
+###ir.attachment name:Attachment inherit:ir.model()  transient:False  modules:base, mail, web_editor
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###ir.qweb name:Qweb inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field name:Qweb Field inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.contact name:Qweb Field Contact inherit:ir.model()  transient:False  modules:base, snailmail, web_editor
+
+###ir.qweb.field.date name:Qweb Field Date inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.datetime name:Qweb Field Datetime inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.duration name:Qweb Field Duration inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.float name:Qweb Field Float inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.html name:Qweb Field HTML inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.image name:Qweb Field Image inherit:ir.model()  transient:False  modules:base, web, web_editor
+
+###ir.qweb.field.integer name:Qweb Field Integer inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.many2one name:Qweb Field Many to One inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.monetary name:Qweb Field Monetary inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.qweb name:Qweb Field qweb inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.relative name:Qweb Field Relative inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.selection name:Qweb Field Selection inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.qweb.field.text name:Qweb Field Text inherit:ir.model()  transient:False  modules:base, web_editor
+
+###ir.translation name:Translation inherit:ir.model()  transient:False  modules:anodoo_base, base, web_editor
+
+###ir.ui.view name:View inherit:ir.model()  transient:False  modules:base, http_routing, mail, web_editor
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+###web_editor.assets
+
+
+###web_editor.converter.test.sub
+
+
+###web_editor.converter.test
+
+
+================== Extended Views ======================
+
+
+###ir.attachment
+
+
+###ir.http
+
+
+###ir.qweb
+
+
+###ir.qweb.field
+
+
+###ir.qweb.field.contact
+
+
+###ir.qweb.field.date
+
+
+###ir.qweb.field.datetime
+
+
+###ir.qweb.field.duration
+
+
+###ir.qweb.field.float
+
+
+###ir.qweb.field.html
+
+
+###ir.qweb.field.image
+
+
+###ir.qweb.field.integer
+
+
+###ir.qweb.field.many2one
+
+
+###ir.qweb.field.monetary
+
+
+###ir.qweb.field.qweb
+
+
+###ir.qweb.field.relative
+
+
+###ir.qweb.field.selection
+
+
+###ir.qweb.field.text
+
+
+###ir.translation
+
+
+###ir.ui.view
+
+
+================== qWeb ======================
+
+web_editor.assets_frontend  type:qweb  priority:15  arch_fs:web_editor/views/editor.xml  inherit_id:web.assets_frontend
+
+web_editor._assets_backend_helpers  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web._assets_backend_helpers
+
+web_editor._assets_frontend_helpers  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web._assets_frontend_helpers
+
+web_editor._assets_frontend_minimal_js  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web._assets_frontend_minimal_js
+
+web_editor._assets_primary_variables  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web._assets_primary_variables
+
+web_editor._assets_secondary_variables  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web._assets_secondary_variables
+
+web_editor.colorpicker  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:
+
+web_editor.wysiwyg_iframe_editor_assets  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:
+
+web_editor.qunit_suite  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web.qunit_suite
+
+web_editor.s_hr  type:qweb  priority:16  arch_fs:web_editor/views/snippets.xml  inherit_id:
+
+web_editor.snippet_options  type:qweb  priority:16  arch_fs:web_editor/views/snippets.xml  inherit_id:
+
+web_editor.snippets  type:qweb  priority:16  arch_fs:web_editor/views/snippets.xml  inherit_id:
+
+web_editor.summernote  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:
+
+web_editor.assets_backend  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web.assets_backend
+
+web_editor.assets_common  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:web.assets_common
+
+web_editor.compiled_assets_wysiwyg  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:
+
+web_editor.assets_wysiwyg  type:qweb  priority:16  arch_fs:web_editor/views/editor.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+###web_editor.assets
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+
+###web_editor.converter.test.sub
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:web_editor  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:web_editor  help:False
+
+###web_editor.converter.test
+
+binary Label:Binary  ttype:binary    required:False  compute:False  depends:False  modules:web_editor  help:False
+char Label:Char  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:web_editor  help:False
+date Label:Date  ttype:date    required:False  compute:False  depends:False  modules:web_editor  help:False
+datetime Label:Datetime  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+float Label:Float  ttype:float    required:False  compute:False  depends:False  modules:web_editor  help:False
+html Label:Html  ttype:html    required:False  compute:False  depends:False  modules:web_editor  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+integer Label:Integer  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+many2one Label:Many2One  ttype:many2one  relation:web_editor.converter.test.sub    required:False  compute:False  depends:False  modules:web_editor  help:False
+numeric Label:Numeric  ttype:float    required:False  compute:False  depends:False  modules:web_editor  help:False
+selection_str Label:Lorsqu'un pancake prend l'avion à destination de Toronto et qu'il fait une escale technique à St Claude, on dit:  ttype:selection    required:False  compute:False  depends:False  modules:web_editor  help:False
+text Label:Text  ttype:text    required:False  compute:False  depends:False  modules:web_editor  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:web_editor  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:web_editor  help:False
+
+================== Extended Fields ======================
+
+
+###ir.attachment
+
+image_height Label:Image Height  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+image_src Label:Image Src  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+image_width Label:Image Width  ttype:integer    required:False  compute:False  depends:False  modules:web_editor  help:False
+local_url Label:Attachment URL  ttype:char    required:False  compute:False  depends:False  modules:web_editor  help:False
+
+###ir.http
+
+
+###ir.qweb
+
+
+###ir.qweb.field
+
+
+###ir.qweb.field.contact
+
+
+###ir.qweb.field.date
+
+
+###ir.qweb.field.datetime
+
+
+###ir.qweb.field.duration
+
+
+###ir.qweb.field.float
+
+
+###ir.qweb.field.html
+
+
+###ir.qweb.field.image
+
+
+###ir.qweb.field.integer
+
+
+###ir.qweb.field.many2one
+
+
+###ir.qweb.field.monetary
+
+
+###ir.qweb.field.qweb
+
+
+###ir.qweb.field.relative
+
+
+###ir.qweb.field.selection
+
+
+###ir.qweb.field.text
+
+
+###ir.translation
+
+
+###ir.ui.view

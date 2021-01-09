@@ -1,0 +1,26 @@
+#在gitee创建新仓库, 选择了.gitignore会有点问题，通过下方语句解决
+#Anodoo_Other_Ent 替换成新的库名
+
+cd ~/PycharmProjects/;
+mkdir Anodoo_Other_Ent;
+cd Anodoo_Other_Ent;
+git init;
+touch README.md;
+git add README.md;
+
+#配置
+git config user.name "hsw";
+git config user.email "hsw@anodoo.com";
+git config credential.helper store;
+git commit -m "init";
+git remote add origin https://gitee.com/microwei/Anodoo_Other_Ent.git;
+git push -u origin master;
+
+#设置开发分之
+git branch develop;
+git checkout develop;
+git push origin develop;
+
+
+git pull origin master --allow-unrelated-histories
+git push --delete origin hotfix  #删除远程分支

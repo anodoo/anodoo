@@ -1,0 +1,79 @@
+模块:uom       ID:44      Name:Units of measure
+
+
+================== Models ======================
+
+###uom.uom name:Product Unit of Measure inherit:ir.model()  access:ir.model.access(108, 107)  rule:ir.rule()  transient:False  modules:uom
+
+###uom.category name:Product UoM Categories inherit:ir.model()  access:ir.model.access(106, 105)  rule:ir.rule()  transient:False  modules:uom
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###uom.product_uom_form_action  name:Units of Measure view_mode:tree,form domain:False  context:{}
+
+###uom.product_uom_categ_form_action  name:Units of Measure Categories view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###uom.uom
+
+uom.product_uom_form_view  type:form  priority:16  arch_fs:uom/views/uom_uom_views.xml  inherit_id:
+
+uom.product_uom_tree_view  type:tree  priority:16  arch_fs:uom/views/uom_uom_views.xml  inherit_id:
+
+uom.uom_uom_view_search  type:search  priority:16  arch_fs:uom/views/uom_uom_views.xml  inherit_id:
+
+
+###uom.category
+
+uom.product_uom_categ_form_view  type:form  priority:16  arch_fs:uom/views/uom_uom_views.xml  inherit_id:
+
+uom.product_uom_categ_tree_view  type:tree  priority:16  arch_fs:uom/views/uom_uom_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###uom.uom
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:uom  help:Uncheck the active field to disable a unit of measure without deleting it.
+category_id Label:Category  ttype:many2one  relation:uom.category    required:True  compute:False  depends:False  modules:uom  help:Conversion between Units of Measure can only occur if they belong to the same category. The conversion will be made based on the ratios.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:uom  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:uom  help:False
+factor Label:Ratio  ttype:float    required:True  compute:False  depends:False  modules:uom  help:How much bigger or smaller this unit is compared to the reference Unit of Measure for this category: 1 * (reference unit) = ratio * (this unit)
+factor_inv Label:Bigger Ratio  ttype:float    required:True  compute:False  depends:False  modules:uom  help:How many times this Unit of Measure is bigger than the reference Unit of Measure in this category: 1 * (this unit) = ratio * (reference unit)
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:uom  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+measure_type Label:Type of measurement category  ttype:selection    required:False  compute:False  depends:False  modules:uom  help:False
+name Label:Unit of Measure  ttype:char    required:True  compute:False  depends:False  modules:uom  help:False
+rounding Label:Rounding Precision  ttype:float    required:True  compute:False  depends:False  modules:uom  help:The computed quantity will be a multiple of this value. Use 1.0 for a Unit of Measure that cannot be further split, such as a piece.
+uom_type Label:Type  ttype:selection    required:True  compute:False  depends:False  modules:uom  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:uom  help:False
+
+###uom.category
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:uom  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:uom  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:uom  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+measure_type Label:Type of Measure  ttype:selection    required:False  compute:False  depends:False  modules:uom  help:False
+name Label:Unit of Measure Category  ttype:char    required:True  compute:False  depends:False  modules:uom  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:uom  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:uom  help:False
+
+================== Extended Fields ======================

@@ -1,0 +1,424 @@
+模块:project       ID:2      Name:Project
+
+
+================== Models ======================
+
+###project.task name:Task inherit:ir.model()  access:ir.model.access(211, 212, 208)  rule:ir.rule(43, 44, 45, 48)  transient:False  modules:project
+
+###project.tags name:Project Tags inherit:ir.model()  access:ir.model.access(219, 220, 218)  rule:ir.rule()  transient:False  modules:project
+
+###report.project.task.user name:Tasks Analysis inherit:ir.model()  access:ir.model.access(209,)  rule:ir.rule(46,)  transient:False  modules:project
+
+###project.task.type name:Task Stage inherit:ir.model()  access:ir.model.access(206, 204, 207, 205)  rule:ir.rule()  transient:False  modules:project
+
+
+================== Extended Models ======================
+
+###account.analytic.account name:Analytic Account inherit:ir.model()  transient:False  modules:analytic, project
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###project.project name:Project inherit:ir.model(122,)  transient:False  modules:anodoo_proj, project
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###digest.digest name:Digest inherit:ir.model()  transient:False  modules:digest, project
+
+
+================== Actions ======================
+
+###project.act_res_users_2_project_task_opened  name:Assigned Tasks view_mode:tree,form,calendar,graph domain:[]  context:{'search_default_user_id': [active_id], 'default_user_id': active_id}
+
+###project.action_view_task_overpassed_draft  name:Overpassed Tasks view_mode:tree,form,calendar,graph,kanban domain:[('date_deadline','<',time.strftime('%Y-%m-%d'))]  context:{}
+
+###project.dblc_proj  name:Project's tasks view_mode:tree,form,calendar,graph,kanban domain:[('project_id', '=', active_id)]  context:{'project_id':active_id}
+
+###project.project_task_action_sub_task  name:Sub-tasks view_mode:kanban,tree,form,calendar,pivot,graph,activity domain:False  context:{}
+
+###project.project_task_action_from_partner  name:Tasks view_mode:kanban,tree,form domain:False  context:{}
+
+###project.action_view_task  name:Tasks view_mode:kanban,tree,form,calendar,pivot,graph,activity domain:False  context:{'search_default_my_tasks': 1}
+
+###project.act_project_project_2_project_task_all  name:Tasks view_mode:kanban,tree,form,calendar,pivot,graph,activity domain:False  context:{
+                'pivot_row_groupby': ['user_id'],
+                'search_default_project_id': [active_id],
+                'default_project_id': active_id,
+            }
+
+###project.project_tags_action  name:Tags view_mode:tree,form domain:False  context:{}
+
+###project.action_project_task_user_tree  name:Tasks Analysis view_mode:graph,pivot domain:False  context:{'group_by_no_leaf':1,'group_by':[]}
+
+###project.open_task_type_form  name:Stages view_mode:tree,kanban,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###project.task
+
+project.view_task_calendar  type:calendar  priority:2  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_task_form2  type:form  priority:2  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_task_tree2  type:tree  priority:2  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_task_view_activity  type:activity  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_task_graph  type:graph  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_task_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_task_pivot  type:pivot  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_task_search_form  type:search  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_task_view_tree_activity  type:tree  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.quick_create_task_form  type:form  priority:1000  arch_fs:project/views/project_views.xml  inherit_id:
+
+
+###project.tags
+
+project.project_tags_search_view  type:search  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_tags_form_view  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_tags_tree_view  type:tree  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+
+###report.project.task.user
+
+project.view_task_project_user_graph  type:graph  priority:16  arch_fs:project/report/project_report_views.xml  inherit_id:
+
+project.view_task_project_user_pivot  type:pivot  priority:16  arch_fs:project/report/project_report_views.xml  inherit_id:
+
+project.view_task_project_user_search  type:search  priority:16  arch_fs:project/report/project_report_views.xml  inherit_id:
+
+
+###project.task.type
+
+project.task_type_edit  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_task_type_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.task_type_search  type:search  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.task_type_tree  type:tree  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+###account.analytic.account
+
+project.account_analytic_account_view_form_inherit  type:form  priority:18  arch_fs:project/views/analytic_views.xml  inherit_id:analytic.view_account_analytic_account_form
+
+
+###res.partner
+
+project.view_task_partner_info_form  type:form  priority:7  arch_fs:project/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+
+###project.project
+
+project.edit_project  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_view_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_project_filter  type:search  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project  type:tree  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_project_view_form_simplified  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_project_view_form_simplified_footer  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:project.project_project_view_form_simplified
+
+
+###res.config.settings
+
+project.res_config_settings_view_form  type:form  priority:50  arch_fs:project/views/res_config_settings_views.xml  inherit_id:base.res_config_settings_view_form
+
+
+###digest.digest
+
+project.digest_digest_view_form  type:form  priority:16  arch_fs:project/views/digest_views.xml  inherit_id:digest.digest_digest_view_form
+
+
+================== qWeb ======================
+
+project.portal_my_project  type:qweb  priority:16  arch_fs:project/views/project_portal_templates.xml  inherit_id:
+
+project.portal_my_projects  type:qweb  priority:16  arch_fs:project/views/project_portal_templates.xml  inherit_id:
+
+project.portal_my_task  type:qweb  priority:16  arch_fs:project/views/project_portal_templates.xml  inherit_id:
+
+project.portal_my_tasks  type:qweb  priority:16  arch_fs:project/views/project_portal_templates.xml  inherit_id:
+
+project.portal_project_rating_partner_stat  type:qweb  priority:16  arch_fs:project/views/project_rating_templates.xml  inherit_id:
+
+project.portal_project_rating_popover  type:qweb  priority:16  arch_fs:project/views/project_rating_templates.xml  inherit_id:
+
+project.portal_project_rating_progressbar  type:qweb  priority:16  arch_fs:project/views/project_rating_templates.xml  inherit_id:
+
+project.assets_backend  type:qweb  priority:16  arch_fs:project/views/project_assets.xml  inherit_id:web.assets_backend
+
+project.rating_index  type:qweb  priority:16  arch_fs:project/views/project_rating_templates.xml  inherit_id:
+
+project.rating_project_rating_page  type:qweb  priority:16  arch_fs:project/views/project_rating_templates.xml  inherit_id:
+
+project.assets_frontend  type:qweb  priority:16  arch_fs:project/views/project_assets.xml  inherit_id:web.assets_frontend
+
+project.portal_layout  type:qweb  priority:40  arch_fs:project/views/project_portal_templates.xml  inherit_id:portal.portal_breadcrumbs
+
+project.portal_my_home  type:qweb  priority:40  arch_fs:project/views/project_portal_templates.xml  inherit_id:portal.portal_my_home
+
+
+================== Fields ======================
+
+
+###project.task
+
+access_token Label:Security Token  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+access_url Label:Portal Access URL  ttype:char    required:False  compute:False  depends:False  modules:project  help:Customer Portal URL
+access_warning Label:Access warning  ttype:text    required:False  compute:False  depends:False  modules:project  help:False
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:project  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:project  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:project  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:project  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:project  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+attachment_ids Label:Main Attachments  ttype:one2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:project  help:Attachment that don't come from message.
+child_ids Label:Sub-tasks  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:project  help:False
+create_date Label:Created On  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+date_assign Label:Assigning Date  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+date_deadline Label:Deadline  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+date_end Label:Ending Date  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+date_last_stage_update Label:Last Stage Update  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+description Label:Description  ttype:html    required:False  compute:False  depends:False  modules:project  help:False
+displayed_image_id Label:Cover Image  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+email_cc Label:Email cc  ttype:char    required:False  compute:False  depends:False  modules:project  help:List of cc from incoming emails.
+email_from Label:Email  ttype:char    required:False  compute:False  depends:False  modules:project  help:These people will receive email.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+kanban_state Label:Kanban State  ttype:selection    required:True  compute:False  depends:False  modules:project  help:False
+kanban_state_label Label:Kanban State Label  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+legend_blocked Label:Kanban Blocked Explanation  ttype:char    required:False  compute:False  depends:False  modules:project  help:Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.
+legend_done Label:Kanban Valid Explanation  ttype:char    required:False  compute:False  depends:False  modules:project  help:Override the default value displayed for the done state for kanban selection, when the task or issue is in that stage.
+legend_normal Label:Kanban Ongoing Explanation  ttype:char    required:False  compute:False  depends:False  modules:project  help:Override the default value displayed for the normal state for kanban selection, when the task or issue is in that stage.
+manager_id Label:Project Manager  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:project  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:project  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:project  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of unread messages
+name Label:Title  ttype:char    required:True  compute:False  depends:False  modules:project  help:False
+parent_id Label:Parent Task  ttype:many2one  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+partner_city Label:City  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+planned_hours Label:Planned Hours  ttype:float    required:False  compute:False  depends:False  modules:project  help:It is the time planned to achieve the task. If this document has sub-tasks, it means the time needed to achieve this tasks and its childs.
+priority Label:Priority  ttype:selection    required:False  compute:False  depends:False  modules:project  help:False
+project_id Label:Project  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:project  help:False
+rating_avg Label:Rating Average  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+rating_count Label:Rating count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+rating_ids Label:Rating  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:project  help:False
+rating_last_feedback Label:Rating Last Feedback  ttype:text    required:False  compute:False  depends:False  modules:project  help:Reason of the rating
+rating_last_image Label:Rating Last Image  ttype:binary    required:False  compute:False  depends:False  modules:project  help:False
+rating_last_value Label:Rating Last Value  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Gives the sequence order when displaying a list of tasks.
+stage_id Label:Stage  ttype:many2one  relation:project.task.type    required:False  compute:False  depends:False  modules:project  help:False
+subtask_count Label:Sub-task count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+subtask_planned_hours Label:Subtasks  ttype:float    required:False  compute:False  depends:False  modules:project  help:Computed using sum of hours planned of all subtasks created from main task. Usually these hours are less or equal to the Planned Hours (of main task).
+subtask_project_id Label:Sub-task Project  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:project  help:Project in which sub-tasks of the current project will be created. It can be the current project itself.
+tag_ids Label:Tags  ttype:many2many  relation:project.tags    required:False  compute:False  depends:False  modules:project  help:False
+user_email Label:User Email  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+user_id Label:Assigned to  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:Website communication history
+working_days_close Label:Working days to close  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+working_days_open Label:Working days to assign  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+working_hours_close Label:Working hours to close  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+working_hours_open Label:Working hours to assign  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+write_date Label:Last Updated On  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+
+###project.tags
+
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+name Label:Tag Name  ttype:char    required:True  compute:False  depends:False  modules:project  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+
+###report.project.task.user
+
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:project  help:False
+date_assign Label:Assignation Date  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+date_deadline Label:Deadline  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+date_end Label:Ending Date  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+date_last_stage_update Label:Last Stage Update  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+delay_endings_days Label:# Days to Deadline  ttype:float    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+name Label:Task Title  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+nbr Label:# of Tasks  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+priority Label:Priority  ttype:selection    required:False  compute:False  depends:False  modules:project  help:False
+project_id Label:Project  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:project  help:False
+stage_id Label:Stage  ttype:many2one  relation:project.task.type    required:False  compute:False  depends:False  modules:project  help:False
+state Label:Kanban State  ttype:selection    required:False  compute:False  depends:False  modules:project  help:False
+user_id Label:Assigned To  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+working_days_close Label:# Working Days to Close  ttype:float    required:False  compute:False  depends:False  modules:project  help:Number of Working Days to close the task
+working_days_open Label:# Working Days to Assign  ttype:float    required:False  compute:False  depends:False  modules:project  help:Number of Working Days to Open the task
+
+###project.task.type
+
+auto_validation_kanban_state Label:Automatic kanban status  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:Automatically modify the kanban state when the customer replies to the feedback for this stage.
+ * A good feedback from the customer will update the kanban state to 'ready for the new stage' (green bullet).
+ * A medium or a bad feedback will set the kanban state to 'blocked' (red bullet).
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+description Label:Description  ttype:text    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+fold Label:Folded in Kanban  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:This stage is folded in the kanban view when there are no records in that stage to display.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+legend_blocked Label:Red Kanban Label  ttype:char    required:True  compute:False  depends:False  modules:project  help:Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.
+legend_done Label:Green Kanban Label  ttype:char    required:True  compute:False  depends:False  modules:project  help:Override the default value displayed for the done state for kanban selection, when the task or issue is in that stage.
+legend_normal Label:Grey Kanban Label  ttype:char    required:True  compute:False  depends:False  modules:project  help:Override the default value displayed for the normal state for kanban selection, when the task or issue is in that stage.
+mail_template_id Label:Email Template  ttype:many2one  relation:mail.template    required:False  compute:False  depends:False  modules:project  help:If set an email will be sent to the customer when the task or issue reaches this step.
+name Label:Stage Name  ttype:char    required:True  compute:False  depends:False  modules:project  help:False
+project_ids Label:Projects  ttype:many2many  relation:project.project    required:False  compute:False  depends:False  modules:project  help:False
+rating_template_id Label:Rating Email Template  ttype:many2one  relation:mail.template    required:False  compute:False  depends:False  modules:project  help:If set and if the project's rating configuration is 'Rating when changing stage', then an email will be sent to the customer when the task reaches this step.
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+
+================== Extended Fields ======================
+
+
+###account.analytic.account
+
+project_count Label:Project Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+project_ids Label:Projects  ttype:one2many  relation:project.project    required:False  compute:False  depends:False  modules:project  help:False
+
+###res.partner
+
+task_count Label:# Tasks  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+task_ids Label:Tasks  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+
+###project.project
+
+access_token Label:Security Token  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+access_url Label:Portal Access URL  ttype:char    required:False  compute:False  depends:False  modules:project  help:Customer Portal URL
+access_warning Label:Access warning  ttype:text    required:False  compute:False  depends:False  modules:project  help:False
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If the active field is set to False, it will allow you to hide the project without removing it.
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:project  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:project  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:True  compute:False  depends:False  modules:project  help:Internal email associated with this project. Incoming emails are automatically synchronized with Tasks (or optionally Issues if the Issue Tracker module is installed).
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:project  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:project  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+analytic_account_id Label:Analytic Account  ttype:many2one  relation:account.analytic.account    required:False  compute:False  depends:False  modules:project  help:Analytic account to which this project is linked for financial management. Use an analytic account to record cost and revenue on your project.
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:project  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:project  help:False
+date Label:Expiration Date  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+date_start Label:Start Date  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+doc_count Label:Number of documents attached  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+favorite_user_ids Label:Members  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+is_favorite Label:Show Project on dashboard  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:Whether this project should be displayed on your dashboard.
+label_tasks Label:Use Tasks as  ttype:char    required:False  compute:False  depends:False  modules:project  help:Label used for the tasks of the project.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:project  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:project  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:project  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of unread messages
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:project  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+portal_show_rating Label:Rating visible publicly  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+privacy_visibility Label:Visibility  ttype:selection    required:True  compute:False  depends:False  modules:project  help:Defines the visibility of the tasks of the project:
+- Invited employees: employees may only see the followed project and tasks.
+- All employees: employees may see all project and tasks.
+- Portal users and all employees: employees may see everything.   Portal users may see project and tasks followed by.
+   them or by someone of their company.
+rating_ids Label:Ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:project  help:False
+rating_percentage_satisfaction Label:Rating Satisfaction  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Percentage of happy ratings
+rating_request_deadline Label:Rating Request Deadline  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+rating_status Label:Customer(s) Ratings  ttype:selection    required:True  compute:False  depends:False  modules:project  help:How to get customer feedback?
+- Rating when changing stage: an email will be sent when a task is pulled in another stage.
+- Periodical Rating: email will be sent periodically.
+
+Don't forget to set up the mail templates on the stages for which you want to get the customer's feedbacks.
+rating_status_period Label:Rating Frequency  ttype:selection    required:False  compute:False  depends:False  modules:project  help:False
+resource_calendar_id Label:Working Time  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:project  help:Timetable working hours to adjust the gantt diagram report
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Gives the sequence order when displaying a list of Projects.
+subtask_project_id Label:Sub-task Project  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:project  help:Project in which sub-tasks of the current project will be created. It can be the current project itself.
+task_count Label:Task Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+task_ids Label:Tasks  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+tasks Label:Task Activities  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+type_ids Label:Tasks Stages  ttype:many2many  relation:project.task.type    required:False  compute:False  depends:False  modules:project  help:False
+user_id Label:Project Manager  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+
+###res.config.settings
+
+group_project_rating Label:Use Rating on Project  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+group_subtask_project Label:Sub-tasks  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+module_hr_timesheet Label:Task Logs  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+module_project_forecast Label:Forecasts  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+
+###digest.digest
+
+kpi_project_task_opened Label:Open Tasks  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+kpi_project_task_opened_value Label:Kpi Project Task Opened Value  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False

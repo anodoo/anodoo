@@ -1,0 +1,35 @@
+模块:anodoo_crm       ID:32      Name:Anodoo CRM
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+anodoo_crm.view_res_config_settings_crm_form  type:form  priority:16  arch_fs:anodoo_crm/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================
+
+
+###res.config.settings

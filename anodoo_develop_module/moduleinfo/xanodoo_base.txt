@@ -1,0 +1,582 @@
+模块:anodoo_base       ID:19      Name:基础
+
+
+================== Models ======================
+
+###res.partner name:Contact inherit:ir.model()  access:ir.model.access(279, 57, 58, 56, 55, 210, 281)  rule:ir.rule(2, 8, 9)  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###res.config.settings name:Config Settings inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###res.country.state.city name:Country state city inherit:ir.model()  access:ir.model.access(170,)  rule:ir.rule()  transient:False  modules:anodoo_base
+
+###ir.ui.menu name:Menu inherit:ir.model()  access:ir.model.access(31, 32)  rule:ir.rule()  transient:False  modules:anodoo_base, base
+
+###ir.translation name:Translation inherit:ir.model()  access:ir.model.access(29, 30)  rule:ir.rule()  transient:False  modules:anodoo_base, base, web_editor
+
+###anodoo.product name:产品描述和配置,单例实体 inherit:ir.model()  access:ir.model.access(173,)  rule:ir.rule()  transient:False  modules:anodoo_base
+
+###anodoo.location name:位置信息 inherit:ir.model()  access:ir.model.access(169,)  rule:ir.rule()  transient:False  modules:anodoo_base
+
+###anodoo.data.clean name:数据清理功能,不同的数据清理定义一个 inherit:ir.model()  access:ir.model.access(171,)  rule:ir.rule()  transient:False  modules:anodoo_base
+
+###anodoo.usermenu.link name:系统右上角的用户菜单额外扩展的链接 inherit:ir.model()  access:ir.model.access(172,)  rule:ir.rule()  transient:False  modules:anodoo_base
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###contacts.action_contacts  name:Contacts view_mode:kanban,tree,form,activity domain:False  context:{'default_is_company': True}
+
+###base.action_partner_form  name:Customers view_mode:kanban,tree,form,activity domain:False  context:{'res_partner_search_mode': 'customer'}
+
+###base.action_partner_customer_form  name:Customers view_mode:kanban,tree,form,activity domain:[]  context:{'res_partner_search_mode': 'customer', 'default_is_company': True}
+
+###base.action_partner_employee_form  name:Employees view_mode:tree,form domain:[('employee','=',1)]  context:{'default_employee':1}
+
+###base.action_partner_other_form  name:Other Partners view_mode:tree,form domain:[('supplier','!=',1),('customer','!=',1)]  context:{}
+
+###base.action_partner_supplier_form  name:Vendors view_mode:kanban,tree,form,activity domain:[]  context:{'res_partner_search_mode': 'supplier', 'default_is_company': True}
+
+###anodoo_contact.action_contact_person_list  name:个人联系人 view_mode:tree,form,activity domain:[('partner_type', '=', 'contact'), ('is_company', '=', False), '|', ('private_user_id', '=', False), ('private_user_id', '=', uid)]  context:{'default_partner_type':'contact', 'default_is_company':False}
+
+###anodoo_contact.action_contact_company_list  name:公司联系人 view_mode:tree,form,activity domain:[('partner_type', '=', 'contact'), ('is_company', '=', True), '|', ('private_user_id', '=', False), ('private_user_id', '=', uid)]  context:{'default_partner_type':'contact', 'default_is_company':True}
+
+###anodoo_cust.action_customer_create  name:创建客户 view_mode:form domain:False  context:{'default_partner_type':'customer'}
+
+###anodoo_cust.action_customer_success_list  name:成功客户 view_mode:kanban,tree,form domain:[('partner_type', '=', 'customer'), ('is_success', '=', True)]  context:{'customer_search_mode' : 'customer_my', 'default_partner_type':'customer'}
+
+###anodoo_cust.action_customer_my_list  name:我的客户 view_mode:kanban,tree,form domain:[('partner_type', '=', 'customer')]  context:{'customer_search_mode' : 'customer_my', 'default_partner_type':'customer'}
+
+###anodoo_contact.action_contact_person_list_tree  name:所有联系人 view_mode:kanban,form domain:[('partner_type', '=', 'contact'), '|', ('private_user_id', '=', False), ('private_user_id', '=', uid)]  context:{'default_partner_type':'contact', 'default_is_company':False}
+
+###anodoo_cust.action_customer_losing_list  name:流失客户 view_mode:kanban,tree,form domain:[('partner_type', '=', 'customer'), ('is_losing', '=', True)]  context:{'customer_search_mode' : 'customer_my', 'default_partner_type':'customer'}
+
+###anodoo_cust.action_customer_prospect_list  name:潜在客户 view_mode:kanban,tree,form domain:[('partner_type', '=', 'customer'), ('is_prospect', '=', True)]  context:{'customer_search_mode' : 'customer_my', 'default_partner_type':'customer'}
+
+###base.res_config_setting_act_window  name:Settings view_mode:form domain:False  context:{}
+
+###base_setup.action_general_configuration  name:Settings view_mode:form domain:False  context:{'module' : 'general_settings'}
+
+###crm.crm_config_settings_action  name:Settings view_mode:form domain:False  context:{'module' : 'crm'}
+
+###project.project_config_settings_action  name:Settings view_mode:form domain:False  context:{'module' : 'project'}
+
+###anodoo_base.action_anodoo_general_settings  name:Settings view_mode:form domain:False  context:{'module' : 'anodoo_base'}
+
+###anodoo_proj.anodoo_project_config_settings_action  name:基础配置 view_mode:form domain:False  context:{'module' : 'anodoo_proj'}
+
+###anodoo_team.anodoo_team_config_settings_action  name:基础配置 view_mode:form domain:False  context:{'module' : 'anodoo_team'}
+
+###anodoo_crm.anodoo_crm_config_settings_action  name:基础配置 view_mode:form domain:False  context:{'module' : 'anodoo_crm'}
+
+###anodoo_content.anodoo_content_config_settings_action  name:基础配置 view_mode:form domain:False  context:{'module' : 'anodoo_content'}
+
+###anodoo_base.action_res_country_state_city_list  name:城市 view_mode:tree,form domain:False  context:{}
+
+###base.grant_menu_access  name:Menu Items view_mode:tree,form domain:False  context:{'ir.ui.menu.full_list':True, 'search_default_is_root':1}
+
+###base.action_translation  name:Translated Terms view_mode:tree,form domain:False  context:{}
+
+###anodoo_base.action_anodoo_data_clean_list  name:数据清理 view_mode:tree,form domain:False  context:{'active_test':True}
+
+###anodoo_base.action_anodoo_usermenu_link_list  name:用户菜单扩展 view_mode:tree,form domain:False  context:{'active_test':True}
+
+
+================== Views ======================
+
+
+###res.partner
+
+anodoo_contact.view_contact_form  type:form  priority:1  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_form_customer  type:form  priority:1  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_cust.view_customer_form  type:form  priority:1  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+base.view_partner_form  type:form  priority:1  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+crm.view_partners_form_crm1  type:form  priority:1  arch_fs:crm/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+base.view_partner_short_form  type:form  priority:2  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+project.view_task_partner_info_form  type:form  priority:7  arch_fs:project/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+anodoo_contact.view_contact_list  type:tree  priority:8  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_list_customer  type:tree  priority:8  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_cust.view_customer_list  type:tree  priority:8  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+base.view_partner_tree  type:tree  priority:8  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+crm.crm_lead_partner_kanban_view  type:kanban  priority:10  arch_fs:crm/views/res_partner_views.xml  inherit_id:base.res_partner_kanban_view
+
+sms.res_partner_view_form  type:form  priority:10  arch_fs:sms/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+anodoo_contact.view_contact_kanban  type:kanban  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_kanban_customer  type:kanban  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_cust.view_customer_kanban  type:kanban  priority:16  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_contact.view_contact_search  type:search  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+anodoo_contact.view_contact_search_tree  type:search  priority:16  arch_fs:anodoo_contact/views/contact_views.xml  inherit_id:
+
+mail.res_partner_view_activity  type:activity  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:
+
+base.res_partner_kanban_view  type:kanban  priority:16  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+base_setup.res_partner_kanban_view  type:kanban  priority:16  arch_fs:base_setup/views/res_partner_views.xml  inherit_id:base.res_partner_kanban_view
+
+base.view_res_partner_filter  type:search  priority:16  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+base.view_partner_simple_form  type:form  priority:16  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+mail.res_partner_view_form_inherit_mail  type:form  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+mail.res_partner_view_search_inherit_mail  type:search  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:base.view_res_partner_filter
+
+anodoo_cust.view_customer_search  type:search  priority:20  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+anodoo_cust.view_customer_prospect_search  type:search  priority:20  arch_fs:anodoo_cust/views/cust_views.xml  inherit_id:
+
+base.view_partner_address_form  type:form  priority:20  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+mail.res_partner_view_form_short  type:form  priority:20  arch_fs:mail/views/mail_channel_partner_views.xml  inherit_id:base.view_partner_short_form
+
+base.res_partner_view_form_private  type:form  priority:300  arch_fs:base/views/res_partner_views.xml  inherit_id:
+
+
+###res.config.settings
+
+base_setup.res_config_settings_view_form  type:form  priority:0  arch_fs:base_setup/views/res_config_settings_views.xml  inherit_id:base.res_config_settings_view_form
+
+crm.res_config_settings_view_form  type:form  priority:5  arch_fs:crm/views/res_config_settings_views.xml  inherit_id:base.res_config_settings_view_form
+
+anodoo_content.view_res_config_settings_content_form  type:form  priority:16  arch_fs:anodoo_content/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+anodoo_crm.view_res_config_settings_crm_form  type:form  priority:16  arch_fs:anodoo_crm/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+anodoo_proj.view_res_config_settings_project_form  type:form  priority:16  arch_fs:anodoo_proj/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+anodoo_team.view_res_config_settings_team_form  type:form  priority:16  arch_fs:anodoo_team/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+base.res_config_settings_view_form  type:form  priority:16  arch_fs:base/views/res_config_settings_views.xml  inherit_id:
+
+anodoo_base.view_res_config_settings_form  type:form  priority:16  arch_fs:anodoo_base/views/res_config_settings_views.xml  inherit_id:
+
+auth_signup.res_config_settings_view_form  type:form  priority:16  arch_fs:auth_signup/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+iap.res_config_settings_view_form  type:form  priority:16  arch_fs:iap/views/res_config_settings.xml  inherit_id:base_setup.res_config_settings_view_form
+
+digest.res_config_settings_view_form  type:form  priority:16  arch_fs:digest/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+fetchmail.res_config_settings_view_form  type:form  priority:16  arch_fs:fetchmail/views/res_config_settings_views.xml  inherit_id:mail.res_config_settings_view_form
+
+mail.res_config_settings_view_form  type:form  priority:16  arch_fs:mail/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+pad.res_config_settings_view_form  type:form  priority:16  arch_fs:pad/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+sms.res_config_settings_view_form  type:form  priority:16  arch_fs:sms/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+project.res_config_settings_view_form  type:form  priority:50  arch_fs:project/views/res_config_settings_views.xml  inherit_id:base.res_config_settings_view_form
+
+
+###res.country.state.city
+
+anodoo_base.view_res_country_state_city_form  type:form  priority:100  arch_fs:anodoo_base/views/res_country_views.xml  inherit_id:
+
+anodoo_base.view_res_country_state_city_list  type:tree  priority:100  arch_fs:anodoo_base/views/res_country_views.xml  inherit_id:
+
+anodoo_base.view_res_country_state_city_search  type:search  priority:100  arch_fs:anodoo_base/views/res_country_views.xml  inherit_id:
+
+
+###ir.ui.menu
+
+base.edit_menu  type:tree  priority:8  arch_fs:base/views/ir_ui_menu_views.xml  inherit_id:
+
+anodoo_base.edit_menu  type:tree  priority:8  arch_fs:anodoo_base/views/ir_ui_menu_views.xml  inherit_id:base.edit_menu
+
+base.edit_menu_access  type:form  priority:16  arch_fs:base/views/ir_ui_menu_views.xml  inherit_id:
+
+anodoo_base.edit_menu_access  type:form  priority:16  arch_fs:anodoo_base/views/ir_ui_menu_views.xml  inherit_id:base.edit_menu_access
+
+base.edit_menu_access_search  type:search  priority:16  arch_fs:base/views/ir_ui_menu_views.xml  inherit_id:
+
+anodoo_base.edit_menu_access_search  type:search  priority:16  arch_fs:anodoo_base/views/ir_ui_menu_views.xml  inherit_id:base.edit_menu_access_search
+
+base.view_menu  type:tree  priority:16  arch_fs:base/views/ir_ui_menu_views.xml  inherit_id:
+
+
+###ir.translation
+
+base.view_translation_form  type:form  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+base.view_translation_search  type:search  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+base.view_translation_tree  type:tree  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+base.view_translation_dialog_tree  type:tree  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+base.view_translation_lang_value_tree  type:tree  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+base.view_translation_lang_src_value_tree  type:tree  priority:16  arch_fs:base/views/ir_translation_views.xml  inherit_id:
+
+anodoo_base.view_translation_tree  type:tree  priority:16  arch_fs:anodoo_base/views/ir_translation_views.xml  inherit_id:base.view_translation_tree
+
+
+###anodoo.product
+
+
+###anodoo.location
+
+
+###anodoo.data.clean
+
+anodoo_base.view_anodoo_data_clean_form  type:form  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+anodoo_base.view_anodoo_data_clean_list  type:tree  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+anodoo_base.view_anodoo_data_clean_search  type:search  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+
+###anodoo.usermenu.link
+
+anodoo_base.view_anodoo_usermenu_link_form  type:form  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+anodoo_base.view_anodoo_usermenu_link_list  type:tree  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+anodoo_base.view_anodoo_usermenu_link_search  type:search  priority:100  arch_fs:anodoo_base/views/base_views.xml  inherit_id:
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###res.partner
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:base  help:False
+active_lang_count Label:Active Lang Count  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:mail  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:mail  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+bank_ids Label:Banks  ttype:one2many  relation:res.partner.bank    required:False  compute:False  depends:False  modules:base  help:False
+belong_company Label:工作公司  ttype:char    required:False  compute:False  depends:False  modules:anodoo_contact  help:个人客户所工作公司
+birth_date Label:出生日期  ttype:date    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+calendar_last_notif_ack Label:Last notification marked as read from base Calendar  ttype:datetime    required:False  compute:False  depends:False  modules:calendar  help:False
+category_id Label:Tags  ttype:many2many  relation:res.partner.category    required:False  compute:False  depends:False  modules:base  help:False
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+child_ids Label:Contact  ttype:one2many  relation:res.partner    required:False  compute:False  depends:False  modules:base  help:False
+city Label:City  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+comment Label:Notes  ttype:text    required:False  compute:False  depends:False  modules:base  help:False
+commercial_company_name Label:Company Name Entity  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+commercial_partner_id Label:Commercial Entity  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:base  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:base  help:False
+company_name Label:Company Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+company_type Label:Company Type  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_contact, base  help:False
+contact_address Label:Complete Address  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+country_id Label:Country  ttype:many2one  relation:res.country    required:False  compute:False  depends:False  modules:base  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+credit_limit Label:Credit Limit  ttype:float    required:False  compute:False  depends:False  modules:base  help:False
+customer_identity Label:唯一标识信息  ttype:char    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户唯一标识信息
+customer_label_ids Label:客户标签  ttype:many2many  relation:anodoo.customer.label    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户当前的所有标签
+customer_priority Label:优先级  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_relation_customer_ids Label:客户与客户关系  ttype:one2many  relation:anodoo.customer.relation.customer    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+customer_size Label:客户规模  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户规模定义，可扩展
+customer_type Label:客户性质  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户类型定义，可扩展
+date Label:Date  ttype:date    required:False  compute:False  depends:False  modules:base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+email Label:Email  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+email_formatted Label:Formatted Email  ttype:char    required:False  compute:False  depends:False  modules:base  help:Format email address "Name <email@domain>"
+email_normalized Label:Normalized Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:This field is used to search on email address as the primary email field can contain more than strictly an email address.
+employee Label:Employee  ttype:boolean    required:False  compute:False  depends:False  modules:base  help:Check this box if this contact is an Employee.
+function Label:工作职位  ttype:char    required:False  compute:False  depends:False  modules:anodoo_contact, base  help:False
+gender_type Label:性别  ttype:selection    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+image_1024 Label:Image 1024  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+image_128 Label:Image 128  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+image_1920 Label:Image  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+image_256 Label:Image 256  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+image_512 Label:Image 512  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+im_status Label:IM Status  ttype:char    required:False  compute:False  depends:False  modules:bus  help:False
+industry_id Label:Industry  ttype:many2one  relation:res.partner.industry    required:False  compute:False  depends:False  modules:base  help:False
+is_alloted Label:是否已分配  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_blacklisted Label:Blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+is_company Label:Is a Company  ttype:boolean    required:False  compute:False  depends:False  modules:base  help:Check if the contact is a company, otherwise it is a person
+is_losing Label:是否流失客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_prospect Label:是否潜在客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+is_success Label:是否成功客户  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_cust  help:False
+lang Label:Language  ttype:selection    required:False  compute:False  depends:False  modules:base  help:All the emails and documents sent to this contact will be translated in this language.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+lifetime_id Label:客户生命周期  ttype:many2one  relation:anodoo.customer.lifetime    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户使用的生命周期定义
+lifetime_stage_id Label:客户生命周期阶段  ttype:many2one  relation:anodoo.customer.lifetime.stage    required:False  compute:False  depends:False  modules:anodoo_cust  help:客户当前的生命周期阶段
+many_address Label:地址  ttype:one2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_base  help:一个联系人的多个地址
+many_partners Label:多对多关系  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_base  help:通用的对多对关系,用来实现联系人的子联系人,客户下的联系人.
+meeting_count Label:# Meetings  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+meeting_ids Label:Meetings  ttype:many2many  relation:calendar.event    required:False  compute:False  depends:False  modules:crm  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_bounce Label:Bounce  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Counter of the number of bounced emails for this contact
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+mobile Label:Mobile  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+opportunity_count Label:Opportunity  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+opportunity_ids Label:Opportunities  ttype:one2many  relation:crm.lead    required:False  compute:False  depends:False  modules:crm  help:False
+parent_id Label:Related Company  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:base  help:False
+parent_name Label:Parent name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+partner_latitude Label:Geo Latitude  ttype:float    required:False  compute:False  depends:False  modules:base  help:False
+partner_longitude Label:Geo Longitude  ttype:float    required:False  compute:False  depends:False  modules:base  help:False
+partner_share Label:Share Partner  ttype:boolean    required:False  compute:False  depends:False  modules:base  help:Either customer (not a user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.
+partner_type Label:扩展类型  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:Anodoo按照Odoo设计，用来实现contact,customer, dealer等
+phone Label:Phone  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+phone_blacklisted Label:Phone Blacklisted  ttype:boolean    required:False  compute:False  depends:False  modules:  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+phone_sanitized Label:Sanitized Number  ttype:char    required:False  compute:False  depends:False  modules:  help:Field used to store sanitized phone number. Helps speeding up searches and comparisons.
+private_user_id Label:所属人  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_contact  help:如果所属人不为空,则该联系人为此人私有
+ref Label:Reference  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+relation_contact_ids Label:相关联系人  ttype:one2many  relation:anodoo.contact.relation.contact    required:False  compute:False  depends:False  modules:anodoo_contact  help:False
+same_vat_partner_id Label:Partner with same Tax ID  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:base  help:False
+self Label:Self  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:base  help:False
+signup_expiration Label:Signup Expiration  ttype:datetime    required:False  compute:False  depends:False  modules:auth_signup  help:False
+signup_token Label:Signup Token  ttype:char    required:False  compute:False  depends:False  modules:auth_signup  help:False
+signup_type Label:Signup Token Type  ttype:char    required:False  compute:False  depends:False  modules:auth_signup  help:False
+signup_url Label:Signup URL  ttype:char    required:False  compute:False  depends:False  modules:auth_signup  help:False
+signup_valid Label:Signup Token is Valid  ttype:boolean    required:False  compute:False  depends:False  modules:auth_signup  help:False
+state_id Label:State  ttype:many2one  relation:res.country.state    required:False  compute:False  depends:False  modules:base  help:False
+street Label:Street  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+street2 Label:Street2  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+task_count Label:# Tasks  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+task_ids Label:Tasks  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+team_id Label:Sales Team  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm, sales_team  help:If set, this Sales Team will be used for sales and assignations related to this partner
+title Label:Title  ttype:many2one  relation:res.partner.title    required:False  compute:False  depends:False  modules:base  help:False
+type Label:Address Type  ttype:selection    required:False  compute:False  depends:False  modules:base  help:Invoice & Delivery addresses are used in sales orders. Private addresses are only visible by authorized users.
+tz Label:Timezone  ttype:selection    required:False  compute:False  depends:False  modules:base  help:When printing documents and exporting/importing data, time values are computed according to this timezone.
+If the timezone is not set, UTC (Coordinated Universal Time) is used.
+Anywhere else, time values are computed according to the time offset of your web client.
+tz_offset Label:Timezone offset  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+user_id Label:Salesperson  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base, mail  help:The internal user in charge of this contact.
+user_ids Label:Users  ttype:one2many  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+vat Label:Tax ID  ttype:char    required:False  compute:False  depends:False  modules:base  help:The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements.
+website Label:Website Link  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+zip Label:Zip  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+
+###res.config.settings
+
+active_group_count Label:组数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+active_portal_user_count Label:外部用户数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+active_user_count Label:Number of Active Users  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+alias_domain Label:Alias Domain  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.
+anodoo_product_id Label:anodoo_product  ttype:many2one  relation:anodoo.product    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+auth_signup_reset_password Label:Enable password reset from Login page  ttype:boolean    required:False  compute:False  depends:False  modules:auth_signup  help:False
+auth_signup_template_user_id Label:Template user for new users created through signup  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:auth_signup  help:False
+auth_signup_uninvited Label:Customer Account  ttype:selection    required:False  compute:False  depends:False  modules:auth_signup  help:False
+company_count Label:Number of Companies  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:base_setup  help:False
+company_informations Label:Company Informations  ttype:text    required:False  compute:False  depends:False  modules:base_setup  help:False
+company_name Label:Company Name  ttype:char    required:False  compute:False  depends:False  modules:base_setup  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+crm_alias_prefix Label:Default Alias Name for Leads  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+digest_emails Label:Digest Emails  ttype:boolean    required:False  compute:False  depends:False  modules:digest  help:False
+digest_id Label:Digest Email  ttype:many2one  relation:digest.digest    required:False  compute:False  depends:False  modules:digest  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+external_email_server_default Label:External Email Servers  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+external_report_layout_id Label:Document Template  ttype:many2one  relation:ir.ui.view    required:False  compute:False  depends:False  modules:base_setup  help:False
+fail_counter Label:Fail Mail  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+generate_lead_from_alias Label:Manual Assignation of Emails  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+group_multi_currency Label:Multi-Currencies  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:Allows to work in a multi currency environment
+group_project_rating Label:Use Rating on Project  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+group_subtask_project Label:Sub-tasks  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+group_use_lead Label:Leads  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+language_count Label:Number of Languages  ttype:integer    required:False  compute:False  depends:False  modules:base_setup  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+lead_enrich_auto Label:Enrich lead automatically  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:False
+lead_mining_in_pipeline Label:Create a lead mining request directly from the opportunity pipeline.  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+module_auth_ldap Label:LDAP Authentication  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_auth_oauth Label:Use external authentication providers (OAuth)  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_gengo Label:Translate Your Website with Gengo  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_geolocalize Label:GeoLocalize  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_base_import Label:Allow users to import data from CSV/XLS/XLSX/ODS files  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_crm_iap_lead Label:Generate new leads based on their country, industries, size, etc.  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+module_crm_iap_lead_enrich Label:Enrich your leads automatically with company data based on their email address.  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+module_crm_iap_lead_website Label:Create Leads/Opportunities from your website's traffic  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+module_google_calendar Label:Allow the users to synchronize their calendar  with Google Calendar  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_google_drive Label:Attach Google documents to any record  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_google_spreadsheet Label:Google Spreadsheet  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_hr_timesheet Label:Task Logs  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+module_inter_company_rules Label:Manage Inter Company  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_pad Label:Collaborative Pads  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_partner_autocomplete Label:Partner Autocomplete  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_project_forecast Label:Forecasts  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+module_voip Label:Asterisk (VoIP)  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+module_web_unsplash Label:Unsplash Image Library  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+pad_key Label:Pad Api Key *  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite api key.
+pad_server Label:Pad Server *  ttype:char    required:False  compute:False  depends:False  modules:pad  help:Etherpad lite server. Example: beta.primarypad.com
+paperformat_id Label:Paper format  ttype:many2one  relation:report.paperformat    required:False  compute:False  depends:False  modules:base_setup  help:False
+predictive_lead_scoring_fields Label:Lead Scoring Frequency Fields  ttype:many2many  relation:crm.lead.scoring.frequency.field    required:False  compute:False  depends:False  modules:crm  help:False
+predictive_lead_scoring_fields_str Label:Lead Scoring Frequency Fields in String  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+predictive_lead_scoring_start_date Label:Lead Scoring Starting Date  ttype:date    required:False  compute:False  depends:False  modules:crm  help:False
+predictive_lead_scoring_start_date_str Label:Lead Scoring Starting Date in String  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+product_description Label:产品描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+product_icon Label:产品Icon  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_base  help:产品图标,图片形式,在一些地方可以替换Odoo,Anodoo的图表
+product_logo Label:产品Logo  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_base  help:产品Logo,图片形式,在一些地方可以替换Odoo,Anodoo的图片
+product_name Label:产品名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:产品名称,可以将Odoo,Anodoo改为自己的产品名称
+product_website Label:产品官网  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:产品官网,系统很多地方链接到产品官网
+report_footer Label:Custom Report Footer  ttype:text    required:False  compute:False  depends:False  modules:base_setup  help:Footer text displayed at the bottom of all reports.
+show_effect Label:Show Effect  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+snailmail_color Label:Print In Color  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_cover Label:Add a Cover Page  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_duplex Label:Print Both sides  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+user_default_rights Label:Default Access Rights  ttype:boolean    required:False  compute:False  depends:False  modules:base_setup  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+
+###res.country.state.city
+
+code Label:City Code  ttype:char    required:True  compute:False  depends:False  modules:anodoo_base  help:City Code
+country_id Label:Country  ttype:many2one  relation:res.country    required:True  compute:False  depends:False  modules:anodoo_base  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+name Label:City Name  ttype:char    required:True  compute:False  depends:False  modules:anodoo_base  help:False
+state_id Label:State  ttype:many2one  relation:res.country.state    required:True  compute:False  depends:False  modules:anodoo_base  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+
+###ir.ui.menu
+
+action Label:Action  ttype:reference    required:False  compute:False  depends:False  modules:base  help:False
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:base  help:False
+child_id Label:Child IDs  ttype:one2many  relation:ir.ui.menu    required:False  compute:False  depends:False  modules:base  help:False
+complete_name Label:Full Path  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+groups_id Label:Groups  ttype:many2many  relation:res.groups    required:False  compute:False  depends:False  modules:base  help:If you have groups, the visibility of this menu will be based on these groups. If this field is empty, Odoo will compute visibility based on the related object's read access.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+is_root_display Label:根目录显示  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+name Label:Menu  ttype:char    required:True  compute:False  depends:False  modules:base  help:False
+parent_id Label:Parent Menu  ttype:many2one  relation:ir.ui.menu    required:False  compute:False  depends:False  modules:base  help:False
+parent_path Label:Parent Path  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+web_icon Label:Web Icon File  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+web_icon_data Label:Web Icon Image  ttype:binary    required:False  compute:False  depends:False  modules:base  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:base  help:False
+
+###ir.translation
+
+anodoo Label:Anodoo标记  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+comments Label:Translation comments  ttype:text    required:False  compute:False  depends:False  modules:base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+lang Label:Language  ttype:selection    required:False  compute:False  depends:False  modules:base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:base  help:False
+module Label:Module  ttype:char    required:False  compute:False  depends:False  modules:base  help:Module this term belongs to
+name Label:Translated field  ttype:char    required:True  compute:False  depends:False  modules:base  help:False
+res_id Label:Record ID  ttype:integer    required:False  compute:False  depends:False  modules:base  help:False
+src Label:Internal Source  ttype:text    required:False  compute:False  depends:False  modules:base  help:False
+state Label:Status  ttype:selection    required:False  compute:False  depends:False  modules:base  help:Automatically set to let administators find new terms that might need to be translated
+type Label:Type  ttype:selection    required:False  compute:False  depends:False  modules:base  help:False
+value Label:Translation Value  ttype:text    required:False  compute:False  depends:False  modules:base  help:False
+
+###anodoo.product
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+product_description Label:产品描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+product_icon Label:产品Icon  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_base  help:产品图标,图片形式,在一些地方可以替换Odoo,Anodoo的图标
+product_logo Label:产品Logo  ttype:binary    required:False  compute:False  depends:False  modules:anodoo_base  help:产品Logo,图片形式,在一些地方可以替换Odoo,Anodoo的图片
+product_name Label:名称名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_base  help:产品名称,可以将Odoo,Anodoo改为自己的产品名称
+product_website Label:产品官网  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:产品官网,系统很多地方链接到产品官网
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+
+###anodoo.location
+
+city_id Label:城市  ttype:many2one  relation:res.country.state.city    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+country_id Label:国家  ttype:many2one  relation:res.country    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+state_id Label:省份  ttype:many2one  relation:res.country.state    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+street Label:地址  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+
+###anodoo.data.clean
+
+active Label:激活  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+class_name Label:调用类名  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:清理功能所在类,默认为anodoo_base.model.UserMenuLinkTools
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+method_define Label:调用方法过程  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:清理功能的方法过程
+method_name Label:调用方法名  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:清理功能所在类的方法,可以继承UserMenuLinkTools定义一个新方法
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_base  help:False
+table_name Label:数据库表  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:多个数据库表用,号隔开, 提供了表名后按照顺序删除表内的数据
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+
+###anodoo.usermenu.link
+
+active Label:激活  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+groups Label:角色组  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+isblank Label:是否新窗口  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_base  help:False
+onclick Label:onclick方法内容  ttype:text    required:False  compute:False  depends:False  modules:anodoo_base  help:设置了url后onclick方法不会被调用
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+url Label:链接URL  ttype:char    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_base  help:False
+
+================== Extended Fields ======================

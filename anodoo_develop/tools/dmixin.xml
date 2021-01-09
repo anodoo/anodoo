@@ -1,0 +1,24 @@
+_name = 'image.mixin'  				image_mixin.py
+_name = "format.address.mixin"  	res_partner.py
+
+_name = 'mail.thread'				mail_thread.py
+_name = 'mail.activity.mixin'  		mail_activity.py
+_name = 'mail.address.mixin			mail_address_mixin.py
+_name = 'mail.alias.mixin			mail_alias.py
+
+_name = 'mail.thread.cc'            mail_cc_mixin.py
+
+_name = 'phone.validation.mixin		phone_validation_mixin.py
+
+_name = "portal.mixin"				portal_mixin.py
+
+_name = 'rating.parent.mixin'		rating_mixin.py
+_name = 'rating.mixin'				rating_mixin.py  参考课程,产品,project.task  helpdesk.ticket
+
+_name = "resource.mixin				resource_mixin.py
+_name = 'utm.mixin					utm_mixin.py
+
+_name = 'website.seo.metadata'		mixin.py
+_name = 'website.multi.mixin		mixin.py  多网站,参考blog,forum,sale.coupon.program,product.public.category
+_name = "website.published.mixin"	mixin.py	网站发布,
+_name = 'website.published.multi.mixin		mixin.py	多网站发布,继承了website.multi.mixin和website.published.mixin

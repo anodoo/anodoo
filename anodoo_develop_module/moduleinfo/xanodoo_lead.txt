@@ -1,0 +1,559 @@
+模块:anodoo_lead       ID:43      Name:营销线索
+
+
+================== Models ======================
+
+###crm.lead name:线索/商机 inherit:ir.model()  access:ir.model.access(199, 198, 206)  rule:ir.rule(36, 37, 38)  transient:False  modules:anodoo_lead, anodoo_oppor, crm, crm_iap_lead, crm_iap_lead_enrich
+
+###crm.stage name:CRM 阶段 inherit:ir.model()  access:ir.model.access(201, 200)  rule:ir.rule()  transient:False  modules:anodoo_lead, anodoo_oppor, crm
+
+###crm.merge.opportunity name:合并商机 inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:anodoo_lead, crm
+
+###anodoo.lead.lifetime name:线索/商机生命周期 inherit:ir.model()  access:ir.model.access(286,)  rule:ir.rule()  transient:False  modules:anodoo_lead
+
+###anodoo.lead.merge.relation name:线索重复和合并记录 inherit:ir.model()  access:ir.model.access(288,)  rule:ir.rule()  transient:False  modules:anodoo_lead
+
+###anodoo.lead.merge.rule name:线索重复规则 inherit:ir.model()  access:ir.model.access(287,)  rule:ir.rule()  transient:False  modules:anodoo_lead
+
+###anodoo.lead.qualify.lost.reason name:认定失败的理由 inherit:ir.model()  access:ir.model.access(285,)  rule:ir.rule()  transient:False  modules:anodoo_lead
+
+###anodoo.lead.qualify.lost name:设置认定失败理由的向导 inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:anodoo_lead
+
+###crm.lead2opportunity.partner name:转化线索为商机（单个） inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:anodoo_lead, crm
+
+###crm.lead2opportunity.partner.mass name:转化线索为商机（批量） inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:anodoo_lead, crm
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+###anodoo_lead.action_lead_list_can_convert  name:可转化线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:[('can_convert','=',True)]  context:{
+            		'default_type':'lead',
+                }
+            
+
+###crm.crm_lead_opportunities  name:商机 view_mode:kanban,tree,graph,pivot,form,calendar,activity domain:[('type','=','opportunity')]  context:{
+                    'default_type': 'opportunity',
+                }
+            
+
+###crm.relate_partner_opportunities  name:商机 view_mode:kanban,tree,form,graph,calendar domain:[('type','=','opportunity')]  context:{
+                'search_default_partner_id': active_id,
+                'default_type': 'opportunity'
+            }
+
+###crm.crm_case_form_view_salesteams_opportunity  name:商机 view_mode:kanban,tree,graph,form,calendar,pivot domain:[('type','=','opportunity')]  context:{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                    'default_type': 'opportunity',
+                    'default_user_id': uid,
+                }
+            
+
+###anodoo_lead.action_lead_list_qualify  name:待认定线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:[('is_qualify','=',True)]  context:{
+            		'default_type':'lead',
+                }
+            
+
+###anodoo_lead.action_lead_list_converted  name:成功线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:[('probability','=',100)]  context:{
+            		'default_type':'lead',
+                }
+            
+
+###anodoo_lead.action_lead_list_my  name:我的线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:['|', ('type','=','lead'), ('type','=',False)]  context:{
+                    'default_type':'lead',
+                    'search_default_type': 'lead',
+                    'search_default_to_process':1,
+                    'search_default_assigned_to_me':1
+                }
+            
+
+###crm.action_opportunity_form  name:新的商机 view_mode:form domain:[('type','=','opportunity')]  context:{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                    'default_type': 'opportunity',
+                    'default_user_id': uid,
+            }
+            
+
+###anodoo_lead.action_lead_list_unassigned  name:未分配线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:['|', ('type','=','lead'), ('type','=',False)]  context:{
+                    'default_type':'lead',
+                    'search_default_type': 'lead',
+                    'search_default_to_process':1,
+                    'search_default_unassigned_leads':1
+                }
+            
+
+###crm.crm_lead_action_pipeline  name:漏斗 view_mode:kanban,tree,graph,pivot,form,calendar,activity domain:[('type','=','opportunity')]  context:{
+                    'default_type': 'opportunity',
+                    'search_default_assigned_to_me': 1
+            }
+
+###crm.crm_opportunity_report_action  name:漏斗分析 view_mode:pivot,graph,tree,form domain:False  context:{'search_default_opportunity': True, 'search_default_current': True}
+
+###crm.action_report_crm_opportunity_salesteam  name:漏斗分析 view_mode:graph,pivot,tree,form domain:[]  context:{'search_default_team_id': [active_id], 'tree_view_ref': 'crm.crm_case_tree_view_oppor','search_default_opportunity': True, 'time_ranges': {'field':'create_date', 'range':'last_365_days'}}
+
+###crm.crm_lead_all_leads  name:线索 view_mode:tree,kanban,graph,pivot,calendar,form,activity domain:['|', ('type','=','lead'), ('type','=',False)]  context:{
+                    'default_type':'lead',
+                    'search_default_type': 'lead',
+                    'search_default_to_process':1,
+                }
+            
+
+###crm.crm_case_form_view_salesteams_lead  name:线索 view_mode:tree,kanban,form domain:['|', ('type','=','lead'), ('type','=',False)]  context:{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                    'default_type': 'lead',
+                }
+            
+
+###crm.action_report_crm_lead_salesteam  name:线索分析 view_mode:graph,pivot,tree,form domain:[]  context:{'search_default_team_id': [active_id], 'time_ranges': {'field':'create_date', 'range':'last_30_days'}}
+
+###crm.crm_opportunity_report_action_lead  name:线索分析 view_mode:pivot,graph,tree,form domain:False  context:{'search_default_current': True, 'search_default_archived': True}
+
+###crm.crm_lead_action_team_overdue_opportunity  name:逾期商机 view_mode:kanban,tree,graph,form,calendar,pivot domain:[('type','=','opportunity')]  context:{
+                    'search_default_team_id': [active_id],
+                    'search_default_overdue_opp': 1,
+                    'default_team_id': active_id,
+                    'default_type': 'opportunity',
+                    'default_user_id': uid,
+                }
+            
+
+###crm.crm_stage_action  name:阶段 view_mode:tree,form domain:False  context:{}
+
+###crm.action_merge_opportunities  name:合并 view_mode:form domain:[]  context:{}
+
+###anodoo_oppor.action_anodoo_opportunity_lifetime_list  name:商机生命周期 view_mode:tree,form domain:[("is_for_lead", "=", False)]  context:{"default_is_for_lead": False}
+
+###anodoo_lead.action_anodoo_lead_lifetime_list  name:线索生命周期 view_mode:tree,form domain:[("is_for_lead", "=", True)]  context:{"default_is_for_lead": True}
+
+###anodoo_lead.action_anodoo_lead_merge_relation_list_copy  name:人工复制线索 view_mode:tree,form domain:False  context:{'search_default_is_copy':1}
+
+###anodoo_lead.action_anodoo_lead_merge_relation_list_merged  name:已合并线索 view_mode:tree,form domain:False  context:{'search_default_have_merged':1}
+
+###anodoo_lead.action_anodoo_lead_merge_relation_list_repeated  name:重复线索 view_mode:tree,form domain:False  context:{'search_default_need_merge':1}
+
+###anodoo_lead.action_anodoo_lead_merge_rule_list  name:线索/商机合并规则 view_mode:tree,form domain:False  context:{}
+
+###anodoo_oppor.action_anodoo_opportunity_qualify_lost_reason_list  name:商机认定失败原因 view_mode:tree domain:[("is_for", "=", 'opportunity')]  context:{'default_is_for':'opportunity'}
+
+###anodoo_lead.action_anodoo_lead_qualify_lost_reason_list  name:线索认定失败原因 view_mode:tree domain:[("is_for", "=", 'lead')]  context:{'default_is_for':'lead'}
+
+###anodoo_lead.action_anodoo_lead_qualify_lost  name:Qualify Lost Reason view_mode:form domain:False  context:{'default_is_for_lead':True}
+
+###anodoo_lead.crm_lead_qualify_lost_action  name:选择认定失败理由 view_mode:form domain:False  context:{}
+
+###crm.action_crm_lead2opportunity_partner  name:转换为商机 view_mode:form domain:False  context:{}
+
+###crm.action_crm_send_mass_convert  name:转为商机 view_mode:form domain:[]  context:{'mass_convert': True}
+
+
+================== Views ======================
+
+
+###crm.lead
+
+crm.crm_case_kanban_view_leads  type:kanban  priority:1  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.crm_case_calendar_view_leads  type:calendar  priority:2  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.view_crm_case_opportunities_filter  type:search  priority:15  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+anodoo_lead.crm_lead_view_form  type:form  priority:16  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:crm.crm_lead_view_form
+
+anodoo_oppor.crm_lead_view_form  type:form  priority:16  arch_fs:anodoo_oppor/views/oppor_views.xml  inherit_id:crm.crm_lead_view_form
+
+crm.crm_lead_view_form  type:form  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm_iap_lead.crm_iap_lead_kanban  type:kanban  priority:16  arch_fs:crm_iap_lead/views/crm_lead_view.xml  inherit_id:crm.view_crm_lead_kanban
+
+crm_iap_lead.crm_iap_lead_tree  type:tree  priority:16  arch_fs:crm_iap_lead/views/crm_lead_view.xml  inherit_id:crm.crm_case_tree_view_leads
+
+crm.view_crm_case_leads_filter  type:search  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.crm_case_tree_view_leads  type:tree  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+anodoo_lead.crm_case_tree_view_leads  type:tree  priority:16  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:crm.crm_case_tree_view_leads
+
+crm.crm_case_tree_view_oppor  type:tree  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.crm_lead_view_tree_activity  type:tree  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.crm_lead_view_activity  type:activity  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm_iap_lead_enrich.crm_lead_view_form  type:form  priority:16  arch_fs:crm_iap_lead_enrich/views/crm_lead_views.xml  inherit_id:crm.crm_lead_view_form
+
+crm.crm_lead_view_graph  type:graph  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.crm_lead_view_pivot  type:pivot  priority:16  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm_iap_lead.crm_iap_opportunity_kanban  type:kanban  priority:16  arch_fs:crm_iap_lead/views/crm_lead_view.xml  inherit_id:crm.crm_case_kanban_view_leads
+
+crm_iap_lead.crm_iap_opportunity_tree  type:tree  priority:16  arch_fs:crm_iap_lead/views/crm_lead_view.xml  inherit_id:crm.crm_case_tree_view_oppor
+
+crm.crm_opportunity_report_view_graph  type:graph  priority:16  arch_fs:crm/report/crm_opportunity_report_views.xml  inherit_id:
+
+crm.crm_opportunity_report_view_graph_lead  type:graph  priority:20  arch_fs:crm/report/crm_opportunity_report_views.xml  inherit_id:
+
+crm.crm_opportunity_report_view_search  type:search  priority:32  arch_fs:crm/report/crm_opportunity_report_views.xml  inherit_id:
+
+crm.crm_opportunity_report_view_pivot  type:pivot  priority:60  arch_fs:crm/report/crm_opportunity_report_views.xml  inherit_id:
+
+crm.crm_opportunity_report_view_pivot_lead  type:pivot  priority:60  arch_fs:crm/report/crm_opportunity_report_views.xml  inherit_id:
+
+crm.view_crm_lead_kanban  type:kanban  priority:100  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+crm.quick_create_opportunity_form  type:form  priority:1000  arch_fs:crm/views/crm_lead_views.xml  inherit_id:
+
+
+###crm.stage
+
+crm.crm_stage_form  type:form  priority:1  arch_fs:crm/views/crm_stage_views.xml  inherit_id:
+
+crm.crm_stage_tree  type:tree  priority:16  arch_fs:crm/views/crm_stage_views.xml  inherit_id:
+
+crm.crm_lead_stage_search  type:search  priority:16  arch_fs:crm/views/crm_stage_views.xml  inherit_id:
+
+
+###crm.merge.opportunity
+
+crm.merge_opportunity_form  type:form  priority:16  arch_fs:crm/wizard/crm_merge_opportunities_views.xml  inherit_id:
+
+anodoo_lead.merge_opportunity_form  type:form  priority:16  arch_fs:anodoo_lead/wizard/crm_merge_opportunities_views.xml  inherit_id:crm.merge_opportunity_form
+
+
+###anodoo.lead.lifetime
+
+anodoo_lead.view_anodoo_lead_lifetime_form  type:form  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_oppor.view_anodoo_lead_lifetime_form  type:form  priority:100  arch_fs:anodoo_oppor/views/oppor_views.xml  inherit_id:anodoo_lead.view_anodoo_lead_lifetime_form
+
+anodoo_lead.view_anodoo_lead_lifetime_list  type:tree  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_lifetime_search  type:search  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+
+###anodoo.lead.merge.relation
+
+anodoo_lead.view_anodoo_lead_merge_relation_form  type:form  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_merge_relation_list  type:tree  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_merge_relation_search  type:search  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+
+###anodoo.lead.merge.rule
+
+anodoo_lead.view_anodoo_lead_merge_rule_form  type:form  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_merge_rule_list  type:tree  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_merge_rule_search  type:search  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+
+###anodoo.lead.qualify.lost.reason
+
+anodoo_lead.view_anodoo_lead_qualify_lost_reason_form  type:form  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_qualify_lost_reason_list  type:tree  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+anodoo_lead.view_anodoo_lead_qualify_lost_reason_search  type:search  priority:100  arch_fs:anodoo_lead/views/lead_views.xml  inherit_id:
+
+
+###anodoo.lead.qualify.lost
+
+anodoo_lead.view_anodoo_lead_qualify_lost_form  type:form  priority:16  arch_fs:anodoo_lead/wizard/crm_lead_lost_views.xml  inherit_id:
+
+
+###crm.lead2opportunity.partner
+
+crm.view_crm_lead2opportunity_partner  type:form  priority:16  arch_fs:crm/wizard/crm_lead_to_opportunity_views.xml  inherit_id:
+
+anodoo_lead.view_crm_lead2opportunity_partner  type:form  priority:16  arch_fs:anodoo_lead/wizard/crm_lead_to_opportunity_views.xml  inherit_id:crm.view_crm_lead2opportunity_partner
+
+
+###crm.lead2opportunity.partner.mass
+
+crm.view_crm_lead2opportunity_partner_mass  type:form  priority:16  arch_fs:crm/wizard/crm_lead_to_opportunity_views.xml  inherit_id:
+
+anodoo_lead.view_crm_lead2opportunity_partner_mass  type:form  priority:16  arch_fs:anodoo_lead/wizard/crm_lead_to_opportunity_views.xml  inherit_id:crm.view_crm_lead2opportunity_partner_mass
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###crm.lead
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+activity_date_deadline Label:下一活动截止日期  ttype:date    required:False  compute:False  depends:False  modules:crm  help:False
+activity_exception_decoration Label:活动例外勋章  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:记录的例外活动类型。
+activity_exception_icon Label:图标  ttype:char    required:False  compute:False  depends:False  modules:crm  help:表示一个例外活动的图标。
+activity_ids Label:活动  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:crm  help:False
+activity_state Label:活动状态  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:基于活动的状态 
+ 逾期：已经超过截止日期 
+ 现今：活动日期是当天 
+ 计划：未来活动。
+activity_summary Label:下一活动摘要  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+activity_type_id Label:下一活动类型  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:crm  help:False
+activity_user_id Label:责任用户  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+automated_probability Label:自动概率  ttype:float    required:False  compute:False  depends:False  modules:crm  help:False
+campaign_id Label:营销  ttype:many2one  relation:utm.campaign    required:False  compute:False  depends:False  modules:crm  help:名称会帮助您追踪不同营销活动，例如，节能减排、圣诞特辑
+can_convert Label:是否可转化商机  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+city Label:城市  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+color Label:颜色索引  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+company_currency Label:币种  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:crm  help:False
+company_id Label:公司  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:crm  help:False
+contact_id Label:联系人  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_lead  help:关联联系人,自动带出其联系信息
+contact_name Label:联系人姓名  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+country_id Label:国家/地区  ttype:many2one  relation:res.country    required:False  compute:False  depends:False  modules:crm  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+date_action_last Label:最近行动  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+date_closed Label:关闭日期  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+date_conversion Label:转换日期  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+date_deadline Label:预期结束  ttype:date    required:False  compute:False  depends:False  modules:crm  help:预计商机落单日期.
+date_last_stage_update Label:最后阶段更新  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+date_open Label:分配日期  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+day_close Label:关闭日期  ttype:float    required:False  compute:False  depends:False  modules:crm  help:False
+day_open Label:分配天数  ttype:float    required:False  compute:False  depends:False  modules:crm  help:False
+description Label:备注  ttype:text    required:False  compute:False  depends:False  modules:crm  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+email_cc Label:邮件抄送  ttype:char    required:False  compute:False  depends:False  modules:crm  help:收到的邮件里的抄送列表。
+email_from Label:EMail  ttype:char    required:False  compute:False  depends:False  modules:crm  help:联系人邮箱地址
+email_normalized Label:规范化邮件  ttype:char    required:False  compute:False  depends:False  modules:crm  help:这个字段用来在邮件地址上搜索，因为初始的邮件字段会包含严格来说至少两个邮件地址。
+email_state Label:邮件质量  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:False
+expected_revenue Label:按比例分摊收入  ttype:monetary    required:False  compute:False  depends:False  modules:crm  help:False
+function Label:工作岗位  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+iap_enrich_done Label:丰富结束  ttype:boolean    required:False  compute:False  depends:False  modules:crm_iap_lead_enrich  help:是否已根据此电子邮件执行基于电子邮件的IAP服务以进行线索丰富。
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+is_automated_probability Label:是否自动概率？  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+is_blacklisted Label:黑名单  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:存在于黑名单的EMail表示收件者不会再收到任何列表的群发邮件。
+is_qualify Label:是否认定阶段  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+kanban_state Label:看板状态  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:False
+lang_id Label:语言  ttype:many2one  relation:res.lang    required:False  compute:False  depends:False  modules:crm  help:线索的语言。
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+lead_id Label:线索  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+lead_mining_request_id Label:线索挖掘申请  ttype:many2one  relation:crm.iap.lead.mining.request    required:False  compute:False  depends:False  modules:crm_iap_lead  help:False
+lifetime_id Label:生命周期  ttype:many2one  relation:anodoo.lead.lifetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:线索或商机使用的生命周期定义
+lost_reason Label:失去原因  ttype:many2one  relation:crm.lost.reason    required:False  compute:False  depends:False  modules:crm  help:False
+medium_id Label:媒介  ttype:many2one  relation:utm.medium    required:False  compute:False  depends:False  modules:crm  help:这是传达方法，例如，明信片、EMail或横幅广告
+meeting_count Label:#会议  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+message_attachment_count Label:附件数量  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+message_bounce Label:退回  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:此联系人退回邮件数量计数器
+message_channel_ids Label:关注者(渠道)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:crm  help:False
+message_follower_ids Label:关注者  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:crm  help:False
+message_has_error Label:消息传递错误  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:如果勾选此项， 某些消息将会产生传递错误。
+message_has_error_counter Label:错误数  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:递送错误消息数量
+message_has_sms_error Label:短信发送错误  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:如果勾选此项， 某些消息将会产生传递错误。
+message_ids Label:消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:crm  help:False
+message_is_follower Label:关注者  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+message_main_attachment_id Label:附件  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:crm  help:False
+message_needaction Label:需要采取行动  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:确认后, 出现提示消息.
+message_needaction_counter Label:操作次数  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:需要操作消息数量
+message_partner_ids Label:关注者(业务伙伴)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:crm  help:False
+message_unread Label:未读消息  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:确认后, 出现提示消息.
+message_unread_counter Label:未读消息计数器  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:未读消息数量
+mobile Label:手机  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+name Label:商机  ttype:char    required:True  compute:False  depends:False  modules:anodoo_lead, crm  help:False
+opportunity_relation_ids Label:商机与商机关系  ttype:one2many  relation:anodoo.sfa.opportunity.relation    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+owner_team_description Label:团队描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_team_id Label:线索团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_team_name Label:团队名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_type Label:分配方式  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_lead  help:线索可以分配给团队负责,或者分配给指定具体人员负责
+partner_address_email Label:业务伙伴联系EMail  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+partner_address_name Label:业务伙伴联系姓名  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+partner_address_phone Label:合作伙伴联系电话  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+partner_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:anodoo_lead, crm  help:连接的业务伙伴（可选）。通常在转化线索时创建。你能通过它的名称、TIN，邮件和内部引用查找到业务伙伴。
+partner_is_blacklisted Label:合作伙伴黑名单  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:存在于黑名单的EMail表示收件者不会再收到任何列表的群发邮件。
+partner_name Label:公司名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:在销售线索转化为商机时对应创建业务伙伴的公司名称.
+phone Label:电话  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+phone_state Label:电话质量  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:False
+planned_revenue Label:预期收益  ttype:monetary    required:False  compute:False  depends:False  modules:crm  help:False
+priority Label:优先级  ttype:selection    required:False  compute:False  depends:False  modules:crm  help:False
+probability Label:概率  ttype:float    required:False  compute:False  depends:False  modules:crm  help:False
+project_id Label:商机项目  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_name Label:项目名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_task_count Label:任务数量  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_task_ids Label:任务  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+project_user_id Label:项目负责人  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+qualify_lost_reason Label:认定失败原因  ttype:many2one  relation:anodoo.lead.qualify.lost.reason    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+referred Label:引荐于  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+reveal_id Label:显示ID  ttype:char    required:False  compute:False  depends:False  modules:crm_iap_lead, crm_iap_lead_enrich  help:False
+show_enrich_button Label:Allow manual enrich  ttype:boolean    required:False  compute:False  depends:False  modules:crm_iap_lead_enrich  help:False
+source_id Label:来源  ttype:many2one  relation:utm.source    required:False  compute:False  depends:False  modules:crm  help:这是链接源，例如，搜索引擎、其他域名或EMail列表名称
+stage_id Label:阶段  ttype:many2one  relation:crm.stage    required:False  compute:False  depends:False  modules:crm  help:False
+state_id Label:状态  ttype:many2one  relation:res.country.state    required:False  compute:False  depends:False  modules:crm  help:False
+street Label:街道  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+street2 Label:街道 2  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+tag_ids Label:标签  ttype:many2many  relation:crm.lead.tag    required:False  compute:False  depends:False  modules:crm  help:归类分析线索/商机的类别， 例如：培训，服务
+team_id Label:销售团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm  help:发送邮件的时候，默认的邮件地址取自销售团队。
+title Label:标题  ttype:many2one  relation:res.partner.title    required:False  compute:False  depends:False  modules:crm  help:False
+type Label:类型  ttype:selection    required:True  compute:False  depends:False  modules:crm  help:类型用于区分销售线索和商机
+user_email Label:用户EMail  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+user_id Label:销售员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead, crm  help:False
+user_login Label:用户 登录  ttype:char    required:False  compute:False  depends:False  modules:crm  help:用户登录入系统
+website Label:网站  ttype:char    required:False  compute:False  depends:False  modules:crm  help:联系人网站
+website_message_ids Label:网站消息  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:crm  help:网上沟通记录
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+zip Label:邮政编码  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+
+###crm.stage
+
+can_convert Label:是否可转化商机  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+fold Label:在漏斗中折叠  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:当此阶段中没有任何记录要呈现时，将在看板视图中被收藏
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+is_for_lead Label:线索适用  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_qualify Label:是否认定阶段  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_won Label:处于赢得阶段？  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+lifetime_id Label:生命周期  ttype:many2one  relation:anodoo.lead.lifetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+name Label:阶段名称  ttype:char    required:True  compute:False  depends:False  modules:crm  help:False
+requirements Label:要求  ttype:text    required:False  compute:False  depends:False  modules:crm  help:在这里输入此阶段的内部需求（例如：发给客户的报价）。它将会显示于阶段名称上面的工具箱。
+sequence Label:单号规则  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:用于阶段的排序，数字越小越好。
+stage_probability Label:阶段成功率  ttype:float    required:False  compute:False  depends:False  modules:anodoo_oppor  help:False
+team_count Label:team_count  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+team_id Label:销售团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm  help:特定团队使用这个节点后，其他团队将无法查看或使用此节点。
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+
+###crm.merge.opportunity
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+opportunity_ids Label:线索/商机  ttype:many2many  relation:crm.lead    required:False  compute:False  depends:False  modules:crm  help:False
+owner_team_id Label:线索团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_type Label:分配方式  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_lead  help:线索可以分配给团队负责,或者分配给指定具体人员负责
+team_id Label:销售团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm  help:False
+user_id Label:销售员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+
+###anodoo.lead.lifetime
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_default Label:默认生命周期  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_for_lead Label:线索适用  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+lead_domain Label:适用条件  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:可以使用该生命周期的线索或商机
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_lead  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:客户生命周期序号
+stage_ids Label:生命周期阶段  ttype:one2many  relation:crm.stage    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+team_id Label:团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_lead  help:为特定的团队设置生命周期
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+
+###anodoo.lead.merge.relation
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_copy Label:是否复制  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:对于复制的两个线索,他们将不会被判断为重复
+is_ignore Label:是否忽略  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:对于重复的两个线索,是否忽略
+is_merged Label:是否已合并  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:对于已合并的两个线索, 其中一条已经归档
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+merge_from_id Label:线索/商机2  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+merge_rule_id Label:重复规则  ttype:many2one  relation:anodoo.lead.merge.rule    required:False  compute:False  depends:False  modules:anodoo_lead  help:判断重复的相应规则
+merge_to_id Label:线索/商机1  ttype:many2one  relation:crm.lead    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+
+###anodoo.lead.merge.rule
+
+active Label:激活  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+description Label:描述  ttype:text    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+field_ids Label:判断重复的字段  ttype:many2many  relation:ir.model.fields    required:False  compute:False  depends:False  modules:anodoo_lead  help:一个或多个用来判断线索或商机是否重复的字段
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+merge_type Label:合并范围  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_lead  help:线索可以和商机一起排重,合并等
+name Label:名称  ttype:char    required:True  compute:False  depends:False  modules:anodoo_lead  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:序号
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+
+###anodoo.lead.qualify.lost.reason
+
+active Label:有效  ttype:boolean    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_for Label:适用范围  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+name Label:说明  ttype:char    required:True  compute:False  depends:False  modules:anodoo_lead  help:False
+sequence Label:序号  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:序号
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+
+###anodoo.lead.qualify.lost
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+is_for Label:适用范围  ttype:char    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+lost_reason_id Label:认定失败理由  ttype:many2one  relation:anodoo.lead.qualify.lost.reason    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+
+###crm.lead2opportunity.partner
+
+action Label:相关客户  ttype:selection    required:True  compute:False  depends:False  modules:crm  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+name Label:转换动作  ttype:selection    required:True  compute:False  depends:False  modules:crm  help:False
+opportunity_ids Label:商机  ttype:many2many  relation:crm.lead    required:False  compute:False  depends:False  modules:crm  help:False
+owner_team_id Label:线索团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_type Label:分配方式  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_lead  help:线索可以分配给团队负责,或者分配给指定具体人员负责
+partner_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:crm  help:False
+team_id Label:销售团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm  help:False
+user_id Label:销售员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+
+###crm.lead2opportunity.partner.mass
+
+action Label:相关客户  ttype:selection    required:True  compute:False  depends:False  modules:crm  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+deduplicate Label:删除重复内容  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:将不同的业务伙伴已存在的线索或商机合并
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:crm  help:False
+force_assignation Label:强制分配  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:不允许销售人员建立重复商机
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+name Label:转换动作  ttype:selection    required:True  compute:False  depends:False  modules:crm  help:False
+opportunity_ids Label:商机  ttype:many2many  relation:crm.lead    required:False  compute:False  depends:False  modules:crm  help:False
+owner_team_id Label:线索团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:anodoo_lead  help:False
+owner_type Label:分配方式  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_lead  help:线索可以分配给团队负责,或者分配给指定具体人员负责
+partner_id Label:客户  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:crm  help:False
+team_id Label:销售团队  ttype:many2one  relation:crm.team    required:False  compute:False  depends:False  modules:crm  help:False
+user_id Label:销售员  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+user_ids Label:销售员  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:crm  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:crm  help:False
+
+================== Extended Fields ======================

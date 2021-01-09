@@ -1,0 +1,164 @@
+<odoo>
+    <data noupdate="0">
+    		<!-- 
+            <field name="icon">fa-envelope</field>
+            <field name="icon">fa-file-text-o</field>
+            <field name="icon">fa-phone</field>
+            <field name="icon">fa-users</field>
+            <field name="icon">fa-tasks</field>
+            <field name="icon">fa-upload</field>
+            <field name="icon">fa-warning</field>
+             -->
+            
+        
+        
+        <record id="mail_activity_data_2" model="mail.activity.type">
+            <field name="name">预约评估</field>
+            <field name="icon">fa-phone</field>            
+            <field name="category">reminder</field>
+            <field name="sequence">2</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">预约客户到现场参加评估会议</field>
+            <field name="delay_count">3</field>
+            <field name="delay_unit">days</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity2"/>
+            <field name="default_description"><![CDATA[<p>初次交流时，如果没有预约评估，则在交流后3天内再联系客户预约评估。</p>]]></field>
+        </record>
+        
+        <record id="mail_activity_data_1" model="mail.activity.type">
+            <field name="name">初次电话交流</field>
+            <field name="icon">fa-phone</field>            
+            <field name="category">reminder</field>
+            <field name="sequence">1</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">由孙销售统一外呼客户进行初步交流</field>
+            <field name="delay_count">1</field>
+            <field name="delay_unit">days</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity1"/>
+            <field name="force_next">1</field>
+            <field name="default_next_type_id" ref="mail_activity_data_2"/>
+            <field name="default_description"><![CDATA[<p>由孙销售统一，根据已有的电话号码外呼。
+<br/>
+如果电话中未成功预约，则根据客户清空是否下次再电话和客户预约。
+<br/>
+如果电话中成功预约，则出发现场评估。</p>]]></field>
+        </record>
+        
+        <record id="mail_activity_data_4" model="mail.activity.type">
+            <field name="name">上传评估报告</field>
+            <field name="icon">fa-upload</field>            
+            <field name="category">upload_file</field>
+            <field name="sequence">4</field>
+            <field name="default_user_id" ref="user_zhao_sales"/>
+            <field name="summary">赵销售负责上传评估报告</field>
+            <field name="delay_count">2</field>
+            <field name="delay_unit">weeks</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity3"/>
+        </record>
+        
+        <record id="mail_activity_data_3" model="mail.activity.type">
+            <field name="name">现场评估</field>
+            <field name="icon">fa-users</field>            
+            <field name="category">meeting</field>
+            <field name="sequence">3</field>
+            <field name="default_user_id" ref="user_li_sales"/>
+            <field name="summary">李晓负责现场评估的组织</field>
+            <field name="delay_count">1</field>
+            <field name="delay_unit">weeks</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity2"/>
+            <field name="force_next">1</field>
+            <field name="default_next_type_id" ref="mail_activity_data_4"/>
+            <field name="default_description"><![CDATA[<p>李晓负责现场评估的组织，包括评估主任，评估员，方案设计师的会议</p>]]></field>
+        </record>
+        
+        
+        
+        <record id="mail_activity_data_5" model="mail.activity.type">
+            <field name="name">电话通知客户评估结果</field>
+            <field name="icon">fa-phone</field>            
+            <field name="category">reminder</field>
+            <field name="sequence">5</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">由销售电话通知客户评估结果</field>
+            <field name="delay_count">3</field>
+            <field name="delay_unit">weeks</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity3"/>
+        </record>
+        
+        <record id="mail_activity_data_6" model="mail.activity.type">
+            <field name="name">输出解决方案</field>
+            <field name="icon">fa-tasks</field>            
+            <field name="category">upload_file</field>
+            <field name="sequence">5</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">由销售负责组织专家完成方案并上传</field>
+            <field name="delay_count">4</field>
+            <field name="delay_unit">weeks</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity4"/>
+        </record>
+        
+        <record id="mail_activity_data_7" model="mail.activity.type">
+            <field name="name">竞争分析</field>
+            <field name="icon">fa-users</field>            
+            <field name="category">meeting</field>
+            <field name="sequence">6</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">由销售负责组织竞争分析会议，确保投标优势</field>
+            <field name="delay_count">5</field>
+            <field name="delay_unit">weeks</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity4"/>
+        </record>
+        
+        <record id="mail_activity_data_8" model="mail.activity.type">
+            <field name="name">赢得投标</field>
+            <field name="icon">fa-tasks</field>            
+            <field name="category"></field>
+            <field name="sequence">7</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary"></field>
+            <field name="delay_count">3</field>
+            <field name="delay_unit">months</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity5"/>
+        </record>
+        
+        <record id="mail_activity_data_9" model="mail.activity.type">
+            <field name="name">签署合同</field>
+            <field name="icon">fa-file-text-o</field>            
+            <field name="category">upload_file</field>
+            <field name="sequence">7</field>
+            <field name="default_user_id" ref="user_sun_sales"/>
+            <field name="summary">销售签署合同并上传合同扫描件</field>
+            <field name="delay_count">4</field>
+            <field name="delay_unit">months</field>
+            <field name="delay_from">current_date</field>
+            <field name="res_model_id" ref="crm.model_crm_lead"/>
+            <field name="lifetime_id" ref="opportunity_lifetime_default"/>
+            <field name="stage_id" ref="stage_opportunity5"/>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 销售团队 -->
+    
+    	<record model="crm.team" id="anodoo_team.team_sales_1">
+            <field name="use_quotations" eval="True"/>
+            <field name="invoiced_target">250000</field>
+        </record>
+        
+        <record model="crm.team" id="anodoo_team.team_sales_2">
+            <field name="use_quotations" eval="True"/>
+            <field name="invoiced_target">350000</field>
+        </record>
+        
+        <!-- 网格产品 -->
+            <!-- Size -->
+	    <record id="product_attribute_size" model="product.attribute">
+	        <field name="name">Size</field>
+	        <field name="sequence">19</field>
+	    </record>
+	    <record id="product_attribute_value_size_xs" model="product.attribute.value">
+	        <field name="name">XS</field>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="sequence">1</field>
+	    </record>
+	    <record id="product_attribute_value_size_s" model="product.attribute.value">
+	        <field name="name">S</field>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="sequence">2</field>
+	    </record>
+	    <record id="product_attribute_value_size_m" model="product.attribute.value">
+	        <field name="name">M</field>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="sequence">3</field>
+	    </record>
+	    <record id="product_attribute_value_size_l" model="product.attribute.value">
+	        <field name="name">L</field>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="sequence">4</field>
+	    </record>
+	    <record id="product_attribute_value_size_xl" model="product.attribute.value">
+	        <field name="name">XL</field>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="sequence">5</field>
+	    </record>
+	    
+	    <!-- Color -->
+	    <record id="product_attribute_value_color_1" model="product.attribute.value">
+	        <field name="name">Blue</field>
+	        <field name="attribute_id" ref="product_attribute_2"/>
+	        <field name="sequence">3</field>
+	    </record>
+	    <record id="product_attribute_value_color_2" model="product.attribute.value">
+	        <field name="name">Pink</field>
+	        <field name="attribute_id" ref="product_attribute_2"/>
+	        <field name="sequence">4</field>
+	    </record>
+	    <record id="product_attribute_value_color_3" model="product.attribute.value">
+	        <field name="name">Yellow</field>
+	        <field name="attribute_id" ref="product_attribute_2"/>
+	        <field name="sequence">5</field>
+	    </record>
+	    <record id="product_attribute_value_color_4" model="product.attribute.value">
+	        <field name="name">Rainbow</field>
+	        <field name="attribute_id" ref="product_attribute_2"/>
+	        <field name="sequence">6</field>
+	    </record>
+	    
+	    <!-- Gender -->
+	    <record id="product_attribute_gender" model="product.attribute">
+	        <field name="name">Gender</field>
+	        <field name="sequence">21</field>
+	    </record>
+	    <record id="product_attribute_value_m" model="product.attribute.value">
+	        <field name="name">Men</field>
+	        <field name="attribute_id" ref="product_attribute_gender"/>
+	        <field name="sequence">1</field>
+	    </record>
+	    <record id="product_attribute_value_w" model="product.attribute.value">
+	        <field name="name">Women</field>
+	        <field name="attribute_id" ref="product_attribute_gender"/>
+	        <field name="sequence">2</field>
+	    </record>
+	
+	    <record id="matrix_product_template_shirt" model="product.template">
+	        <field name="name">My Company Tshirt (GRID)</field>
+	        <field name="categ_id" ref="product_category_6"/>
+	        <field name="standard_price">7.0</field>
+	        <field name="list_price">15.0</field>
+	        <field name="type">consu</field>
+	        <field name="product_add_mode">matrix</field>
+	        <field name="uom_id" ref="uom.product_uom_unit"/>
+	        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+	        <field name="description_sale">公司标准工装，夏装T血.</field>
+	        <field name="image_1920" type="base64" file="product_matrix/static/img/matrix_mycompany_tshirt.jpeg"/>
+	    </record>
+	
+	    <record id="product_template_attribute_line_size" model="product.template.attribute.line">
+	        <field name="product_tmpl_id" ref="matrix_product_template_shirt"/>
+	        <field name="attribute_id" ref="product_attribute_size"/>
+	        <field name="value_ids" eval="[
+	          (6, 0, [
+	          ref('product_attribute_value_size_xs'),
+	          ref('product_attribute_value_size_s'),
+	          ref('product_attribute_value_size_m'),
+	          ref('product_attribute_value_size_l'),
+	          ref('product_attribute_value_size_xl')])]"/>
+	    </record>
+	    <record id="product_template_attribute_line_gender" model="product.template.attribute.line">
+	        <field name="product_tmpl_id" ref="matrix_product_template_shirt"/>
+	        <field name="attribute_id" ref="product_attribute_gender"/>
+	        <field name="value_ids" eval="[(6, 0, [ref('product_attribute_value_m'), ref('product_attribute_value_w')])]"/>
+	    </record>
+	    <record id="product_template_attribute_line_color" model="product.template.attribute.line">
+	        <field name="product_tmpl_id" ref="matrix_product_template_shirt"/>
+	        <field name="attribute_id" ref="product_attribute_2"/>
+	        <field name="value_ids" eval="[(6, 0, [ref('product_attribute_value_color_1'), ref('product_attribute_value_color_2'), ref('product_attribute_value_color_3'), ref('product_attribute_value_color_4')])]"/>
+	    </record>
+        
+        <!-- 报价单模板 -->
+        
+        <record id="sale_order_template_1" model="sale.order.template">
+            <field name="name">我的报价单模板</field>
+            <field name="number_of_days">45</field>
+        </record>
+
+        <record id="sale_order_template_line_1" model="sale.order.template.line">
+            <field name="sale_order_template_id" ref="sale_order_template_1"/>
+            <field name="name">4 Person Desk</field>
+            <field name="product_id" ref="consu_delivery_02"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="price_unit">150.0</field>
+            <field name="discount">10.00</field>
+        </record>
+
+        <record id="sale_order_template_option_1" model="sale.order.template.option">
+            <field name="sale_order_template_id" ref="sale_order_template_1"/>
+            <field name="name">Office Chair</field>
+            <field name="product_id" ref="product_delivery_01"/>
+            <field name="quantity">4</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="price_unit">45.0</field>
+            <field name="discount">10.0</field>
+        </record>
+        
+        <!-- 订单和订单行 -->
+        <record id="sale_order_1" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_spring"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+
+        <record id="sale_order_line_1" model="sale.order.line">
+            <field name="order_id" ref="sale_order_1"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2950.00</field>
+        </record>
+
+        <record id="sale_order_line_2" model="sale.order.line">
+            <field name="order_id" ref="sale_order_1"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_02').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_02"/>
+            <field name="product_uom_qty">5</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">145.00</field>
+        </record>
+
+        <record id="sale_order_line_3" model="sale.order.line">
+            <field name="order_id" ref="sale_order_1"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_01').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_01"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">65.00</field>
+        </record>
+
+        <record id="sale_order_2" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_sun_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+
+        <record id="sale_order_line_4" model="sale.order.line">
+            <field name="order_id" ref="sale_order_2"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_1').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_1"/>
+            <field name="product_uom_qty">24</field>
+            <field name="product_uom" ref="uom.product_uom_hour"/>
+            <field name="price_unit">75.00</field>
+        </record>
+
+        <record id="sale_order_line_5" model="sale.order.line">
+            <field name="order_id" ref="sale_order_2"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_2').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_2"/>
+            <field name="product_uom_qty">30</field>
+            <field name="product_uom" ref="uom.product_uom_hour"/>
+            <field name="price_unit">38.25</field>
+        </record>
+
+        <record id="sale_order_3" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_sun_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_spring"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="sale_order_line_6" model="sale.order.line">
+            <field name="order_id" ref="sale_order_3"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_1').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_1"/>
+            <field name="product_uom_qty">10</field>
+            <field name="product_uom" ref="uom.product_uom_hour"/>
+            <field name="price_unit">30.75</field>
+        </record>
+
+        <record id="sale_order_line_7" model="sale.order.line">
+            <field name="order_id" ref="sale_order_3"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_01').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_01"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">70.00</field>
+        </record>
+
+        <record id="sale_order_4" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_sun_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="sale_order_line_8" model="sale.order.line">
+            <field name="order_id" ref="sale_order_4"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_1').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_1"/>
+            <field name="product_uom_qty">16</field>
+            <field name="product_uom" ref="uom.product_uom_hour"/>
+            <field name="price_unit">75.00</field>
+        </record>
+
+        <record id="sale_order_line_9" model="sale.order.line">
+            <field name="order_id" ref="sale_order_4"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_02').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_02"/>
+            <field name="product_uom_qty">10</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">45.00</field>
+        </record>
+
+        <record id="sale_order_line_10" model="sale.order.line">
+            <field name="order_id" ref="sale_order_4"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('consu_delivery_02').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="consu_delivery_02"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">150.00</field>
+        </record>
+
+        <record id="sale_order_line_11" model="sale.order.line">
+            <field name="order_id" ref="sale_order_4"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_01').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_01"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">70.00</field>
+        </record>
+
+        <record id="sale_order_5" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_spring"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+
+        <record id="sale_order_line_12" model="sale.order.line">
+            <field name="order_id" ref="sale_order_5"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_02').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_02"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">405.00</field>
+        </record>
+
+        <record id="sale_order_6" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_sun_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="sale_order_line_15" model="sale.order.line">
+            <field name="order_id" ref="sale_order_6"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_4').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_4"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">750.00</field>
+        </record>
+
+        <record id="sale_order_7" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_sun_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="sale_order_line_16" model="sale.order.line">
+            <field name="order_id" ref="sale_order_7"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">5</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2950.00</field>
+        </record>
+
+        <record id="sale_order_line_17" model="sale.order.line">
+            <field name="order_id" ref="sale_order_7"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('consu_delivery_01').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="consu_delivery_01"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">173.00</field>
+        </record>
+
+        <record id="sale_order_line_18" model="sale.order.line">
+            <field name="order_id" ref="sale_order_7"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_02').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_02"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">40.00</field>
+        </record>
+
+        <record id="sale_order_line_19" model="sale.order.line">
+            <field name="order_id" ref="sale_order_7"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_delivery_01').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_delivery_01"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">18.00</field>
+        </record>
+
+        <record id="sale_order_8" model="sale.order">
+            <field name="name">Test/001</field>
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+        </record>
+
+        <record id="sale_order_line_20" model="sale.order.line">
+            <field name="order_id" ref="sale_order_8"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_27').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_27"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">3645.00</field>
+        </record>
+
+        <record id="sale_order_line_21" model="sale.order.line">
+            <field name="order_id" ref="sale_order_8"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <!-- additional demo data for pretty graphs in sales dashboard -->
+
+        <record id="sale_order_9" model="sale.order">
+            <field name="partner_id" ref="res_partner_1"/>
+            <field name="partner_invoice_id" ref="res_partner_1"/>
+            <field name="partner_shipping_id" ref="res_partner_1"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_22" model="sale.order.line">
+            <field name="order_id" ref="sale_order_9"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_27').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_27"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">3245.00</field>
+        </record>
+
+        <record id="sale_order_line_23" model="sale.order.line">
+            <field name="order_id" ref="sale_order_9"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_10" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=14)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_24" model="sale.order.line">
+            <field name="order_id" ref="sale_order_10"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2550.00</field>
+        </record>
+
+        <record id="sale_order_line_25" model="sale.order.line">
+            <field name="order_id" ref="sale_order_10"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+
+        <record id="sale_order_11" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=21)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_26" model="sale.order.line">
+            <field name="order_id" ref="sale_order_11"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2450.00</field>
+        </record>
+
+        <record id="sale_order_line_27" model="sale.order.line">
+            <field name="order_id" ref="sale_order_11"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_12" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=28)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_28" model="sale.order.line">
+            <field name="order_id" ref="sale_order_12"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">3150.00</field>
+        </record>
+
+        <record id="sale_order_line_29" model="sale.order.line">
+            <field name="order_id" ref="sale_order_12"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_13" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=35)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_30" model="sale.order.line">
+            <field name="order_id" ref="sale_order_13"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2950.00</field>
+        </record>
+
+        <record id="sale_order_line_31" model="sale.order.line">
+            <field name="order_id" ref="sale_order_13"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_14" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_32" model="sale.order.line">
+            <field name="order_id" ref="sale_order_14"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">4</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2750.00</field>
+        </record>
+
+        <record id="sale_order_line_33" model="sale.order.line">
+            <field name="order_id" ref="sale_order_14"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">4</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_15" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=14)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_34" model="sale.order.line">
+            <field name="order_id" ref="sale_order_15"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">4</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2950.00</field>
+        </record>
+
+        <record id="sale_order_line_35" model="sale.order.line">
+            <field name="order_id" ref="sale_order_15"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_16" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=21)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_36" model="sale.order.line">
+            <field name="order_id" ref="sale_order_16"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2750.00</field>
+        </record>
+
+        <record id="sale_order_line_37" model="sale.order.line">
+            <field name="order_id" ref="sale_order_16"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">3</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_17" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=28)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_38" model="sale.order.line">
+            <field name="order_id" ref="sale_order_17"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">3550.00</field>
+        </record>
+
+        <record id="sale_order_line_39" model="sale.order.line">
+            <field name="order_id" ref="sale_order_17"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <record id="sale_order_18" model="sale.order">
+            <field name="partner_id" ref="res_partner_2"/>
+            <field name="partner_invoice_id" ref="res_partner_2"/>
+            <field name="partner_shipping_id" ref="res_partner_2"/>
+            <field name="user_id" ref="anodoo_team.user_zhao_sales"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="anodoo_team.team_sales_1"/>
+            <field name="campaign_id" ref="utm_campaign_baidu"/>
+            <field name="medium_id" ref="utm_medium_baidu"/>
+            <field name="source_id" ref="utm_source_baidu"/>
+            <field name="date_order" eval="(datetime.now()-relativedelta(days=35)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record id="sale_order_line_40" model="sale.order.line">
+            <field name="order_id" ref="sale_order_18"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_25').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_25"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">2950.00</field>
+        </record>
+
+        <record id="sale_order_line_41" model="sale.order.line">
+            <field name="order_id" ref="sale_order_18"/>
+            <field name="name" model="sale.order.line" eval="obj().env.ref('product_product_12').get_product_multiline_description_sale()"/>
+            <field name="product_id" ref="product_product_12"/>
+            <field name="product_uom_qty">2</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">12.50</field>
+        </record>
+
+        <!-- Confirm some Sales Orders-->
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_4')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_6')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_7')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_8')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_9')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_10')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_11')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_12')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_13')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_14')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_15')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_16')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_17')]]"/>
+        <function model="sale.order" name="action_confirm" eval="[[ref('sale_order_18')]]"/>
+
+        <!-- Setting date_order in the past for beautiful spread -->
+        <record id="sale_order_9" model="sale.order">
+            <field name="date_order" eval="datetime.now() - relativedelta(days=7)"/>
+        </record>
+
+        <record id="sale_order_11" model="sale.order">
+            <field name="date_order" eval="datetime.now() - relativedelta(days=21)"/>
+        </record>
+
+        <record id="sale_order_15" model="sale.order">
+            <field name="date_order" eval="datetime.now() - relativedelta(days=14)"/>
+        </record>
+
+        <record id="sale_order_17" model="sale.order">
+            <field name="date_order" eval="datetime.now() - relativedelta(days=28)"/>
+        </record>
+
+        <record id="sale_order_18" model="sale.order">
+            <field name="date_order" eval="datetime.now() - relativedelta(days=35)"/>
+        </record>
+        
+    </data>
+</odoo>

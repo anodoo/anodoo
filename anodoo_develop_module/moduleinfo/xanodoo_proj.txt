@@ -1,0 +1,139 @@
+模块:anodoo_proj       ID:53      Name:Anodoo Project
+
+
+================== Models ======================
+
+###project.project name:Project inherit:ir.model(122,)  access:ir.model.access(203, 213, 214, 202)  rule:ir.rule(40, 41, 42, 47)  transient:False  modules:anodoo_proj, project
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+
+================== Actions ======================
+
+###project.open_create_project  name:Create a Project view_mode:form domain:False  context:{}
+
+###project.open_view_project_all  name:Projects view_mode:kanban,form domain:[]  context:{}
+
+###project.open_view_project_all_config  name:Projects view_mode:tree,kanban,form domain:[]  context:{}
+
+
+================== Views ======================
+
+
+###project.project
+
+project.edit_project  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_view_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_kanban  type:kanban  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project_project_filter  type:search  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.view_project  type:tree  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_project_view_form_simplified  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:
+
+project.project_project_view_form_simplified_footer  type:form  priority:16  arch_fs:project/views/project_views.xml  inherit_id:project.project_project_view_form_simplified
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+anodoo_proj.view_res_config_settings_project_form  type:form  priority:16  arch_fs:anodoo_proj/views/res_config_settings_views.xml  inherit_id:anodoo_base.view_res_config_settings_form
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###project.project
+
+access_token Label:Security Token  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+access_url Label:Portal Access URL  ttype:char    required:False  compute:False  depends:False  modules:project  help:Customer Portal URL
+access_warning Label:Access warning  ttype:text    required:False  compute:False  depends:False  modules:project  help:False
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If the active field is set to False, it will allow you to hide the project without removing it.
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:project  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:project  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:True  compute:False  depends:False  modules:project  help:Internal email associated with this project. Incoming emails are automatically synchronized with Tasks (or optionally Issues if the Issue Tracker module is installed).
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:project  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:project  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+analytic_account_id Label:Analytic Account  ttype:many2one  relation:account.analytic.account    required:False  compute:False  depends:False  modules:project  help:Analytic account to which this project is linked for financial management. Use an analytic account to record cost and revenue on your project.
+color Label:Color Index  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:True  compute:False  depends:False  modules:project  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:project  help:False
+date Label:Expiration Date  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+date_start Label:Start Date  ttype:date    required:False  compute:False  depends:False  modules:project  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:project  help:False
+doc_count Label:Number of documents attached  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+favorite_user_ids Label:Members  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+is_favorite Label:Show Project on dashboard  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:Whether this project should be displayed on your dashboard.
+label_tasks Label:Use Tasks as  ttype:char    required:False  compute:False  depends:False  modules:project  help:Label used for the tasks of the project.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:project  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:project  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:project  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Number of unread messages
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:project  help:False
+partner_id Label:Customer  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:project  help:False
+portal_show_rating Label:Rating visible publicly  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+privacy_visibility Label:Visibility  ttype:selection    required:True  compute:False  depends:False  modules:project  help:Defines the visibility of the tasks of the project:
+- Invited employees: employees may only see the followed project and tasks.
+- All employees: employees may see all project and tasks.
+- Portal users and all employees: employees may see everything.   Portal users may see project and tasks followed by.
+   them or by someone of their company.
+project_type Label:项目类型  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_proj  help:包括通用项目和专用项目
+rating_ids Label:Ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:project  help:False
+rating_percentage_satisfaction Label:Rating Satisfaction  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Percentage of happy ratings
+rating_request_deadline Label:Rating Request Deadline  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+rating_status Label:Customer(s) Ratings  ttype:selection    required:True  compute:False  depends:False  modules:project  help:How to get customer feedback?
+- Rating when changing stage: an email will be sent when a task is pulled in another stage.
+- Periodical Rating: email will be sent periodically.
+
+Don't forget to set up the mail templates on the stages for which you want to get the customer's feedbacks.
+rating_status_period Label:Rating Frequency  ttype:selection    required:False  compute:False  depends:False  modules:project  help:False
+resource_calendar_id Label:Working Time  ttype:many2one  relation:resource.calendar    required:False  compute:False  depends:False  modules:project  help:Timetable working hours to adjust the gantt diagram report
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:project  help:Gives the sequence order when displaying a list of Projects.
+subtask_project_id Label:Sub-task Project  ttype:many2one  relation:project.project    required:False  compute:False  depends:False  modules:project  help:Project in which sub-tasks of the current project will be created. It can be the current project itself.
+task_count Label:Task Count  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+task_ids Label:Tasks  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+tasks Label:Task Activities  ttype:one2many  relation:project.task    required:False  compute:False  depends:False  modules:project  help:False
+type_ids Label:Tasks Stages  ttype:many2many  relation:project.task.type    required:False  compute:False  depends:False  modules:project  help:False
+user_id Label:Project Manager  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:project  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:project  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:project  help:False
+
+================== Extended Fields ======================
+
+
+###res.config.settings

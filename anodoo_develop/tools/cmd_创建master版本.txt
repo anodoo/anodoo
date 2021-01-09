@@ -1,0 +1,24 @@
+master分支一律用来发布。里面的内容都是从develop中过来。
+
+git status;
+git pull origin develop;
+ls;
+
+git commit -m "13的最后一个版本";
+git push origin develop;
+
+
+git checkout master;
+git clean -xfd;
+git status;
+git pull origin master;
+ls;
+
+git merge develop;
+ls;
+
+git tag -a V13.9.0 -m "13的最后一个版本";
+git tag;
+
+git push origin master;
+git checkout develop;

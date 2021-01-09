@@ -1,0 +1,42 @@
+cd ~/PycharmProjects/Anodoo_
+
+(将  lunch 批量替换为新模块)
+
+mkdir anodoo_lunch;
+\cp -r -a ~/PycharmProjects/Anodoo_Other/anodoo_module_template/* anodoo_lunch/;
+ls;
+
+mv anodoo_lunch/controllers/oppor_controllers.py anodoo_lunch/controllers/lunch_controllers.py;
+mv anodoo_lunch/data/oppor_data.xml anodoo_lunch/data/lunch_data.xml;
+mv anodoo_lunch/demo/oppor_demo.xml anodoo_lunch/demo/lunch_demo.xml;
+mv anodoo_lunch/models/oppor_models.py anodoo_lunch/models/lunch_models.py;
+mv anodoo_lunch/security/oppor_security.xml anodoo_lunch/security/lunch_security.xml;
+mv anodoo_lunch/views/oppor_analysis_views.xml anodoo_lunch/views/lunch_analysis_views.xml;
+mv anodoo_lunch/views/oppor_menu.xml anodoo_lunch/views/lunch_menu.xml;
+mv anodoo_lunch/views/oppor_templates.xml anodoo_lunch/views/lunch_templates.xml;
+mv anodoo_lunch/views/oppor_views.xml anodoo_lunch/views/lunch_views.xml;
+ls;
+
+进入eclipse, 刷新, 选择模块, 在当前resource中, 批量替换 oppor 为 lunch  应该有13个地方在3个文件内
+
+修改mani文件
+
+
+=======Microwei_Website项目==================================
+cd ~/PycharmProjects/Microwei_Website
+
+(将  lunch 批量替换为新模块)
+
+mkdir sw_lunch;
+\cp -r -a ~/PycharmProjects/Anodoo_Other/anodoo_module_template/* sw_lunch/;
+
+mv sw_lunch/controllers/oppor_controllers.py sw_lunch/controllers/lunch_controllers.py;
+mv sw_lunch/data/oppor_data.xml sw_lunch/data/lunch_data.xml;
+mv sw_lunch/demo/oppor_demo.xml sw_lunch/demo/lunch_demo.xml;
+mv sw_lunch/models/oppor_models.py sw_lunch/models/lunch_models.py;
+mv sw_lunch/security/oppor_security.xml sw_lunch/security/lunch_security.xml;
+mv sw_lunch/views/oppor_analysis_views.xml sw_lunch/views/lunch_analysis_views.xml;
+mv sw_lunch/views/oppor_menu.xml sw_lunch/views/lunch_menu.xml;
+mv sw_lunch/views/oppor_templates.xml sw_lunch/views/lunch_templates.xml;
+mv sw_lunch/views/oppor_views.xml sw_lunch/views/lunch_views.xml;
+ls;

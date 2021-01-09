@@ -1,0 +1,113 @@
+模块:digest       ID:27      Name:KPI Digests
+
+
+================== Models ======================
+
+###digest.digest name:Digest inherit:ir.model()  access:ir.model.access(198, 199)  rule:ir.rule()  transient:False  modules:digest, project
+
+###digest.tip name:Digest Tips inherit:ir.model()  access:ir.model.access(200, 201)  rule:ir.rule()  transient:False  modules:digest
+
+
+================== Extended Models ======================
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+
+================== Actions ======================
+
+###digest.digest_digest_action  name:Digest Emails view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###digest.digest
+
+digest.digest_digest_view_form  type:form  priority:16  arch_fs:digest/views/digest_views.xml  inherit_id:
+
+crm.digest_digest_view_form  type:form  priority:16  arch_fs:crm/views/digest_views.xml  inherit_id:digest.digest_digest_view_form
+
+project.digest_digest_view_form  type:form  priority:16  arch_fs:project/views/digest_views.xml  inherit_id:digest.digest_digest_view_form
+
+digest.digest_digest_view_search  type:search  priority:16  arch_fs:digest/views/digest_views.xml  inherit_id:
+
+digest.digest_digest_view_tree  type:tree  priority:16  arch_fs:digest/views/digest_views.xml  inherit_id:
+
+
+###digest.tip
+
+
+================== Extended Views ======================
+
+
+###res.config.settings
+
+digest.res_config_settings_view_form  type:form  priority:16  arch_fs:digest/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+
+###res.users
+
+
+================== qWeb ======================
+
+digest.portal_digest_unsubscribed  type:qweb  priority:16  arch_fs:digest/views/digest_templates.xml  inherit_id:
+
+
+================== Fields ======================
+
+
+###digest.digest
+
+available_fields Label:Available Fields  ttype:char    required:False  compute:False  depends:False  modules:digest  help:False
+company_id Label:Company  ttype:many2one  relation:res.company    required:False  compute:False  depends:False  modules:digest  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:False
+currency_id Label:Currency  ttype:many2one  relation:res.currency    required:False  compute:False  depends:False  modules:digest  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:digest  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:digest  help:False
+is_subscribed Label:Is user subscribed  ttype:boolean    required:False  compute:False  depends:False  modules:digest  help:False
+kpi_crm_lead_created Label:New Leads/Opportunities  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+kpi_crm_lead_created_value Label:Kpi Crm Lead Created Value  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+kpi_crm_opportunities_won Label:Opportunities Won  ttype:boolean    required:False  compute:False  depends:False  modules:crm  help:False
+kpi_crm_opportunities_won_value Label:Kpi Crm Opportunities Won Value  ttype:integer    required:False  compute:False  depends:False  modules:crm  help:False
+kpi_mail_message_total Label:Messages  ttype:boolean    required:False  compute:False  depends:False  modules:digest  help:False
+kpi_mail_message_total_value Label:Kpi Mail Message Total Value  ttype:integer    required:False  compute:False  depends:False  modules:digest  help:False
+kpi_project_task_opened Label:Open Tasks  ttype:boolean    required:False  compute:False  depends:False  modules:project  help:False
+kpi_project_task_opened_value Label:Kpi Project Task Opened Value  ttype:integer    required:False  compute:False  depends:False  modules:project  help:False
+kpi_res_users_connected Label:Connected Users  ttype:boolean    required:False  compute:False  depends:False  modules:digest  help:False
+kpi_res_users_connected_value Label:Kpi Res Users Connected Value  ttype:integer    required:False  compute:False  depends:False  modules:digest  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:digest  help:False
+next_run_date Label:Next Send Date  ttype:date    required:False  compute:False  depends:False  modules:digest  help:False
+periodicity Label:Periodicity  ttype:selection    required:True  compute:False  depends:False  modules:digest  help:False
+state Label:Status  ttype:selection    required:False  compute:False  depends:False  modules:digest  help:False
+template_id Label:Email Template  ttype:many2one  relation:mail.template    required:True  compute:False  depends:False  modules:digest  help:False
+user_ids Label:Recipients  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:False
+
+###digest.tip
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:digest  help:False
+group_id Label:Authorized Group  ttype:many2one  relation:res.groups    required:False  compute:False  depends:False  modules:digest  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:digest  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:digest  help:Used to display digest tip in email template base on order
+tip_description Label:Tip description  ttype:html    required:False  compute:False  depends:False  modules:digest  help:False
+user_ids Label:Recipients  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:Users having already received this tip
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:digest  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:digest  help:False
+
+================== Extended Fields ======================
+
+
+###res.config.settings
+
+digest_emails Label:Digest Emails  ttype:boolean    required:False  compute:False  depends:False  modules:digest  help:False
+digest_id Label:Digest Email  ttype:many2one  relation:digest.digest    required:False  compute:False  depends:False  modules:digest  help:False
+
+###res.users

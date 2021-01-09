@@ -1,0 +1,91 @@
+模块:anodoo_auth       ID:7      Name:登陆与认证
+
+
+================== Models ======================
+
+###auth.oauth.provider name:OAuth2服务商 inherit:ir.model()  access:ir.model.access(152,)  rule:ir.rule()  transient:False  modules:anodoo_auth, auth_oauth
+
+###anodoo.login.record name:用户登陆记录 inherit:ir.model()  access:ir.model.access(154, 153)  rule:ir.rule()  transient:False  modules:anodoo_auth
+
+
+================== Extended Models ======================
+
+###res.users name:用户 inherit:ir.model(78,)  transient:False  modules:account, anodoo_auth, auth_oauth, auth_password_policy, auth_signup, base, base_setup, bus, calendar, contacts, crm, digest, gamification, im_livechat, mail, resource, sales_team, website, website_forum, website_profile, website_slides
+
+
+================== Actions ======================
+
+###auth_oauth.action_oauth_provider  name:服务商 view_mode:tree,form domain:False  context:{}
+
+###anodoo_auth.action_anodoo_login_record_list  name:用户登陆记录 view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###auth.oauth.provider
+
+auth_oauth.view_oauth_provider_form  type:form  priority:16  arch_fs:auth_oauth/views/auth_oauth_views.xml  inherit_id:
+
+anodoo_auth.view_oauth_provider_form  type:form  priority:16  arch_fs:anodoo_auth/views/auth_oauth_views.xml  inherit_id:auth_oauth.view_oauth_provider_form
+
+auth_oauth.view_oauth_provider_tree  type:tree  priority:16  arch_fs:auth_oauth/views/auth_oauth_views.xml  inherit_id:
+
+anodoo_auth.view_oauth_provider_tree  type:tree  priority:16  arch_fs:anodoo_auth/views/auth_oauth_views.xml  inherit_id:auth_oauth.view_oauth_provider_tree
+
+
+###anodoo.login.record
+
+anodoo_auth.view_anodoo_login_record_form  type:form  priority:100  arch_fs:anodoo_auth/views/auth_views.xml  inherit_id:
+
+anodoo_auth.view_anodoo_login_record_list  type:tree  priority:100  arch_fs:anodoo_auth/views/auth_views.xml  inherit_id:
+
+anodoo_auth.view_anodoo_login_record_search  type:search  priority:100  arch_fs:anodoo_auth/views/auth_views.xml  inherit_id:
+
+
+================== qWeb ======================
+
+
+================== Fields ======================
+
+
+###auth.oauth.provider
+
+auth_endpoint Label:身份验证网址  ttype:char    required:True  compute:False  depends:False  modules:auth_oauth  help:False
+body Label:正文  ttype:char    required:True  compute:False  depends:False  modules:auth_oauth  help:Link text in Login Dialog
+client_id Label:客户ID  ttype:char    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+client_secret Label:客户密钥  ttype:char    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+css_class Label:CSS类  ttype:char    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+data_endpoint Label:数据网址  ttype:char    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+enabled Label:允许  ttype:boolean    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+name Label:服务商名称  ttype:char    required:True  compute:False  depends:False  modules:auth_oauth  help:False
+oauth_type Label:认证类型  ttype:selection    required:True  compute:False  depends:False  modules:anodoo_auth  help:选择当前认证所属类型
+other_params Label:其他参数  ttype:text    required:False  compute:False  depends:False  modules:anodoo_auth  help:按照{'key1':'value1','key2':'value2'}格式定义其他参数,格式错误将导致参数不可用
+scope Label:作用域  ttype:char    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+sequence Label:单号规则  ttype:integer    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+validation_endpoint Label:验证网址  ttype:char    required:True  compute:False  depends:False  modules:auth_oauth  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:auth_oauth  help:False
+
+###anodoo.login.record
+
+create_date Label:创建时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+create_uid Label:创建者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+display_name Label:显示名称  ttype:char    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+__last_update Label:最后更改日  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+login_ip Label:登陆IP  ttype:char    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+login_time Label:登陆时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+user_id Label:登陆用户  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+write_date Label:更新时间  ttype:datetime    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+write_uid Label:最后更新者  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:anodoo_auth  help:False
+
+================== Extended Fields ======================
+
+
+###res.users

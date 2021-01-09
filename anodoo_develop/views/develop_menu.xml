@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+		<!-- 设置中增加开发菜单 -->
+	  	<menuitem parent="base.menu_administration" id="develop_menu_root_anodoo" name="开发工具" />
+		  	<menuitem parent="develop_menu_root_anodoo" id="develop_menu_base" name="开发菜单" sequence="0"/>
+		  		<menuitem parent="develop_menu_base" id="develop_menu_base_apps" name="Apps" action="base.open_module_tree"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_actions" name="Actions" action="base.ir_sequence_actions"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_menus" name="Menus" action="base.grant_menu_access"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_views" name="Views" action="base.action_ui_view"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_models" name="Models" action="base.action_model_model"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_fields" name="Fields" action="base.action_model_fields"/>
+			    <menuitem parent="develop_menu_base" id="develop_menu_base_ids" name="Ids" action="base.action_model_data"/>
+	</data>		    
+</odoo>

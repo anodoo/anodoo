@@ -1,0 +1,29 @@
+模块:crm       ID:62      Name:CRM
+
+
+================== Models ======================
+
+
+================== Extended Models ======================
+
+
+================== Actions ======================
+
+
+================== Views ======================
+
+
+================== Extended Views ======================
+
+
+================== qWeb ======================
+
+crm.assets_backend  type:qweb  priority:16  arch_fs:crm/views/crm_templates.xml  inherit_id:web.assets_backend
+
+crm.assets_tests  type:qweb  priority:16  arch_fs:crm/views/crm_templates.xml  inherit_id:web.assets_tests
+
+
+================== Fields ======================
+
+
+================== Extended Fields ======================

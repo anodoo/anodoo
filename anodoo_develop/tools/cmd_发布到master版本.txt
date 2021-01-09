@@ -1,0 +1,40 @@
+使用方法
+0.先替换：20210109 ，V14.1.0, 第二版
+1.修改目录，所有ent和非ent结尾的目录
+2.执行，先提交develop分之，然后合并到master分之，在切换到develop分之
+
+cd ../Anodoo_Base;
+cd ../Anodoo_Multichannel;
+cd ../Anodoo_Customer;
+cd ../Anodoo_Marketing;
+cd ../Anodoo_Sale;
+cd ../Anodoo_Service;
+cd ../Anodoo_Finance;
+cd ../Anodoo_Manufacturing;
+cd ../Anodoo_SupplyChain;
+cd ../Anodoo_HR;
+cd ../Anodoo_OA;
+cd ../Anodoo_Other;
+
+git checkout develop;
+git status;
+git add .;
+git status;
+git config user.name "hsw";
+git config user.email "hsw@anodoo.com";
+git config credential.helper store;
+git commit -m "feat(all):commit and merge to master at 20210109";
+git push origin develop;
+
+git checkout master;
+git status;
+git clean -xfd;
+git merge develop;
+git push origin master;
+
+git tag -a V14.1.0 -m "Anodoo 14 第二版";
+git push origin --tags;
+
+git checkout develop;
+
+git log --oneline;

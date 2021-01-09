@@ -1,0 +1,1278 @@
+模块:mail       ID:45      Name:Discuss
+
+
+================== Models ======================
+
+###mail.channel name:Discussion Channel inherit:ir.model(122,)  access:ir.model.access(138, 137)  rule:ir.rule(25,)  transient:False  modules:mail
+
+###mail.thread.cc name:Email CC management inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:mail
+
+###mail.thread name:Email Thread inherit:ir.model()  access:ir.model.access(152,)  rule:ir.rule()  transient:False  modules:mail, portal, rating, sms
+
+###mail.blacklist name:Mail Blacklist inherit:ir.model()  access:ir.model.access(163,)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.thread.blacklist name:Mail Blacklist mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:mail
+
+###mail.activity name:Activity inherit:ir.model()  access:ir.model.access(159, 158)  rule:ir.rule(29,)  transient:False  modules:mail, note
+
+###mail.activity.mixin name:Activity Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:mail
+
+###mail.activity.type name:Activity Type inherit:ir.model()  access:ir.model.access(222, 296, 161, 162, 160)  rule:ir.rule()  transient:False  modules:mail, note
+
+###mail.shortcode name:Canned Response / Shortcode inherit:ir.model()  access:ir.model.access(156, 157)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.moderation name:Channel black/white list inherit:ir.model()  access:ir.model.access(142,)  rule:ir.rule(30,)  transient:False  modules:mail
+
+###mail.resend.cancel name:Dismiss notification for resend by model inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###mail.followers name:Document Followers inherit:ir.model()  access:ir.model.access(132, 131, 133, 130)  rule:ir.rule(26,)  transient:False  modules:mail, sms
+
+###mail.address.mixin name:Email Address Mixin inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:False  modules:mail
+
+###mail.alias name:Email Aliases inherit:ir.model()  access:ir.model.access(221, 144, 145, 143)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.alias.mixin name:Email Aliases Mixin inherit:ir.model(122,)  access:ir.model.access()  rule:ir.rule()  transient:False  modules:mail
+
+###mail.compose.message name:Email composition wizard inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###mail.resend.message name:Email resend wizard inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###email_template.preview name:Email Template Preview inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###mail.template name:Email Templates inherit:ir.model()  access:ir.model.access(154, 155)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.wizard.invite name:Invite wizard inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###mail.channel.partner name:Listeners of a Channel inherit:ir.model()  access:ir.model.access(141, 140, 139)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.tracking.value name:Mail Tracking Value inherit:ir.model()  access:ir.model.access(150, 149, 151, 148)  rule:ir.rule()  transient:False  modules:mail
+
+###mail.message name:Message inherit:ir.model()  access:ir.model.access(125, 124, 123)  rule:ir.rule()  transient:False  modules:mail, portal, rating, sms, snailmail
+
+###mail.notification name:Message Notifications inherit:ir.model()  access:ir.model.access(135, 134, 136)  rule:ir.rule(27,)  transient:False  modules:mail, sms
+
+###mail.message.subtype name:Message subtypes inherit:ir.model()  access:ir.model.access(147, 146)  rule:ir.rule(28,)  transient:False  modules:mail
+
+###mail.resend.partner name:Partner with additionnal information for mail resend inherit:ir.model()  access:ir.model.access()  rule:ir.rule()  transient:True  modules:mail
+
+###publisher_warranty.contract name:Publisher Warranty Contract inherit:ir.model()  access:ir.model.access(153,)  rule:ir.rule()  transient:False  modules:mail
+
+
+================== Extended Models ======================
+
+###res.partner name:Contact inherit:ir.model()  transient:False  modules:anodoo_base, anodoo_contact, anodoo_cust, auth_signup, base, bus, mail, phone_validation, portal, project, sales_team, sms, snailmail
+
+###res.groups name:Access Groups inherit:ir.model()  transient:False  modules:base, mail
+
+###ir.actions.act_window.view name:Action Window View inherit:ir.model()  transient:False  modules:base, mail, web
+
+###ir.attachment name:Attachment inherit:ir.model()  transient:False  modules:base, mail, web_editor
+
+###ir.autovacuum name:Automatic Vacuum inherit:ir.model()  transient:False  modules:base, bus, mail
+
+###base name:Base inherit:ir.model()  transient:False  modules:base, mail, web
+
+###res.company name:Companies inherit:ir.model()  transient:False  modules:base, mail, pad, resource, snailmail
+
+###res.config.settings name:Config Settings inherit:ir.model()  transient:True  modules:anodoo_base, anodoo_content, anodoo_crm, anodoo_proj, anodoo_team, auth_signup, base, base_setup, digest, iap, mail, pad, project, snailmail
+
+###ir.model.fields name:Fields inherit:ir.model()  transient:False  modules:base, mail
+
+###ir.http name:HTTP Routing inherit:ir.model()  transient:False  modules:auth_signup, base, base_setup, http_routing, mail, portal, web, web_editor, web_tour
+
+###base.partner.merge.automatic.wizard name:Merge Partner Wizard inherit:ir.model()  transient:True  modules:base, mail
+
+###ir.model name:Models inherit:ir.model()  transient:False  modules:base, mail, sms
+
+###base.module.uninstall name:Module Uninstall inherit:ir.model()  transient:True  modules:base, mail
+
+###mail.mail name:Outgoing Mails inherit:ir.model(126,)  transient:False  modules:fetchmail, mail
+
+###ir.actions.server name:Server Action inherit:ir.model()  transient:False  modules:base, mail, sms
+
+###res.users name:Users inherit:ir.model(78,)  transient:False  modules:auth_signup, base, base_setup, bus, contacts, digest, mail, note, resource, sales_team
+
+###ir.ui.view name:View inherit:ir.model()  transient:False  modules:base, http_routing, mail, web_editor
+
+
+================== Actions ======================
+
+###mail.mail_channel_action_view  name:Join a group view_mode:kanban,tree,form domain:False  context:{}
+
+###mail.mail_blacklist_action  name:Blacklist view_mode:tree,form domain:False  context:{}
+
+###mail.mail_activity_action  name:Activities view_mode:tree,form domain:False  context:{}
+
+###mail.mail_activity_type_action  name:Activity Types view_mode:tree,form domain:False  context:{}
+
+###project.mail_activity_type_action_config_project_types  name:Activity Types view_mode:tree,form domain:['|', ('res_model_id', '=', False), ('res_model_id.model', '=', 'project.task')]  context:{'default_res_model': 'project.task'}
+
+###sales_team.mail_activity_type_action_config_sales  name:Activity Types view_mode:tree,form domain:['|', ('res_model_id', '=', False), ('res_model_id.model', 'in', ['crm.lead', 'res.partner'])]  context:{'default_res_model': 'crm.lead'}
+
+###mail.mail_shortcode_action  name:Chat Shortcode view_mode:tree,form domain:False  context:{}
+
+###mail.mail_moderation_action  name:Moderation view_mode:tree,form domain:False  context:{'search_default_status_ban': 1}
+
+###mail.mail_resend_cancel_action  name:Discard mail delivery failures view_mode:form domain:False  context:{}
+
+###mail.action_view_followers  name:Followers view_mode:tree,form domain:False  context:{}
+
+###mail.action_view_mail_alias  name:Aliases view_mode:tree,form domain:False  context:{
+                    'search_default_active': True,
+                }
+            
+
+###mail.action_email_compose_message_wizard  name:Compose Email view_mode:form domain:False  context:{}
+
+###mail.action_partner_mass_mail  name:Send email view_mode:form domain:[]  context:{'default_composition_mode': 'mass_mail', 'default_partner_to': "${object.id or ''}", 'default_use_template': True, 'default_template_id': 1}
+
+###crm.action_lead_mass_mail  name:Send email view_mode:form domain:[]  context:{'default_composition_mode': 'mass_mail', 'default_email_to': "{($object.email or '')|safe}", 'default_use_template': True, 'default_template_id': 13}
+
+###mail.mail_resend_message_action  name:Resend mail view_mode:form domain:False  context:{}
+
+###mail.wizard_email_template_preview  name:Template Preview view_mode:form domain:False  context:{'template_id':active_id}
+
+###mail.action_email_template_tree_all  name:Templates view_mode:form,tree domain:False  context:{}
+
+###mail.mail_channel_partner_action  name:Channels/Partner view_mode:tree,form domain:False  context:{}
+
+###mail.action_view_mail_tracking_value  name:Tracking Values view_mode:tree,form domain:False  context:{}
+
+###mail.action_view_mail_message  name:Messages view_mode:tree,form domain:False  context:{}
+
+###mail.action_view_message_subtype  name:Subtypes view_mode:tree,form domain:False  context:{}
+
+
+================== Views ======================
+
+
+###mail.channel
+
+mail.mail_channel_view_form  type:form  priority:10  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+mail.mail_channel_view_kanban  type:kanban  priority:10  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+mail.mail_channel_view_search  type:search  priority:10  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+mail.mail_channel_view_tree  type:tree  priority:10  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+
+###mail.thread.cc
+
+
+###mail.thread
+
+
+###mail.blacklist
+
+mail.mail_blacklist_view_form  type:form  priority:16  arch_fs:mail/views/mail_blacklist_views.xml  inherit_id:
+
+mail.mail_blacklist_view_search  type:search  priority:16  arch_fs:mail/views/mail_blacklist_views.xml  inherit_id:
+
+mail.mail_blacklist_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_blacklist_views.xml  inherit_id:
+
+
+###mail.thread.blacklist
+
+
+###mail.activity
+
+mail.mail_activity_view_calendar  type:calendar  priority:2  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+calendar.mail_activity_view_form_popup  type:form  priority:16  arch_fs:calendar/views/mail_activity_views.xml  inherit_id:mail.mail_activity_view_form_popup
+
+mail.mail_activity_view_search  type:search  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_view_form_popup  type:form  priority:20  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+
+###mail.activity.mixin
+
+
+###mail.activity.type
+
+mail.mail_activity_type_view_search  type:search  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_type_view_form  type:form  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+mail.mail_activity_type_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_activity_views.xml  inherit_id:
+
+
+###mail.shortcode
+
+mail.mail_shortcode_view_form  type:form  priority:16  arch_fs:mail/views/mail_shortcode_views.xml  inherit_id:
+
+mail.mail_shortcode_view_tree  type:tree  priority:16  arch_fs:mail/views/mail_shortcode_views.xml  inherit_id:
+
+
+###mail.moderation
+
+mail.mail_moderation_view_tree  type:tree  priority:20  arch_fs:mail/views/mail_moderation_views.xml  inherit_id:
+
+mail.mail_moderation_view_search  type:search  priority:25  arch_fs:mail/views/mail_moderation_views.xml  inherit_id:
+
+
+###mail.resend.cancel
+
+mail.mail_resend_cancel_view_form  type:form  priority:16  arch_fs:mail/wizard/mail_resend_cancel_views.xml  inherit_id:
+
+
+###mail.followers
+
+mail.view_followers_tree  type:tree  priority:10  arch_fs:mail/views/mail_followers_views.xml  inherit_id:
+
+mail.view_mail_subscription_form  type:form  priority:16  arch_fs:mail/views/mail_followers_views.xml  inherit_id:
+
+
+###mail.address.mixin
+
+
+###mail.alias
+
+mail.view_mail_alias_form  type:form  priority:16  arch_fs:mail/views/mail_alias_views.xml  inherit_id:
+
+mail.view_mail_alias_search  type:search  priority:16  arch_fs:mail/views/mail_alias_views.xml  inherit_id:
+
+mail.view_mail_alias_tree  type:tree  priority:16  arch_fs:mail/views/mail_alias_views.xml  inherit_id:
+
+
+###mail.alias.mixin
+
+
+###mail.compose.message
+
+mail.email_compose_message_wizard_form  type:form  priority:16  arch_fs:mail/wizard/mail_compose_message_view.xml  inherit_id:
+
+
+###mail.resend.message
+
+mail.mail_resend_message_view_form  type:form  priority:16  arch_fs:mail/wizard/mail_resend_message_views.xml  inherit_id:
+
+
+###email_template.preview
+
+mail.email_template_preview_form  type:form  priority:16  arch_fs:mail/wizard/email_template_preview_view.xml  inherit_id:
+
+
+###mail.template
+
+mail.email_template_form  type:form  priority:16  arch_fs:mail/views/mail_template_views.xml  inherit_id:
+
+mail.view_email_template_search  type:search  priority:16  arch_fs:mail/views/mail_template_views.xml  inherit_id:
+
+mail.email_template_tree  type:tree  priority:16  arch_fs:mail/views/mail_template_views.xml  inherit_id:
+
+
+###mail.wizard.invite
+
+mail.mail_wizard_invite_form  type:form  priority:16  arch_fs:mail/wizard/invite_view.xml  inherit_id:
+
+
+###mail.channel.partner
+
+mail.mail_channel_partner_view_tree  type:tree  priority:10  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+mail.mail_channel_partner_view_form  type:form  priority:16  arch_fs:mail/views/mail_channel_views.xml  inherit_id:
+
+
+###mail.tracking.value
+
+mail.view_mail_tracking_value_tree  type:tree  priority:12  arch_fs:mail/views/mail_tracking_views.xml  inherit_id:
+
+mail.view_mail_tracking_value_form  type:form  priority:16  arch_fs:mail/views/mail_tracking_views.xml  inherit_id:
+
+
+###mail.message
+
+mail.view_message_form  type:form  priority:20  arch_fs:mail/views/mail_message_views.xml  inherit_id:
+
+mail.view_message_tree  type:tree  priority:20  arch_fs:mail/views/mail_message_views.xml  inherit_id:
+
+mail.view_message_search  type:search  priority:25  arch_fs:mail/views/mail_message_views.xml  inherit_id:
+
+
+###mail.notification
+
+
+###mail.message.subtype
+
+mail.view_message_subtype_tree  type:tree  priority:10  arch_fs:mail/views/mail_message_subtype_views.xml  inherit_id:
+
+mail.view_mail_message_subtype_form  type:form  priority:16  arch_fs:mail/views/mail_message_subtype_views.xml  inherit_id:
+
+
+###mail.resend.partner
+
+
+###publisher_warranty.contract
+
+
+================== Extended Views ======================
+
+
+###res.partner
+
+mail.res_partner_view_activity  type:activity  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:
+
+mail.res_partner_view_form_inherit_mail  type:form  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:base.view_partner_form
+
+mail.res_partner_view_search_inherit_mail  type:search  priority:16  arch_fs:mail/views/res_partner_views.xml  inherit_id:base.view_res_partner_filter
+
+mail.res_partner_view_form_short  type:form  priority:20  arch_fs:mail/views/mail_channel_partner_views.xml  inherit_id:base.view_partner_short_form
+
+
+###res.groups
+
+
+###ir.actions.act_window.view
+
+
+###ir.attachment
+
+mail.view_document_file_kanban  type:kanban  priority:16  arch_fs:mail/views/mail_message_views.xml  inherit_id:
+
+
+###ir.autovacuum
+
+
+###base
+
+
+###res.company
+
+
+###res.config.settings
+
+mail.res_config_settings_view_form  type:form  priority:16  arch_fs:mail/views/res_config_settings_views.xml  inherit_id:base_setup.res_config_settings_view_form
+
+
+###ir.model.fields
+
+mail.field_form_view  type:form  priority:16  arch_fs:mail/views/ir_model_views.xml  inherit_id:base.view_model_fields_form
+
+
+###ir.http
+
+
+###base.partner.merge.automatic.wizard
+
+
+###ir.model
+
+mail.model_form_view  type:form  priority:16  arch_fs:mail/views/ir_model_views.xml  inherit_id:base.view_model_form
+
+mail.model_search_view  type:search  priority:16  arch_fs:mail/views/ir_model_views.xml  inherit_id:base.view_model_search
+
+
+###base.module.uninstall
+
+
+###mail.mail
+
+mail.view_mail_form  type:form  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+mail.view_mail_search  type:search  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+mail.view_mail_tree  type:tree  priority:16  arch_fs:mail/views/mail_mail_views.xml  inherit_id:
+
+
+###ir.actions.server
+
+mail.view_server_action_form_template  type:form  priority:16  arch_fs:mail/views/ir_actions_views.xml  inherit_id:base.view_server_action_form
+
+
+###res.users
+
+mail.view_users_form_mail  type:form  priority:16  arch_fs:mail/views/res_users_views.xml  inherit_id:base.view_users_form
+
+mail.view_users_form_simple_modif_mail  type:form  priority:16  arch_fs:mail/views/res_users_views.xml  inherit_id:base.view_users_form_simple_modif
+
+
+###ir.ui.view
+
+
+================== qWeb ======================
+
+mail._assets_primary_variables  type:qweb  priority:16  arch_fs:mail/views/mail_templates.xml  inherit_id:web._assets_primary_variables
+
+snailmail.assets_backend  type:qweb  priority:16  arch_fs:snailmail/views/assets.xml  inherit_id:web.assets_backend
+
+mail.assets_backend  type:qweb  priority:16  arch_fs:mail/views/mail_templates.xml  inherit_id:web.assets_backend
+
+mail.mail_bounce_catchall  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.mail_channel_notify_moderation  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.mail_channel_send_guidelines  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.js_test_assets  type:qweb  priority:16  arch_fs:mail/views/mail_templates.xml  inherit_id:web.js_tests_assets
+
+mail.mail_notification_borders  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.mail_notification_light  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.mail_notification_paynow  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.qunit_suite  type:qweb  priority:16  arch_fs:mail/views/mail_templates.xml  inherit_id:web.qunit_suite
+
+mail.message_activity_assigned  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.message_activity_done  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.message_notification_email  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+mail.message_origin_link  type:qweb  priority:16  arch_fs:mail/views/mail_templates.xml  inherit_id:
+
+mail.message_user_assigned  type:qweb  priority:16  arch_fs:mail/data/mail_data.xml  inherit_id:
+
+snailmail.minimal_layout  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:web.minimal_layout
+
+snailmail.report_assets_snailmail  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:
+
+snailmail.report_layout  type:qweb  priority:16  arch_fs:snailmail/views/report_assets.xml  inherit_id:web.report_layout
+
+snailmail.qunit_suite  type:qweb  priority:16  arch_fs:snailmail/views/assets.xml  inherit_id:web.qunit_suite
+
+
+================== Fields ======================
+
+
+###mail.channel
+
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:mail  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:True  compute:False  depends:False  modules:mail  help:False
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:mail  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+channel_last_seen_partner_ids Label:Last Seen  ttype:one2many  relation:mail.channel.partner    required:False  compute:False  depends:False  modules:mail  help:False
+channel_message_ids Label:Channel Message  ttype:many2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+channel_partner_ids Label:Listeners  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+channel_type Label:Channel Type  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+description Label:Description  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_send Label:Send messages by email  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+group_ids Label:Auto Subscription  ttype:many2many  relation:res.groups    required:False  compute:False  depends:False  modules:mail  help:Members of those groups will automatically added as followers. Note that they will be able to manage their subscription manually if necessary.
+group_public_id Label:Authorized Group  ttype:many2one  relation:res.groups    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+image_128 Label:Image  ttype:binary    required:False  compute:False  depends:False  modules:mail  help:False
+is_chat Label:Is a chat  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+is_member Label:Is a member  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+is_moderator Label:Moderator  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Current user is a moderator of the channel
+is_subscribed Label:Is Subscribed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+moderation Label:Moderate this channel  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_count Label:Moderated emails count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_guidelines Label:Send guidelines to new subscribers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Newcomers on this moderated channel will automatically receive the guidelines.
+moderation_guidelines_msg Label:Guidelines  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_ids Label:Moderated Emails  ttype:one2many  relation:mail.moderation    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_notify Label:Automatic notification  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:People receive an automatic notification about their message being waiting for moderation.
+moderation_notify_msg Label:Notification message  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+moderator_ids Label:Moderators  ttype:many2many  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+public Label:Privacy  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:This group is visible by non members. Invisible groups can add members through the invite button.
+uuid Label:UUID  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.thread.cc
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_cc Label:Email cc  ttype:char    required:False  compute:False  depends:False  modules:mail  help:List of cc from incoming emails.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###mail.thread
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###mail.blacklist
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email Label:Email Address  ttype:char    required:True  compute:False  depends:False  modules:mail  help:This field is case insensitive.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.thread.blacklist
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_normalized Label:Normalized Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:This field is used to search on email address as the primary email field can contain more than strictly an email address.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+is_blacklisted Label:Blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_bounce Label:Bounce  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Counter of the number of bounced emails for this contact
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_has_sms_error Label:SMS Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:If checked, some messages have a delivery error.
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+website_message_ids Label:Website Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:portal  help:Website communication history
+
+###mail.activity
+
+activity_category Label:Action to Perform  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Actions may trigger specific behavior like opening calendar view or automatically mark as done when a document is uploaded
+activity_decoration Label:Decoration Type  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Change the background color of the related activities of this type.
+activity_type_id Label:Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+automated Label:Automated activity  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Indicates this activity has been created automatically and not by any user.
+calendar_event_id Label:Calendar Meeting  ttype:many2one  relation:calendar.event    required:False  compute:False  depends:False  modules:calendar  help:False
+can_write Label:Can Write  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Technical field to hide buttons if the current user has no access.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+date_deadline Label:Due Date  ttype:date    required:True  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+force_next Label:Trigger Next Activity  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+has_recommended_activities Label:Next activities available  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Technical field for UX purpose
+icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Font awesome icon e.g. fa-tasks
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_template_ids Label:Email templates  ttype:many2many  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+note Label:Note  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+note_id Label:Related Note  ttype:many2one  relation:note.note    required:False  compute:False  depends:False  modules:note  help:False
+previous_activity_type_id Label:Previous Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+recommended_activity_type_id Label:Recommended Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+res_id Label:Related Document ID  ttype:many2one_reference    required:True  compute:False  depends:False  modules:mail  help:False
+res_model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+res_model_id Label:Document Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:mail  help:False
+res_name Label:Document Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Display name of the related document.
+state Label:State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+summary Label:Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+user_id Label:Assigned to  ttype:many2one  relation:res.users    required:True  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.activity.mixin
+
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:mail  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:mail  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.activity.type
+
+active Label:Active  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+category Label:Action to Perform  ttype:selection    required:False  compute:False  depends:False  modules:calendar, mail, note  help:Actions may trigger specific behavior like opening calendar view or automatically mark as done when a document is uploaded
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Create Uid  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+decoration_type Label:Decoration Type  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Change the background color of the related activities of this type.
+default_description Label:Default Description  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+default_next_type_id Label:Default Next Activity  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+default_user_id Label:Default User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+delay_count Label:Scheduled Date  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of days/week/month before executing the action. It allows to plan the action deadline.
+delay_from Label:Delay Type  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Type of delay
+delay_unit Label:Delay units  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Unit of delay
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+force_next Label:Trigger Next Activity  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Font awesome icon e.g. fa-tasks
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+initial_res_model_id Label:Initial model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:Technical field to keep trace of the model at the beginning of the edition for UX related behaviour
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_template_ids Label:Email templates  ttype:many2many  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+name Label:Name  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+next_type_ids Label:Recommended Next Activities  ttype:many2many  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+previous_type_ids Label:Preceding Activities  ttype:many2many  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+res_model_change Label:Model has change  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Technical field for UX related behaviour
+res_model_id Label:Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:Specify a model if the activity should be specific to a model and not available when managing activities for other models.
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+summary Label:Default Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.shortcode
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+description Label:Description  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message_ids Label:Messages  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+source Label:Shortcut  ttype:char    required:True  compute:False  depends:False  modules:mail  help:The shortcut which must be replaced in the Chat Messages
+substitution Label:Substitution  ttype:text    required:True  compute:False  depends:False  modules:mail  help:The escaped html code replacing the shortcut
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.moderation
+
+channel_id Label:Channel  ttype:many2one  relation:mail.channel    required:True  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email Label:Email  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+status Label:Status  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.resend.cancel
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+help_message Label:Help message  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+model Label:Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.followers
+
+channel_id Label:Listener  ttype:many2one  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+partner_id Label:Related Partner  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+res_id Label:Related Document ID  ttype:many2one_reference    required:False  compute:False  depends:False  modules:mail  help:Id of the followed resource
+res_model Label:Related Document Model Name  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+subtype_ids Label:Subtype  ttype:many2many  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:Message subtypes followed, meaning subtypes that will be pushed onto the user's Wall.
+
+###mail.address.mixin
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_normalized Label:Normalized Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:This field is used to search on email address as the primary email field can contain more than strictly an email address.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.alias
+
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:mail  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:mail  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.alias.mixin
+
+alias_contact Label:Alias Contact Security  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_defaults Label:Default Values  ttype:text    required:True  compute:False  depends:False  modules:mail  help:A Python dictionary that will be evaluated to provide default values when creating new records for this alias.
+alias_domain Label:Alias domain  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+alias_force_thread_id Label:Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:True  compute:False  depends:False  modules:mail  help:False
+alias_model_id Label:Aliased Model  ttype:many2one  relation:ir.model    required:True  compute:False  depends:False  modules:mail  help:The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)
+alias_name Label:Alias Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>
+alias_parent_model_id Label:Parent Model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))
+alias_parent_thread_id Label:Parent Record Thread ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:ID of the parent record holding the alias (example: project holding the task creation alias)
+alias_user_id Label:Owner  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.compose.message
+
+active_domain Label:Active domain  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+add_sign Label:Add Sign  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+author_id Label:Author  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:Author of the message. If not set, email_from may hold an email address that did not match any partner.
+auto_delete Label:Delete Emails  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Delete sent emails (mass mailing only)
+auto_delete_message Label:Delete Message Copy  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Do not keep a copy of the email in the document communication history (mass mailing only)
+body Label:Contents  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+composition_mode Label:Composition mode  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+is_log Label:Log an Internal Note  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Whether the message is an internal note (comment mode only)
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+layout Label:Layout  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+mail_activity_type_id Label:Mail Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing mail server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:False
+message_type Label:Type  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Message type: email for email message, notification for system message, comment for other messages such as user replies
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+no_auto_thread Label:No threading for answers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Answers do not go in the original document discussion thread. This has an impact on the generated message-id.
+notify Label:Notify followers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Notify followers of the document (mass post only)
+parent_id Label:Parent Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:Initial thread message.
+partner_ids Label:Additional Contacts  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+record_name Label:Message Record Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name get of the related document.
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Reply email address. Setting the reply_to bypasses the automatic thread creation.
+res_id Label:Related Document ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+subtype_id Label:Subtype  ttype:many2one  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:False
+template_id Label:Use template  ttype:many2one  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+use_active_domain Label:Use active domain  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.resend.message
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+has_cancel Label:Has Cancel  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_message_id Label:Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+notification_ids Label:Notifications  ttype:many2many  relation:mail.notification    required:False  compute:False  depends:False  modules:mail  help:False
+partner_ids Label:Recipients  ttype:one2many  relation:mail.resend.partner    required:False  compute:False  depends:False  modules:mail  help:False
+partner_readonly Label:Partner Readonly  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###email_template.preview
+
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:You may attach files to this template, to be added to all emails created from this template
+auto_delete Label:Auto Delete  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Permanently delete this email after sending it, to save space
+body_html Label:Body  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+copyvalue Label:Placeholder Expression  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Final placeholder expression, to be copy-pasted in the desired template field.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_cc Label:Cc  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Carbon copy recipients (placeholders may be used here)
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.
+email_to Label:To (Emails)  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Comma-separated recipient addresses (placeholders may be used here)
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+lang Label:Language  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing Mail Server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:Optional preferred server for outgoing mails. If not set, the highest priority one will be used.
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+model_id Label:Applies to  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:The type of document this template can be used with
+model_object_field Label:Field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:mail  help:Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+null_value Label:Default Value  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Optional value to use if the target field is empty
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+partner_to Label:To (Partners)  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Comma-separated ids of recipient partners (placeholders may be used here)
+preview_lang Label:Template Preview Language  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+ref_ir_act_window Label:Sidebar action  ttype:many2one  relation:ir.actions.act_window    required:False  compute:False  depends:False  modules:mail  help:Sidebar action to make this template available on records of the related document model
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Preferred response address (placeholders may be used here)
+report_name Label:Report Filename  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name to use for the generated report file (may contain placeholders)
+The extension can be omitted and will then come from the report type.
+report_template Label:Optional report to print and attach  ttype:many2one  relation:ir.actions.report    required:False  compute:False  depends:False  modules:mail  help:False
+res_id Label:Sample Document  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+scheduled_date Label:Scheduled Date  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Subject (placeholders may be used here)
+sub_model_object_field Label:Sub-field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:mail  help:When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).
+sub_object Label:Sub-model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:When a relationship field is selected as first field, this field shows the document model the relationship goes to.
+use_default_to Label:Default recipients  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)
+user_signature Label:Add Signature  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, the user's signature will be appended to the text version of the message
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.template
+
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:You may attach files to this template, to be added to all emails created from this template
+auto_delete Label:Auto Delete  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Permanently delete this email after sending it, to save space
+body_html Label:Body  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+copyvalue Label:Placeholder Expression  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Final placeholder expression, to be copy-pasted in the desired template field.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_cc Label:Cc  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Carbon copy recipients (placeholders may be used here)
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.
+email_to Label:To (Emails)  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Comma-separated recipient addresses (placeholders may be used here)
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+lang Label:Language  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing Mail Server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:Optional preferred server for outgoing mails. If not set, the highest priority one will be used.
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+model_id Label:Applies to  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:The type of document this template can be used with
+model_object_field Label:Field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:mail  help:Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+null_value Label:Default Value  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Optional value to use if the target field is empty
+partner_to Label:To (Partners)  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Comma-separated ids of recipient partners (placeholders may be used here)
+ref_ir_act_window Label:Sidebar action  ttype:many2one  relation:ir.actions.act_window    required:False  compute:False  depends:False  modules:mail  help:Sidebar action to make this template available on records of the related document model
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Preferred response address (placeholders may be used here)
+report_name Label:Report Filename  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name to use for the generated report file (may contain placeholders)
+The extension can be omitted and will then come from the report type.
+report_template Label:Optional report to print and attach  ttype:many2one  relation:ir.actions.report    required:False  compute:False  depends:False  modules:mail  help:False
+scheduled_date Label:Scheduled Date  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Subject (placeholders may be used here)
+sub_model_object_field Label:Sub-field  ttype:many2one  relation:ir.model.fields    required:False  compute:False  depends:False  modules:mail  help:When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).
+sub_object Label:Sub-model  ttype:many2one  relation:ir.model    required:False  compute:False  depends:False  modules:mail  help:When a relationship field is selected as first field, this field shows the document model the relationship goes to.
+use_default_to Label:Default recipients  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)
+user_signature Label:Add Signature  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, the user's signature will be appended to the text version of the message
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.wizard.invite
+
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:List of channels that will be added as listeners of the current document.
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message Label:Message  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:List of partners that will be added as follower of the current document.
+res_id Label:Related Document ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Id of the followed resource
+res_model Label:Related Document Model  ttype:char    required:True  compute:False  depends:False  modules:mail  help:Model of the followed resource
+send_mail Label:Send Email  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, the partners will receive an email warning they have been added in the document's followers.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.channel.partner
+
+channel_id Label:Channel  ttype:many2one  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+custom_channel_name Label:Custom channel name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+fetched_message_id Label:Last Fetched  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+fold_state Label:Conversation Fold State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+is_minimized Label:Conversation is minimized  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+is_pinned Label:Is pinned on the interface  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+partner_email Label:Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+partner_id Label:Recipient  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+seen_message_id Label:Last Seen  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.tracking.value
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+field Label:Changed Field  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+field_desc Label:Field Description  ttype:char    required:True  compute:False  depends:False  modules:mail  help:False
+field_groups Label:Field Groups  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+field_type Label:Field Type  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_message_id Label:Message ID  ttype:many2one  relation:mail.message    required:True  compute:False  depends:False  modules:mail  help:False
+new_value_char Label:New Value Char  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+new_value_datetime Label:New Value Datetime  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+new_value_float Label:New Value Float  ttype:float    required:False  compute:False  depends:False  modules:mail  help:False
+new_value_integer Label:New Value Integer  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+new_value_monetary Label:New Value Monetary  ttype:float    required:False  compute:False  depends:False  modules:mail  help:False
+new_value_text Label:New Value Text  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_char Label:Old Value Char  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_datetime Label:Old Value DateTime  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_float Label:Old Value Float  ttype:float    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_integer Label:Old Value Integer  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_monetary Label:Old Value Monetary  ttype:float    required:False  compute:False  depends:False  modules:mail  help:False
+old_value_text Label:Old Value Text  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+tracking_sequence Label:Tracking field sequence  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.message
+
+add_sign Label:Add Sign  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:Attachments are linked to a document through model / res_id and to the message through this field.
+author_avatar Label:Author's avatar  ttype:binary    required:False  compute:False  depends:False  modules:mail  help:False
+author_id Label:Author  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:Author of the message. If not set, email_from may hold an email address that did not match any partner.
+body Label:Contents  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+canned_response_ids Label:Canned Responses  ttype:one2many  relation:mail.shortcode    required:False  compute:False  depends:False  modules:mail  help:False
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+child_ids Label:Child Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+date Label:Date  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.
+email_layout_xmlid Label:Layout  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+has_error Label:Has error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Has error
+has_sms_error Label:Has SMS error  ttype:boolean    required:False  compute:False  depends:False  modules:sms  help:Has error
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+letter_ids Label:Letter  ttype:one2many  relation:snailmail.letter    required:False  compute:False  depends:False  modules:snailmail  help:False
+mail_activity_type_id Label:Mail Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+mail_ids Label:Mails  ttype:one2many  relation:mail.mail    required:False  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing mail server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:False
+message_id Label:Message-Id  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Message unique identifier
+message_type Label:Type  ttype:selection    required:True  compute:False  depends:False  modules:mail, sms, snailmail  help:Message type: email for email message, notification for system message, comment for other messages such as user replies
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_status Label:Moderation Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+moderator_id Label:Moderated By  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+needaction Label:Need Action  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Need Action
+need_moderation Label:Need moderation  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+no_auto_thread Label:No threading for answers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Answers do not go in the original document discussion thread. This has an impact on the generated message-id.
+notification_ids Label:Notifications  ttype:one2many  relation:mail.notification    required:False  compute:False  depends:False  modules:mail  help:False
+notified_partner_ids Label:Partners with Need Action  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+parent_id Label:Parent Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:Initial thread message.
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+rating_ids Label:Related ratings  ttype:one2many  relation:rating.rating    required:False  compute:False  depends:False  modules:rating  help:False
+rating_value Label:Rating Value  ttype:float    required:False  compute:False  depends:False  modules:rating  help:False
+record_name Label:Message Record Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name get of the related document.
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Reply email address. Setting the reply_to bypasses the automatic thread creation.
+res_id Label:Related Document ID  ttype:many2one_reference    required:False  compute:False  depends:False  modules:mail  help:False
+snailmail_error Label:Snailmail message in error  ttype:boolean    required:False  compute:False  depends:False  modules:snailmail  help:False
+snailmail_status Label:Snailmail Status  ttype:char    required:False  compute:False  depends:False  modules:snailmail  help:False
+starred Label:Starred  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Current user has a starred notification linked to this message
+starred_partner_ids Label:Favorited By  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+subtype_id Label:Subtype  ttype:many2one  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:False
+tracking_value_ids Label:Tracking values  ttype:one2many  relation:mail.tracking.value    required:False  compute:False  depends:False  modules:mail  help:Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.notification
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+failure_reason Label:Failure reason  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+failure_type Label:Failure type  ttype:selection    required:False  compute:False  depends:False  modules:mail, sms  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+is_read Label:Is Read  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_id Label:Mail  ttype:many2one  relation:mail.mail    required:False  compute:False  depends:False  modules:mail  help:False
+mail_message_id Label:Message  ttype:many2one  relation:mail.message    required:True  compute:False  depends:False  modules:mail  help:False
+notification_status Label:Email Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+notification_type Label:Notification Type  ttype:selection    required:True  compute:False  depends:False  modules:mail, sms  help:False
+read_date Label:Read Date  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+res_partner_id Label:Needaction Recipient  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+sms_id Label:SMS  ttype:many2one  relation:sms.sms    required:False  compute:False  depends:False  modules:sms  help:False
+sms_number Label:SMS Number  ttype:char    required:False  compute:False  depends:False  modules:sms  help:False
+
+###mail.message.subtype
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+default Label:Default  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Activated by default when subscribing.
+description Label:Description  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Description that will be added in the message posted for this subtype. If void, the name will be added instead.
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+hidden Label:Hidden  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Hide the subtype in the follower options
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+internal Label:Internal Only  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Messages with internal subtypes will be visible only by employees, aka members of base_user group
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+name Label:Message Type  ttype:char    required:True  compute:False  depends:False  modules:mail  help:Message subtype gives a more precise type on the message, especially for system notifications. For example, it can be a notification related to a new record (New), or to a stage change in a process (Stage change). Message subtypes allow to precisely tune the notifications the user want to receive on its wall.
+parent_id Label:Parent  ttype:many2one  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:Parent subtype, used for automatic subscription. This field is not correctly named. For example on a project, the parent_id of project subtypes refers to task-related subtypes.
+relation_field Label:Relation field  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Field used to link the related model to the subtype model when using automatic subscription on a related document. The field is used to compute getattr(related_document.relation_field).
+res_model Label:Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Model the subtype applies to. If False, this subtype applies to all models.
+sequence Label:Sequence  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Used to order subtypes.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###mail.resend.partner
+
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email Label:Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+message Label:Help message  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+name Label:Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+partner_id Label:Partner  ttype:many2one  relation:res.partner    required:True  compute:False  depends:False  modules:mail  help:False
+resend Label:Send Again  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+resend_wizard_id Label:Resend wizard  ttype:many2one  relation:mail.resend.message    required:False  compute:False  depends:False  modules:mail  help:False
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###publisher_warranty.contract
+
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+
+================== Extended Fields ======================
+
+
+###res.partner
+
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:mail  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:mail  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+email_normalized Label:Normalized Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:This field is used to search on email address as the primary email field can contain more than strictly an email address.
+is_blacklisted Label:Blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_bounce Label:Bounce  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Counter of the number of bounced emails for this contact
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+
+###res.groups
+
+
+###ir.actions.act_window.view
+
+
+###ir.attachment
+
+
+###ir.autovacuum
+
+
+###base
+
+
+###res.company
+
+catchall Label:Catchall Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+
+###res.config.settings
+
+alias_domain Label:Alias Domain  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.
+fail_counter Label:Fail Mail  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+
+###ir.model.fields
+
+tracking Label:Enable Ordered Tracking  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:If set every modification done to this field is tracked in the chatter. Value is used to order tracking values.
+
+###ir.http
+
+
+###base.partner.merge.automatic.wizard
+
+
+###ir.model
+
+is_mail_activity Label:Mail Activity  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Whether this model supports activities.
+is_mail_blacklist Label:Mail Blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Whether this model supports blacklist.
+is_mail_thread Label:Mail Thread  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Whether this model supports messages and notifications.
+
+###base.module.uninstall
+
+
+###mail.mail
+
+add_sign Label:Add Sign  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+attachment_ids Label:Attachments  ttype:many2many  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:Attachments are linked to a document through model / res_id and to the message through this field.
+author_avatar Label:Author's avatar  ttype:binary    required:False  compute:False  depends:False  modules:mail  help:False
+author_id Label:Author  ttype:many2one  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:Author of the message. If not set, email_from may hold an email address that did not match any partner.
+auto_delete Label:Auto Delete  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Permanently delete this email after sending it, to save space
+body Label:Contents  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+body_html Label:Rich-text Contents  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Rich-text/HTML message
+canned_response_ids Label:Canned Responses  ttype:one2many  relation:mail.shortcode    required:False  compute:False  depends:False  modules:mail  help:False
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+child_ids Label:Child Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+create_date Label:Created on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+create_uid Label:Created by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+date Label:Date  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+display_name Label:Display Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_cc Label:Cc  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Carbon copy message recipients
+email_from Label:From  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.
+email_layout_xmlid Label:Layout  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+email_to Label:To  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Message recipients (emails)
+failure_reason Label:Failure Reason  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Failure reason. This is usually the exception thrown by the email server, stored to ease the debugging of mailing issues.
+has_error Label:Has error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Has error
+headers Label:Headers  ttype:text    required:False  compute:False  depends:False  modules:mail  help:False
+id Label:ID  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+__last_update Label:Last Modified on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+mail_activity_type_id Label:Mail Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+mail_ids Label:Mails  ttype:one2many  relation:mail.mail    required:False  compute:False  depends:False  modules:mail  help:False
+mail_message_id Label:Message  ttype:many2one  relation:mail.message    required:True  compute:False  depends:False  modules:mail  help:False
+mail_server_id Label:Outgoing mail server  ttype:many2one  relation:ir.mail_server    required:False  compute:False  depends:False  modules:mail  help:False
+message_id Label:Message-Id  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Message unique identifier
+message_type Label:Type  ttype:selection    required:True  compute:False  depends:False  modules:mail, sms, snailmail  help:Message type: email for email message, notification for system message, comment for other messages such as user replies
+model Label:Related Document Model  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_status Label:Moderation Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+moderator_id Label:Moderated By  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+needaction Label:Need Action  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Need Action
+need_moderation Label:Need moderation  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+no_auto_thread Label:No threading for answers  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Answers do not go in the original document discussion thread. This has an impact on the generated message-id.
+notification Label:Is Notification  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Mail has been created to notify people of an existing mail.message
+notification_ids Label:Notifications  ttype:one2many  relation:mail.notification    required:False  compute:False  depends:False  modules:mail  help:False
+notified_partner_ids Label:Partners with Need Action  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+parent_id Label:Parent Message  ttype:many2one  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:Initial thread message.
+partner_ids Label:Recipients  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+recipient_ids Label:To (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+record_name Label:Message Record Name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Name get of the related document.
+references Label:References  ttype:text    required:False  compute:False  depends:False  modules:mail  help:Message references, such as identifiers of previous messages
+reply_to Label:Reply-To  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Reply email address. Setting the reply_to bypasses the automatic thread creation.
+res_id Label:Related Document ID  ttype:many2one_reference    required:False  compute:False  depends:False  modules:mail  help:False
+scheduled_date Label:Scheduled Send Date  ttype:char    required:False  compute:False  depends:False  modules:mail  help:If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible.
+starred Label:Starred  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:Current user has a starred notification linked to this message
+starred_partner_ids Label:Favorited By  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+state Label:Status  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+subject Label:Subject  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+subtype_id Label:Subtype  ttype:many2one  relation:mail.message.subtype    required:False  compute:False  depends:False  modules:mail  help:False
+tracking_value_ids Label:Tracking values  ttype:one2many  relation:mail.tracking.value    required:False  compute:False  depends:False  modules:mail  help:Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.
+write_date Label:Last Updated on  ttype:datetime    required:False  compute:False  depends:False  modules:mail  help:False
+write_uid Label:Last Updated by  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+
+###ir.actions.server
+
+activity_date_deadline_range Label:Due Date In  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+activity_date_deadline_range_type Label:Due type  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:False
+activity_note Label:Note  ttype:html    required:False  compute:False  depends:False  modules:mail  help:False
+activity_summary Label:Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+activity_type_id Label:Activity  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_field_name Label:User field name  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Technical name of the user on the record
+activity_user_id Label:Responsible  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_type Label:Activity User Type  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Use 'Specific User' to always assign the same user on the next activity. Use 'Generic User From Record' to specify the field name of the user to choose on the record.
+channel_ids Label:Add Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+partner_ids Label:Add Followers  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+template_id Label:Email Template  ttype:many2one  relation:mail.template    required:False  compute:False  depends:False  modules:mail  help:False
+
+###res.users
+
+activity_date_deadline Label:Next Activity Deadline  ttype:date    required:False  compute:False  depends:False  modules:mail  help:False
+activity_exception_decoration Label:Activity Exception Decoration  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Type of the exception activity on record.
+activity_exception_icon Label:Icon  ttype:char    required:False  compute:False  depends:False  modules:mail  help:Icon to indicate an exception activity.
+activity_ids Label:Activities  ttype:one2many  relation:mail.activity    required:False  compute:False  depends:False  modules:mail  help:False
+activity_state Label:Activity State  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Status based on activities
+Overdue: Due date is already passed
+Today: Activity date is today
+Planned: Future activities.
+activity_summary Label:Next Activity Summary  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+activity_type_id Label:Next Activity Type  ttype:many2one  relation:mail.activity.type    required:False  compute:False  depends:False  modules:mail  help:False
+activity_user_id Label:Responsible User  ttype:many2one  relation:res.users    required:False  compute:False  depends:False  modules:mail  help:False
+alias_contact Label:Alias Contact Security  ttype:selection    required:False  compute:False  depends:False  modules:mail  help:Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+
+alias_id Label:Alias  ttype:many2one  relation:mail.alias    required:False  compute:False  depends:False  modules:mail  help:Email address internally associated with this user. Incoming emails will appear in the user's notifications.
+channel_ids Label:Channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+email_normalized Label:Normalized Email  ttype:char    required:False  compute:False  depends:False  modules:mail  help:This field is used to search on email address as the primary email field can contain more than strictly an email address.
+is_blacklisted Label:Blacklist  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list
+is_moderator Label:Is moderator  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_attachment_count Label:Attachment Count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+message_bounce Label:Bounce  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Counter of the number of bounced emails for this contact
+message_channel_ids Label:Followers (Channels)  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+message_follower_ids Label:Followers  ttype:one2many  relation:mail.followers    required:False  compute:False  depends:False  modules:mail  help:False
+message_has_error Label:Message Delivery error  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, some messages have a delivery error.
+message_has_error_counter Label:Number of errors  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages with delivery error
+message_ids Label:Messages  ttype:one2many  relation:mail.message    required:False  compute:False  depends:False  modules:mail  help:False
+message_is_follower Label:Is Follower  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:False
+message_main_attachment_id Label:Main Attachment  ttype:many2one  relation:ir.attachment    required:False  compute:False  depends:False  modules:mail  help:False
+message_needaction Label:Action Needed  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_needaction_counter Label:Number of Actions  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of messages which requires an action
+message_partner_ids Label:Followers (Partners)  ttype:many2many  relation:res.partner    required:False  compute:False  depends:False  modules:mail  help:False
+message_unread Label:Unread Messages  ttype:boolean    required:False  compute:False  depends:False  modules:mail  help:If checked, new messages require your attention.
+message_unread_counter Label:Unread Messages Counter  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:Number of unread messages
+moderation_channel_ids Label:Moderated channels  ttype:many2many  relation:mail.channel    required:False  compute:False  depends:False  modules:mail  help:False
+moderation_counter Label:Moderation count  ttype:integer    required:False  compute:False  depends:False  modules:mail  help:False
+notification_type Label:Notification  ttype:selection    required:True  compute:False  depends:False  modules:mail  help:Policy on how to handle Chatter notifications:
+- Handle by Emails: notifications are sent to your email address
+- Handle in Odoo: notifications appear in your Odoo Inbox
+out_of_office_message Label:Chat Status  ttype:char    required:False  compute:False  depends:False  modules:mail  help:False
+
+###ir.ui.view

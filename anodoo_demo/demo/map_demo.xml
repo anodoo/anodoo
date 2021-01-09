@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!-- 营销团队 -->
+        <record model="crm.team" id="team_marketing_1">
+            <field name="name">营销部一组</field>
+            <field name="team_type">marketing</field>
+            <field name="description">安欧度公司营销部一组</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        
+        <record model="crm.team" id="team_marketing_2">
+            <field name="name">营销部二组</field>
+            <field name="team_type">marketing</field>
+            <field name="description">安欧度公司营销部二组</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        
+        
+        <record model="anodoo.team.member" id="team_member_3_1">
+            <field name="team_id" ref="team_marketing_1"/>
+            <field name="user_id" ref="user_zhao_marketing"/>
+        </record>
+        <record model="anodoo.team.member" id="team_member_3_2">
+            <field name="team_id" ref="team_marketing_2"/>
+            <field name="user_id" ref="user_qian_marketing"/>
+        </record>
+        <record id="user_zhao_marketing" model="res.users">
+        	<field name="sale_team_id" ref="team_marketing_1"/>
+        </record>        
+        <record id="user_qian_marketing" model="res.users">
+        	<field name="sale_team_id" ref="team_marketing_2"/>
+        </record>
+    	
+        
+        <!-- UTM Tag -->
+        <record id="utm_tag_1" model="utm.tag">
+            <field name="name">百度</field>
+            <field name="color" eval="1"/>
+        </record>
+        
+    	<!-- UTM Campain -->
+        <record model="utm.campaign" id="utm_campaign_baidu">
+            <field name="name">百度App推广</field>
+            <field name="stage_id" ref="utm.default_utm_stage"/>
+            <field name="is_website" eval="True"/>
+            <field name="tag_ids" eval="[(4,ref('utm_tag_1'))]"/>
+            <field name="user_id" ref="user_zhao_marketing"/>
+        </record>
+        <record model="utm.campaign" id="utm_campaign_spring">
+            <field name="name">春季促销</field>
+            <field name="stage_id" ref="utm.default_utm_stage"/>
+            <field name="is_website" eval="True"/>
+            <field name="tag_ids" eval="[(4,ref('utm_tag_1'))]"/>
+            <field name="user_id" ref="user_qian_marketing"/>
+            
+        </record>
+        
+        <!-- UTM Source -->
+        <record model="utm.source" id="utm_source_baidu">
+            <field name="name">百度搜索</field>
+        </record>
+        
+        <!-- UTM Medium -->
+        <record model="utm.medium" id="utm_medium_baidu">
+            <field name="name">百度app</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,106 @@
+1	"__system__"	"base"	"user_root"
+2	"admin"	"base"	"user_admin"
+
+非激活
+3	"default"	"base"	"default_user"
+4	"public"	"base"	"public_user"
+5	"portaltemplate"	"base"	"template_portal_user_id"
+
+6	"demo"	"base"	"user_demo"
+7	"portal"	"base"	"demo_user0"
+
+
+res_groups
+
+"Internal User"  内部,门户,公共用户组  group_portal  group_user  group_public
+"Portal"
+"Public" 
+
+"Access Rights"  系统管理:设置,访问权限  group_erp_manager  
+"Settings" group_system
+
+"Multi Companies"  额外的权利  多公司,多币种,技术特性,联系人创建  group_multi_company  group_multi_currency
+"Multi Currencies"
+"Technical Features"  group_no_one
+"Contact Creation"  group_partner_manager
+
+"Access to Private Addresses"   group_private_addresses
+
+8	"Portal"	"base"	"group_portal"
+10	"Access to Private Addresses"	"base"	"group_private_addresses"
+9	"Public"	"base"	"group_public"
+1	"Internal User"	"base"	"group_user"
+
+
+3	"Settings"	"base"	"group_system"
+	2	"Access Rights"	"base"	"group_erp_manager"
+	
+	group_system "implied_ids" eval="[(4, ref('group_erp_manager'))]"/>
+	添加到group_system的users会 automatically added in the following groups.
+
+	
+4	"Multi Companies"	"base"	"group_multi_company"
+5	"Multi Currencies"	"base"	"group_multi_currency"
+6	"Technical Features"	"base"	"group_no_one"
+7	"Contact Creation"	"base"	"group_partner_manager"
+
+"sales_team"	17	"User: All Documents"	"group_sale_salesman_all_leads"	"the user will have access to all records of everyone in the sales application."
+"sales_team"	18	"Administrator"	"group_sale_manager"	"the user will have an access to the sales configuration as well as statistic reports."
+"sales_team"	16	"User: Own Documents Only"	"group_sale_salesman"	"the user will have access to his own data in the sales application."
+
+
+"account"	41	"Tax display B2C"	"group_show_line_subtotals_tax_included"	"Show line subtotals with taxes included (B2C)"
+"account"	39	"Billing"	"group_account_invoice"	
+"account"	40	"Tax display B2B"	"group_show_line_subtotals_tax_excluded"	"Show line subtotals without taxes (B2B)"
+"account"	46	"Allow to define fiscal years of more or less than a year"	"group_fiscal_year"	
+"account"	45	"Allow the cash rounding management"	"group_cash_rounding"	
+"account"	44	"A warning can be set on a partner (Account)"	"group_warning_account"	
+"account"	43	"Billing Administrator"	"group_account_manager"	
+"account"	42	"Show Full Accounting Features"	"group_account_user"	
+"analytic"	12	"Analytic Accounting"	"group_analytic_accounting"	
+"analytic"	13	"Analytic Accounting Tags"	"group_analytic_tags"	
+"anodoo_base"	58	"Anodoo管理员"	"group_anodoo_manager"	
+"anodoo_base"	57	"Anodoo用户"	"group_anodoo_user"	
+"anodoo_cust"	33	"启用客户池分配客户"	"group_use_customer_pool"	
+"anodoo_cust"	25	"启用多客户类型"	"group_use_multi_customer_type"	
+"anodoo_cust"	26	"启用多客户规模"	"group_use_multi_customer_size"	
+"anodoo_cust"	27	"启动客户生命周期管理"	"group_use_customer_lifetime"	
+"anodoo_cust"	28	"客户可以按团队分配"	"group_can_customer_belong_team"	
+"anodoo_cust"	52	"启用客户应用的用户管理"	"group_use_customer_user"	
+	
+"crm"	23	"Show Lead Menu"	"group_use_lead"	
+"product"	34	"Basic Pricelists"	"group_product_pricelist"	
+"product"	35	"Advanced Pricelists"	"group_sale_pricelist"	
+"product"	36	"Manage Product Packaging"	"group_stock_packaging"	
+"product"	37	"Manage Product Variants"	"group_product_variant"	
+"product"	38	"Discount on lines"	"group_discount_per_so_line"	
+"project"	20	"Administrator"	"group_project_manager"	
+"project"	22	"Use Rating on Project"	"group_project_rating"	
+"project"	19	"User"	"group_project_user"	
+"project"	21	"Use Subtasks"	"group_subtask_project"	
+"sale"	47	"Lock Confirmed Sales"	"group_auto_done_setting"	
+"sale"	48	"Addresses in Sales Orders"	"group_delivery_invoice_address"	
+"sale"	49	"A warning can be set on a product or a customer (Sale)"	"group_warning_sale"	
+"sale"	50	"Pro-forma Invoices"	"group_proforma_sales"	
+
+"sale_management"	51	"Quotation Templates"	"group_sale_order_template"	
+"uom"	11	"Manage Multiple Units of Measure"	"group_uom"	
+"website"	55	"Editor and Designer"	"group_website_designer"	
+"website"	53	"Multi-website"	"group_multi_website"	
+"website"	54	"Restricted Editor"	"group_website_publisher"	
+
+获取uid
+# use singleton's id if called on a non-empty recordset, otherwise context uid
+uid = self.id or self._uid
+request.uid = request.session.uid
+request.uid = request.env.ref('base.public_user').id
+
+user.has_group('base.group_id')
+
+为user增加groups
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+    </record>
+
+select a.id,a.name,b.module,b.name,a.comment from res_groups a, ir_model_data b  where b.model='res.groups' and 
+b.res_id=a.id order by b.module
