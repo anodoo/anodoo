@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 岗位级别 model_id: hr.job.level-->
+	    <record id="view_hr_job_level_form" model="ir.ui.view">
+	        <field name="name">hr.job.level.view.form</field>
+	        <field name="model">hr.job.level</field>
+	        <field name="arch" type="xml">
+	            <form string="hr_job_level">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                 </group>
+			                 <group name="group_right">
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_hr_job_level_list" model="ir.ui.view">
+	        <field name="name">hr.job.level.view.list</field>
+	        <field name="model">hr.job.level</field>
+	        <field name="arch" type="xml">
+	            <tree>
+
+	                <field name="sequence" widget="handle"/>
+	                <field name="name" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_hr_job_level_search" model="ir.ui.view">
+	        <field name="name">hr.job.level.view.search</field>
+	        <field name="model">hr.job.level</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+    </data>
+</odoo>
