@@ -7,7 +7,7 @@
     """,
 
     'description': """
-        实现产品管理,产品价格,产品促销,产品推荐
+        实现产品管理,包括产品信息，产品价格,产品单位
     """,
 
     'author': "Anodoo",
@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Anodoo',
-    'version': '13.1',
+    'version': '14.0.0', #publish at 2020-10-3
     'application': True,
     'installable': True,
 
@@ -31,7 +31,9 @@
         'data/product_data.xml',
         'security/product_security.xml',
         'security/ir.model.access.csv',
+        'views/uom_uom_views.xml',
         'views/product_views.xml',
+        'views/product_pricelist_views.xml',
         'views/res_config_settings_views.xml',
         'views/product_menu.xml',
         'views/product_templates.xml',

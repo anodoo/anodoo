@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-	<data noupdate="0">
-		<!--项目使用odoo的菜单-->
-			<menuitem id="hr_timesheet.timesheet_menu_root" name="Anodoo 工时管理" sequence="88" web_icon="anodoo_timesheet,static/description/icon.png"/>
-	</data>
-</odoo>
