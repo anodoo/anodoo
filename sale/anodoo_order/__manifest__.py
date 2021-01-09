@@ -1,43 +1,41 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "订单",
+    'name': "order",
 
     'summary': """
-        订单管理
+        order
     """,
 
     'description': """
-        订单管理
+        order
     """,
 
     'author': "Anodoo",
     'website': "http://www.anodoo.com/module/anodoo-order",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
+
     'category': 'Anodoo',
-    'version': '13.1',
+    'version': '14.0.0', #publish at 2020-10-3
     'application': True,
     'installable': True,
 
-
-    # any module necessary for this one to work correctly
     'depends': [
-        'sale_management',
+        'base',
     ],
 
-    # always loaded
     'data': [
-        'data/order_data.xml',
-        #'demo/demo.xml',#demo
         'security/order_security.xml',
         'security/ir.model.access.csv',
+
+        'data/order_data.xml',
+
         'views/order_views.xml',
-        'views/res_config_settings_views.xml',
+        'views/order_analysis_views.xml',
         'views/order_menu.xml',
         'views/order_templates.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [],
+
+    'demo': [
+        'demo/order_demo.xml',
+    ],
 }

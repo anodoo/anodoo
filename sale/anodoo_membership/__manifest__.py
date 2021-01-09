@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "会员销售",
+    'name': "membership",
 
     'summary': """
-        会员销售
+        membership
     """,
 
     'description': """
-        会员销售
+        membership
     """,
 
     'author': "Anodoo",
@@ -15,12 +15,12 @@
 
 
     'category': 'Anodoo',
-    'version': '13.1',
+    'version': '14.0.0', #publish at 2020-10-3
     'application': True,
     'installable': True,
 
     'depends': [
-        'membership'
+        'base',
     ],
 
     'data': [
