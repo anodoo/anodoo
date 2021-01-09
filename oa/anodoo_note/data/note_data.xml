@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 笔记 -->
+    	<record model="note.stage" id="note_stage_00">
+	        <field name="name">笔记</field>
+	    </record>
+	    <record model="note.stage" id="note_stage_01">
+	        <field name="name">会议纪要</field>
+	    </record>
+	    <record model="note.stage" id="note_stage_02">
+	        <field name="name">备注</field>
+	    </record>
+	    <record model="note.stage" id="note_stage_03">
+	        <field name="name">代办</field>
+	    </record>
+    </data>
+</odoo>

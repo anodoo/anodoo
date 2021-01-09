@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<menuitem id="calendar.mail_menu_calendar" name="Anodoo 日历"   sequence="3" web_icon="anodoo_calendar,static/description/icon.png"/>
+	</data>
+</odoo>
