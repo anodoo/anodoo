@@ -8,7 +8,6 @@
 			<menuitem parent="utm.menu_link_tracker_root" id="link_menu_analysis" name="分析"  sequence="90" />
 
 			<menuitem parent="utm.menu_link_tracker_root" id="link_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
-				<menuitem parent="link_menu_config" id="link_menu_config_stage" name="活动阶段" action="utm.action_view_utm_stage" />
-				<menuitem parent="link_menu_config" id="link_menu_config_tag" name="活动标签" action="utm.action_view_utm_tag" />
+
 	</data>
 </odoo>
