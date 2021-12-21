@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-	<data noupdate="0">
-		<menuitem id="hr.menu_hr_root" name="Anodoo 员工管理" sequence="86" web_icon="anodoo_employee,static/description/icon.png"/>
-	</data>
-</odoo>
