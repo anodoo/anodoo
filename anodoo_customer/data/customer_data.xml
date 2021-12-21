@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 客户类型 -->
+    	<record model="anodoo.customer.type" id="default_customer_type_company">
+	        <field name="name">公司客户</field>
+	        <field name="type">company</field>
+	        <field name="sequence">1</field>
+	        <field name="is_default">True</field>
+	        <field name="is_active">True</field>
+	        <field name="description">公司客户</field>
+	    </record>
+	    <record model="anodoo.customer.type" id="default_customer_type_person">
+	        <field name="name">个人客户</field>
+	        <field name="type">person</field>
+	        <field name="sequence">2</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">True</field>
+	        <field name="description">个人客户</field>
+	    </record>
+		<!--
+	    <record model="anodoo.customer.type" id="default_customer_type_government">
+	        <field name="name">政府客户</field>
+	        <field name="type">government</field>
+	        <field name="sequence">4</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">False</field>
+	        <field name="description">政府客户</field>
+	    </record>
+	    <record model="anodoo.customer.type" id="default_customer_type_organization">
+	        <field name="name">组织客户</field>
+	        <field name="type">organization</field>
+	        <field name="sequence">5</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">False</field>
+	        <field name="description">组织客户</field>
+	    </record>
+	    -->
+
+	    <!-- 客户规模 -->
+	    <record model="anodoo.customer.size" id="default_customer_size_strategy">
+	        <field name="name">战略客户</field>
+	        <field name="size">40</field>
+	        <field name="sequence">1</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">False</field>
+	        <field name="description">战略客户</field>
+	    </record>
+	    <record model="anodoo.customer.size" id="default_customer_size_ka">
+	        <field name="name">大客户</field>
+	        <field name="size">30</field>
+	        <field name="sequence">2</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">True</field>
+	        <field name="description">大客户</field>
+	    </record>
+	    <record model="anodoo.customer.size" id="default_customer_size_smb">
+	        <field name="name">中小客户</field>
+	        <field name="size">20</field>
+	        <field name="sequence">3</field>
+	        <field name="is_default">True</field>
+	        <field name="is_active">True</field>
+	        <field name="description">中小客户</field>
+	    </record>
+	    <record model="anodoo.customer.size" id="default_customer_size_micro">
+	        <field name="name">小微客户</field>
+	        <field name="size">10</field>
+	        <field name="sequence">4</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">False</field>
+	        <field name="description">小微客户</field>
+	    </record>
+
+	    <!-- 默认生命周期和阶段定义 -->
+	    <record model="anodoo.customer.lifetime" id="default_customer_lifetime">
+	        <field name="name">默认客户生命周期定义</field>
+	        <field name="description">如果客户没有匹配到其他的客户生命周期定义，则使用默认客户生命周期</field>
+	        <field name="sequence">0</field>
+	        <field name="is_default">True</field>
+	    </record>
+	    <record model="anodoo.customer.lifetime.stage" id="default_customer_lifetime_stage_new">
+	        <field name="name">普通客户</field>
+	        <field name="description">默认的客户阶段</field>
+	        <field name="sequence">0</field>
+	        <field name="is_default">True</field>
+	        <field name="lifetime_id" ref="default_customer_lifetime"/>
+	    </record>
+
+	    <!-- 客户的默认生命周期设置，可以在后台修改 -->
+	    <record model="ir.default" id="default_customer_lifetime_id">
+	        <field name="field_id" ref="anodoo_customer.field_res_partner__lifetime_id"/>
+	        <field name="json_value" ref="anodoo_customer.default_customer_lifetime" />
+	    </record>
+
+	    <record model="ir.default" id="res_setting_group_use_multi_customer_type">
+	        <field name="field_id" ref="anodoo_customer.field_res_config_settings__group_use_multi_customer_type"/>
+	        <field name="json_value">true</field>
+	    </record>
+    </data>
+</odoo>

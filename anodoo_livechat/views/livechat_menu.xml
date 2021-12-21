@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+				<!--即时通讯 使用odoo 自带菜单-->
+		<record id="im_livechat.menu_livechat_root" model="ir.ui.menu">
+			<field name="name">Anodoo 在线客服</field>
+			<field name="sequence">62</field>
+			<field name="web_icon">anodoo_livechat,static/description/icon.png</field>
+		</record>
+	</data>
+</odoo>

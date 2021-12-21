@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<!--  继承base, 创建crm应用的配置 -->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">anodoo.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Customer 360 Config" string="客户360" data-key="anodoo_customer" >
+
+
+	                    <div id="customer_info">
+	                    	<h2>客户信息</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="group_use_multi_customer_type" title="多客户类型支持">
+		                            <div class="o_setting_left_pane">
+		                                <field name="group_use_multi_customer_type"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="group_use_multi_customer_type"/>
+		                                <div class="text-muted">
+		                                    系统支持多种客户类型.包括公司客户,个人客户,家庭客户,政府客户等.默认情况,系统仅仅放开公司客户类型,在这里可以启动支持多客户类型,并配置启动哪些客户类型.
+		                                </div>
+		                                <div attrs="{'invisible': [('group_use_multi_customer_type','=',False)]}">
+
+                                        	<button name="%(anodoo_customer.action_anodoo_customer_type_list)d" icon="fa-arrow-right" type="action" string="管理客户类型" context="{}" class="btn-link o_web_settings_access_rights"/>
+										</div>
+		                            </div>
+		                        </div>
+		                        
+		                        
+		                        <div class="col-12 col-lg-6 o_setting_box" id="group_use_multi_customer_size" title="多客户规模支持">
+		                            <div class="o_setting_left_pane">
+		                            	<field name="group_use_multi_customer_size"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">				                                
+		                                <label for="group_use_multi_customer_size"/>
+		                                <div class="text-muted">
+		                                    系统支持多种客户规模.包括战略客户,大客户,中小客户,小微客户.不同客户规模的客户可以在信息结构的粗细度以及业务的复杂度方面进行差异化管理.如果不支持多客户规模,还可设置一个默认规模用来确定系统客户管理的粗细度等.
+		                                </div>
+										<div attrs="{'invisible': [('group_use_multi_customer_size','=',False)]}">
+
+                                        	<button name="%(anodoo_customer.action_anodoo_customer_size_list)d" icon="fa-arrow-right" type="action" string="管理客户规模" context="{}" class="btn-link o_web_settings_access_rights"/>
+										</div>
+		                            </div>
+		                        </div>				                        
+		                    </div>
+	                    </div>
+	                    
+	                    <div id="customer_lifetime">
+	                    	<h2>客户生命周期</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="group_use_customer_lifetime" title="启动客户生命周期管理">
+		                            <div class="o_setting_left_pane">
+		                                <field name="group_use_customer_lifetime"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="group_use_customer_lifetime"/>
+		                                <div class="text-muted">
+		                                    客户生命周期支持对不同的客户设置不同的生命周期阶段.并且,系统对处在潜在客户阶段,普通客户阶段,流失客户阶段,成功客户阶段的客户可以进行特别的管理.
+		                                </div>
+		                                <div attrs="{'invisible': [('group_use_customer_lifetime','=',False)]}">
+                                        	<button name="%(anodoo_customer.action_anodoo_customer_lifetime_list)d" icon="fa-arrow-right" type="action" string="管理客户生命周期" context="{}" class="btn-link o_web_settings_access_rights"/>
+										</div>
+		                            </div>
+		                        </div>		                        
+		                    </div>
+	                    </div>
+
+						<div id="customer_family">
+	                    	<h2>家庭客户</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_customer_family" title="启用家庭客户类型">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_anodoo_customer_family"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="module_anodoo_customer_family"/>
+		                                <div class="text-muted">
+		                                    启用家庭客户类型
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </div>
+
+						<div id="customer_segment">
+	                    	<h2>客户分群</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_customer_segment" title="启用客户分群管理">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_anodoo_customer_segment"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="module_anodoo_customer_segment"/>
+		                                <div class="text-muted">
+		                                    启用客户分群管理
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </div>
+	                    
+	                    <div id="customer_pool">
+	                    	<h2>客户池</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_customer_pool" title="启用客户池分配客户">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_anodoo_customer_pool"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="module_anodoo_customer_pool"/>
+		                                <div class="text-muted">
+		                                    启用客户池分配客户
+		                                </div>
+		                            </div>
+		                        </div>		                        
+		                    </div>
+	                    </div>
+	                    
+	                    <div id="customer_user">
+	                    	<h2>客户用户</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_customer_user" title="启用客户应用的用户管理">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_anodoo_customer_user"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	<label for="module_anodoo_customer_user"/>
+		                                <div class="text-muted">
+		                                    启用客户应用的用户管理
+		                                </div>
+		                            </div>
+		                        </div>		                        
+		                    </div>
+	                    </div>
+					</div>
+                </xpath>
+            </field>
+        </record>
+
+		<!-- 在anodoo customer中的菜单 -->
+        <record id="res_config_settings_action2" model="ir.actions.act_window">
+	        <field name="name">基础配置</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.config.settings</field>
+	        <field name="view_id" ref="res_config_settings_view_form"/>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	        <field name="context">{'module' : 'anodoo_customer'}</field>
+	    </record>
+	</data>
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+	
+<template id="courses_home" name="课程首页扩展" inherit_id="website_slides.courses_home">
+    <xpath expr="//t[@t-if='is_public_user']" position="before">    	
+		<t t-set="has_side_column" t-value="request.website.viewref('anodoo_elearning.toggle_category').active or has_side_column"/>
+    </xpath>
+    <xpath expr="//t[@t-if='is_public_user']/div/div/div" position="before">
+        <div class="col-12 col-md-7 col-lg-12">
+            <t t-call="anodoo_elearning.slides_home_category_small"/>
+        </div>
+    </xpath>
+    <xpath expr="//div[@id='o_wslides_home_aside_content']/div/div" position="after">
+        <div class="col-12 col-sm-6 col-lg-12">
+            <t t-call="anodoo_elearning.slides_home_category_small"/>
+            <hr class="d-sm-none d-lg-block"/>
+        </div>
+    </xpath>
+</template>
+    
+		
+<template id='slides_home_category_small' name="课程目录">
+    <div class="o_wslides_home_aside">
+    </div>
+</template>
+
+<template id="toggle_category" inherit_id="slides_home_category_small" active="True" customize_show="True" name='显示课程目录'>
+    <xpath expr="//div[hasclass('o_wslides_home_aside')]" position="inside">
+        <div class="row o_wslides_home_aside_title">
+            <div class="col">
+                <a href="/slides/all" class="float-right">所有课程</a>
+                <h5 class="m-0">课程目录</h5>
+                <hr class="mt-2 pt-2"/>
+            </div>
+        </div>
+        <div class="row">
+            <t t-if="categories">
+                <ul class="nav nav-pills flex-column mb-2">
+                    <t t-foreach="categories" t-as="c">
+                    	<t t-set="counter" t-value="[]"/>
+                        <t t-call="anodoo_elearning.categories_recursive" />
+                    </t>
+                </ul>
+            </t>
+            <t t-else=""><p class="col mt8">没有课程目录</p></t>
+        </div>
+    </xpath>
+</template>
+
+<template id="categories_recursive" name="Category list">
+    <li class="nav-item">
+        <a t-attf-href="/slides/category/#{c.id}" t-attf-class="nav-link  #{'active' if c.id == category.id else ''}">
+             <t t-foreach="counter" t-as="i">
+             	<span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>    
+             </t>
+             <span t-if="c.child_id" class="fa fa-folder-open-o">  </span>
+             <span t-else="" class="fa fa-folder-o"></span>             
+             <span t-field="c.name"/>
+        </a>
+        <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy">
+        	<t t-set="counter" t-value="counter+[0]"/>
+            <t t-foreach="c.child_id" t-as="c">            	
+                <t t-call="anodoo_elearning.categories_recursive" />
+            </t>
+        </ul>
+    </li>
+</template>
+    
+	</data>
+</odoo>

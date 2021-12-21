@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 门户 model_id: anodoo.portal-->
+	    <record id="view_anodoo_portal_form" model="ir.ui.view">
+	        <field name="name">anodoo.portal.view.form</field>
+	        <field name="model">anodoo.portal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_portal">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="code" />
+			                     <field name="active" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="is_default" />
+			                     <field name="view_id" />
+			                     <field name="group_id" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_portal_list" model="ir.ui.view">
+	        <field name="name">anodoo.portal.view.list</field>
+	        <field name="model">anodoo.portal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="code" />
+	                <field name="is_default" />
+	                <field name="view_id" />
+	                <field name="group_id" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_portal_search" model="ir.ui.view">
+	        <field name="name">anodoo.portal.view.search</field>
+	        <field name="model">anodoo.portal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

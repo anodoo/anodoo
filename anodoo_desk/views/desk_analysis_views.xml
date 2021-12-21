@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<record id="desk_ticket_view_graph_analysis" model="ir.ui.view">
+			<field name="name">desk.ticket.graph.analysis</field>
+			<field name="model">anodoo.desk.ticket</field>
+			<field name="arch" type="xml">
+				<graph string="Desk Ticket Analysis" stacked="True" type="line">
+					<field name="user_id" type="row"/>
+					<field name="stage_id" type="col"/>
+				</graph>
+			</field>
+		</record>
+
+		<record id="desk_ticket_view_pivot_analysis" model="ir.ui.view">
+			<field name="name">desk.ticket.pivot.analysis</field>
+			<field name="model">anodoo.desk.ticket</field>
+			<field name="arch" type="xml">
+				<pivot string="Desk Ticket Analysis">
+					<field name="user_id" type="row"/>
+					<field name="stage_id" type="col"/>
+				</pivot>
+			</field>
+		</record>
+
+		<!-- 普通的工单分析 -->
+
+		<record id="desk_ticket_view_search_analysis" model="ir.ui.view">
+			<field name="name">desk.ticket.search</field>
+			<field name="model">anodoo.desk.ticket</field>
+			<field name="arch" type="xml">
+				<search string="Tickets Search">
+					<field name="name"/>
+					<field name="type_id"/>
+					<field name="user_id"/>
+
+					<filter string="我的工单" domain="[('user_id','=',uid)]" name="my_ticket"/>
+					<filter string="未分配工单" domain="[('user_id','=',False)]" name="unassigned"/>
+					<separator/>
+					<filter string="开放工单" domain="[('stage_id.is_close','=',False)]" name="is_open"/>
+					<filter string="关闭工单" domain="[('stage_id.is_close','=',True)]" name="is_close"/>
+					<filter string="归档工单" domain="[('active','=',False)]" name="archive"/>
+					<separator/>
+					<group expand="0" string="Group By">
+					  <filter string="负责人" name="assignee" context="{'group_by':'user_id'}"/>
+					  <filter string="工单类型" name="type_id" context="{'group_by':'type_id'}"/>
+					  <filter string="创建时间" context="{'group_by':'create_date:week'}" name="group_by_create_date"/>
+					  <filter string="首次分配时间" context="{'group_by': 'assign_date:month'}" name="group_by_assign_date"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+        <record id="desk_ticket_analysis_action" model="ir.actions.act_window">
+		   <field name="name">工单分析</field>
+		   <field name="res_model">anodoo.desk.ticket</field>
+		   <field name="view_mode">pivot,graph</field>
+			<field name="view_ids"
+				   eval="[(5, 0, 0),
+						  (0, 0, {'view_mode': 'graph', 'view_id': ref('desk_ticket_view_graph_analysis')}),
+						  (0, 0, {'view_mode': 'pivot', 'view_id': ref('desk_ticket_view_pivot_analysis')})]"/>
+			<field name="search_view_id" ref="desk_ticket_view_search_analysis"/>
+			<field name="context">{'search_default_my_ticket': True}</field>
+		</record>
+
+		<!--关闭工单分析-->
+
+		<record id="desk_ticket_view_search_analysis_closed" model="ir.ui.view">
+			<field name="name">desk.ticket.search</field>
+			<field name="model">anodoo.desk.ticket</field>
+			<field name="arch" type="xml">
+				<search string="Tickets Search">
+					<field name="name"/>
+					<field name="type_id"/>
+					<field name="user_id"/>
+
+					<filter string="我的工单" domain="[('user_id','=',uid)]" name="my_ticket"/>
+					<filter string="未分配工单" domain="[('user_id','=',False)]" name="unassigned"/>
+					<separator/>
+					<filter string="归档工单" domain="[('active','=',False)]" name="archive"/>
+					<separator/>
+
+
+
+
+					<group expand="0" string="Group By">
+					  <filter string="负责人" name="assignee" context="{'group_by':'user_id'}"/>
+					  <filter string="工单类型" name="type_id" context="{'group_by':'type_id'}"/>
+					  <filter string="创建时间" context="{'group_by':'create_date:week'}" name="group_by_create_date"/>
+					  <filter string="首次分配时间" context="{'group_by': 'assign_date:month'}" name="group_by_assign_date"/>
+						<filter string="关闭时间" context="{'group_by':'close_date:week'}" name="group_by_close_date"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="desk_ticket_analysis_closed_action" model="ir.actions.act_window">
+			<field name="name">关闭工单分析</field>
+			<field name="res_model">anodoo.desk.ticket</field>
+			<field name="view_mode">pivot,graph</field>
+			<field name="search_view_id" ref="desk_ticket_view_search_analysis_closed"/>
+			<field name="domain">[('stage_id.is_close','=',True)]</field>
+			<field name="view_ids"
+					   eval="[(5, 0, 0),
+							  (0, 0, {'view_mode': 'pivot', 'view_id': ref('desk_ticket_view_pivot_analysis')}),
+							  (0, 0, {'view_mode': 'graph', 'view_id': ref('desk_ticket_view_graph_analysis')}),
+							  ]"/>
+			<field name="context">{'search_default_my_ticket': True}</field>
+		</record>
+
+
+		<!--
+		<record id="desk_ticket_action_7days_analysis" model="ir.actions.act_window">
+			<field name="name">Closed Tickets Analysis</field>
+			<field name="res_model">desk.ticket</field>
+			<field name="view_mode">pivot,graph</field>
+			<field name="search_view_id" ref="desk_ticket_view_search_analysis_closed"/>
+			<field name="domain" eval="[('close_date', '>=', (DateTime.today() - relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+			<field name="view_ids"
+					   eval="[(5, 0, 0),
+							  (0, 0, {'view_mode': 'graph', 'view_id': ref('desk_ticket_view_graph_analysis')}),
+							  (0, 0, {'view_mode': 'pivot', 'view_id': ref('desk_ticket_view_pivot_analysis')})]"/>
+			<field name="context">{'search_default_my_ticket': True, 'search_default_close': True}</field>
+		</record>
+		-->
+	</data>
+</odoo>

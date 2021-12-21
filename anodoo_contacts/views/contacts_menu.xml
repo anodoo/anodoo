@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="action_anodoo_relation_contact_list" model="ir.actions.act_window">
+	        <field name="name">联系人与联系人关系</field>
+	        <field name="res_model">anodoo.contact.relation.contact</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<record id="contacts.action_contacts" model="ir.actions.act_window">
+			<field name="domain">[('type', '=', 'contact')]</field>
+		</record>
+
+		<record id="action_contact_person_list" model="ir.actions.act_window">
+			<field name="name">个人联系人</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_mode">kanban,tree,form,activity</field>
+			<field name="context">{'default_is_company':False}</field>
+			<field name="domain">[('type', '=', 'contact'), ('is_company', '=', False)]</field>
+			<field name="search_view_id" ref="base.view_res_partner_filter"/>
+		</record>
+		<record id="action_contact_company_list" model="ir.actions.act_window">
+			<field name="name">公司联系人</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_mode">kanban,tree,form,activity</field>
+			<field name="context">{'default_is_company':True}</field>
+			<field name="domain">[('type', '=', 'contact'), ('is_company', '=', True)]</field>
+			<field name="search_view_id" ref="base.view_res_partner_filter"/>
+		</record>
+
+		<record id="action_contact_address_list" model="ir.actions.act_window">
+			<field name="name">地址</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="context">{'default_is_company':False}</field>
+			<field name="domain">[('type', '!=', 'contact')]</field>
+			<field name="search_view_id" ref="base.view_res_partner_filter"/>
+		</record>
+
+		<menuitem id="contacts.menu_contacts" name="Anodoo 联系人360" sequence="20" web_icon="anodoo_contacts,static/description/icon.png"/>
+
+				<!-- 注入到contacts.res_partner_menu_contacts-->
+				<menuitem parent="contacts.res_partner_menu_contacts" id="contacts_menu_all" name="所有联系人" action="contacts.action_contacts"/>
+				<menuitem parent="contacts.res_partner_menu_contacts" id="contacts_menu_contact" name="个人联系人" action="action_contact_person_list"/>
+				<menuitem parent="contacts.res_partner_menu_contacts" id="contacts_menu_contact_company" name="公司联系人" action="action_contact_company_list"/>
+
+			<menuitem parent="contacts.menu_contacts" id="contacts_address_list" name="地址簿" sequence="40" action="action_contact_address_list"/>
+
+			<menuitem parent="contacts.menu_contacts" id="contacts_anodoo_contact" name="联系人关系" sequence="50" action="action_anodoo_relation_contact_list"/>
+
+
+
+			<menuitem parent="contacts.menu_contacts" id="contacts_menu_analysis" name="分析" sequence="90"/>
+
+			<!-- 注入到contacts.res_partner_menu_config -->
+			<menuitem parent="contacts.menu_contacts" id="contacts.res_partner_menu_config" name="设置" sequence="100"/>
+
+
+				<menuitem parent="contacts.res_partner_menu_config" id="contacts_menu_config_settings" name="基本配置" action="res_config_settings_action" sequence="0"/>
+
+
+	</data>
+</odoo>

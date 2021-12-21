@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_blog_post_series_user,anodoo.blog.post.series.user,model_anodoo_blog_post_series,base.group_user,1,1,1,1
+access_anodoo_blog_post_series_public,anodoo.blog.post.series.public,model_anodoo_blog_post_series,,1,0,0,0
+
+

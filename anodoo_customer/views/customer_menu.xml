@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="action_anodoo_relation_customer_list" model="ir.actions.act_window">
+	        <field name="name">客户与客户关系</field>
+	        <field name="res_model">anodoo.customer.relation.customer</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<record id="action_customer_create" model="ir.actions.act_window">
+	        <field name="name">创建客户</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_customer_form"></field>
+	        <field name="context">{'default_customer_rank': 1, 'default_user_id':uid}</field>
+	    </record>
+	    <record id="action_customer_prospect_list" model="ir.actions.act_window">
+	        <field name="name">潜在客户</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">kanban,tree,form</field>
+	        <field name="context">{'customer_search_mode' : 'customer_my', 'default_customer_rank': 1}</field>
+	        <field name="domain">[('customer_rank', '&gt;', 0), ('is_prospect', '=', True)]</field>
+	        <field name="search_view_id" ref="view_customer_prospect_search"/>
+	    </record>
+	    <record id="action_customer_losing_list" model="ir.actions.act_window">
+	        <field name="name">流失客户</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">kanban,tree,form</field>
+	        <field name="context">{'customer_search_mode' : 'customer_my', 'default_customer_rank': 1}</field>
+	        <field name="domain">[('customer_rank', '&gt;', 0), ('is_losing', '=', True)]</field>
+	        <field name="search_view_id" ref="view_customer_prospect_search"/>
+	    </record>
+	    <record id="action_customer_success_list" model="ir.actions.act_window">
+	        <field name="name">成功客户</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">kanban,tree,form</field>
+	        <field name="context">{'customer_search_mode' : 'customer_my',  'default_customer_rank': 1}</field>
+	        <field name="domain">[('customer_rank', '&gt;', 0), ('is_success', '=', True)]</field>
+	        <field name="search_view_id" ref="view_customer_prospect_search"/>
+	    </record>
+
+		<!-- 参考：action_partner_form-->
+
+		<record id="action_customer_list" model="ir.actions.act_window">
+	        <field name="name">所有客户</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">kanban,tree,activity,form</field>
+	        <field name="context">{'default_customer_rank': 1, 'default_user_id':uid}</field>
+	        <field name="domain">[('customer_rank', '&gt;', 0)]</field>
+	        <field name="search_view_id" ref="view_customer_search"/>
+	    </record>
+
+		<record id="action_customer_my_list" model="ir.actions.act_window">
+	        <field name="name">我的客户</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.partner</field>
+	        <field name="view_mode">kanban,tree,activity,form</field>
+	        <field name="context">{'customer_search_mode' : 'customer_my',  'default_customer_rank': 1, 'default_user_id':uid}</field>
+	        <field name="domain">[('customer_rank', '&gt;', 0)]</field>
+	        <field name="search_view_id" ref="view_customer_search"/>
+	    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	<menuitem id="customer_menu_root_anodoo" name="Anodoo 客户360" sequence="21" web_icon="anodoo_customer,static/description/icon.png"/>
+			<menuitem parent="customer_menu_root_anodoo" id="customer_menu_info" name="客户信息" />
+    			<menuitem parent="customer_menu_info" id="customer_menu_info_customer" name="所有客户" action="action_customer_list"/>
+				<menuitem parent="customer_menu_info" id="customer_menu_info_customer_my" name="我的客户" action="action_customer_my_list"/>
+				<menuitem parent="customer_menu_info" id="customer_menu_info_customer_create" name="创建客户" action="action_customer_create"/>
+
+			<menuitem parent="customer_menu_root_anodoo" id="customer_menu_lifetime" name="生命周期" groups="anodoo_customer.group_use_customer_lifetime"/>
+				<menuitem parent="customer_menu_lifetime" id="customer_menu_lifetime_prospect" name="潜在客户" action="action_customer_prospect_list"/>
+				<menuitem parent="customer_menu_lifetime" id="customer_menu_lifetime_losing" name="流失客户" action="action_customer_losing_list"/>
+				<menuitem parent="customer_menu_lifetime" id="customer_menu_lifetime_success" name="成功客户" action="action_customer_success_list"/>
+	
+
+
+
+			<menuitem parent="customer_menu_root_anodoo" id="customer_menu_anodoo_customer" name="客户关系" sequence="20" action="action_anodoo_relation_customer_list"/>
+
+		<menuitem parent="customer_menu_root_anodoo" id="customer_menu_analysis" name="分析"  sequence="90" />
+			
+		<menuitem parent="customer_menu_root_anodoo" id="customer_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+			<menuitem parent="customer_menu_config" id="customer_menu_config_setting" name="基本配置" action="res_config_settings_action2"/>
+	
+			<menuitem parent="customer_menu_config" id="customer_menu_config_info" name="客户信息" />
+				<menuitem parent="customer_menu_config_info" id="customer_menu_config_info_anodoo_customer_type" name="客户类型" action="action_anodoo_customer_type_list" groups="anodoo_customer.group_use_multi_customer_type"/>
+				<menuitem parent="customer_menu_config_info" id="customer_menu_config_info_anodoo_customer_size" name="客户规模" action="action_anodoo_customer_size_list" groups="anodoo_customer.group_use_multi_customer_size"/>
+				<menuitem parent="customer_menu_config_info" id="customer_menu_config_customer_bank" name="客户银行" action="base.action_res_bank_form" />
+				<menuitem parent="customer_menu_config_info" id="customer_menu_config_customer_bankaccount" name="银行账号" action="base.action_res_partner_bank_account_form"/>
+			<menuitem parent="customer_menu_config" id="customer_menu_config_lifetime" name="生命周期" groups="anodoo_customer.group_use_customer_lifetime"/>
+				<menuitem parent="customer_menu_config_lifetime" id="customer_menu_config_lifetime_anodoo_customer_lifetime" name="客户生命周期" action="action_anodoo_customer_lifetime_list"/>
+
+
+	</data>
+</odoo>

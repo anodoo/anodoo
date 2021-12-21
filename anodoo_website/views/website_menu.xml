@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--website的根目录沿用odoo的-->
+	    <menuitem id="website.menu_website_configuration" name="Anodoo 网站" sequence="71" web_icon="anodoo_website,static/description/icon.png"/>
+
+	</data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--安装了此模块，替代utm的菜单。另外link_tracker模块的菜单也是注入到utm这里 -->
+		<menuitem id="campaign_menu_root_anodoo"  name="Anodoo 营销活动" sequence="30" web_icon="anodoo_campaign,static/description/icon.png"/>
+
+
+			<menuitem parent="campaign_menu_root_anodoo" id="campaign_menu_list" name="营销活动"  sequence="10" action="utm.utm_campaign_action"/>
+
+			<menuitem parent="campaign_menu_root_anodoo" id="campaign_menu_analysis" name="分析"  sequence="90" />
+
+			<menuitem parent="campaign_menu_root_anodoo" id="campaign_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+				<menuitem parent="campaign_menu_config" id="campaign_menu_config_stage" name="活动阶段" action="utm.action_view_utm_stage" />
+				<menuitem parent="campaign_menu_config" id="campaign_menu_config_tag" name="活动标签" action="utm.action_view_utm_tag" />
+	</data>
+</odoo>

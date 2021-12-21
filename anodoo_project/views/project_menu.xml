@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 
+	<record id="project.open_view_project_all" model="ir.actions.act_window">
+		<field name="domain">[('project_type', '=', 'common')]</field>
+	</record>
+	 -->
+	<data noupdate="0">
+		<!-- 动作 project.stage-->
+		<record id="action_project_stage_list" model="ir.actions.act_window">
+	        <field name="name">项目阶段</field>
+	        <field name="res_model">project.stage</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+		<!-- 动作 project.type-->
+		<record id="action_project_type_list" model="ir.actions.act_window">
+	        <field name="name">项目类型</field>
+	        <field name="res_model">project.type</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+
+
+  		<!--项目使用odoo的菜单-->
+			<menuitem id="project.menu_main_pm" name="Anodoo 项目管理" sequence="87" web_icon="anodoo_project,static/description/icon.png"/>
+
+
+			<!--parent is menu_project_config-->
+       	 		<menuitem id="cust_menu_config_segment_project_stage" name="项目阶段" parent="project.menu_project_config" sequence="10" action="action_project_stage_list"/>
+				<menuitem id="cust_menu_config_segment_project_type" name="项目类型" parent="project.menu_project_config" sequence="10" action="action_project_type_list"/>
+	</data>
+</odoo>

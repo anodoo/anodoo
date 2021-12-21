@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<!-- 动作 anodoo.customer.user-->
+		<record id="action_anodoo_customer_user_list" model="ir.actions.act_window">
+	        <field name="name">客户用户</field>
+	        <field name="res_model">anodoo.customer.user</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+	    <!-- 动作 anodoo.customer.user.operation-->
+		<record id="action_anodoo_customer_user_operation_list" model="ir.actions.act_window">
+	        <field name="name">用户操作</field>
+	        <field name="res_model">anodoo.customer.user.operation</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+			<menuitem parent="anodoo_customer.customer_menu_root_anodoo" id="customer_menu_user" name="用户"/>
+				<menuitem parent="customer_menu_user" id="customer_menu_user_anodoo_customer_application" name="客户应用" action="action_anodoo_customer_application_list"/>
+				<menuitem parent="customer_menu_user" id="customer_menu_user_anodoo_customer_user" name="客户用户" action="action_anodoo_customer_user_list" />
+				<menuitem parent="customer_menu_user" id="customer_menu_user_anodoo_customer_user_operation" name="用户操作" action="action_anodoo_customer_user_operation_list"/>
+
+	</data>
+</odoo>

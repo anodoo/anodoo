@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="promotion_menu_root_anodoo" name="Anodoo 促销管理" sequence="34" web_icon="anodoo_promotion,static/description/icon.png"/>
+    		<menuitem parent="promotion_menu_root_anodoo" id="promotion_menu_promotion_coupon" name="优惠券" action="coupon.coupon_program_action_coupon_program" />
+    		<menuitem parent="promotion_menu_root_anodoo" id="promotion_menu_promotion_promote" name="促销活动" action="coupon.coupon_program_action_promo_program" />
+
+		<menuitem parent="promotion_menu_root_anodoo" id="promotion_menu_analysis" name="分析"  sequence="90"/>
+
+    	<menuitem parent="promotion_menu_root_anodoo" id="promotion_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+	</data>
+</odoo>

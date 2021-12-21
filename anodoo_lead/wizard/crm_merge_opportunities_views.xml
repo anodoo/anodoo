@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+        <!-- Merge Opportunities  -->
+        <!-- 
+        <record id="merge_opportunity_form" model="ir.ui.view">
+            <field name="name">crm.merge.opportunity.form</field>
+            <field name="model">crm.merge.opportunity</field>
+            <field name="inherit_id" ref="crm.merge_opportunity_form"/> 
+            <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='user_id']" position="before">
+	        		<field name="owner_type" class="oe_inline"/>
+	                <field name="owner_team_id" class="oe_inline" attrs="{'invisible': [('owner_type','==', 'user')]}"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('owner_type','==', 'team')]}</attribute>
+               	</xpath>
+               	<xpath expr="//field[@name='team_id']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+               	</xpath>
+            </field>
+        </record>
+		 -->
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="crm_lead_view_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.form</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='stage_id']" position="after">
+	        		<field name="lead_stage_id" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}"
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            attrs="{'invisible': ['|', ('active', '=', False), ('type', '=', 'opportunity')]}"/>
+	        	</xpath>
+	        	<xpath expr="//button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="attributes">
+	        		<attribute name="attrs">{'invisible': ['|','|',('can_convert', '=', False), ('type', '=', 'opportunity'), ('active', '=', False)]}</attribute>
+	        	</xpath>
+
+                <xpath expr="//button[@name='%(crm.crm_lead_lost_action)d']" position="attributes">
+	        		<attribute name="context">{'default_lead_id': active_id, 'default_is_for_lead':True}</attribute>
+	        	</xpath>
+	        	<xpath expr="//button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="after">
+	        		<field name="is_lead_qualify" invisible="1"/>
+	        		<field name="can_convert" invisible="1"/>
+	                <button string="认定线索通过" name="qualify_lead_success" type="object" class="btn btn-secondary"
+	                title="线索认定通过" attrs="{'invisible':[('is_lead_qualify', '=', False)]}"/>
+	                <button string="认定线索不通过" name="%(anodoo_lead.action_anodoo_lead_qualify_lost)d"
+                            type="action" class="btn btn-secondary" context="{}" attrs="{'invisible':[('is_lead_qualify', '=', False)]}"/>
+
+	            </xpath>
+	            <xpath expr="//div[hasclass('col')][1]" position="attributes">
+	        		<attribute name="attrs">{}</attribute>
+	        	</xpath>
+	            <xpath expr="//label[@for='contact_name']" position="before">
+	                <field name="contact_id" widget="res_partner_many2one" />
+	            </xpath>
+	            <xpath expr="//field[@name='user_id']" position="before">
+	                <field name="lead_lifetime_id"  attrs="{'invisible':[('type', '=', 'opportunity')]}" />
+	                <!--
+	                <field name="owner_type"/>
+	                <field name="owner_team_id" attrs="{'invisible': [('owner_type','==', 'user')]}"/>
+	                 -->
+	            </xpath>
+	            <!--
+	            <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('owner_type','==', 'team')]}</attribute>
+               	</xpath>
+               	<xpath expr="//field[@name='team_id']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+               	</xpath>
+               	-->
+               	<xpath expr="//field[@name='partner_id']" position="attributes">
+	                <attribute name="groups"></attribute>
+	            </xpath>
+	        </field>
+	    </record>
+
+	    <!--
+	    <record id="crm_case_tree_view_leads" model="ir.ui.view">
+            <field name="name">crm.lead.tree.lead</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//tree" position="replace">
+            	<tree string="Leads" decoration-bf="message_needaction==True" decoration-muted="probability == 100">
+	                <field name="date_deadline" invisible="1"/>
+                    <field name="create_date" optional="show"/>
+                    <field name="name" string="线索"/>
+                    <field name="partner_name" optional="show"/>
+                    <field name="contact_name" optional="show"/>
+                    <field name="email_from" optional="show"/>
+                    <field name="phone" optional="show"/>
+                    <field name="city" optional="show"/>
+                    <field name="owner_type" optional="show"/>
+                    <field name="owner_team_id" optional="show"/>
+                    <field name="user_id" optional="show"/>
+                    <field name="probability" optional="show"/>
+                    <field name="priority" optional="show"/>
+                    <field name="stage_id"/>
+                    <field name="message_needaction" invisible="1"/>
+                </tree>
+	            </xpath>
+            </field>
+        </record>
+         -->
+    </data>
+</odoo>

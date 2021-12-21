@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Email template for email validation (for karma purpose) -->
+        <record id="website_profile.validation_email" model="mail.template">
+            <field name="name">社区确认邮件模板</field>
+            <field name="subject">${object.company_id.name} 社区中心确认邮件</field>
+            <field name="body_html" type="html">
+<table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+<tbody>
+    <!-- HEADER -->
+    <tr>
+        <td align="center" style="min-width: 590px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                <tr>
+                    <td valign="middle">
+                        <span style="font-size: 20px; font-weight: bold;">
+                            ${object.company_id.name} 社区中心确认
+                        </span>
+                    </td>
+                    <td valign="middle" align="right">
+                        <img src="/logo.png?company=${user.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- CONTENT -->
+    <tr>
+        <td align="center" style="min-width: 590px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                <tr>
+                    <td valign="top" style="font-size: 13px;">
+                        <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                            您好 ${object.name},<br /><br />
+                            欢迎您访问并注册${object.company_id.name}的网站.为了更好地使用社区中心的服务,我们邀请您对您的邮箱进行确认.
+                            <br/>
+                            确认邮箱清点击下方链接:
+                            <div style="margin: 16px 0px 16px 0px;">
+                                <a href="${ctx.get('token_url')}"
+                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                    确认我的账户
+                                </a>
+                            </div>
+                            谢谢您的参与!
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">
+                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td align="center" style="min-width: 590px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style=" font-family: 'Verdana Regular'; color: #454748; min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                <tr>
+                    <td valign="middle" align="left">
+                         ${user.company_id.name}
+                    </td>
+                    <td valign="middle" align="right" style="opacity: 0.7;">
+                        ${user.company_id.phone}
+                        % if user.company_id.email:
+                            | <a href="'mailto:%s' % ${user.company_id.email}" style="text-decoration:none; color: #454748;">
+                                ${user.company_id.email}
+                            </a>
+                        % endif
+                        % if user.company_id.website:
+                            | <a href="${user.company_id.website}" style="text-decoration:none; color: #454748;">
+                                ${user.company_id.website}
+                            </a>
+                        % endif
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</tbody>
+</table>
+</td></tr>
+</table>
+            </field>
+        </record>
+    </data>
+</odoo>

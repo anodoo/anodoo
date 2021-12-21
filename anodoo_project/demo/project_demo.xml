@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 项目阶段
+        <record id="project_stage_1" model="project.stage">
+        	<field name="name">两年内无交易</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        	<field name="users" eval="[(4,ref('user_zhao_customer'))]"/>
+        	<field name="label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_12'), ref('anodoo_customer_label_category_00')])]"/>
+        </record>
+        -->
+
+        <!-- 项目类型
+        <record id="project_type_1" model="project.type">
+        	<field name="name">两年内无交易</field>
+        	<field name="category_id" ref="anodoo_customer_label_category_2"/>
+        	<field name="users" eval="[(4,ref('user_zhao_customer'))]"/>
+        	<field name="label_ids" eval="[(6, 0, [ref('anodoo_customer_label_category_12'), ref('anodoo_customer_label_category_00')])]"/>
+        </record>
+        -->
+    </data>
+</odoo>

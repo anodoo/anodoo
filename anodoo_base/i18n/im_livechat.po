@@ -1,0 +1,6 @@
+#. module: im_livechat
+#. openerp-web
+#: code:addons/im_livechat/static/src/js/im_livechat.js:0
+#, python-format
+msgid "Conversation Sent"
+msgstr "成功发送"

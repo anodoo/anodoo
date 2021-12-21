@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	
+	    <record id="view_translation_tree" model="ir.ui.view">
+            <field name="model">ir.translation</field>
+            <field name="inherit_id" ref="base.view_translation_tree"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='state']" position="after">
+
+                    <field name="module"/>
+                    <field name="res_id"/>
+	        	</xpath>
+            </field>
+        </record>
+	    
+	</data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    	<record id="edit_menu_access" model="ir.ui.view">
+    		<field name="model">view_anodoo_menu_form</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='sequence']" position="after">
+	        		<field name="is_root_display"/>	
+	        		<field name="external_id"/>	
+	        	</xpath>
+            </field>
+        </record>
+        <record id="edit_menu" model="ir.ui.view">
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu"/> 
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='complete_name']" position="after">
+            		<field name="action"/>
+            		<field name="web_icon"/>	
+	        		<field name="is_root_display"/>	
+	        		<field name="external_id"/>	
+	        	</xpath>
+            </field>
+        </record>
+        <record id="edit_menu_access_search" model="ir.ui.view">
+            <field name="name">ir.ui.menu.search</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access_search"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='parent_id']" position="after">
+            		<field name="external_id"/>
+	        	</xpath>
+            	<xpath expr="//filter[@name='inactive']" position="after">
+            		<separator/>
+            		<filter string="根菜单" name="is_root" domain="[('parent_id', '=', False)]"/>
+	        	</xpath>
+            </field>
+        </record>
+        
+        <!-- 菜单 -->
+        <record id="base.grant_menu_access" model="ir.actions.act_window">
+            <field name="context">{'ir.ui.menu.full_list':True, 'search_default_is_root':1}</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 目标模型 model_id: anodoo.sales.goal.model-->
+	    <record id="view_anodoo_sales_goal_model_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.model.view.form</field>
+	        <field name="model">anodoo.sales.goal.model</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal_model">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="model_id" />
+
+			                     <field name="field_id" />
+
+			                     <field name="compute_type" />
+			                 </group>
+			                 <group name="group_bottom" colspan="4">
+			                 	<field name="model_name" invisible="1"/>
+			                 	<field name="compute_domain" widget="domain" options="{'model': 'model_name'}"/>
+			                     <field name="dimension_field_ids" context="{'default_goal_model_id': id, 'default_model_id': model_id}">
+			                     	<tree>
+						                <field name="dimension_id" />
+						                <field name="model_id"/>
+						                <field name="field_id" />
+						            </tree>
+			                     </field>
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_model_list" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.model.view.list</field>
+	        <field name="model">anodoo.sales.goal.model</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+                    <field name="model_id" />
+                    <field name="field_id" />
+                    <field name="compute_domain" />
+                    <field name="compute_type" />
+	                <field name="sequence" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_model_search" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.model.view.search</field>
+	        <field name="model">anodoo.sales.goal.model</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_model_id"  string="业务对象" context="{'group_by':'model_id'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 销售目标 model_id: anodoo.sales.goal.breakdown.dimension.field-->
+	    <record id="view_anodoo_sales_goal_breakdown_dimension_field_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.dimension.field.view.form</field>
+	        <field name="model">anodoo.sales.goal.breakdown.dimension.field</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal_breakdown_dimension_field">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="goal_model_id" />
+			                     <field name="dimension_id" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="model_id" />
+			                     <field name="field_id" />
+			                     <field name="relate_field_info" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+
+	    <!-- 目标阶段 model_id: anodoo.sales.goal.state-->
+	    <record id="view_anodoo_sales_goal_state_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.state.view.form</field>
+	        <field name="model">anodoo.sales.goal.state</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal_state">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="fold" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_state_list" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.state.view.list</field>
+	        <field name="model">anodoo.sales.goal.state</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="fold" />
+	                <field name="sequence" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_state_search" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.state.view.search</field>
+	        <field name="model">anodoo.sales.goal.state</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 目标分解纬度 model_id: anodoo.sales.goal.breakdown.dimension-->
+	    <record id="view_anodoo_sales_goal_breakdown_dimension_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.dimension.view.form</field>
+	        <field name="model">anodoo.sales.goal.breakdown.dimension</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal_breakdown_dimension">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="dimension_type" />
+			                 </group>
+			                 <group name="group_right">
+			                 	<field name="parent_id"/>
+			                     <field name="business_type" attrs="{'invisible': [('dimension_type', '=', 'datetime')]}"/>
+			                     <field name="datetime_type" attrs="{'invisible': [('dimension_type', '=', 'business')]}"/>
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+							<page name="child_ids" string="子分解纬度" autofocus="autofocus">
+							    <field name="child_ids" context="{'parent_id': id, 'default_parent_id': id}">
+			                     	<tree>
+						                <field name="name" />
+						                <field name="dimension_type" />
+						                <field name="business_type" />
+						                <field name="datetime_type" />
+						            </tree>
+			                     </field>
+							</page>
+						</notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_breakdown_dimension_list" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.dimension.view.list</field>
+	        <field name="model">anodoo.sales.goal.breakdown.dimension</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="display_name" />
+	                <field name="dimension_type" />
+	                <field name="business_type" />
+	                <field name="datetime_type" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_breakdown_dimension_search" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.dimension.view.search</field>
+	        <field name="model">anodoo.sales.goal.breakdown.dimension</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<separator/>
+		            <filter name="business_type"  string="业务纬度" domain="[('dimension_type','=', 'business')]" />
+		            <filter name="datetime_type"  string="时间纬度" domain="[('dimension_type','=', 'datetime')]" />
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 销售目标 model_id: anodoo.sales.goal-->
+	    <record id="view_anodoo_sales_goal_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.view.form</field>
+	        <field name="model">anodoo.sales.goal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal">
+	            	<field name="active" invisible="1"/>
+	            	<header>
+            			<field name="goal_state_id" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}"
+                            attrs="{'invisible': [('active', '=', False)]}"/>
+            		</header>
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                     <field name="begin_date" />
+			                     <field name="end_date" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="goal_model_id" />
+			                     <field name="goal_value" />
+			                     <field name="result_value" />
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_bottom" colspan="4">
+			                     <field name="relation_ids" context="{'goal_id':id, 'default_goal_id':id}">
+			                     	<tree editable='bottom'>
+						                <field name="goal_id" invisible="1"/>
+						                <field name="dimension_id" />
+						                <field name="breakdown_id" domain="[('goal_id','=', goal_id),('dimension_id','=',dimension_id),('parent_id','=',False)]"/>
+						            </tree>
+			                     </field>
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_list" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.view.list</field>
+	        <field name="model">anodoo.sales.goal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="goal_model_id" />
+	                <field name="sequence" />
+	                <field name="begin_date" />
+	                <field name="end_date" />
+                    <field name="goal_value" />
+                    <field name="result_value" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_search" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.view.search</field>
+	        <field name="model">anodoo.sales.goal</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 目标分解 model_id: anodoo.sales.goal.breakdown-->
+	    <record id="view_anodoo_sales_goal_breakdown_form" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.view.form</field>
+	        <field name="model">anodoo.sales.goal.breakdown</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_sales_goal_breakdown">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="owner_user_id" />
+			                     <field name="breakdown_goal_value" />
+			                     <field name="result_value" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="goal_id" />
+			                     <field name="dimension_id"/>
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_left2">
+			                     <field name="dimension_type" />
+			                     <field name="business_type" attrs="{'invisible': [('dimension_type', '=', 'datetime')]}"/>
+			                     <field name="datetime_type" attrs="{'invisible': [('dimension_type', '=', 'business')]}"/>
+			                 </group>
+			                 <group name="group_right2">
+			                     <field name="owner_territory_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'territory')]}"/>
+			                     <field name="owner_team_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'team')]}"/>
+			                     <field name="owner_salesperson_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'salesperson')]}"/>
+			                     <field name="owner_customer_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'customer')]}"/>
+			                     <field name="owner_product_category_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'productcategory')]}"/>
+			                     <field name="owner_product_template_id" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'business'), ('business_type', '=', 'product')]}"/>
+
+			                     <field name="owner_year" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'year')]}"/>
+			                     <field name="owner_quarter" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'quarter')]}"/>
+			                     <field name="owner_month" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'month')]}"/>
+			                     <field name="owner_week" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'week')]}"/>
+			                     <field name="owner_day" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'day')]}"/>
+			                     <field name="owner_workday" attrs="{'invisible': ['!', '&amp;', ('dimension_type', '=', 'datetime'), ('datetime_type', '=', 'workday')]}"/>
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+							<page name="child_ids" string="子分解" autofocus="autofocus">
+							    <field name="child_ids" context="{'parent_id': id, 'default_parent_id': id, 'default_goal_id': goal_id, 'default_dimension_id': dimension_id, 'default_dimension_type':dimension_type, 'default_business_type':business_type, 'default_datetime_type':datetime_type}">
+			                     	<tree>
+						                <field name="name" />
+					                     <field name="breakdown_goal_value" />
+					                     <field name="result_value" />
+						                <field name="owner_user_id" />
+						            </tree>
+			                     </field>
+							</page>
+						</notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_breakdown_list" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.view.list</field>
+	        <field name="model">anodoo.sales.goal.breakdown</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+                     <field name="goal_id" />
+                   	<field name="dimension_id" />
+	                <field name="owner_user_id" />
+                     <field name="breakdown_goal_value" />
+                     <field name="result_value" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_sales_goal_breakdown_search" model="ir.ui.view">
+	        <field name="name">anodoo.sales.goal.breakdown.view.search</field>
+	        <field name="model">anodoo.sales.goal.breakdown</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_goal_id"  string="销售目标" context="{'group_by':'goal_id'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+		<!-- 动作 anodoo.sales.goal.model-->
+		<record id="action_anodoo_sales_goal_model_list" model="ir.actions.act_window">
+			<field name="name">目标模型</field>
+			<field name="res_model">anodoo.sales.goal.model</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<!-- 动作 anodoo.sales.goal.state-->
+		<record id="action_anodoo_sales_goal_state_list" model="ir.actions.act_window">
+			<field name="name">目标阶段</field>
+			<field name="res_model">anodoo.sales.goal.state</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<!-- 动作 anodoo.sales.goal.breakdown.dimension-->
+		<record id="action_anodoo_sales_goal_breakdown_dimension_list" model="ir.actions.act_window">
+			<field name="name">目标分解纬度</field>
+			<field name="res_model">anodoo.sales.goal.breakdown.dimension</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="domain">[('parent_id', '=', False)]</field>
+		</record>
+
+		<!-- 动作 anodoo.sales.goal-->
+		<record id="action_anodoo_sales_goal_list" model="ir.actions.act_window">
+			<field name="name">销售目标</field>
+			<field name="res_model">anodoo.sales.goal</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<!-- 动作 anodoo.sales.goal.breakdown-->
+		<record id="action_anodoo_sales_goal_breakdown_list" model="ir.actions.act_window">
+			<field name="name">目标分解</field>
+			<field name="res_model">anodoo.sales.goal.breakdown</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="domain">[('parent_id', '=', False)]</field>
+		</record>
+		<record id="action_anodoo_sales_goal_breakdown_list_my" model="ir.actions.act_window">
+			<field name="name">我的目标</field>
+			<field name="res_model">anodoo.sales.goal.breakdown</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'list_my':True}</field>
+		</record>
+	</data>
+</odoo>

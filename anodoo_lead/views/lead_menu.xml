@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="0">
+	    <record id="action_lead_list_my" model="ir.actions.act_window" >
+            <field name="name">我的线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">['|', ('type','=','lead'), ('type','=',False)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+                    'default_type':'lead',
+                    'search_default_type': 'lead',
+                    'search_default_to_process':1,
+                    'search_default_assigned_to_me':1
+                }
+            </field>
+        </record>
+        
+        <!-- CRM lead search by Salesteams -->
+        <record id="crm_case_form_view_salesteams_lead" model="ir.actions.act_window">
+            <field name="name">Leads</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">['|', ('type','=','lead'), ('type','=',False)]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('crm.crm_case_tree_view_leads')}),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm.view_crm_lead_kanban')})]"/>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+ 
+                    'default_type': 'lead',
+                }
+            </field>
+        </record>
+        
+	    <record id="action_lead_list_unassigned" model="ir.actions.act_window" >
+            <field name="name">未分配线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">['|', ('type','=','lead'), ('type','=',False)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+                    'default_type':'lead',
+                    'search_default_type': 'lead',
+                    'search_default_to_process':1,
+                    'search_default_unassigned_leads':1
+                }
+            </field>
+        </record>
+    
+        <record id="action_lead_list_qualify" model="ir.actions.act_window" >
+            <field name="name">待认定线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">[('is_lead_qualify','=',True)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+            		'default_type':'lead',
+                }
+            </field>
+        </record>
+        
+        <record id="action_lead_list_can_convert" model="ir.actions.act_window" >
+            <field name="name">可转化线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">[('can_convert','=',True)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+            		'default_type':'lead',
+                }
+            </field>
+        </record>
+        
+        <record id="action_lead_list_converted" model="ir.actions.act_window" >
+            <field name="name">成功线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">[('probability','=',100)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+            		'default_type':'lead',
+                }
+            </field>
+        </record>
+   
+   	    <record id="action_lead_list_losted" model="ir.actions.act_window" >
+            <field name="name">丢失线索</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,calendar,form,activity</field>
+            <field name="domain">['&amp;', ('probability', '=', 0), ('active', '=', False)]</field>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+            		'default_type':'lead',
+                }
+            </field>
+        </record>
+        
+        <!-- Wizard: 认定失败理由-->
+        <record id="crm_lead_qualify_lost_action" model="ir.actions.act_window">
+            <field name="name">选择认定失败理由</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">anodoo.lead.qualify.lost</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_anodoo_lead_qualify_lost_form"/>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- 动作 anodoo.lead.qualify.lost.reason-->
+	    <record id="action_anodoo_lead_qualify_lost_reason_list" model="ir.actions.act_window">
+            <field name="name">线索认定失败原因</field>
+            <field name="res_model">anodoo.lead.qualify.lost.reason</field>
+            <field name="view_mode">tree</field>
+        </record>
+    
+        <!-- 动作 anodoo.lead.lifetime-->
+        <record id="action_anodoo_lead_lifetime_list" model="ir.actions.act_window">
+            <field name="name">线索生命周期</field>
+            <field name="res_model">anodoo.lead.lifetime</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    
+        <!-- 动作 anodoo.lead.merge.rule-->
+        <record id="action_anodoo_lead_merge_rule_list" model="ir.actions.act_window">
+            <field name="name">线索/商机合并规则</field>
+            <field name="res_model">anodoo.lead.merge.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+        
+        <!-- 动作 anodoo.lead.merge.relation-->
+        <record id="action_anodoo_lead_merge_relation_list_repeated" model="ir.actions.act_window">
+            <field name="name">重复线索</field>
+            <field name="res_model">anodoo.lead.merge.relation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_need_merge':1}</field>
+        </record>
+        
+        <!-- 动作 anodoo.lead.merge.relation-->
+        <record id="action_anodoo_lead_merge_relation_list_merged" model="ir.actions.act_window">
+            <field name="name">已合并线索</field>
+            <field name="res_model">anodoo.lead.merge.relation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_have_merged':1}</field>
+        </record>
+        
+        <!-- 动作 anodoo.lead.merge.relation-->
+        <record id="action_anodoo_lead_merge_relation_list_copy" model="ir.actions.act_window">
+            <field name="name">人工复制线索</field>
+            <field name="res_model">anodoo.lead.merge.relation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_is_copy':1}</field>
+        </record>
+    
+        <menuitem id="lead_menu_root_anodoo" name="Anodoo 线索管理" sequence="46" web_icon="anodoo_lead,static/description/icon.png"/>
+	    	<menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_mining" name="线索挖掘" />
+                <menuitem parent="lead_menu_lead_mining" id="lead_menu_lead_mining_request" name="第三方线索挖掘" action="crm_iap_lead.crm_iap_lead_mining_request_action" />
+                <menuitem parent="lead_menu_lead_mining" id="lead_menu_lead_mining_reveal" name="网站访问者识别规则" action="crm_iap_lead_website.crm_reveal_rule_action" />
+                <menuitem parent="lead_menu_lead_mining" id="lead_menu_lead_mining_reveal_result" name="网站访问者识别结果" action="crm_iap_lead_website.crm_reveal_view_action" />
+       
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_list" name="线索列表" />、
+                <menuitem parent="lead_menu_lead_list" id="lead_menu_lead_list_all" name="所有线索" action="crm.crm_lead_all_leads"/>
+                <menuitem parent="lead_menu_lead_list" id="lead_menu_lead_list_my" name="我的线索" action="action_lead_list_my"/>
+                <menuitem parent="lead_menu_lead_list" id="lead_menu_lead_list_team" name="团队线索" action="crm_case_form_view_salesteams_lead"/>
+                <menuitem parent="lead_menu_lead_list" id="lead_menu_lead_list_unassigned" name="未分配线索" action="action_lead_list_unassigned"/>
+                <menuitem parent="lead_menu_lead_list" id="lead_menu_lead_list_qualify" name="待认定线索" action="action_lead_list_qualify"/>
+    
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_merge" name="线索合并" />
+                <menuitem parent="lead_menu_lead_merge" id="lead_menu_lead_merge_anodoo_lead_merge_relation_repeated" name="重复线索" action="action_anodoo_lead_merge_relation_list_repeated"/>
+                <menuitem parent="lead_menu_lead_merge" id="lead_menu_lead_merge_anodoo_lead_merge_relation_merged" name="已合并线索" action="action_anodoo_lead_merge_relation_list_merged"/>
+                <menuitem parent="lead_menu_lead_merge" id="lead_menu_lead_merge_anodoo_lead_merge_relation_copy" name="人为复制线索" action="action_anodoo_lead_merge_relation_list_copy"/>
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_assign" name="线索分配" />
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_nurture" name="线索培育" />
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_lead_convert" name="线索转化" />
+                <menuitem parent="lead_menu_lead_convert" id="lead_menu_lead_convert_can_convert" name="可转化线索" action="action_lead_list_can_convert"/>
+                <menuitem parent="lead_menu_lead_convert" id="lead_menu_lead_convert_converted" name="成功线索" action="action_lead_list_converted"/>
+                <menuitem parent="lead_menu_lead_convert" id="lead_menu_lead_convert_losted" name="丢失线索" action="action_lead_list_losted"/>
+                
+                
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_analysis" name="分析" sequence="90" />
+                <menuitem parent="lead_menu_analysis" id="lead_menu_analysis_lead_analysis" name="线索分析" action="crm.crm_opportunity_report_action_lead" />
+                <!-- crm_iap_lead_website<menuitem parent="lead_menu_analysis" id="lead_menu_analysis_reveal" name="线索收集分析" action="crm_iap_lead_website.crm_reveal_view_action" />-->
+
+            <menuitem parent="lead_menu_root_anodoo" id="lead_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+                <menuitem parent="lead_menu_config" id="lead_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_activity" name="线索活动" action="sales_team.mail_activity_type_action_config_sales"/>
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_lead_anodoo_lead_lifetime" name="线索生命周期" action="action_anodoo_lead_lifetime_list"/>
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_lead_tags" name="线索标签"  action="sales_team.sales_team_crm_tag_action" />
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_qualify_anodoo_lead_qualify_lost_reason" name="认定失败原因" action="action_anodoo_lead_qualify_lost_reason_list"/>
+                <menuitem parent="lead_menu_config" id="lead_menu_config_lead_merge_anodoo_lead_merge_rule" name="线索/商机合并规则" action="action_anodoo_lead_merge_rule_list"/>
+
+
+			
+    </data>
+</odoo>

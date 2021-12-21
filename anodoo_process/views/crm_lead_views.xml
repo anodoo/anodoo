@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="process_form_view_oppor" model="ir.ui.view">
+            <field name="name">crm.lead.oppor.inherited.crm</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <button name="action_schedule_meeting" position="after">
+                    <button class="oe_stat_button" type="object"
+                        name="action_view_all_activity" icon="fa-pencil-square-o" attrs="{'invisible': [('type', '=', 'lead')]}">
+                        <field name="activity_count" widget="statinfo" string="商机活动"/>
+                    </button>
+                </button>
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 课程目录 model_id: slide.channel.category-->
+	    <record id="view_slide_channel_category_form" model="ir.ui.view">
+	        <field name="name">slide.channel.category.view.form</field>
+	        <field name="model">slide.channel.category</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="slide_channel_category">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="parent_id" />
+			                     <field name="is_publish" />
+			                     <field name="website_id" options="{'no_create': True}" groups="website.group_multi_website"/>
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_slide_channel_category_list" model="ir.ui.view">
+	        <field name="name">slide.channel.category.view.list</field>
+	        <field name="model">slide.channel.category</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	            	<field name="sequence" widget="handle"/>
+                	<field name="display_name" string="目录"/>
+                	<field name="is_publish" />
+                	<field name="website_id" groups="website.group_multi_website"/>               
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_slide_channel_category_search" model="ir.ui.view">
+	        <field name="name">slide.channel.category.view.search</field>
+	        <field name="model">slide.channel.category</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		                  	
+	            </search>
+	        </field>
+	    </record>
+	    
+		<!-- 参考链接 model_id: slide.slide.link-->
+	    <record id="view_slide_slide_link_form" model="ir.ui.view">
+	        <field name="name">slide.slide.link.view.form</field>
+	        <field name="model">slide.slide.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="slide_slide_link">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="link" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_slide_slide_link_list" model="ir.ui.view">
+	        <field name="name">slide.slide.link.view.list</field>
+	        <field name="model">slide.slide.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree editable="top">
+	                <field name="name" />
+	                <field name="link" />         
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_slide_slide_link_search" model="ir.ui.view">
+	        <field name="name">slide.slide.link.view.search</field>
+	        <field name="model">slide.slide.link</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+		            <field name="link" filter_domain="[('link', 'ilike', self)]" />     	
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

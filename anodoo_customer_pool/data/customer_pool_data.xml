@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+
+	    <!-- 客户池 -->
+    	<record model="anodoo.customer.pool" id="default_public_customer_pool">
+	        <field name="name">默认公有客户池</field>
+	        <field name="description">默认公有客户池，自动地，动态地包含了所有的未分配客户。默认公有客户池是系统默认自带的客户池，无法修改配置信息，对所有人可见。</field>
+	        <field name="is_private">False</field>
+	        <field name="is_default_public">True</field>
+	    </record>
+    </data>
+</odoo>

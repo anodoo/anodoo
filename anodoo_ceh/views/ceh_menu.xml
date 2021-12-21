@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="action_engage_channel" model="ir.actions.act_window">
+			<field name="name">交互渠道</field>
+			<field name="res_model">anodoo.engage.channel</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+        <menuitem id="ceh_menu_root_anodoo" name="Anodoo 交互中心管理" sequence="70" web_icon="anodoo_ceh,static/description/icon.png"/>
+			<menuitem parent="ceh_menu_root_anodoo" id="ceh_menu_calendar" name="交互日历" />
+				<menuitem parent="ceh_menu_calendar" id="ceh_menu_calendar_my" name="我的日历" action="calendar.action_calendar_event" />
+			<menuitem parent="ceh_menu_root_anodoo" id="ceh_menu_activity" name="交互活动" />
+				<menuitem parent="ceh_menu_activity" id="ceh_menu_activity_list" name="交互活动列表" action="mail.mail_activity_action"/>
+			<menuitem parent="ceh_menu_root_anodoo" id="ceh_menu_channel" name="交互渠道" />
+
+			<menuitem parent="ceh_menu_root_anodoo" id="ceh_menu_analysis" name="分析" sequence="90" />
+				<menuitem parent="ceh_menu_analysis" id="ceh_menu_analysis_activity" name="交互活动" />
+					<menuitem parent="ceh_menu_analysis_activity" id="ceh_menu_analysis_activity_pipeline" name="商机交互活动"  action="crm.crm_activity_report_action"/>
+			<menuitem parent="ceh_menu_root_anodoo" id="ceh_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+				<menuitem parent="ceh_menu_config" id="ceh_menu_config_calendar" name="日历"/>
+					<menuitem parent="ceh_menu_config_calendar" id="ceh_menu_config_calendar_eventtype" name="事件类型" action="calendar.action_calendar_event_type" />
+					<menuitem parent="ceh_menu_config_calendar" id="ceh_menu_config_calendar_alarm" name="日历提醒" action="calendar.action_calendar_alarm" />
+				<menuitem parent="ceh_menu_config" id="ceh_menu_config_activity" name="交互活动"/>
+					<menuitem parent="ceh_menu_config_activity" id="ceh_menu_config_activity_types" name="交互活动类型" action="sales_team.mail_activity_type_action_config_sales" />
+					<menuitem parent="ceh_menu_config_activity" id="ceh_menu_config_activity_types2" name="交互活动类型2"  action="sale.mail_activity_type_action_config_sale"  />
+				<menuitem parent="ceh_menu_config" id="ceh_menu_config_channel" name="交互渠道" />
+					<menuitem parent="ceh_menu_config_channel" id="ceh_menu_config_channel_list" name="交互渠道" action="action_engage_channel" />
+    </data>
+</odoo>

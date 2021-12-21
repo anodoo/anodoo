@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <record id="view_partner_form_inherit_desk" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.desk</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="groups_id" eval="[(4, ref('anodoo_desk.group_desk_user'))]"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="object"
+                        name="action_open_desk_ticket" context="{'default_partner_id': active_id}" icon="fa-life-ring" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+                        <div class="o_stat_info">
+                            <field name="ticket_count" class="o_stat_value"/>
+                            <span class="o_stat_text"> 工单</span>
+                        </div>
+                    </button>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

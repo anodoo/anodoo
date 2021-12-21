@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- base：view_partner_form -->
+		<record id="view_customer_form" model="ir.ui.view">
+            <field name="name">anodoo.customer.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <field name="lifetime_stage_id" widget="statusbar"
+                                options="{'clickable': '1', 'fold_field': 'fold'}"
+                                domain="[('lifetime_id', '=', lifetime_id)]"
+                                attrs="{'invisible': [('active', '=', False)]}" groups="anodoo_customer.group_use_customer_lifetime"/>
+                    </header>
+                    <field name="lifetime_id" invisible="1"/>
+                    <field name="is_prospect" invisible="1"/>
+                    <field name="is_losing" invisible="1"/>
+                    <field name="is_success" invisible="1"/>
+                    <field name="parent_id" invisible="1"/>
+                    <field name="customer_type_str" invisible="1"/>
+                    <field name="customer_size_int" invisible="1"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_title')]" position="inside">
+
+                        <div groups="anodoo_customer.group_use_multi_customer_type">
+                        	<label for="customer_type"/> : <field name="customer_type" widget="radio"  options="{'horizontal': true}" />
+                        </div>
+                        <div groups="anodoo_customer.group_use_multi_customer_size">
+                        	<label for="customer_size"/> : <field name="customer_size" widget="radio"  options="{'horizontal': true}"/>
+                        </div>
+
+                </xpath>
+
+                <xpath expr="//group" position="inside">
+                        <group name="base_info" string="基本信息">
+                        	<field name="customer_identity" />
+                        	<field name="customer_priority" widget="priority"/>
+                        	<field name="lifetime_id" options='{"no_open": True, "no_create": True}' groups="anodoo_customer.group_use_customer_lifetime"/>
+                        	<field name="industry_id" attrs="{'invisible': [('customer_type_str','!=', 'company')]}"/>
+                        </group>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                        <page name="customer_relation" string="客户与客户关系">
+                                <field name="customer_relation_customer_ids" context="{'default_customer_id':id}">
+                                    <tree editable="top">
+                                        <field name="relation_customer_id" />
+                                        <field name="relation_type" />
+                                        <field name="is_reverse" />
+                                        <field name="description" />
+                                    </tree>
+                                </field>
+                            </page>
+                </xpath>
+            </field>
+        </record>
+
+
+
+		<!-- base：view_res_partner_filter -->
+		<record id="view_customer_search" model="ir.ui.view">
+            <field name="name">anodoo.customer.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter name="group_country" position="after">
+                    <filter name="customer_type" string="客户类型" domain="[]" context="{'group_by' : 'customer_type'}" />
+                    <filter name="customer_size" string="客户规模" context="{'group_by': 'customer_size'}"/>
+                    <filter name="customer_priority" string="优先级" context="{'group_by': 'customer_priority'}"/>
+                    <filter name="lifetime_stage_id" string="生命周期" context="{'group_by': 'lifetime_stage_id'}"/>
+
+                </filter>
+
+            </field>
+        </record>
+
+
+        <record id="view_customer_prospect_search" model="ir.ui.view">
+            <field name="name">anodoo.customer.search</field>
+            <field name="model">res.partner</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <search string="客户搜索">
+                    <field name="name" filter_domain="['|', '|', ('display_name', 'ilike', self), ('ref', '=', self), ('email', 'ilike', self)]"/>
+
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<data noupdate="0">
+		<template id="assets_editor" inherit_id="website.assets_editor" name="Website Form Editor">
+	        <xpath expr="//script[last()]" position="after">
+	            <script type="text/javascript" src="/anodoo_website_form/static/src/js/website_form_editor.js"></script>
+	        </xpath>
+	    </template>
+	</data>
+
+
+</odoo>

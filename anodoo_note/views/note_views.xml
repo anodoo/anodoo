@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- New note Form View -->
+		<!--
+	    <record id="view_note_note_form" model="ir.ui.view">
+	        <field name="name">note.note.form</field>
+	        <field name="model">note.note</field>
+	        <field name="inherit_id" ref="note.view_note_note_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='stage_id']" position="attributes">
+	        		<attribute name="widget">selection</attribute>
+	        		<attribute name="options">{'style': 'width:160px;'}</attribute>
+	        	</xpath>
+	        	<xpath expr="//field[@name='stage_id']" position="after">
+
+	        		<field name="reference" widget="reference"/>
+	        	</xpath>
+				<xpath expr="//field[@name='tag_ids']" position="move"/>
+	        </field>
+	    </record>
+	    -->
+	</data>
+</odoo>

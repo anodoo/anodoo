@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- 扩展 活动类型 -->
+	<record id="engage_activity_type_view_form" model="ir.ui.view">
+        <field name="name">engage.activity.type.view.form</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[last()]" position="after">
+               	<group name="engage_activity_type">
+                	<field name="engage_channel_id"/>                	
+                	<field name="cancreate" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="engage_activity_type_view_tree" model="ir.ui.view">
+        <field name="name">engage.activity.type.view.tree</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+               	<field name="engage_channel_id"/>
+               	<field name="cancreate" />
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- 交互渠道 -->
+    <record id="engage_channel_view_form" model="ir.ui.view">
+        <field name="name">engage.channel.view.form</field>
+        <field name="model">anodoo.engage.channel</field>
+        <field name="arch" type="xml">
+            <form string="engage.channel">
+                <sheet>
+	                <group name="group_top">
+		                 <group name="group_left">
+		                     <field name="code" />
+		                     <field name="name" />
+		                     <field name="sequence" />
+		                 </group>
+		                 <group name="group_right">
+		                     <field name="type" />
+		                     <field name="online" />
+		                     <field name="description" />
+		                 </group>
+		             </group>
+                </sheet>
+            </form>            
+        </field>
+    </record>
+    <record id="engage_channel_view_tree" model="ir.ui.view">
+        <field name="name">engage.channel.view.tree</field>
+        <field name="model">anodoo.engage.channel</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+                <field name="type" />
+                <field name="online" />
+                <field name="sequence" />
+                <field name="description" />                
+            </tree>
+        </field>
+    </record>
+    <record id="engage_channel_view_search" model="ir.ui.view">
+        <field name="name">engage.channel.view.search</field>
+        <field name="model">anodoo.engage.channel</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name', 'ilike', self)]" />
+
+                <filter name="filter_online"  string="线上渠道" domain="[('online','=','online')]" />
+               	<filter name="filter_offline" string="线下渠道" domain="[('online','=', 'offline')]" />      
+               	
+                <separator/>
+                <filter name="filter_intype"  string="自有交互渠道" domain="[('type', '=', 'intype')]" />
+               	<filter name="filter_outtype" string="第三方交互渠道" domain="[('type', '=', 'outtype')]" />
+               	
+                               
+            </search>
+        </field>
+    </record>
+</odoo>

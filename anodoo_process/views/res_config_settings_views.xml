@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">anodoo.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Process Config" string="销售流程自动化" data-key="anodoo_process" >
+                    	<div id="process">
+                    
+	                    	<h2>销售流程</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        
+		                    </div>
+		                    <div class="row mt16 o_settings_container">
+		                        
+		                    </div>
+		                    <div class="row mt16 o_settings_container">
+		                        
+		                    </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+	        <field name="name">基础配置</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.config.settings</field>
+	        <field name="view_id" ref="res_config_settings_view_form"/>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	        <field name="context">{'module' : 'anodoo_process'}</field>
+	    </record>
+	</data>
+</odoo>

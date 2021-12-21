@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+		<record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.website</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='website']" position="inside">
+                            <h2>社区会员</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="profile_lead" title="Use leads if y.">
+		                            <div class="o_setting_left_pane">
+		                                <field name="need_email_validate"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	 <label for="need_email_validate"/>
+		                                <div class="text-muted">
+		                                    设置需要邮件确认时,新注册的用户只有通过邮件确认后方可使用社区用户功能.
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <div class="col-12 col-lg-6 o_setting_box" id="profile_lead" title="Use leads if y.">
+		                            <div class="o_setting_left_pane">
+		                                <field name="need_karma_to_view_profile"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                            	 <label for="need_karma_to_view_profile"/>
+		                                <div class="text-muted">
+		                                    需要最低积分去查看他人信息时,用户只有自己的积分大于网站设置的最低积分限制时才能看他人的信息.
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+                </xpath>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

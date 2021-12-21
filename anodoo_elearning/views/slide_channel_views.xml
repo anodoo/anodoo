@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="slide_channel_view_kanban" model="ir.ui.view">
+            <field name="name">slide.channel.view.kanban</field>
+            <field name="model">slide.channel</field>
+            <field name="inherit_id" ref="website_slides.slide_channel_view_kanban" />
+            <field name="arch" type="xml">
+            	<xpath expr="//div[hasclass('o_kanban_card_header_title')]" position="inside">
+	        		<div>
+                        <field name="channel_type"/> / <field name="visibility"/> / <field name="enroll"/> / <field name="user_id"/>
+                    </div>
+	        	</xpath>
+            </field>
+        </record>
+        
+		<record id="slide_channel_view_search" model="ir.ui.view">
+            <field name="name">slide.channel.view.search</field>
+            <field name="model">slide.channel</field>
+            <field name="inherit_id" ref="website_slides.slide_channel_view_search" />
+            <field name="arch" type="xml">                
+                <xpath expr="//field[@name='name']" position="after">
+	        		<field name="tag_ids" string="标签" filter_domain="[('tag_ids', 'ilike', self)]"/>
+	        	</xpath>
+	        	<xpath expr="//filter[@name='inactive']" position="after">
+                    <searchpanel>
+                        <field name="category_id" icon="fa-filter"/>
+                    </searchpanel>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- SLIDE.CHANNEL VIEWS -->
+        <record model="ir.ui.view" id="view_slide_channel_form">
+            <field name="name">slide.channel.view.form</field>
+            <field name="model">slide.channel</field>
+            <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+            <field name="arch" type="xml">
+            	<field name="channel_type" position="before">
+            		<field name="is_template" attrs="{'invisible': [('is_template','=',False)]}" readonly="1"/>
+            		<field name="category_id" />
+            	</field>
+            </field>
+        </record>
+	</data>
+</odoo>
+

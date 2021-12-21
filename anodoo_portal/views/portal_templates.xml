@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        		<template id="portal_customer_home" name="客户门户">
+	        <t t-call="portal.portal_layout">
+	            <t t-set="my_details" t-value="False"/>
+	            <div class="o_portal_my_home">
+	                <div class="oe_structure" id="oe_structure_portal_my_home_1"/>
+	                <h3>客户门户</h3>
+	                <div class="o_portal_docs list-group">
+	                	<t t-call="portal.portal_docs_entry">
+			                <t t-set="title">报价</t>
+			                <t t-set="url" t-value="'/my/quotes'"/>
+			                <t t-set="count" t-value="3"/>
+			            </t>
+			            <t t-call="portal.portal_docs_entry">
+			                <t t-set="title">订单</t>
+			                <t t-set="url" t-value="'/my/orders'"/>
+			                <t t-set="count" t-value="5"/>
+			            </t>
+			            <t t-call="portal.portal_docs_entry">
+			                <t t-set="title">合同</t>
+			                <t t-set="url" t-value="'/my/orders'"/>
+			                <t t-set="count" t-value="6"/>
+			            </t>
+	                </div>
+	            </div>
+	            <div class="oe_structure" id="oe_structure_portal_my_home_2"/>
+	        </t>
+	    </template>
+
+	    <template id="portal_partner_home" name="代理商门户">
+	        <t t-call="portal.portal_layout">
+	            <t t-set="my_details" t-value="False"/>
+	            <div class="o_portal_my_home">
+	                <div class="oe_structure" id="oe_structure_portal_my_home_1"/>
+	                <h3>代理商门户</h3>
+	                <div class="o_portal_docs list-group">
+	                	<t t-call="portal.portal_docs_entry">
+			                <t t-set="title">商机报备</t>
+			                <t t-set="url" t-value="'/my/quotes'"/>
+			                <t t-set="count" t-value="3"/>
+			            </t>
+			            <t t-call="portal.portal_docs_entry">
+			                <t t-set="title">代理商库存</t>
+			                <t t-set="url" t-value="'/my/orders'"/>
+			                <t t-set="count" t-value="5"/>
+			            </t>
+			            <t t-call="portal.portal_docs_entry">
+			                <t t-set="title">代理商返利</t>
+			                <t t-set="url" t-value="'/my/orders'"/>
+			                <t t-set="count" t-value="6"/>
+			            </t>
+	                </div>
+	            </div>
+	            <div class="oe_structure" id="oe_structure_portal_my_home_2"/>
+	        </t>
+	    </template>
+
+    </data>
+</odoo>

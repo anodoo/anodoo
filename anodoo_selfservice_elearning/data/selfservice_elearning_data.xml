@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="slide_channel_selfservice" model="slide.channel">
+	        <field name="name">自助服务课程</field>
+	        <field name="user_id" ref="base.user_admin"/>
+	        <field name="enroll">public</field>
+	        <field name="channel_type">training</field>
+	        <field name="allow_comment" eval="True"/>
+	        <field name="promote_strategy">most_voted</field>
+	        <field name="is_published" eval="True"/>
+	        <field name="image_1920" type="base64" file="anodoo_selfservice_elearning/static/src/img/channel_selfservice.jpg"/>
+	        <field name="description">自助服务课程</field>
+	        <field name="create_date" eval="DateTime.now() - relativedelta(days=8)"/>
+	    </record>
+
+		<function model="ir.config_parameter" name="set_param" eval="('anodoo_selfservice.selfservice_elearning_id', ref('slide_channel_selfservice'))"/>
+    </data>
+</odoo>

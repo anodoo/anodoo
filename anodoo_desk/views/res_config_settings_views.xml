@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Desk" string="Desk" data-key="anodoo_desk" groups="anodoo_desk.group_desk_manager">
+
+                        <h2>工单团队</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_desk_team" title="">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_anodoo_desk_team"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_anodoo_desk_team"/>
+                                    <div class="text-muted">
+                                        启用团队管理，通过团队来分配工单，处理工单等。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_desk_team_autoassign" title="" attrs="{'invisible': [('module_anodoo_desk_team','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_anodoo_desk_team_autoassign"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_anodoo_desk_team_autoassign"/>
+                                    <div class="text-muted">
+                                        当启用了团队，可以在团队内根据不同的策略实现工单的自动分配。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>工单SAL</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_desk_sla" title="">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_anodoo_desk_sla"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_anodoo_desk_sla"/>
+                                    <div class="text-muted">
+                                        实现SLA的定义，并为工单的处理监控SLA状态。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>自助服务</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="module_anodoo_desk_selfservice" title="">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_anodoo_desk_selfservice"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_anodoo_desk_selfservice"/>
+                                    <div class="text-muted">
+                                        启动自助服务，实现和客户的外部交互，包括客户可以创建工单，查看工单，可以查看，点评客服团队等。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+            <field name="name">设置</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'anodoo_desk'}</field>
+        </record>
+
+    </data>
+</odoo>

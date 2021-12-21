@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		 <menuitem parent="website.menu_website_configuration" id="website_menu_forms" name="网站表单" sequence="20"/>
+   			<menuitem parent="website_menu_forms" id="website_menu_forms_anodoo_website_form" name="网站表单" action="action_anodoo_website_form_list"/>
+
+	</data>
+</odoo>

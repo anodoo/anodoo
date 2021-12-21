@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<!--使用account的目录-->
+		<menuitem id="account.menu_finance" name="Anodoo 财务管理"   sequence="82" web_icon="anodoo_account,static/description/icon.png"/>
+
+		<!--
+		<menuitem parent="anodoo_sfa.sfa_menu_root_anodoo" id="sfa_menu_invoice" name="开票"   sequence="50" />
+    		<menuitem parent="sfa_menu_invoice" id="sfa_menu_invoice_list" name="发票" action="account.action_move_out_invoice_type" />
+    		<menuitem parent="sfa_menu_invoice" id="sfa_menu_invoice_receipt" name="收据" action="account.action_move_out_receipt_type" />
+    		<menuitem parent="sfa_menu_invoice" id="sfa_menu_invoice_refund" name="红字发票" action="account.action_move_out_refund_type" />
+
+    	<menuitem parent="anodoo_sfa.sfa_menu_analysis" id="sfa_menu_analysis_invoicing" name="开票分析" />
+   				<menuitem parent="sfa_menu_analysis_invoicing" id="sfa_menu_analysis_invoicing_analysis" name="发票分析" action="account.action_account_invoice_report_all"/>
+   				<menuitem parent="sfa_menu_analysis_invoicing" id="sfa_menu_analysis_invoicing_margin" name="毛利分析" action="product_margin.product_margin_act_window"/>
+   				<menuitem parent="sfa_menu_analysis_invoicing" id="sfa_menu_analysis_invoicing_tax" name="税金报表" action="account.action_configure_tax_report"/>
+
+   		<menuitem parent="anodoo_sfa.sfa_menu_config" id="sfa_menu_config_invoice" name="开票"  />
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_setting" name="基本设置" action="account.action_account_config"/>
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_payment" name="付款条款" action="account.action_payment_term_form"/>
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_incoterms" name="贸易条款" action="account.action_incoterms_tree"/>
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_journal" name="凭证类型" action="account.action_account_journal_form"/>
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_tax" name="税率设置" action="account.action_tax_form"/>
+     			<menuitem parent="sfa_menu_config_invoice" id="sfa_menu_config_invoice_fiscal" name="税科目调整" action="account.action_account_fiscal_position_form"/>
+     			-->
+	</data>
+</odoo>

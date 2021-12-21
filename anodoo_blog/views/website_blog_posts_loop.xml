@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<template id="posts_loop" inherit_id="website_blog.posts_loop">
+			<xpath expr="//div[@t-if='tag or date_begin']" position="after">
+				<div t-if="series" class="col-12 mb-3">
+	                <div class="h4 mb-3"> <t t-esc="len(posts)"/>
+	                    <t t-if="len(posts) &lt; 2">Article</t>
+	                    <t t-else="">Articles</t>
+	                </div>
+	                <span class="align-items-baseline border d-inline-flex pl-2 rounded mb-2">
+	                    <i class="fa fa-book-o mr-2 text-muted"/>
+	                    <t t-esc="series.name" />
+	                </span>
+	                <hr class="mt-2"/>
+	            </div>
+    		</xpath>
+		</template>
+	</data>
+</odoo>

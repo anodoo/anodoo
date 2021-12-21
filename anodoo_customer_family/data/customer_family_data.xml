@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+	    <record model="anodoo.customer.type" id="default_customer_type_family">
+	        <field name="name">家庭客户</field>
+	        <field name="type">family</field>
+	        <field name="sequence">3</field>
+	        <field name="is_default">False</field>
+	        <field name="is_active">True</field>
+	        <field name="description">家庭客户</field>
+	    </record>
+    </data>
+</odoo>

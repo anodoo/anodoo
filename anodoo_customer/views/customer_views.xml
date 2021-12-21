@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 相关客户 model_id: anodoo.customer.relation.customer-->
+	    <record id="view_anodoo_customer_relation_customer_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.relation.customer.view.form</field>
+	        <field name="model">anodoo.customer.relation.customer</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_relation_customer">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="customer_id" />
+			                     <field name="relation_type" />
+			                     <field name="is_reverse" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="relation_customer_id" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_relation_customer_list" model="ir.ui.view">
+	        <field name="name">anodoo.customer.relation.customer.view.list</field>
+	        <field name="model">anodoo.customer.relation.customer</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="customer_id" />
+	                <field name="relation_customer_id" />
+	                <field name="relation_type" />
+	                <field name="is_reverse" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_relation_customer_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.relation.customer.view.search</field>
+	        <field name="model">anodoo.customer.relation.customer</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="customer_id" filter_domain="[('customer_id', 'ilike', self)]" />
+	            </search>
+	        </field>
+	    </record>
+
+		<!-- 客户类型 model_id: anodoo.customer.type-->
+		<record id="anodoo_customer_type_view_form" model="ir.ui.view">
+		    <field name="name">anodoo.customer.type.view.form</field>
+		    <field name="model">anodoo.customer.type</field>
+		    <field name="arch" type="xml">
+		        <form string="anodoo.customer.type">
+		            <sheet>
+		             	<group name="group_top">
+			               	<group name="group_left">
+			                   	<field name="name" />
+			                   	<field name="type" readonly="1"/>
+			                   	<field name="sequence" />
+			               	</group>
+			               	<group name="group_right">
+			                   	<field name="is_active" />
+			                   	<field name="is_default" />
+			                  	 <field name="description" />
+			               	</group>
+		           		</group>
+		            </sheet>
+		        </form>
+		    </field>
+		</record>
+		<record id="anodoo_customer_type_view_tree" model="ir.ui.view">
+		    <field name="name">anodoo.customer.type.view.tree</field>
+		    <field name="model">anodoo.customer.type</field>
+		    <field name="arch" type="xml">
+		        <tree>
+		            <field name="name" />
+		            <field name="type" />
+		            <field name="is_active" />
+		            <field name="is_default" />
+		            <field name="sequence" />
+		            <field name="description" />
+		        </tree>
+		    </field>
+		</record>
+		<record id="anodoo_customer_type_view_search" model="ir.ui.view">
+		    <field name="name">anodoo.customer.type.view.search</field>
+		    <field name="model">anodoo.customer.type</field>
+		    <field name="arch" type="xml">
+		        <search>
+		        	<field name="name" string="名称" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		            <filter name="is_active_true"  string="启用" domain="[('is_active','=',True)]" />
+		            <filter name="is_active_false"  string="未启用" domain="[('is_active','=',False)]" />
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_active"  string="状态" context="{'group_by':'is_active'}" />
+		           	</group>
+		        </search>
+		    </field>
+		</record>
+
+		<!-- 动作 anodoo.customer.type-->
+		<record id="action_anodoo_customer_type_list" model="ir.actions.act_window">
+	        <field name="name">客户类型</field>
+	        <field name="res_model">anodoo.customer.type</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+	  	<!-- 客户规模 model_id: anodoo.customer.size-->
+	    <record id="view_anodoo_customer_size_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.size.view.form</field>
+	        <field name="model">anodoo.customer.size</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo.customer.size">
+	                <sheet>
+		                <group name="group_top">
+			               	<group name="group_left">
+			                   	<field name="name" />
+			                   	<field name="size" />
+			                   	<field name="sequence" />
+			               	</group>
+			               	<group name="group_right">
+			                   	<field name="is_active" />
+			                   	<field name="is_default" />
+			                  	 <field name="description" />
+			               	</group>
+		           		</group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_size_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.size.view.tree</field>
+	        <field name="model">anodoo.customer.size</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+		            <field name="size" />
+		            <field name="is_active" />
+		            <field name="is_default" />
+		            <field name="sequence" />
+		            <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_size_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.size.view.search</field>
+	        <field name="model">anodoo.customer.size</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" string="名称" filter_domain="[('name', 'ilike', self)]" />
+		            <separator/>
+		            <filter name="is_active_true"  string="启用" domain="[('is_active','=',True)]" />
+		            <filter name="is_active_false"  string="未启用" domain="[('is_active','=',False)]" />
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_active"  string="状态" context="{'group_by':'is_active'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+	    <!-- 动作 anodoo.customer.size-->
+		<record id="action_anodoo_customer_size_list" model="ir.actions.act_window">
+	        <field name="name">客户规模</field>
+	        <field name="res_model">anodoo.customer.size</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+
+
+
+
+	    <!-- 客户生命周期 model_id: anodoo.customer.lifetime-->
+	    <record id="view_anodoo_customer_lifetime_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.lifetime.view.form</field>
+	        <field name="model">anodoo.customer.lifetime</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_lifetime">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="is_default" readonly="True"/>
+			                     <field name="customers_domain" placeholder="设置匹配客户的多个条件" widget="domain" options="{'model': 'res.partner', 'in_dialog': true}" attrs="{'readonly': [('is_default', '=', True)]}"/>
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="sequence" />
+			                     <field name="description" />
+			                 </group>
+			                 <group name="group_right" colspan="4">
+			                     <field name="stage_ids" context="{'lifetime_id': id}">
+			                     	<tree editable='bottom'>
+						                <field name="name" />
+						                <field name="sequence" />
+						                <field name="is_default" />
+						                <field name="is_prospect" />
+						                <field name="is_losing" />
+						                <field name="is_success" />
+						            </tree>
+			                     </field>
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_lifetime_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.lifetime.view.tree</field>
+	        <field name="model">anodoo.customer.lifetime</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="is_default" />
+	                <field name="customers_domain" />
+	                <field name="sequence" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_lifetime_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.lifetime.view.search</field>
+	        <field name="model">anodoo.customer.lifetime</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+
+	            </search>
+	        </field>
+	    </record>
+	    <!-- 动作 anodoo.customer.lifetime-->
+		<record id="action_anodoo_customer_lifetime_list" model="ir.actions.act_window">
+	        <field name="name">客户生命周期</field>
+	        <field name="res_model">anodoo.customer.lifetime</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+
+
+	</data>
+</odoo>

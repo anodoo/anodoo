@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 客户标签分类 model_id: anodoo.customer.label.category-->
+	    <record id="view_anodoo_customer_label_category_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.category.view.form</field>
+	        <field name="model">anodoo.customer.label.category</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_label_category">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="parent_id" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_label_category_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.category.view.tree</field>
+	        <field name="model">anodoo.customer.label.category</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="display_name" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_label_category_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.category.view.search</field>
+	        <field name="model">anodoo.customer.label.category</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" string="名称" filter_domain="[('name', 'ilike', self)]" />
+
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_parent_id"  string="父分类" context="{'group_by':'parent_id'}" />
+		           	</group>
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 客户标签 model_id: anodoo.customer.label-->
+	    <record id="view_anodoo_customer_label_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.view.form</field>
+	        <field name="model">anodoo.customer.label</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_label">
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="is_auto" />
+			                     <field name="customers_domain" placeholder="设置具有该标签的客户条件" widget="domain" options="{'model': 'res.partner', 'in_dialog': true}" attrs="{'invisible': [('is_auto', '=', False)]}"/>
+
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="category_id" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_label_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.view.tree</field>
+	        <field name="model">anodoo.customer.label</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="is_auto" />
+	                <field name="customers_domain" />
+	                <field name="category_id" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_label_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.label.view.search</field>
+	        <field name="model">anodoo.customer.label</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_category_id"  string="分类" context="{'group_by':'category_id'}" />
+		           	</group>
+
+		           	<searchpanel>
+                        <field name="category_id"/>
+                    </searchpanel>
+	            </search>
+	        </field>
+	    </record>
+
+	    <!-- 客户分群 model_id: anodoo.customer.segment-->
+	    <record id="view_anodoo_customer_segment_form" model="ir.ui.view">
+	        <field name="name">anodoo.customer.segment.view.form</field>
+	        <field name="model">anodoo.customer.segment</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_customer_segment">
+	            	<header>
+	            		<button string="刷新客户列表" name="refresh_labels_customer_list" type="object" class="btn btn-secondary"  title="刷新客户标签下客户" />
+	            		<button string="创建客户列表快照" name="refresh_labels_customer_list" type="object" class="btn btn-secondary"  title="创建客户列表快照" />
+	            	</header>
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="sequence" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="label_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+			                     <field name="description" />
+			                 </group>
+			             </group>
+			             <notebook colspan="4">
+			             	<page name="dynamic_customer_ids" string="客户标签下的客户列表" autofocus="autofocus">
+			             		<field name="dynamic_customer_ids" />
+			             	</page>
+			             	<page name="static_customer_ids" string="手动设置的客户列表">
+			             		<field name="static_customer_ids" />
+			             	</page>
+		             		<page name="segment_snapshot_ids" string="客户列表快照">
+		             			<field name="segment_snapshot_ids">
+		             				<tree string="客户快照">
+						                <field name="customer_count" />
+						                <field name="create_date" />
+						                <field name="description" />
+						            </tree>
+						            <form string="anodoo_customer_segment_snapshot">
+						                <sheet>
+							                <group name="group_top">
+								                 <group name="group_left">
+								                     <field name="customer_count" />
+								                     <field name="description" />
+								                 </group>
+								                 <group name="group_right">
+								                 	<field name="create_uid" readonly="True"/>
+								                     <field name="create_date" readonly="True"/>
+								                 </group>
+								                 <group name="customer_ids" string="客户列表" colspan="4">
+                                        			<field name="customer_ids" />
+								             	</group>
+								             </group>
+						                </sheet>
+						            </form>
+						        </field>
+		             		</page>
+			             </notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_segment_tree" model="ir.ui.view">
+	        <field name="name">anodoo.customer.segment.view.tree</field>
+	        <field name="model">anodoo.customer.segment</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="sequence" />
+	                <field name="label_ids" />
+	                <field name="description" />
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_customer_segment_search" model="ir.ui.view">
+	        <field name="name">anodoo.customer.segment.view.search</field>
+	        <field name="model">anodoo.customer.segment</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<field name="label_ids" filter_domain="[('label_ids.name', 'ilike', self)]" />
+
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

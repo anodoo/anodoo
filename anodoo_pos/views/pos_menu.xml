@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="point_of_sale.menu_point_root" name="Anodoo 门店PoS"  sequence="42"  web_icon="anodoo_pos,static/description/icon.png"/>
+	</data>
+</odoo>

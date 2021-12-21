@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+	    
+	    <!-- 商机报备 model_id: anodoo.opportunity.register-->
+	    <record id="view_anodoo_opportunity_register_form" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.register.view.form</field>
+	        <field name="model">anodoo.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <form string="anodoo_opportunity_register">
+	            	<header>
+                        <button name="convert_to_opportunity" string="转为商机" type="object" class="oe_highlight"/>
+                    </header>
+	                <sheet>
+		                <group name="group_top">
+			                 <group name="group_left">
+			                     <field name="name" />
+			                     <field name="customer_info" />
+			                     <field name="contact_info" />
+			                     <field name="planned_revenue" />
+			                     <field name="date_deadline" />
+			                 </group>
+			                 <group name="group_right">
+			                     <field name="priority" widget="priority"/>
+                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+			                     <field name="description" />
+			                 </group>
+			             </group>
+	                </sheet>
+	            </form>            
+	        </field>
+	    </record>
+	    <record id="view_anodoo_opportunity_register_list" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.register.view.list</field>
+	        <field name="model">anodoo.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <tree>
+	                <field name="name" />
+	                <field name="customer_info" />
+	                <field name="contact_info" />
+	                <field name="planned_revenue" />
+	                <field name="date_deadline" />       
+	                <field name="priority" /> 
+	                <field name="tag_ids" widget="many2many_tags"/>          
+	            </tree>
+	        </field>
+	    </record>
+	    <record id="view_anodoo_opportunity_register_search" model="ir.ui.view">
+	        <field name="name">anodoo.opportunity.register.view.search</field>
+	        <field name="model">anodoo.opportunity.register</field>
+	        <field name="priority">100</field>
+	        <field name="arch" type="xml">
+	            <search>
+	            	<field name="name" filter_domain="[('name', 'ilike', self)]" />
+	            	<field name="customer_info" filter_domain="[('customer_info', 'ilike', self)]" />
+	            	<field name="contact_info" filter_domain="[('contact_info', 'ilike', self)]" />
+		            <separator/>           	
+		           	<group expand="1" string="Group By">
+		           		<filter name="groupby_priority"  string="优先级" context="{'group_by':'priority'}" />               	
+		           	</group>         	
+	            </search>
+	        </field>
+	    </record>
+	</data>
+</odoo>

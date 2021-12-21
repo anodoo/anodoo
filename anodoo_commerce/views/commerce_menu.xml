@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="action_view_cart_tree" model="ir.actions.act_window">
+	        <field name="name">购物车</field>
+	        <field name="res_model">sale.order</field>
+	        <field name="view_mode">tree,kanban,form,activity</field><!-- ('order_line', '!=', False),  -->
+	        <field name="domain">[('state', '=', 'draft'), ('partner_id', '!=', context.get('public_partner_id')), ('website_id', '!=', False), ('date_order', '&gt;', (datetime.datetime.utcnow() - datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S'))]</field>
+	        <field name="context" eval="{'create': False}"/>
+	        <field name="view_id" ref="sale.view_quotation_tree"/>
+	        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+	    </record>
+
+
+		<!--旧的菜单需要设置为失效-->
+        <menuitem id='website_sale.menu_orders' active="False"/>
+		<menuitem id='website_sale.menu_catalog' active="False"/>
+		<menuitem id='website_sale.menu_product_settings' active="False"/>
+		<menuitem id='website_sale.menu_ecommerce_settings' active="False"/>
+
+		<menuitem id="ecommerce_menu_root_anodoo" name="Anodoo 电子商务" sequence="78" web_icon="anodoo_commerce,static/description/icon.png"/>
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_dashboard" name="仪表盘" sequence="1" action="website.ir_actions_server_website_google_analytics"/>
+
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_customer" name="客户" sequence="10" action="base.action_partner_customer_form"/>
+
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_product" name="产品" sequence="20"/>
+				<menuitem parent="ecommerce_menu_product" id="ecommerce_menu_product_list" name="产品列表" action="website_sale.product_template_action_website"/>
+				<menuitem parent="ecommerce_menu_product" id="ecommerce_menu_product_variant" name="产品变体" action="product.product_normal_action" groups="product.group_product_variant"/>
+
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_price" name="价格" sequence="30" />
+				<menuitem parent="ecommerce_menu_price" id="ecommerce_menu_price_pricelist" name="价格表" action="product.product_pricelist_action2" groups="product.group_product_pricelist"/>
+
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_cart" name="购物车" sequence="40"/>
+				<menuitem parent="ecommerce_menu_cart" id="ecommerce_menu_cart_list" name="购物车列表" action="action_view_cart_tree"/>
+				<menuitem parent="ecommerce_menu_cart" id="ecommerce_menu_cart_abandoned" name="放弃的购物车" action="website_sale.action_view_abandoned_tree"/>
+
+        	<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_order" name="订单" sequence="50"/>
+        		<menuitem parent="ecommerce_menu_order" id="ecommerce_menu_order_list" name="订单列表" action="website_sale.action_orders_ecommerce"/>
+        		<menuitem parent="ecommerce_menu_order" id="ecommerce_menu_order_unpaid" name="未支付订单" action="website_sale.action_view_unpaid_quotation_tree"/>
+
+        	<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_delivery" name="配送" sequence="60"/>
+
+        	<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_invoice" name="开票" sequence="70"/>
+        		<menuitem parent="ecommerce_menu_invoice" id="ecommerce_menu_invoice_to" name="待开票订单" action="sale.action_orders_to_invoice"/>
+        		<menuitem parent="ecommerce_menu_invoice" id="ecommerce_menu_invoice_upselling" name="待开票超卖订单" action="sale.action_orders_upselling"/>
+
+
+        	<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_team" name="销售团队" sequence="80" action="sales_team.crm_team_salesteams_act"/>
+
+
+        	<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_report" name="分析" sequence="90" />
+				<menuitem parent="ecommerce_menu_report" id="ecommerce_menu_report_dashboard" name="销售分析" action="website_sale.sale_report_action_dashboard" />
+
+			<menuitem parent="ecommerce_menu_root_anodoo" id="ecommerce_menu_config" name="配置" sequence="100"  groups="base.group_system"/>
+				<menuitem parent="ecommerce_menu_config" id="ecommerce_menu_config_setting" name="基本设置" action="res_config_settings_action" />
+				<menuitem parent="ecommerce_menu_config" id="ecommerce_menu_config_product" name="产品" />
+					<menuitem parent="ecommerce_menu_config_product" id="ecommerce_menu_config_product_attribute_category" name="产品属性类别" action="website_sale_comparison.product_attribute_category_action" groups="product.group_product_variant" />
+					<menuitem parent="ecommerce_menu_config_product" id="ecommerce_menu_config_product_attribute" name="产品属性" action="product.attribute_action" groups="product.group_product_variant" />
+					<menuitem parent="ecommerce_menu_config_product" id="ecommerce_menu_config_product_category" name="产品类别" action="product.product_category_action_form" />
+					<menuitem parent="ecommerce_menu_config_product" id="ecommerce_menu_config_product_public_category" name="电商目录" action="website_sale.product_public_category_action" />
+				<menuitem parent="ecommerce_menu_config" id="ecommerce_menu_config_payment" name="支付" />
+					<menuitem parent="ecommerce_menu_config_payment" id="ecommerce_menu_config_payment_acquirer" name="支付方式" action="payment.action_payment_acquirer"/>
+					<menuitem parent="ecommerce_menu_config_payment" id="ecommerce_menu_config_payment_icon" name="支付图标" action="payment.action_payment_icon"/>
+					<menuitem parent="ecommerce_menu_config_payment" id="ecommerce_menu_config_payment_token" name="保存的付款数据" action="payment.payment_token_action"/>
+					<menuitem parent="ecommerce_menu_config_payment" id="ecommerce_menu_config_payment_transaction" name="付款交易" action="payment.action_payment_transaction"/>
+				<menuitem parent="ecommerce_menu_config" id="ecommerce_menu_config_delivery" name="配送" />
+					<menuitem parent="ecommerce_menu_config_delivery" id="ecommerce_menu_config_delivery_carrier" name="配送方式"  action="delivery.action_delivery_carrier_form"/>
+	</data>
+</odoo>

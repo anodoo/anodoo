@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 动作 anodoo.lead.lifetime-->
+		<record id="action_anodoo_opportunity_lifetime_list" model="ir.actions.act_window">
+	        <field name="name">商机生命周期</field>
+	        <field name="res_model">anodoo.opportunity.lifetime</field>
+	        <field name="view_mode">tree,form</field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.lead.qualify.lost.reason-->
+		<record id="action_anodoo_opportunity_qualify_lost_reason_list" model="ir.actions.act_window">
+	        <field name="name">商机认定失败原因</field>
+	        <field name="res_model">anodoo.opportunity.qualify.lost.reason</field>
+	        <field name="view_mode">tree</field>
+	    </record>
+	    
+	    <!-- 动作 anodoo.opportunity.register-->
+		<record id="action_anodoo_opportunity_register_list" model="ir.actions.act_window">
+	        <field name="name">商机报备</field>
+	        <field name="res_model">anodoo.opportunity.register</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	    </record>
+		
+		 <menuitem id="opportunity_menu_root_anodoo" name="Anodoo 商机管理" sequence="47" web_icon="anodoo_opportunity,static/description/icon.png"/>
+	    	<menuitem parent="opportunity_menu_root_anodoo" id="opportunity_menu_opportunity" name="商机"  sequence="10" />
+				<menuitem parent="opportunity_menu_opportunity" id="opportunity_menu_opportunity_my" name="我的商机" action="crm.action_your_pipeline" />    		
+				<menuitem parent="opportunity_menu_opportunity" id="opportunity_menu_opportunity_team" name="团队商机" action="sales_team.crm_team_salesteams_pipelines_act"  />
+				<menuitem parent="opportunity_menu_opportunity" id="opportunity_menu_opportunity_anodoo_opportunity_register" name="商机报备" action="action_anodoo_opportunity_register_list"/>	    	
+				
+	    	<menuitem parent="opportunity_menu_root_anodoo" id="opportunity_menu_analysis" name="分析" sequence="90" />   		
+	   			<menuitem parent="opportunity_menu_analysis" id="opportunity_menu_analysis_opportunity_analysis" name="商机管道分析" action="crm.crm_opportunity_report_action" />
+    			 <menuitem parent="opportunity_menu_analysis" id="opportunity_menu_analysis_sale_analysis" name="销售总体分析" action="sale.action_order_report_all" />
+    			 
+		
+	    	<menuitem parent="opportunity_menu_root_anodoo" id="opportunity_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+	    		<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_settings" name="基本配置" action="res_config_settings_action"/>
+				<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_tags" name="商机标签"  action="sales_team.sales_team_crm_tag_action" />
+            	<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_stage" name="商机生命周期" action="action_anodoo_opportunity_lifetime_list"/>
+            	<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_qualify_lost_reason" name="商机认定失败原因" action="action_anodoo_opportunity_qualify_lost_reason_list"/>
+     			<menuitem parent="opportunity_menu_config" id="opportunity_menu_config_opportunity_lostreason" name="丢单原因" action="crm.crm_lost_reason_action" />
+	    
+
+    			
+	</data>
+</odoo>

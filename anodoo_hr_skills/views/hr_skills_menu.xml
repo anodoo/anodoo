@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+
+		<menuitem id="hr_skills_menu_root_anodoo" name="Anodoo 员工能力" sequence="11" web_icon="anodoo_hr_skills,static/description/icon.png"/>
+				
+	    	
+	    	<menuitem parent="hr_skills_menu_root_anodoo" id="hr_skills_menu_analysis" name="分析" sequence="90" />   		
+	   			
+	    	<menuitem parent="hr_skills_menu_root_anodoo" id="hr_skills_menu_config" name="配置" sequence="100"  groups="base.group_system"  />
+
+				<menuitem parent="hr_skills_menu_config" id="hr_skills.hr_skill_type_menu"/>
+				<menuitem parent="hr_skills_menu_config" id="hr_skills.menu_human_resources_configuration_resume"/>
+	</data>
+</odoo>

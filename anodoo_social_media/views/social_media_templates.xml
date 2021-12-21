@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <template id="footer_media_social" inherit_id="website.footer_custom" name="Footer Media Social">
+    		<xpath expr="//div[@data-name='Social Media']/h5" position="after">
+				<!--14 改成这种写法，值得研究
+				<a href="/website/social/facebook" class="s_share_facebook" target="_blank">
+					<i class="fa fa-facebook rounded-circle shadow-sm"/>
+				</a>-->
+    			<a t-if="website.social_qq" t-att-href="website.social_qq" class="btn btn-sm btn-link"><i class="fa fa-2x fa-qq"/></a>
+    			<a t-if="website.social_weixin" t-att-href="website.social_weixin" class="btn btn-sm btn-link"><i class="fa fa-2x fa-weixin"/></a>
+    			<a t-if="website.social_weibo" t-att-href="website.social_weibo" class="btn btn-sm btn-link"><i class="fa fa-2x fa-weibo"/></a>
+    			<a t-if="website.social_tencent_weibo" t-att-href="website.social_tencent_weibo" class="btn btn-sm btn-link"><i class="fa fa-2x fa-tencent-weibo"/></a>
+    			<a t-if="website.social_renren" t-att-href="website.social_renren" class="btn btn-sm btn-link"><i class="fa fa-2x fa-renren-square"/></a>
+    		</xpath>
+    	</template>
+    </data>
+</odoo>

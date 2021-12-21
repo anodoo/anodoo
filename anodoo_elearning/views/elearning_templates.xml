@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <!--slides_share在14没有了
+<template id='slides_share' name="Slides Media Share" inherit_id="website_slides.slides_share">
+	<xpath expr="//div" position="inside">    	
+		<a t-attf-href="https://www.facebook.com/sharer/sharer.php?u=#{record.website_url}" class="btn border bg-white o_wslides_js_social_share" social-key="facebook" aria-label="Share on Facebook" title="Share on Facebook"><i class="fa fa-qq fa-fw"/></a>
+        <a t-attf-href="https://twitter.com/intent/tweet?text=#{record.name}&amp;url=#{record.website_url}" class="btn border bg-white o_wslides_js_social_share"  social-key="twitter" aria-label="Share on Twitter" title="Share on Twitter"><i class="fa fa-weixin fa-fw"/></a>
+        <a t-attf-href="http://www.linkedin.com/shareArticle?mini=true&amp;url=#{record.website_url}&amp;title=#{record.name}&amp;" social-key="linkedin" class="btn border bg-white o_wslides_js_social_share" aria-label="Share on LinkedIn" title="Share on LinkedIn"><i class="fa fa-weibo fa-fw"/></a>
+        <a t-attf-href="https://www.facebook.com/sharer/sharer.php?u=#{record.website_url}" class="btn border bg-white o_wslides_js_social_share" social-key="facebook" aria-label="Share on Facebook" title="Share on Facebook"><i class="fa fa-tencent-weibo fa-fw"/></a>
+        <a t-attf-href="https://twitter.com/intent/tweet?text=#{record.name}&amp;url=#{record.website_url}" class="btn border bg-white o_wslides_js_social_share"  social-key="twitter" aria-label="Share on Twitter" title="Share on Twitter"><i class="fa fa-renren fa-fw"/></a>
+    </xpath>
+</template>-->
+
+    </data>
+</odoo>

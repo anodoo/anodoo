@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!--暂时不放菜单，后续将sms的菜单进行重构  ，放在配置中-->
+		<menuitem id="sms_menu_root_anodoo" name="Anodoo 短信" sequence="79" web_icon="anodoo_sms,static/description/icon.png"/>
+	    	<menuitem parent="sms_menu_root_anodoo" id="sms_menu_sms" name="短信" />
+	    		<menuitem parent="sms_menu_sms" id="sms_menu_sms_list" name="短信列表" action="sms.sms_sms_action"/>
+
+	    	<menuitem parent="sms_menu_root_anodoo" id="sms_menu_analysis" name="分析" sequence="90" />
+
+	    	<menuitem parent="sms_menu_root_anodoo" id="sms_menu_config" name="配置" sequence="100"  groups="base.group_system"/>
+
+				<menuitem parent="sms_menu_config" id="sms_menu_config_sms_template" name="短信模板" action="sms.sms_template_action"/>
+
+	</data>
+</odoo>

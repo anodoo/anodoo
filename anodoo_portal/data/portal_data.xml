@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- 默认我的门户 -->
+
+    	<record model="anodoo.portal" id="default_my_portal">
+	        <field name="name">我的门户</field>
+	        <field name="code">my</field>
+	        <field name="description">每一个用户,都默认可以访问我的门户</field>
+	        <field name="is_default">True</field>
+	        <field name="view_id" ref="portal.portal_my_home"/>
+	        <field name="group_id" ref="base.group_no_one"/>
+	    </record>
+    </data>
+</odoo>

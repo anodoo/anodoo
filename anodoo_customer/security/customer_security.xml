@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="group_use_multi_customer_type" model="res.groups">
+	        <field name="name">启用多客户类型</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_multi_customer_size" model="res.groups">
+	        <field name="name">启用多客户规模</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    <record id="group_use_customer_lifetime" model="res.groups">
+	        <field name="name">启动客户生命周期管理</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+
+
+    </data>
+</odoo>

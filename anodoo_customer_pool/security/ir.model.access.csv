@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_customer_pool_user,anodoo.customer.pool.user,model_anodoo_customer_pool,base.group_user,1,1,1,1
+access_anodoo_customer_allot_user,anodoo.customer.allot.user,model_anodoo_customer_allot,base.group_user,1,1,1,1
+
+
+
+

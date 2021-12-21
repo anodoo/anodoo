@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_website_form_all,anodoo.website.form.all,model_anodoo_website_form,,1,1,1,1
+
+
+

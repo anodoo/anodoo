@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_anodoo_data_clean_user,anodoo.data.clean.user,model_anodoo_data_clean,base.group_user,1,1,1,1
+access_anodoo_usermenu_link_user,anodoo.data.clean.user,model_anodoo_usermenu_link,base.group_user,1,1,1,1
+access_anodoo_product_user,anodoo.product.user,model_anodoo_product,base.group_user,1,1,1,1
+
+access_anodoo_login_record_portal,anodoo.login.record.portal,model_anodoo_login_record,base.group_portal,1,1,1,1
+access_anodoo_login_record_user,anodoo.login.record.user,model_anodoo_login_record,base.group_user,1,1,1,1
+
+

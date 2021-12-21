@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="crm_lead_view_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.form</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+	        <field name="arch" type="xml">
+
+				<xpath expr="//field[@name='stage_id']" position="attributes">
+	        		<attribute name="domain">['|', ('team_id', '=', team_id), ('team_id', '=', False), ('opportunity_lifetime_id','=',opportunity_lifetime_id)]</attribute>
+	        	</xpath>
+	        	<xpath expr="//field[@name='date_deadline']" position="before">
+	        		<field name="lead_id"/>
+	                <field name="expected_revenue"/>
+	            </xpath>
+				<xpath expr="//button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="after">
+	        		<field name="is_opportunity_qualify" invisible="1"/>
+	                <button string="认定商机通过" name="qualify_opportunity_success" type="object" class="btn btn-secondary"
+	                title="商机认定通过" attrs="{'invisible':[('is_opportunity_qualify', '=', False)]}"/>
+	                <button string="认定商机不通过" name="%(anodoo_opportunity.action_anodoo_opportunity_qualify_lost)d"
+                            type="action" class="btn btn-secondary" context="{}" attrs="{'invisible':[('is_opportunity_qualify', '=', False)]}"/>
+
+	            </xpath>
+				<xpath expr="//field[@name='user_id']" position="before">
+	                <field name="opportunity_lifetime_id" attrs="{'invisible':[('type', '=', 'lead')]}"/>
+	            </xpath>
+	            <xpath expr="//notebook" position="inside">
+	            	<page name="opportunity_team" string="商机团队" attrs="{'invisible': [('type', '=', 'lead')]}">
+                         <group name="group_top">
+	                     	<group name="group_left">
+	                         <field name="team_id" invisible="1"/>
+	                         <field name="team_name" />
+	                      </group>
+	                      <group name="group_right">
+	                      </group>
+                      </group>
+                     </page>
+	                <page name="opportunity_relations" string="商机与商机关系" attrs="{'invisible': [('type', '=', 'lead')]}">
+                         <field name="opportunity_relation_ids" context="{'opportunity_id': id}">
+	                     	<tree editable='bottom'>
+				                <field name="relation_type" />
+				                <field name="opportunity_to_id" />
+				                <field name="description" />
+				            </tree>
+	                     </field>
+                     </page>
+                     <page name="opportunity_compete" string="竞争信息" attrs="{'invisible': [('type', '=', 'lead')]}">
+
+                     </page>
+	            </xpath>
+	        </field>
+	    </record>
+    </data>
+</odoo>

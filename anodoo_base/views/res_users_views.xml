@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+	
+        
+        <record id="view_users_search" model="ir.ui.view">
+            <field name="name">res.users.search</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_search"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//filter[@name='no_share']" position="after">
+	        		<filter name="is_share" string="外部用户" domain="[('share','=', True)]"/>	
+	        	</xpath>
+            </field>
+        </record>
+
+		<record id="base.action_res_users" model="ir.actions.act_window">
+            <field name="context">{}</field>
+        </record>
+        
+        <record id="view_groups_search" model="ir.ui.view">
+            <field name="name">res.groups.search</field>
+            <field name="model">res.groups</field>
+            <field name="inherit_id" ref="base.view_groups_search"/> 
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="after">
+            		<field name="external_id"/>
+	        	</xpath>
+	        	
+            	<xpath expr="//filter[@name='no_share']" position="after">
+	        		<group expand="1" string="Group By">
+		           		<filter name="groupby_category_id"  string="分类" context="{'group_by':'category_id'}" />               	
+		           	</group>
+	        	</xpath>
+            </field>
+        </record>
+        
+        <record id="base.action_res_groups" model="ir.actions.act_window">            
+            <field name="context">{'search_default_no_share': 1, 'search_default_groupby_category_id':1}</field>
+        </record>
+    </data>
+</odoo>

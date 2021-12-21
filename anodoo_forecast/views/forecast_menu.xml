@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="forecast_menu_root_anodoo" name="Anodoo 销售预测"  sequence="56"  web_icon="anodoo_forecast,static/description/icon.png"/>
+			
+			<menuitem parent="forecast_menu_root_anodoo" id="forecast_menu_goal" name="销售目标" />
+				<menuitem parent="forecast_menu_goal" id="forecast_menu_goal_anodoo_sales_goal" name="销售目标" action="action_anodoo_sales_goal_list"/>
+				<menuitem parent="forecast_menu_goal" id="forecast_menu_goal_anodoo_sales_goal_breakdown" name="目标分解" action="action_anodoo_sales_goal_breakdown_list"/>
+				<menuitem parent="forecast_menu_goal" id="forecast_menu_goal_anodoo_sales_goal_my" name="我的目标" action="action_anodoo_sales_goal_breakdown_list_my"/>
+			
+			<menuitem parent="forecast_menu_root_anodoo" id="forecast_menu_forecast" name="销售预测" />
+		
+			<menuitem parent="forecast_menu_root_anodoo" id="forecast_menu_analysis" name="分析" />
+    			<menuitem parent="forecast_menu_analysis" id="forecast_menu_analysis_forcast" name="目标与预测" />
+		
+			<menuitem parent="forecast_menu_root_anodoo" id="forecast_menu_config" name="设置" />
+				<menuitem parent="forecast_menu_config" id="forecast_menu_config_goal" name="销售目标" />
+					<menuitem parent="forecast_menu_config_goal" id="forecast_menu_config_goal_anodoo_sales_goal_model" name="目标模型" action="action_anodoo_sales_goal_model_list"/>
+					<menuitem parent="forecast_menu_config_goal" id="forecast_menu_config_goal_anodoo_sales_goal_state" name="目标阶段" action="action_anodoo_sales_goal_state_list"/>
+					<menuitem parent="forecast_menu_config_goal" id="forecast_menu_config_goal_anodoo_sales_goal_breakdown_dimension" name="目标分解纬度" action="action_anodoo_sales_goal_breakdown_dimension_list"/>
+	</data>
+</odoo>

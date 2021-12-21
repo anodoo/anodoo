@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="crm_lead_view_form" model="ir.ui.view">
+	        <field name="name">anodoo.lead.form</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//notebook" position="inside">
+                     <page name="opportunity_project" string="商机项目" attrs="{'invisible': [('type', '=', 'lead')]}">
+	                     <group name="group_top">
+		                     	<group name="group_left">
+		                         <field name="project_id" invisible="1"/>
+		                         <field name="project_name" />
+		                         <field name="project_user_id" />
+		                         <field name="project_task_count" />
+
+
+		                      </group>
+		                      <group name="group_tasks" colspan="4">
+		                         <field name="project_task_ids" readonly="1"/>
+
+		                      </group>
+	                      </group>
+                     </page>
+	            </xpath>
+	        </field>
+	    </record>
+    </data>
+</odoo>

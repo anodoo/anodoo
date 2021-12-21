@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">anodoo.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='settings']" position="inside">
+                    <div class="app_settings_block" data-string="Anodoo Lead Config" string="线索管理" data-key="anodoo_lead" >
+                    	<div id="lead">
+	                    	<h2>线索</h2>
+	                    	<div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead"
+		                            title="Use leads if you need a qualification step before creating an opportunity or a customer. It can be a business card you received, a contact form filled in your website, or a file of unqualified prospects you import, etc. Once qualified, the lead can be converted into a business opportunity and/or a new customer in your address book.">
+		                            <div class="o_setting_left_pane">
+		                                <field name="group_use_lead" readonly="1"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                                <label for="group_use_lead"/>
+		                                <div class="text-muted">
+		                                    使用线索管理功能
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <div class="col-12 col-lg-6 o_setting_box" id="crm_lead"
+		                                attrs="{'invisible': [('group_use_lead','=',False)]}"
+		                                title="Emails received to that address generate new leads not assigned to any Sales Team yet. This can be made when converting them into opportunities. Incoming emails can be automatically assigned to specific Sales Teams. To do so, set an email alias on the Sales Team.">
+		                            <div class="o_setting_left_pane">
+		                                <field name="generate_lead_from_alias"/>
+		                            </div>
+		                            <div class="o_setting_right_pane">
+		                                <label for="generate_lead_from_alias" string="通过邮件创建线索"/>
+		                                <div class="text-muted">
+		                                    通过特定的邮箱接收的邮件，自动创建一个线索。
+		                                </div>
+		                                <div class="content-group" attrs="{'invisible': [('generate_lead_from_alias','=',False)]}">
+		                                    <div class="mt16">
+		                                        <field name="crm_alias_prefix" class="oe_inline"
+		                                            attrs="{'required': [('generate_lead_from_alias', '=', True)]}"/>
+		                                        <label for="alias_domain" string="@"/>
+		                                        <field name="alias_domain" readonly="1" force_save="1" class="oe_inline"/>
+		                                    </div>
+		                                    <div attrs="{'invisible': [('alias_domain', 'not in', ['localhost', '', False])]}">
+		                                        <button type="action"
+		                                            name="base_setup.action_general_configuration"
+		                                            string="Use an External Email Server" icon="fa-arrow-right" class="oe_link"/>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <div class="col-lg-6 o_setting_box">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_crm_iap_lead_website"/>
+		                            </div>
+		
+		                            <div class="o_setting_right_pane" id="crm_iap_lead_website_settings">
+		                                <label string="通过网站访问者创建线索" for="module_crm_iap_lead_website"/>
+		                                <div class="text-muted">
+		                                    通过网站的访问者创建线索并记录访问者IP等信息
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="row mt16 o_settings_container">
+		                        <div class="col-12 col-lg-6 o_setting_box" title="This can be used to compute statistical probability to close a lead">
+		                            <div class="o_setting_left_pane"></div>
+		                            <div class="o_setting_right_pane">
+		                                <b>线索成功率计算</b>
+		                                <div class="text-muted">
+		                                    设置线索成功率计算的相关内容
+		                                </div>
+		                                <div class="mt16">
+		                                    使用哪些字段计算成功率
+		                                    <field name="predictive_lead_scoring_fields" class="oe_inline" widget="many2many_tags"/>
+		                                    <field name="predictive_lead_scoring_fields_str" invisible="1"/>
+		                                </div>
+		                                <div class="mt16">
+		                                    计算此日期后创建的线索：
+		                                    <field name="predictive_lead_scoring_start_date_str" invisible="1"/>
+		                                    <field name="predictive_lead_scoring_start_date" required="1"/>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="row mt16 o_settings_container">
+		                        <div class="col-lg-6 o_setting_box">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_crm_iap_lead"/>
+		                            </div>
+		
+		                            <div class="o_setting_right_pane" id="crm_iap_lead_settings">
+		                                <label string="线索挖掘" for="module_crm_iap_lead"/>
+		                                <div class="text-muted">
+		                                    通过国家，行业，规模等信息挖掘目标企业的线索
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <div class="col-lg-6 o_setting_box">
+		                            <div class="o_setting_left_pane">
+		                                <field name="module_crm_iap_lead_enrich"/>
+		                            </div>
+		
+		                            <div class="o_setting_right_pane" id="crm_iap_lead_enrich">
+		                                <label string="线索完善" for="module_crm_iap_lead_enrich"/>
+		                                <div class="text-muted">
+		                                    基于公司的邮箱信息进一步自动完善线索内容。
+		                                </div>
+		                                <div id="crm_iap_lead_enrich">
+		                                    <div class="mt8" attrs="{'invisible': [('module_crm_iap_lead_enrich','=',False)]}">
+		                                        <field name="lead_enrich_auto" class="o_light_label" widget="radio" required="True"/>
+		                                    </div>
+		                                    <!-- 
+		                                    <widget name="iap_buy_more_credits" service_name="reveal"/>
+		                                     -->
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+	        <field name="name">基础配置</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.config.settings</field>
+	        <field name="view_id" ref="res_config_settings_view_form"/>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	        <field name="context">{'module' : 'anodoo_lead'}</field>
+	    </record>
+
+	</data>
+</odoo>

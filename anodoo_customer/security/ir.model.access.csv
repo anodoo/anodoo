@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_anodoo_customer_type_user,anodoo.customer.type.user,model_anodoo_customer_type,base.group_user,1,1,1,1
+access_anodoo_customer_size_user,anodoo.customer.size.user,model_anodoo_customer_size,base.group_user,1,1,1,1
+access_anodoo_customer_lifetime_user,anodoo.customer.lifetime.user,model_anodoo_customer_lifetime,base.group_user,1,1,1,1
+access_anodoo_customer_lifetime_stage_user,anodoo.customer.lifetime.stage.user,model_anodoo_customer_lifetime_stage,base.group_user,1,1,1,1
+access_anodoo_customer_relation_customer_user,anodoo.customer.relation.customer.user,model_anodoo_customer_relation_customer,base.group_user,1,1,1,1
+
+
+
+
+
+

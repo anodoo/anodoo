@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <!-- base：view_partner_form -->
+		<record id="view_partner_form" model="ir.ui.view">
+            <field name="name">anodoo.contact.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                        <field name="support_many_child_ids" invisible="1"/>
+                        <page name="contacts" string="联系人" attrs="{'invisible': [('support_many_child_ids','==', False)]}">
+                            <field name="many_child_ids" context="{}"/>
+                        </page>
+                        <page name="contacts_relation" string="联系人与联系人关系">
+                                <field name="contact_relation_contact_ids" context="{'default_contact_id':id}">
+                                    <tree editable="top">
+                                        <field name="relation_contact_id" />
+                                        <field name="relation_type" />
+                                        <field name="is_reverse" />
+                                        <field name="description" />
+                                    </tree>
+                                </field>
+                            </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+		<!--网络营销，主要是utm，link_tracker模块,使用原来的菜单 -->
+		<menuitem id="utm.menu_link_tracker_root"  name="Anodoo 网络营销" sequence="31" web_icon="anodoo_link,static/description/icon.png"/>
+
+			<menuitem parent="utm.menu_link_tracker_root" id="link_menu_analysis" name="分析"  sequence="90" />
+
+			<menuitem parent="utm.menu_link_tracker_root" id="link_menu_config" name="配置"  sequence="100"  groups="base.group_system"/>
+
+	</data>
+</odoo>

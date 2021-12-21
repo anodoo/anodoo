@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- anodoo.desk.type -->
+         <record id="desk_type_view_tree" model="ir.ui.view">
+            <field name="name">desk.type.tree</field>
+            <field name="model">anodoo.desk.type</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Tag">
+                    <field name="sequence" widget="handle" groups="base.group_no_one"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="desk_type_action" model="ir.actions.act_window">
+            <field name="name">工单类型</field>
+            <field name="res_model">anodoo.desk.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	</data>
+</odoo>

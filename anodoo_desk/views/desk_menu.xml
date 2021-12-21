@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<menuitem id="desk_menu_root_anodoo" name="Anodoo 服务台" sequence="63" web_icon="anodoo_desk,static/description/icon.png" groups="anodoo_desk.group_desk_user"/>
+
+			<menuitem id="desk_menu_my" name="我的工单" action="desk_ticket_action_main_my" sequence="10" parent="desk_menu_root_anodoo"/>
+
+			<menuitem id="desk_menu_tickets" name="工单管理" sequence="20" parent="desk_menu_root_anodoo"/>
+    			<menuitem id="desk_menu_tickets_all" name="所有工单" action="desk_ticket_action_main_all" sequence="20" parent="desk_menu_tickets"/>
+				<menuitem id="desk_menu_tickets_unassigned" name="未分配工单" action="desk_ticket_action_main_unassigned" sequence="10" parent="desk_menu_tickets"/>
+
+			<menuitem id="desk_menu_analysis" name="分析"  sequence="90" parent="desk_menu_root_anodoo"/>
+				<menuitem id="desk_menu_analysis_ticket" name="工单分析" action="desk_ticket_analysis_action" parent="desk_menu_analysis"/>
+				<menuitem id="desk_menu_analysis_ticket_closed" name="关闭工单分析" action="desk_ticket_analysis_closed_action" parent="desk_menu_analysis"/>
+
+
+
+
+
+    		<menuitem id="desk_menu_config" name="配置" sequence="100" parent="desk_menu_root_anodoo" groups="anodoo_desk.group_desk_manager"/>
+				<menuitem id="desk_menu_config_setting" name="配置" action="res_config_settings_action" parent="desk_menu_config" />
+				<menuitem id="desk_menu_config_users" name="客服人员" action="action_desk_users" parent="desk_menu_config" />
+				<menuitem id="desk_menu_config_tag" action="desk_tag_action" name="工单标签"  parent="desk_menu_config"/>
+				<menuitem id="desk_menu_config_type" action="desk_type_action" name="工单类型" parent="desk_menu_config"/>
+				<menuitem id="desk_menu_config_channel" action="desk_channel_action" name="工单来源" parent="desk_menu_config"/>
+				<menuitem id="desk_menu_config_stage" action="desk_stage_action" name="工单阶段" parent="desk_menu_config"/>
+				<menuitem id="desk_menu_config_activity_type"  action="mail_activity_type_action_config_desk" name="活动类型" parent="desk_menu_config"/>
+	</data>
+</odoo>
